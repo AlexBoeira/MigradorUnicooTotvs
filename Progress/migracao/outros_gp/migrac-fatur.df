@@ -1,0 +1,902 @@
+ADD TABLE "migrac-fatur"  TYPE ORACLE
+  AREA "Schema Area"
+  LABEL "migracao fatura"
+  DESCRIPTION "migracao fatura"
+  DUMP-NAME "srf00132"
+  FOREIGN-NAME "MIGRAC_FATUR"
+  FOREIGN-OWNER "gp"
+  FOREIGN-TYPE "TABLE"
+  PROGRESS-RECID 68
+
+ADD FIELD "aa-referencia" OF "migrac-fatur" AS integer 
+  DESCRIPTION "aa-referencia"
+  FORMAT "9999"
+  INITIAL "0"
+  LABEL "Ano ref."
+  POSITION 2
+  COLUMN-LABEL "Ano ref."
+  HELP "Ano de referencia"
+  ORDER 40
+  FOREIGN-POS 4
+  FOREIGN-NAME "AA_REFERENCIA"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "cd-especie" OF "migrac-fatur" AS character 
+  DESCRIPTION "cd-especie"
+  FORMAT "X(03)"
+  INITIAL ""
+  LABEL "Esp.titulo"
+  POSITION 3
+  COLUMN-LABEL "Esp.titulo"
+  HELP "Especie do titulo"
+  ORDER 60
+  FOREIGN-POS 6
+  FOREIGN-NAME "CD_ESPECIE"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cd-modalidade" OF "migrac-fatur" AS integer 
+  DESCRIPTION "cd-modalidade"
+  FORMAT "99"
+  INITIAL "0"
+  LABEL "Modalidade"
+  POSITION 4
+  COLUMN-LABEL "Modalidade"
+  HELP "Identificacao da modalidade de comercializacao"
+  ORDER 20
+  FOREIGN-POS 2
+  FOREIGN-NAME "CD_MODALIDADE"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "cdd-seq" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "cdd-seq"
+  FORMAT "9999999999"
+  INITIAL "0"
+  LABEL "Seq. Properus"
+  POSITION 5
+  COLUMN-LABEL "Seq. Properus"
+  HELP "C¢digo - Decimal Sequencia"
+  DECIMALS 0
+  ORDER 10
+  MANDATORY
+  FOREIGN-POS 1
+  FOREIGN-NAME "CDD_SEQ"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "cod-livre-1" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 1"
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Livre 1"
+  POSITION 6
+  COLUMN-LABEL "Livre 1"
+  HELP "C¢digo Livre 1"
+  ORDER 100
+  FOREIGN-POS 10
+  FOREIGN-NAME "COD_LIVRE_1"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-10" OF "migrac-fatur" AS character 
+  DESCRIPTION "cod-livre-10"
+  FORMAT "x(8000)"
+  INITIAL ""
+  LABEL "Livre 10"
+  POSITION 7
+  COLUMN-LABEL "Livre 10"
+  HELP "C¢digo Livre 10"
+  ORDER 190
+  FOREIGN-POS 19
+  FOREIGN-NAME "COD_LIVRE_10"
+  FOREIGN-TYPE "LONG"
+
+ADD FIELD "cod-livre-2" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 2"
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Livre 2"
+  POSITION 8
+  COLUMN-LABEL "Livre 2"
+  HELP "C¢digo Livre 2"
+  ORDER 110
+  FOREIGN-POS 11
+  FOREIGN-NAME "COD_LIVRE_2"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-3" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 3"
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Livre 3"
+  POSITION 9
+  COLUMN-LABEL "Livre 3"
+  HELP "C¢digo Livre 3"
+  ORDER 120
+  FOREIGN-POS 12
+  FOREIGN-NAME "COD_LIVRE_3"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-4" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 4"
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Livre 4"
+  POSITION 10
+  COLUMN-LABEL "Livre 4"
+  HELP "C¢digo Livre 4"
+  ORDER 130
+  FOREIGN-POS 13
+  FOREIGN-NAME "COD_LIVRE_4"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-5" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 5"
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Livre 5"
+  POSITION 11
+  COLUMN-LABEL "Livre 5"
+  HELP "C¢digo Livre 5"
+  ORDER 140
+  FOREIGN-POS 14
+  FOREIGN-NAME "COD_LIVRE_5"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-6" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 6"
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Livre 6"
+  POSITION 12
+  COLUMN-LABEL "Livre 6"
+  HELP "C¢digo Livre 6"
+  ORDER 150
+  FOREIGN-POS 15
+  FOREIGN-NAME "COD_LIVRE_6"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-7" OF "migrac-fatur" AS character 
+  DESCRIPTION "C¢digo Livre 7"
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Livre 7"
+  POSITION 13
+  COLUMN-LABEL "Livre 7"
+  HELP "C¢digo Livre 7"
+  ORDER 160
+  FOREIGN-POS 16
+  FOREIGN-NAME "COD_LIVRE_7"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-8" OF "migrac-fatur" AS character 
+  DESCRIPTION "cod-livre-8"
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Livre 8"
+  POSITION 14
+  COLUMN-LABEL "Livre 8"
+  HELP "C¢digo Livre 8"
+  ORDER 170
+  FOREIGN-POS 17
+  FOREIGN-NAME "COD_LIVRE_8"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-livre-9" OF "migrac-fatur" AS character 
+  DESCRIPTION "cod-livre-9"
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Livre 9"
+  POSITION 15
+  COLUMN-LABEL "Livre 9"
+  HELP "C¢digo Livre 9"
+  ORDER 180
+  FOREIGN-POS 18
+  FOREIGN-NAME "COD_LIVRE_9"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "cod-usuar-ult-atualiz" OF "migrac-fatur" AS character 
+  DESCRIPTION "cod-usuar-ult-atualiz"
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Usu rio Ult Atualiz"
+  POSITION 16
+  COLUMN-LABEL "Usu rio Ult Atualiz"
+  HELP "C¢digo Usu rio éltima Atualiza‡Æo"
+  ORDER 620
+  FOREIGN-POS 62
+  FOREIGN-NAME "COD_USUAR_ULT_ATUALIZ"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "dat-livre-1" OF "migrac-fatur" AS date 
+  DESCRIPTION "Data Livre 1"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 1"
+  POSITION 17
+  COLUMN-LABEL "Livre 1"
+  HELP "Data Livre 1"
+  ORDER 500
+  FOREIGN-POS 50
+  FOREIGN-NAME "DAT_LIVRE_1"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-10" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-livre-10"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 18
+  COLUMN-LABEL ""
+  ORDER 590
+  FOREIGN-POS 59
+  FOREIGN-NAME "DAT_LIVRE_10"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-2" OF "migrac-fatur" AS date 
+  DESCRIPTION "Data Livre 2"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 2"
+  POSITION 19
+  COLUMN-LABEL "Livre 2"
+  HELP "Data Livre 2"
+  ORDER 510
+  FOREIGN-POS 51
+  FOREIGN-NAME "DAT_LIVRE_2"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-3" OF "migrac-fatur" AS date 
+  DESCRIPTION "Data Livre 3"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 3"
+  POSITION 20
+  COLUMN-LABEL "Livre 3"
+  HELP "Data Livre 3"
+  ORDER 520
+  FOREIGN-POS 52
+  FOREIGN-NAME "DAT_LIVRE_3"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-4" OF "migrac-fatur" AS date 
+  DESCRIPTION "Data Livre 4"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 4"
+  POSITION 21
+  COLUMN-LABEL "Livre 4"
+  HELP "Data Livre 4"
+  ORDER 530
+  FOREIGN-POS 53
+  FOREIGN-NAME "DAT_LIVRE_4"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-5" OF "migrac-fatur" AS date 
+  DESCRIPTION "Data Livre 5"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 5"
+  POSITION 22
+  COLUMN-LABEL "Livre 5"
+  HELP "Data Livre 5"
+  ORDER 540
+  FOREIGN-POS 54
+  FOREIGN-NAME "DAT_LIVRE_5"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-6" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-livre-6"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 6"
+  POSITION 23
+  COLUMN-LABEL "Livre 6"
+  HELP "Data Livre 6"
+  ORDER 550
+  FOREIGN-POS 55
+  FOREIGN-NAME "DAT_LIVRE_6"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-7" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-livre-7"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 7"
+  POSITION 24
+  COLUMN-LABEL "Livre 7"
+  HELP "Data Livre 7"
+  ORDER 560
+  FOREIGN-POS 56
+  FOREIGN-NAME "DAT_LIVRE_7"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-8" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-livre-8"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 8"
+  POSITION 25
+  COLUMN-LABEL "Livre 8"
+  HELP "Data Livre 8"
+  ORDER 570
+  FOREIGN-POS 57
+  FOREIGN-NAME "DAT_LIVRE_8"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-livre-9" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-livre-9"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 9"
+  POSITION 26
+  COLUMN-LABEL "Livre 9"
+  HELP "Data Livre 9"
+  ORDER 580
+  FOREIGN-POS 58
+  FOREIGN-NAME "DAT_LIVRE_9"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dat-ult-atualiz" OF "migrac-fatur" AS date 
+  DESCRIPTION "dat-ult-atualiz"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "éltima Atualiza‡Æo"
+  POSITION 27
+  COLUMN-LABEL "Data Ult Atualiz"
+  HELP "Data éltima Atualiza‡Æo"
+  ORDER 600
+  FOREIGN-POS 60
+  FOREIGN-NAME "DAT_ULT_ATUALIZ"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dt-emissao" OF "migrac-fatur" AS date 
+  DESCRIPTION "dt-emissao"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Emissao"
+  POSITION 28
+  COLUMN-LABEL "Emissao"
+  HELP "Data de emissao do documento"
+  ORDER 650
+  FOREIGN-POS 65
+  FOREIGN-NAME "DT_EMISSAO"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "dt-vencimento" OF "migrac-fatur" AS date 
+  DESCRIPTION "dt-vencimento"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Venc."
+  POSITION 29
+  COLUMN-LABEL "Venc."
+  HELP "Data de vencimento"
+  ORDER 660
+  FOREIGN-POS 66
+  FOREIGN-NAME "DT_VENCIMENTO"
+  FOREIGN-TYPE "DATE"
+
+ADD FIELD "hra-ult-atualiz" OF "migrac-fatur" AS character 
+  DESCRIPTION "hra-ult-atualiz"
+  FORMAT "99:99:99"
+  INITIAL ""
+  LABEL "Hora éltima Atualiz"
+  POSITION 30
+  COLUMN-LABEL "Hora Ult Atualiz"
+  HELP "Hora éltima Atualiza‡Æo"
+  ORDER 610
+  FOREIGN-POS 61
+  FOREIGN-NAME "HRA_ULT_ATUALIZ"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "log-livre-1" OF "migrac-fatur" AS logical 
+  DESCRIPTION "L¢gico Livre 1"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 1"
+  POSITION 31
+  COLUMN-LABEL "Livre 1"
+  HELP "L¢gico Livre 1"
+  ORDER 400
+  FOREIGN-POS 40
+  FOREIGN-NAME "LOG_LIVRE_1"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-10" OF "migrac-fatur" AS logical 
+  DESCRIPTION "log-livre-10"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 10"
+  POSITION 32
+  COLUMN-LABEL "Livre 10"
+  HELP "L¢gico Livre 10"
+  ORDER 490
+  FOREIGN-POS 49
+  FOREIGN-NAME "LOG_LIVRE_10"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-2" OF "migrac-fatur" AS logical 
+  DESCRIPTION "L¢gico Livre 2"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 2"
+  POSITION 33
+  COLUMN-LABEL "Livre 2"
+  HELP "L¢gico Livre 2"
+  ORDER 410
+  FOREIGN-POS 41
+  FOREIGN-NAME "LOG_LIVRE_2"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-3" OF "migrac-fatur" AS logical 
+  DESCRIPTION "Logico Livre 3"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 3"
+  POSITION 34
+  COLUMN-LABEL "Livre 3"
+  HELP "Logico Livre 3"
+  ORDER 420
+  FOREIGN-POS 42
+  FOREIGN-NAME "LOG_LIVRE_3"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-4" OF "migrac-fatur" AS logical 
+  DESCRIPTION "Logico Livre 4"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 4"
+  POSITION 35
+  COLUMN-LABEL "Livre 4"
+  HELP "Logico Livre 4"
+  ORDER 430
+  FOREIGN-POS 43
+  FOREIGN-NAME "LOG_LIVRE_4"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-5" OF "migrac-fatur" AS logical 
+  DESCRIPTION "Logico Livre 5"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 5"
+  POSITION 36
+  COLUMN-LABEL "Livre 5"
+  HELP "Logico Livre 5"
+  ORDER 440
+  FOREIGN-POS 44
+  FOREIGN-NAME "LOG_LIVRE_5"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-6" OF "migrac-fatur" AS logical 
+  DESCRIPTION "Logico Livre 6"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 6"
+  POSITION 37
+  COLUMN-LABEL "Livre 6"
+  HELP "Logico Livre 6"
+  ORDER 450
+  FOREIGN-POS 45
+  FOREIGN-NAME "LOG_LIVRE_6"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-7" OF "migrac-fatur" AS logical 
+  DESCRIPTION "Logico Livre 7"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 7"
+  POSITION 38
+  COLUMN-LABEL "Livre 7"
+  HELP "Logico Livre 7"
+  ORDER 460
+  FOREIGN-POS 46
+  FOREIGN-NAME "LOG_LIVRE_7"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-8" OF "migrac-fatur" AS logical 
+  DESCRIPTION "log-livre-8"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 8"
+  POSITION 39
+  COLUMN-LABEL "Livre 8"
+  HELP "L¢gico Livre 8"
+  ORDER 470
+  FOREIGN-POS 47
+  FOREIGN-NAME "LOG_LIVRE_8"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "log-livre-9" OF "migrac-fatur" AS logical 
+  DESCRIPTION "log-livre-9"
+  FORMAT "Sim/NÆo"
+  INITIAL "no"
+  LABEL "Livre 9"
+  POSITION 40
+  COLUMN-LABEL "Livre 9"
+  HELP "L¢gico Livre 9"
+  ORDER 480
+  FOREIGN-POS 48
+  FOREIGN-NAME "LOG_LIVRE_9"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "modalidade" OF "migrac-fatur" AS integer 
+  DESCRIPTION "modalidade"
+  FORMAT "999"
+  INITIAL "0"
+  LABEL "Modalidade/Carteira"
+  POSITION 41
+  COLUMN-LABEL "Modalidade/Carteira"
+  HELP "Modalidade do prestador"
+  ORDER 640
+  FOREIGN-POS 64
+  FOREIGN-NAME "MODALIDADE"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "nr-ter-adesao" OF "migrac-fatur" AS integer 
+  DESCRIPTION "nr-ter-adesao"
+  FORMAT "999999"
+  INITIAL "0"
+  LABEL "Termo"
+  POSITION 42
+  COLUMN-LABEL "Termo"
+  HELP "Numero do termo de adesao"
+  ORDER 30
+  FOREIGN-POS 3
+  FOREIGN-NAME "NR_TER_ADESAO"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "nr-titulo-acr" OF "migrac-fatur" AS character 
+  DESCRIPTION "nr-titulo-acr"
+  FORMAT "X(10)"
+  INITIAL ""
+  LABEL "Titulo"
+  POSITION 43
+  COLUMN-LABEL "Titulo"
+  HELP "Numero do titulo gerado no contas a receber"
+  ORDER 80
+  FOREIGN-POS 8
+  FOREIGN-NAME "NR_TITULO_ACR"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "num-livre-1" OF "migrac-fatur" AS integer 
+  DESCRIPTION "N£mero Livre 1"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 44
+  COLUMN-LABEL "Livre 1"
+  HELP "N£mero Livre 1"
+  ORDER 200
+  FOREIGN-POS 20
+  FOREIGN-NAME "NUM_LIVRE_1"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-10" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 10"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 10"
+  POSITION 45
+  COLUMN-LABEL "Livre 10"
+  HELP "Numero Livre 10"
+  ORDER 290
+  FOREIGN-POS 29
+  FOREIGN-NAME "NUM_LIVRE_10"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-2" OF "migrac-fatur" AS integer 
+  DESCRIPTION "N£mero Livre 2"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 46
+  COLUMN-LABEL "Livre 2"
+  HELP "N£mero Livre 2"
+  ORDER 210
+  FOREIGN-POS 21
+  FOREIGN-NAME "NUM_LIVRE_2"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-3" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 3"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 47
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 3"
+  ORDER 220
+  FOREIGN-POS 22
+  FOREIGN-NAME "NUM_LIVRE_3"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-4" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 4"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 48
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 4"
+  ORDER 230
+  FOREIGN-POS 23
+  FOREIGN-NAME "NUM_LIVRE_4"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-5" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 5"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 49
+  COLUMN-LABEL "Livre 5"
+  HELP "Numero Livre 5"
+  ORDER 240
+  FOREIGN-POS 24
+  FOREIGN-NAME "NUM_LIVRE_5"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-6" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 6"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 50
+  COLUMN-LABEL "Livre 6"
+  HELP "Numero Livre 6"
+  ORDER 250
+  FOREIGN-POS 25
+  FOREIGN-NAME "NUM_LIVRE_6"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-7" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Numero Livre 7"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 7"
+  POSITION 51
+  COLUMN-LABEL "Livre 7"
+  HELP "Numero Livre 7"
+  ORDER 260
+  FOREIGN-POS 26
+  FOREIGN-NAME "NUM_LIVRE_7"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-8" OF "migrac-fatur" AS integer 
+  DESCRIPTION "num-livre-8"
+  FORMAT "->>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 8"
+  POSITION 52
+  COLUMN-LABEL "Livre 8"
+  HELP "N£mero Livre 8"
+  ORDER 270
+  FOREIGN-POS 27
+  FOREIGN-NAME "NUM_LIVRE_8"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-livre-9" OF "migrac-fatur" AS integer 
+  DESCRIPTION "num-livre-9"
+  FORMAT "->>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 9"
+  POSITION 53
+  COLUMN-LABEL "Livre 9"
+  HELP "N£mero Livre 9"
+  ORDER 280
+  FOREIGN-POS 28
+  FOREIGN-NAME "NUM_LIVRE_9"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "num-mm-refer" OF "migrac-fatur" AS integer 
+  DESCRIPTION "Mes referencia"
+  FORMAT ">>>>,>>9"
+  INITIAL "0"
+  LABEL "Mes referencia"
+  POSITION 54
+  COLUMN-LABEL "Mes referencia"
+  HELP "Mes referencia"
+  ORDER 50
+  FOREIGN-POS 5
+  FOREIGN-NAME "NUM_MM_REFER"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "parcela" OF "migrac-fatur" AS integer 
+  DESCRIPTION "parcela"
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Parcela"
+  POSITION 55
+  COLUMN-LABEL "Parcela"
+  HELP "Parcela de pagamento da taxa de inscricao"
+  ORDER 90
+  FOREIGN-POS 9
+  FOREIGN-NAME "PARCELA"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "portador" OF "migrac-fatur" AS integer 
+  DESCRIPTION "portador"
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Portador"
+  POSITION 56
+  COLUMN-LABEL "Portador"
+  HELP "Codigo do portador"
+  ORDER 630
+  FOREIGN-POS 63
+  FOREIGN-NAME "PORTADOR"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "serie" OF "migrac-fatur" AS character 
+  DESCRIPTION "serie"
+  FORMAT "x(3)"
+  INITIAL ""
+  LABEL "Serie"
+  POSITION 57
+  COLUMN-LABEL "Serie"
+  HELP "Serie titulo"
+  ORDER 70
+  FOREIGN-POS 7
+  FOREIGN-NAME "SERIE"
+  FOREIGN-TYPE "CHAR"
+
+ADD FIELD "val-livre-1" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 1"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 58
+  COLUMN-LABEL "Livre 1"
+  HELP "Valor Livre 1"
+  DECIMALS 8
+  ORDER 300
+  FOREIGN-POS 30
+  FOREIGN-NAME "VAL_LIVRE_1"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-10" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "val-livre-10"
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 59
+  COLUMN-LABEL ""
+  DECIMALS 2
+  ORDER 390
+  FOREIGN-POS 39
+  FOREIGN-NAME "VAL_LIVRE_10"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-2" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 2"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 60
+  COLUMN-LABEL "Livre 2"
+  HELP "Valor Livre 2"
+  DECIMALS 8
+  ORDER 310
+  FOREIGN-POS 31
+  FOREIGN-NAME "VAL_LIVRE_2"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-3" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 3"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 61
+  COLUMN-LABEL "Livre 3"
+  HELP "Valor Livre 3"
+  DECIMALS 8
+  ORDER 320
+  FOREIGN-POS 32
+  FOREIGN-NAME "VAL_LIVRE_3"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-4" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 4"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 4"
+  POSITION 62
+  COLUMN-LABEL "Livre 4"
+  HELP "Valor Livre 4"
+  DECIMALS 8
+  ORDER 330
+  FOREIGN-POS 33
+  FOREIGN-NAME "VAL_LIVRE_4"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-5" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 5"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 63
+  COLUMN-LABEL "Livre 5"
+  HELP "Valor Livre 5"
+  DECIMALS 8
+  ORDER 340
+  FOREIGN-POS 34
+  FOREIGN-NAME "VAL_LIVRE_5"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-6" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 6"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 64
+  COLUMN-LABEL "Livre 6"
+  HELP "Valor Livre 6"
+  DECIMALS 8
+  ORDER 350
+  FOREIGN-POS 35
+  FOREIGN-NAME "VAL_LIVRE_6"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-7" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 7"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 7"
+  POSITION 65
+  COLUMN-LABEL "Livre 7"
+  HELP "Valor Livre 7"
+  DECIMALS 8
+  ORDER 360
+  FOREIGN-POS 36
+  FOREIGN-NAME "VAL_LIVRE_7"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-8" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "Valor Livre 8"
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  LABEL "Livre 8"
+  POSITION 66
+  COLUMN-LABEL "Livre 8"
+  HELP "Valor Livre 8"
+  DECIMALS 8
+  ORDER 370
+  FOREIGN-POS 37
+  FOREIGN-NAME "VAL_LIVRE_8"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "val-livre-9" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "val-livre-9"
+  FORMAT "->>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Livre 9"
+  POSITION 67
+  COLUMN-LABEL "Livre 9"
+  HELP "Valor Livre 9"
+  DECIMALS 2
+  ORDER 380
+  FOREIGN-POS 38
+  FOREIGN-NAME "VAL_LIVRE_9"
+  FOREIGN-TYPE "NUMBER"
+
+ADD FIELD "vl-total" OF "migrac-fatur" AS decimal 
+  DESCRIPTION "vl-total"
+  FORMAT ">>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Vl.liq."
+  POSITION 68
+  COLUMN-LABEL "Vl.liq."
+  HELP "Valor total do aviso de credito"
+  DECIMALS 2
+  ORDER 670
+  FOREIGN-POS 67
+  FOREIGN-NAME "VL_TOTAL"
+  FOREIGN-TYPE "NUMBER"
+
+ADD INDEX "mgrcftr_ix2" ON "migrac-fatur" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-NUM 1
+  FOREIGN-NAME "SRF00132##MGRCFTR_IX2"
+  INDEX-FIELD "cdd-seq" ASCENDING 
+
+.
+PSC
+cpstream=ibm850
+.
+0000020528

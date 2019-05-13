@@ -1,0 +1,15 @@
+        1   /**
+        2    * Chamar repetitivamente o programa para distribuir IMPORT_GUIAS da situacao RC para R0, R1... na medida
+        3    * em que vao sendo criados na tabela (sao criados pelo extrator SQL)
+        4    */
+        5    
+        6   REPEAT:
+        7       PROCESS EVENTS.
+        8       RUN atp/at0210a3.p.
+        9       PAUSE(1).
+       10   
+       11       IF SEARCH("c:/temp/parar-migracao.txt") <> ?
+       12       THEN LEAVE.
+       13   END.
+       14   QUIT.
+       15   

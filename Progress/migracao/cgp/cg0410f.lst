@@ -1,0 +1,1383 @@
+        1   /********************************************************************************
+        2   ** Copyright DATASUL S.A. (1997)
+        3   ** Todos os Direitos Reservados.
+        4   **
+        5   ** Este fonte e de propriedade exclusiva da DATASUL, sua reproducao
+        6   ** parcial ou total por qualquer meio, so podera ser feita mediante
+        7   ** autorizacao expressa.
+        8   *******************************************************************************/
+        9   *** Encrypted Source ***
+       10   *** Encrypted Source ***
+       11   *** Encrypted Source ***
+       12   *** Encrypted Source ***
+       13   *** Encrypted Source ***
+       14   *** Encrypted Source ***
+       15   *** Encrypted Source ***
+       16   *** Encrypted Source ***
+       17   *** Encrypted Source ***
+       18   *** Encrypted Source ***
+       19   *** Encrypted Source ***
+       20   *** Encrypted Source ***
+       21   *** Encrypted Source ***
+       22   *** Encrypted Source ***
+       23   *** Encrypted Source ***
+       24   *** Encrypted Source ***
+       25   *** Encrypted Source ***
+       26   *** Encrypted Source ***
+       27   *** Encrypted Source ***
+       28   *** Encrypted Source ***
+       29   *** Encrypted Source ***
+       30   *** Encrypted Source ***
+       31   *** Encrypted Source ***
+       32   *** Encrypted Source ***
+       33   *** Encrypted Source ***
+       34   *** Encrypted Source ***
+       35   *** Encrypted Source ***
+       36   *** Encrypted Source ***
+       37   *** Encrypted Source ***
+       38   *** Encrypted Source ***
+       39   *** Encrypted Source ***
+       40   *** Encrypted Source ***
+       41   *** Encrypted Source ***
+       42   *** Encrypted Source ***
+       43   *** Encrypted Source ***
+       44   *** Encrypted Source ***
+       45   *** Encrypted Source ***
+       46   *** Encrypted Source ***
+       47   *** Encrypted Source ***
+       48   *** Encrypted Source ***
+       49   *** Encrypted Source ***
+       50   *** Encrypted Source ***
+       51   *** Encrypted Source ***
+       52   *** Encrypted Source ***
+       53   *** Encrypted Source ***
+       54   *** Encrypted Source ***
+       55   *** Encrypted Source ***
+       56   *** Encrypted Source ***
+       57   *** Encrypted Source ***
+       58   *** Encrypted Source ***
+       59   *** Encrypted Source ***
+       60   *** Encrypted Source ***
+       61   *** Encrypted Source ***
+       62   *** Encrypted Source ***
+       63   *** Encrypted Source ***
+       64   *** Encrypted Source ***
+       65   *** Encrypted Source ***
+       66   *** Encrypted Source ***
+       67   *** Encrypted Source ***
+       68   *** Encrypted Source ***
+       69   *** Encrypted Source ***
+       70   *** Encrypted Source ***
+       71   *** Encrypted Source ***
+       72   *** Encrypted Source ***
+       73   *** Encrypted Source ***
+       74   *** Encrypted Source ***
+       75   *** Encrypted Source ***
+       76   *** Encrypted Source ***
+       77   *** Encrypted Source ***
+       78   *** Encrypted Source ***
+       79   *** Encrypted Source ***
+       80   *** Encrypted Source ***
+       81   *** Encrypted Source ***
+       82   *** Encrypted Source ***
+       83   *** Encrypted Source ***
+       84   *** Encrypted Source ***
+       85   *** Encrypted Source ***
+       86   *** Encrypted Source ***
+       87   *** Encrypted Source ***
+       88   *** Encrypted Source ***
+       89   *** Encrypted Source ***
+       90   *** Encrypted Source ***
+       91   *** Encrypted Source ***
+       92   *** Encrypted Source ***
+       93   *** Encrypted Source ***
+       94   *** Encrypted Source ***
+       95   *** Encrypted Source ***
+       96   *** Encrypted Source ***
+       97   *** Encrypted Source ***
+       98   *** Encrypted Source ***
+       99   *** Encrypted Source ***
+      100   *** Encrypted Source ***
+      101   *** Encrypted Source ***
+      102   *** Encrypted Source ***
+      103   *** Encrypted Source ***
+      104   *** Encrypted Source ***
+      105   *** Encrypted Source ***
+      106   *** Encrypted Source ***
+      107   *** Encrypted Source ***
+      108   *** Encrypted Source ***
+      109   *** Encrypted Source ***
+      110   *** Encrypted Source ***
+      111   *** Encrypted Source ***
+      112   *** Encrypted Source ***
+      113   *** Encrypted Source ***
+      114   *** Encrypted Source ***
+      115   *** Encrypted Source ***
+      116   *** Encrypted Source ***
+      117   *** Encrypted Source ***
+      118   *** Encrypted Source ***
+      119   *** Encrypted Source ***
+      120   *** Encrypted Source ***
+      121   *** Encrypted Source ***
+      122   *** Encrypted Source ***
+      123   *** Encrypted Source ***
+      124   *** Encrypted Source ***
+      125   *** Encrypted Source ***
+      126   *** Encrypted Source ***
+      127   *** Encrypted Source ***
+      128   *** Encrypted Source ***
+      129   *** Encrypted Source ***
+      130   *** Encrypted Source ***
+      131   *** Encrypted Source ***
+      132   *** Encrypted Source ***
+      133   *** Encrypted Source ***
+      134   *** Encrypted Source ***
+      135   *** Encrypted Source ***
+      136   *** Encrypted Source ***
+      137   *** Encrypted Source ***
+      138   *** Encrypted Source ***
+      139   *** Encrypted Source ***
+      140   *** Encrypted Source ***
+      141   *** Encrypted Source ***
+      142   *** Encrypted Source ***
+      143   *** Encrypted Source ***
+      144   *** Encrypted Source ***
+      145   *** Encrypted Source ***
+      146   *** Encrypted Source ***
+      147   *** Encrypted Source ***
+      148   *** Encrypted Source ***
+      149   *** Encrypted Source ***
+      150   *** Encrypted Source ***
+      151   *** Encrypted Source ***
+      152   *** Encrypted Source ***
+      153   *** Encrypted Source ***
+      154   *** Encrypted Source ***
+      155   *** Encrypted Source ***
+      156   *** Encrypted Source ***
+      157   *** Encrypted Source ***
+      158   *** Encrypted Source ***
+      159   *** Encrypted Source ***
+      160   *** Encrypted Source ***
+      161   *** Encrypted Source ***
+      162   *** Encrypted Source ***
+      163   *** Encrypted Source ***
+      164   *** Encrypted Source ***
+      165   *** Encrypted Source ***
+      166   *** Encrypted Source ***
+      167   *** Encrypted Source ***
+      168   *** Encrypted Source ***
+      169   *** Encrypted Source ***
+      170   *** Encrypted Source ***
+      171   *** Encrypted Source ***
+      172   *** Encrypted Source ***
+      173   *** Encrypted Source ***
+      174     /*** 010007 ***/
+      175   
+      176   &IF "" >= "1.00" &THEN
+      177   
+      178   &ENDIF
+      179   
+      180   /******************************************************************************
+      181       Programa .....: 
+      182       Data .........: 28/08/2015
+      183       Empresa ......: TOTVS Saude
+      184       Programador ..: Mauricio Faoro 
+      185       Objetivo .....: Migracao de faturas
+      186   *******************************************************************************/
+      187   hide all no-pause.
+      188   *** Encrypted Source ***
+      189   *** Encrypted Source ***
+      190   *** Encrypted Source ***
+      191   *** Encrypted Source ***
+      192   *** Encrypted Source ***
+      193   *** Encrypted Source ***
+      194   *** Encrypted Source ***
+      195   *** Encrypted Source ***
+      196   *** Encrypted Source ***
+      197   *** Encrypted Source ***
+      198   *** Encrypted Source ***
+      199   *** Encrypted Source ***
+      200   *** Encrypted Source ***
+      201   *** Encrypted Source ***
+      202   *** Encrypted Source ***
+      203   *** Encrypted Source ***
+      204   *** Encrypted Source ***
+      205   *** Encrypted Source ***
+      206   *** Encrypted Source ***
+      207   *** Encrypted Source ***
+      208   *** Encrypted Source ***
+      209   *** Encrypted Source ***
+      210   *** Encrypted Source ***
+      211   *** Encrypted Source ***
+      212   *** Encrypted Source ***
+      213   *** Encrypted Source ***
+      214   *** Encrypted Source ***
+      215   *** Encrypted Source ***
+      216   *** Encrypted Source ***
+      217   *** Encrypted Source ***
+      218   *** Encrypted Source ***
+      219   *** Encrypted Source ***
+      220   *** Encrypted Source ***
+      221   *** Encrypted Source ***
+      222   *** Encrypted Source ***
+      223   *** Encrypted Source ***
+      224   *** Encrypted Source ***
+      225   *** Encrypted Source ***
+      226   *** Encrypted Source ***
+      227   *** Encrypted Source ***
+      228   *** Encrypted Source ***
+      229   *** Encrypted Source ***
+      230   *** Encrypted Source ***
+      231   *** Encrypted Source ***
+      232   *** Encrypted Source ***
+      233   *** Encrypted Source ***
+      234   *** Encrypted Source ***
+      235   *** Encrypted Source ***
+      236   *** Encrypted Source ***
+      237   *** Encrypted Source ***
+      238   *** Encrypted Source ***
+      239   *** Encrypted Source ***
+      240   *** Encrypted Source ***
+      241   *** Encrypted Source ***
+      242   *** Encrypted Source ***
+      243   *** Encrypted Source ***
+      244   *** Encrypted Source ***
+      245   *** Encrypted Source ***
+      246   *** Encrypted Source ***
+      247   *** Encrypted Source ***
+      248   *** Encrypted Source ***
+      249   *** Encrypted Source ***
+      250   *** Encrypted Source ***
+      251   *** Encrypted Source ***
+      252   *** Encrypted Source ***
+      253   *** Encrypted Source ***
+      254   *** Encrypted Source ***
+      255   *** Encrypted Source ***
+      256   *** Encrypted Source ***
+      257   *** Encrypted Source ***
+      258   *** Encrypted Source ***
+      259   *** Encrypted Source ***
+      260   *** Encrypted Source ***
+      261   *** Encrypted Source ***
+      262   *** Encrypted Source ***
+      263   *** Encrypted Source ***
+      264   *** Encrypted Source ***
+      265   *** Encrypted Source ***
+      266   *** Encrypted Source ***
+      267   *** Encrypted Source ***
+      268   *** Encrypted Source ***
+      269   *** Encrypted Source ***
+      270   *** Encrypted Source ***
+      271   *** Encrypted Source ***
+      272   *** Encrypted Source ***
+      273   *** Encrypted Source ***
+      274   *** Encrypted Source ***
+      275   *** Encrypted Source ***
+      276   *** Encrypted Source ***
+      277   *** Encrypted Source ***
+      278   *** Encrypted Source ***
+      279   *** Encrypted Source ***
+      280   *** Encrypted Source ***
+      281   *** Encrypted Source ***
+      282   *** Encrypted Source ***
+      283   *** Encrypted Source ***
+      284   *** Encrypted Source ***
+      285   *** Encrypted Source ***
+      286   *** Encrypted Source ***
+      287   *** Encrypted Source ***
+      288   *** Encrypted Source ***
+      289   *** Encrypted Source ***
+      290   *** Encrypted Source ***
+      291   *** Encrypted Source ***
+      292   *** Encrypted Source ***
+      293   *** Encrypted Source ***
+      294   *** Encrypted Source ***
+      295   *** Encrypted Source ***
+      296   *** Encrypted Source ***
+      297   *** Encrypted Source ***
+      298   *** Encrypted Source ***
+      299   *** Encrypted Source ***
+      300   *** Encrypted Source ***
+      301   *** Encrypted Source ***
+      302   *** Encrypted Source ***
+      303   *** Encrypted Source ***
+      304   *** Encrypted Source ***
+      305   *** Encrypted Source ***
+      306   *** Encrypted Source ***
+      307   *** Encrypted Source ***
+      308   *** Encrypted Source ***
+      309   *** Encrypted Source ***
+      310   *** Encrypted Source ***
+      311   *** Encrypted Source ***
+      312   *** Encrypted Source ***
+      313   *** Encrypted Source ***
+      314   *** Encrypted Source ***
+      315   *** Encrypted Source ***
+      316   *** Encrypted Source ***
+      317   *** Encrypted Source ***
+      318   *** Encrypted Source ***
+      319   *** Encrypted Source ***
+      320   *** Encrypted Source ***
+      321   *** Encrypted Source ***
+      322   *** Encrypted Source ***
+      323   *** Encrypted Source ***
+      324   *** Encrypted Source ***
+      325   *** Encrypted Source ***
+      326   *** Encrypted Source ***
+      327   *** Encrypted Source ***
+      328   *** Encrypted Source ***
+      329   *** Encrypted Source ***
+      330   *** Encrypted Source ***
+      331   *** Encrypted Source ***
+      332   *** Encrypted Source ***
+      333   *** Encrypted Source ***
+      334   *** Encrypted Source ***
+      335   *** Encrypted Source ***
+      336   *** Encrypted Source ***
+      337   *** Encrypted Source ***
+      338   *** Encrypted Source ***
+      339   *** Encrypted Source ***
+      340   *** Encrypted Source ***
+      341   *** Encrypted Source ***
+      342   *** Encrypted Source ***
+      343   *** Encrypted Source ***
+      344   *** Encrypted Source ***
+      345   *** Encrypted Source ***
+      346   *** Encrypted Source ***
+      347   *** Encrypted Source ***
+      348   *** Encrypted Source ***
+      349   *** Encrypted Source ***
+      350   *** Encrypted Source ***
+      351   *** Encrypted Source ***
+      352   *** Encrypted Source ***
+      353   *** Encrypted Source ***
+      354   *** Encrypted Source ***
+      355   *** Encrypted Source ***
+      356   *** Encrypted Source ***
+      357   *** Encrypted Source ***
+      358   *** Encrypted Source ***
+      359   *** Encrypted Source ***
+      360   *** Encrypted Source ***
+      361   *** Encrypted Source ***
+      362   *** Encrypted Source ***
+      363   *** Encrypted Source ***
+      364   *** Encrypted Source ***
+      365   *** Encrypted Source ***
+      366   *** Encrypted Source ***
+      367   *** Encrypted Source ***
+      368   *** Encrypted Source ***
+      369   *** Encrypted Source ***
+      370   *** Encrypted Source ***
+      371   *** Encrypted Source ***
+      372   *** Encrypted Source ***
+      373   *** Encrypted Source ***
+      374   *** Encrypted Source ***
+      375   *** Encrypted Source ***
+      376   *** Encrypted Source ***
+      377   *** Encrypted Source ***
+      378   *** Encrypted Source ***
+      379   *** Encrypted Source ***
+      380   *** Encrypted Source ***
+      381   *** Encrypted Source ***
+      382   *** Encrypted Source ***
+      383   *** Encrypted Source ***
+      384   *** Encrypted Source ***
+      385   *** Encrypted Source ***
+      386   *** Encrypted Source ***
+      387   *** Encrypted Source ***
+      388   *** Encrypted Source ***
+      389   *** Encrypted Source ***
+      390   *** Encrypted Source ***
+      391   *** Encrypted Source ***
+      392   *** Encrypted Source ***
+      393   *** Encrypted Source ***
+      394   *** Encrypted Source ***
+      395   *** Encrypted Source ***
+      396   *** Encrypted Source ***
+      397   *** Encrypted Source ***
+      398   *** Encrypted Source ***
+      399   *** Encrypted Source ***
+      400   *** Encrypted Source ***
+      401   *** Encrypted Source ***
+      402   *** Encrypted Source ***
+      403   *** Encrypted Source ***
+      404   *** Encrypted Source ***
+      405   *** Encrypted Source ***
+      406   *** Encrypted Source ***
+      407   *** Encrypted Source ***
+      408   *** Encrypted Source ***
+      409   *** Encrypted Source ***
+      410   *** Encrypted Source ***
+      411   *** Encrypted Source ***
+      412   *** Encrypted Source ***
+      413   *** Encrypted Source ***
+      414   *** Encrypted Source ***
+      415   *** Encrypted Source ***
+      416   *** Encrypted Source ***
+      417   *** Encrypted Source ***
+      418   *** Encrypted Source ***
+      419   *** Encrypted Source ***
+      420   *** Encrypted Source ***
+      421   *** Encrypted Source ***
+      422   *** Encrypted Source ***
+      423   *** Encrypted Source ***
+      424   *** Encrypted Source ***
+      425   *** Encrypted Source ***
+      426   *** Encrypted Source ***
+      427   *** Encrypted Source ***
+      428   *** Encrypted Source ***
+      429   *** Encrypted Source ***
+      430   *** Encrypted Source ***
+      431   *** Encrypted Source ***
+      432   *** Encrypted Source ***
+      433   *** Encrypted Source ***
+      434   *** Encrypted Source ***
+      435   *** Encrypted Source ***
+      436   *** Encrypted Source ***
+      437   *** Encrypted Source ***
+      438   *** Encrypted Source ***
+      439   *** Encrypted Source ***
+      440   *** Encrypted Source ***
+      441   *** Encrypted Source ***
+      442   *** Encrypted Source ***
+      443   *** Encrypted Source ***
+      444   *** Encrypted Source ***
+      445   *** Encrypted Source ***
+      446   *** Encrypted Source ***
+      447   *** Encrypted Source ***
+      448   *** Encrypted Source ***
+      449   *** Encrypted Source ***
+      450   *** Encrypted Source ***
+      451   *** Encrypted Source ***
+      452   *** Encrypted Source ***
+      453   *** Encrypted Source ***
+      454   *** Encrypted Source ***
+      455   *** Encrypted Source ***
+      456   *** Encrypted Source ***
+      457   *** Encrypted Source ***
+      458   *** Encrypted Source ***
+      459   *** Encrypted Source ***
+      460   *** Encrypted Source ***
+      461   *** Encrypted Source ***
+      462   *** Encrypted Source ***
+      463   *** Encrypted Source ***
+      464   *** Encrypted Source ***
+      465   *** Encrypted Source ***
+      466   *** Encrypted Source ***
+      467   *** Encrypted Source ***
+      468   *** Encrypted Source ***
+      469   *** Encrypted Source ***
+      470   *** Encrypted Source ***
+      471   *** Encrypted Source ***
+      472   *** Encrypted Source ***
+      473   *** Encrypted Source ***
+      474   *** Encrypted Source ***
+      475   *** Encrypted Source ***
+      476   *** Encrypted Source ***
+      477   *** Encrypted Source ***
+      478   *** Encrypted Source ***
+      479   *** Encrypted Source ***
+      480   *** Encrypted Source ***
+      481   *** Encrypted Source ***
+      482   *** Encrypted Source ***
+      483   *** Encrypted Source ***
+      484   *** Encrypted Source ***
+      485   *** Encrypted Source ***
+      486   *** Encrypted Source ***
+      487   *** Encrypted Source ***
+      488   *** Encrypted Source ***
+      489   *** Encrypted Source ***
+      490   *** Encrypted Source ***
+      491   *** Encrypted Source ***
+      492   *** Encrypted Source ***
+      493   *** Encrypted Source ***
+      494   *** Encrypted Source ***
+      495   *** Encrypted Source ***
+      496   *** Encrypted Source ***
+      497   *** Encrypted Source ***
+      498   *** Encrypted Source ***
+      499   *** Encrypted Source ***
+      500   *** Encrypted Source ***
+      501   *** Encrypted Source ***
+      502   *** Encrypted Source ***
+      503   *** Encrypted Source ***
+      504   *** Encrypted Source ***
+      505   *** Encrypted Source ***
+      506   *** Encrypted Source ***
+      507   *** Encrypted Source ***
+      508   *** Encrypted Source ***
+      509   *** Encrypted Source ***
+      510   *** Encrypted Source ***
+      511   *** Encrypted Source ***
+      512   *** Encrypted Source ***
+      513   *** Encrypted Source ***
+      514   *** Encrypted Source ***
+      515   *** Encrypted Source ***
+      516   *** Encrypted Source ***
+      517   *** Encrypted Source ***
+      518   *** Encrypted Source ***
+      519   *** Encrypted Source ***
+      520   *** Encrypted Source ***
+      521   *** Encrypted Source ***
+      522   *** Encrypted Source ***
+      523   *** Encrypted Source ***
+      524   *** Encrypted Source ***
+      525   *** Encrypted Source ***
+      526   *** Encrypted Source ***
+      527   *** Encrypted Source ***
+      528   *** Encrypted Source ***
+      529   *** Encrypted Source ***
+      530   *** Encrypted Source ***
+      531   *** Encrypted Source ***
+      532   *** Encrypted Source ***
+      533   *** Encrypted Source ***
+      534   *** Encrypted Source ***
+      535   *** Encrypted Source ***
+      536   *** Encrypted Source ***
+      537   *** Encrypted Source ***
+      538   *** Encrypted Source ***
+      539   *** Encrypted Source ***
+      540   *** Encrypted Source ***
+      541   *** Encrypted Source ***
+      542   *** Encrypted Source ***
+      543   *** Encrypted Source ***
+      544   *** Encrypted Source ***
+      545   *** Encrypted Source ***
+      546   *** Encrypted Source ***
+      547   *** Encrypted Source ***
+      548   *** Encrypted Source ***
+      549   *** Encrypted Source ***
+      550   *** Encrypted Source ***
+      551   *** Encrypted Source ***
+      552   *** Encrypted Source ***
+      553   *** Encrypted Source ***
+      554   *** Encrypted Source ***
+      555   *** Encrypted Source ***
+      556   *** Encrypted Source ***
+      557   *** Encrypted Source ***
+      558   *** Encrypted Source ***
+      559   *** Encrypted Source ***
+      560   *** Encrypted Source ***
+      561   *** Encrypted Source ***
+      562   *** Encrypted Source ***
+      563   *** Encrypted Source ***
+      564   *** Encrypted Source ***
+      565   *** Encrypted Source ***
+      566   *** Encrypted Source ***
+      567   *** Encrypted Source ***
+      568   *** Encrypted Source ***
+      569   *** Encrypted Source ***
+      570   *** Encrypted Source ***
+      571   *** Encrypted Source ***
+      572   *** Encrypted Source ***
+      573   *** Encrypted Source ***
+      574   *** Encrypted Source ***
+      575   *** Encrypted Source ***
+      576   *** Encrypted Source ***
+      577   *** Encrypted Source ***
+      578   *** Encrypted Source ***
+      579   *** Encrypted Source ***
+      580   *** Encrypted Source ***
+      581   *** Encrypted Source ***
+      582   *** Encrypted Source ***
+      583   *** Encrypted Source ***
+      584   *** Encrypted Source ***
+      585   *** Encrypted Source ***
+      586   *** Encrypted Source ***
+      587   *** Encrypted Source ***
+      588   *** Encrypted Source ***
+      589   *** Encrypted Source ***
+      590   *** Encrypted Source ***
+      591   *** Encrypted Source ***
+      592   *** Encrypted Source ***
+      593   *** Encrypted Source ***
+      594   *** Encrypted Source ***
+      595   *** Encrypted Source ***
+      596   *** Encrypted Source ***
+      597   *** Encrypted Source ***
+      598   *** Encrypted Source ***
+      599   *** Encrypted Source ***
+      600   *** Encrypted Source ***
+      601   *** Encrypted Source ***
+      602   *** Encrypted Source ***
+      603   *** Encrypted Source ***
+      604   *** Encrypted Source ***
+      605   *** Encrypted Source ***
+      606   *** Encrypted Source ***
+      607   *** Encrypted Source ***
+      608   *** Encrypted Source ***
+      609   *** Encrypted Source ***
+      610   *** Encrypted Source ***
+      611   *** Encrypted Source ***
+      612   *** Encrypted Source ***
+      613   *** Encrypted Source ***
+      614   *** Encrypted Source ***
+      615   *** Encrypted Source ***
+      616   *** Encrypted Source ***
+      617   *** Encrypted Source ***
+      618   *** Encrypted Source ***
+      619   *** Encrypted Source ***
+      620   *** Encrypted Source ***
+      621   *** Encrypted Source ***
+      622   *** Encrypted Source ***
+      623   *** Encrypted Source ***
+      624   *** Encrypted Source ***
+      625   *** Encrypted Source ***
+      626   *** Encrypted Source ***
+      627   *** Encrypted Source ***
+      628   *** Encrypted Source ***
+      629   *** Encrypted Source ***
+      630   *** Encrypted Source ***
+      631   *** Encrypted Source ***
+      632   *** Encrypted Source ***
+      633   *** Encrypted Source ***
+      634   *** Encrypted Source ***
+      635   *** Encrypted Source ***
+      636   *** Encrypted Source ***
+      637   *** Encrypted Source ***
+      638   *** Encrypted Source ***
+      639   *** Encrypted Source ***
+      640    
+      641   *** Encrypted Source ***
+      642   *** Encrypted Source ***
+      643   *** Encrypted Source ***
+      644   *** Encrypted Source ***
+      645   *** Encrypted Source ***
+      646   *** Encrypted Source ***
+      647   *** Encrypted Source ***
+      648   *** Encrypted Source ***
+      649   *** Encrypted Source ***
+      650   *** Encrypted Source ***
+      651   *** Encrypted Source ***
+      652   *** Encrypted Source ***
+      653   *** Encrypted Source ***
+      654   *** Encrypted Source ***
+      655   *** Encrypted Source ***
+      656   *** Encrypted Source ***
+      657   *** Encrypted Source ***
+      658   *** Encrypted Source ***
+      659   *** Encrypted Source ***
+      660    
+      661   
+      662   /*****************************************************************************
+      663   *      Programa .....: hdregparexec.f                                        *
+      664   *      Data .........: 06 de Marco de 2003                                   *
+      665   *      Autor ........: DZSET SOLUCOES E SISTEMAS LTDA.                       *
+      666   *      Sistema ......: HDP includes padraes                                  *
+      667   *      Programador ..: Airton Nora                                           *
+      668   *      Objetivo .....: Definicao de frames da regua executa com parametro    *
+      669   *----------------------------------------------------------------------------*
+      670   *      VERSAO    DATA        RESPONSAVEL    MOTIVO                           *
+      671   *****************************************************************************/
+      672   
+      673   /* --------------------------------------------------- FRAMES PARA UNIX --- */
+      674   form tb-parexec[1] format "x(9)"
+      675        tb-parexec[2] format "x(7)"
+      676        tb-parexec[3] format "x(6)"
+      677        tb-parexec[4] format "x(3)"
+      678        with no-labels attr row 21 no-box overlay centered frame f-parexec.
+      679   
+      680   /* ----------------------------------------------- FRAMES PARA WINDOWS --- */                
+      681   DEFINE FRAME f-regua-parexec
+      682        b-parametro AT ROW 1.48 COL 28
+      683        b-executa AT ROW 1.48 COL 32
+      684        b-funcao AT ROW 1.48 COL 54
+      685        b-fim AT ROW 1.48 COL 58
+      686        b-help AT ROW 1.48 COL 62
+      687        Retangulo-1 AT ROW 1 COL 2
+      688       WITH 1 DOWN NO-BOX KEEP-TAB-ORDER OVERLAY CENTERED
+      689            SIDE-LABELS NO-UNDERLINE THREE-D 
+      690            AT COL 1 ROW 1
+      691            SIZE 80 BY 3.
+      692   
+      693    
+      694   
+      695   def var cd-evento-aux                  like evenfatu.cd-evento         no-undo. 
+      696   def new shared var cd-evento-z         like evenfatu.cd-evento         no-undo.
+      697   def new shared var ds-evento-z         like evenfatu.ds-evento         no-undo.
+      698   def new shared var  cd-retorno         as log                          no-undo.
+      699   def new shared var  in-entidade-aux    like evenfatu.in-entidade       no-undo.
+      700   def            var  lg-parametro-aux   as log                          no-undo. 
+      701   def            var  qt-registros       as int                          no-undo. 
+      702   def            var  percent-concluido  as dec format ">>9,99"          no-undo.
+      703   def            var  percent-erros      as dec format ">>>>>>>9.99"          no-undo.
+      704   def buffer b-migrac-fatur for migrac-fatur. 
+      705   DEF BUFFER b-fatura       FOR fatura. 
+      706   
+      707   /* -------------------------------FRAMES------------------------------------- */
+      708   def frame f-parametros 
+      709       cd-evento-aux   label "Evento para Importacao Faturas"
+      710                       view-as fill-in size 4 by 1.3
+      711       evenfatu.ds-evento no-label
+      712                       view-as fill-in size 41 by 1.3
+      713      with centered side-labels overlay three-d title "Parametros". 
+      714   
+      715   def frame f-acompanhamento 
+      716       qt-registros label "Quantidade de Registros"
+      717                          view-as fill-in size 10 by 1.3
+      718       percent-concluido label "% Importado" 
+      719                         view-as fill-in size 6 by 1.3
+      720       percent-erros     label "% Erros"
+      721                         view-as fill-in size 6 by 1.3
+      722       with centered side-labels overlay three-d title "Acompanhamento". 
+      723   
+      724   /* -------------------------------------------------------------------------- */
+      725   *** Encrypted Source ***
+      726   *** Encrypted Source ***
+      727   *** Encrypted Source ***
+      728   *** Encrypted Source ***
+      729   *** Encrypted Source ***
+      730   *** Encrypted Source ***
+      731   *** Encrypted Source ***
+      732   *** Encrypted Source ***
+      733   *** Encrypted Source ***
+      734   *** Encrypted Source ***
+      735   *** Encrypted Source ***
+      736   *** Encrypted Source ***
+      737   *** Encrypted Source ***
+      738   *** Encrypted Source ***
+      739   *** Encrypted Source ***
+      740   *** Encrypted Source ***
+      741   *** Encrypted Source ***
+      742   *** Encrypted Source ***
+      743   *** Encrypted Source ***
+      744   *** Encrypted Source ***
+      745   *** Encrypted Source ***
+      746   *** Encrypted Source ***
+      747   *** Encrypted Source ***
+      748   *** Encrypted Source ***
+      749   *** Encrypted Source ***
+      750   *** Encrypted Source ***
+      751   *** Encrypted Source ***
+      752   *** Encrypted Source ***
+      753   *** Encrypted Source ***
+      754   *** Encrypted Source ***
+      755   *** Encrypted Source ***
+      756   *** Encrypted Source ***
+      757   *** Encrypted Source ***
+      758   *** Encrypted Source ***
+      759   *** Encrypted Source ***
+      760   *** Encrypted Source ***
+      761   *** Encrypted Source ***
+      762   *** Encrypted Source ***
+      763   *** Encrypted Source ***
+      764   *** Encrypted Source ***
+      765   *** Encrypted Source ***
+      766   *** Encrypted Source ***
+      767   *** Encrypted Source ***
+      768   *** Encrypted Source ***
+      769    
+      770   assign nm-cab-usuario = "Migracao de Faturas".
+      771          nm-prog        = " cg0410f ".
+      772          c-versao       = c_prg_vrs.
+      773                774   *** Encrypted Source ***
+      775   *** Encrypted Source ***
+      776   *** Encrypted Source ***
+      777   *** Encrypted Source ***
+      778   *** Encrypted Source ***
+      779   *** Encrypted Source ***
+      780   *** Encrypted Source ***
+      781   *** Encrypted Source ***
+      782   *** Encrypted Source ***
+      783   *** Encrypted Source ***
+      784   *** Encrypted Source ***
+      785   *** Encrypted Source ***
+      786   *** Encrypted Source ***
+      787   *** Encrypted Source ***
+      788   *** Encrypted Source ***
+      789   *** Encrypted Source ***
+      790   *** Encrypted Source ***
+      791   *** Encrypted Source ***
+      792   *** Encrypted Source ***
+      793   *** Encrypted Source ***
+      794   *** Encrypted Source ***
+      795   *** Encrypted Source ***
+      796   *** Encrypted Source ***
+      797   *** Encrypted Source ***
+      798   *** Encrypted Source ***
+      799   *** Encrypted Source ***
+      800   *** Encrypted Source ***
+      801   *** Encrypted Source ***
+      802   *** Encrypted Source ***
+      803   *** Encrypted Source ***
+      804    
+      805   
+      806   *** Encrypted Source ***
+      807   *** Encrypted Source ***
+      808   *** Encrypted Source ***
+      809   *** Encrypted Source ***
+      810   *** Encrypted Source ***
+      811   *** Encrypted Source ***
+      812   *** Encrypted Source ***
+      813   *** Encrypted Source ***
+      814   *** Encrypted Source ***
+      815   *** Encrypted Source ***
+      816   *** Encrypted Source ***
+      817   *** Encrypted Source ***
+      818   *** Encrypted Source ***
+      819   *** Encrypted Source ***
+      820   *** Encrypted Source ***
+      821   *** Encrypted Source ***
+      822   *** Encrypted Source ***
+      823   *** Encrypted Source ***
+      824   *** Encrypted Source ***
+      825   *** Encrypted Source ***
+      826   *** Encrypted Source ***
+      827   *** Encrypted Source ***
+      828   *** Encrypted Source ***
+      829   *** Encrypted Source ***
+      830   *** Encrypted Source ***
+      831   *** Encrypted Source ***
+      832   *** Encrypted Source ***
+      833   *** Encrypted Source ***
+      834   *** Encrypted Source ***
+      835   *** Encrypted Source ***
+      836   *** Encrypted Source ***
+      837   *** Encrypted Source ***
+      838   *** Encrypted Source ***
+      839   *** Encrypted Source ***
+      840   *** Encrypted Source ***
+      841   *** Encrypted Source ***
+      842   *** Encrypted Source ***
+      843   *** Encrypted Source ***
+      844   *** Encrypted Source ***
+      845   *** Encrypted Source ***
+      846   *** Encrypted Source ***
+      847   *** Encrypted Source ***
+      848   *** Encrypted Source ***
+      849   *** Encrypted Source ***
+      850   *** Encrypted Source ***
+      851   *** Encrypted Source ***
+      852   *** Encrypted Source ***
+      853   *** Encrypted Source ***
+      854   *** Encrypted Source ***
+      855   *** Encrypted Source ***
+      856   *** Encrypted Source ***
+      857   *** Encrypted Source ***
+      858   *** Encrypted Source ***
+      859   *** Encrypted Source ***
+      860   *** Encrypted Source ***
+      861   *** Encrypted Source ***
+      862   *** Encrypted Source ***
+      863   *** Encrypted Source ***
+      864   *** Encrypted Source ***
+      865   *** Encrypted Source ***
+      866   *** Encrypted Source ***
+      867   *** Encrypted Source ***
+      868   *** Encrypted Source ***
+      869   *** Encrypted Source ***
+      870   *** Encrypted Source ***
+      871   *** Encrypted Source ***
+      872   *** Encrypted Source ***
+      873   *** Encrypted Source ***
+      874   *** Encrypted Source ***
+      875   *** Encrypted Source ***
+      876   *** Encrypted Source ***
+      877   *** Encrypted Source ***
+      878   *** Encrypted Source ***
+      879   *** Encrypted Source ***
+      880   *** Encrypted Source ***
+      881   *** Encrypted Source ***
+      882   *** Encrypted Source ***
+      883   *** Encrypted Source ***
+1MS-WINX      884   *** Encrypted Source ***
+      885   *** Encrypted Source ***
+      886   *** Encrypted Source ***
+      887   *** Encrypted Source ***
+      888   *** Encrypted Source ***
+      889   *** Encrypted Source ***
+      890   *** Encrypted Source ***
+      891   *** Encrypted Source ***
+      892   *** Encrypted Source ***
+      893   *** Encrypted Source ***
+      894   *** Encrypted Source ***
+      895   *** Encrypted Source ***
+      896   *** Encrypted Source ***
+      897   *** Encrypted Source ***
+      898   *** Encrypted Source ***
+      899   *** Encrypted Source ***
+      900   *** Encrypted Source ***
+      901   *** Encrypted Source ***
+      902   *** Encrypted Source ***
+      903   *** Encrypted Source ***
+      904   *** Encrypted Source ***
+      905   *** Encrypted Source ***
+      906   *** Encrypted Source ***
+      907   *** Encrypted Source ***
+      908   *** Encrypted Source ***
+      909   *** Encrypted Source ***
+      910   *** Encrypted Source ***
+      911   *** Encrypted Source ***
+      912   *** Encrypted Source ***
+      913   *** Encrypted Source ***
+      914   *** Encrypted Source ***
+      915   *** Encrypted Source ***
+      916   *** Encrypted Source ***
+      917   *** Encrypted Source ***
+      918   *** Encrypted Source ***
+      919   *** Encrypted Source ***
+      920   *** Encrypted Source ***
+      921   *** Encrypted Source ***
+      922   *** Encrypted Source ***
+      923   *** Encrypted Source ***
+      924   *** Encrypted Source ***
+      925   *** Encrypted Source ***
+      926   *** Encrypted Source ***
+      927   *** Encrypted Source ***
+      928   *** Encrypted Source ***
+      929   *** Encrypted Source ***
+      930   *** Encrypted Source ***
+      931   *** Encrypted Source ***
+      932   *** Encrypted Source ***
+      933   *** Encrypted Source ***
+      934   *** Encrypted Source ***
+      935   *** Encrypted Source ***
+      936   *** Encrypted Source ***
+      937   *** Encrypted Source ***
+      938    
+      939   
+      940   assign lg-btn-executa   = yes
+      941          in-entidade-aux  = 'FT'
+      942          lg-parametro-aux = no.
+      943   /* -------------------------------------------------------------------------- */
+      944   repeat on endkey undo, retry:
+      945   
+      946        hide frame f-parametros.
+      947   
+      948       hide message no-pause.
+      949             950   *** Encrypted Source ***
+      951   *** Encrypted Source ***
+      952   *** Encrypted Source ***
+      953   *** Encrypted Source ***
+      954   *** Encrypted Source ***
+      955   *** Encrypted Source ***
+      956   *** Encrypted Source ***
+      957   *** Encrypted Source ***
+      958   *** Encrypted Source ***
+      959   *** Encrypted Source ***
+      960   *** Encrypted Source ***
+      961   *** Encrypted Source ***
+      962   *** Encrypted Source ***
+      963   *** Encrypted Source ***
+      964   *** Encrypted Source ***
+      965   *** Encrypted Source ***
+      966   *** Encrypted Source ***
+      967   *** Encrypted Source ***
+      968   *** Encrypted Source ***
+      969   *** Encrypted Source ***
+      970   *** Encrypted Source ***
+      971   *** Encrypted Source ***
+      972   *** Encrypted Source ***
+      973   *** Encrypted Source ***
+      974   *** Encrypted Source ***
+      975   *** Encrypted Source ***
+      976   *** Encrypted Source ***
+      977   *** Encrypted Source ***
+      978   *** Encrypted Source ***
+      979   *** Encrypted Source ***
+      980   *** Encrypted Source ***
+      981   *** Encrypted Source ***
+      982   *** Encrypted Source ***
+      983   *** Encrypted Source ***
+      984   *** Encrypted Source ***
+      985   *** Encrypted Source ***
+      986   *** Encrypted Source ***
+      987   *** Encrypted Source ***
+      988   *** Encrypted Source ***
+      989   *** Encrypted Source ***
+      990   *** Encrypted Source ***
+      991   *** Encrypted Source ***
+      992   *** Encrypted Source ***
+      993   *** Encrypted Source ***
+      994   *** Encrypted Source ***
+      995   *** Encrypted Source ***
+      996   *** Encrypted Source ***
+      997   *** Encrypted Source ***
+      998   *** Encrypted Source ***
+      999   *** Encrypted Source ***
+     1000   *** Encrypted Source ***
+     1001   *** Encrypted Source ***
+     1002   *** Encrypted Source ***
+     1003   *** Encrypted Source ***
+     1004   *** Encrypted Source ***
+     1005   *** Encrypted Source ***
+     1006   *** Encrypted Source ***
+     1007   *** Encrypted Source ***
+     1008   *** Encrypted Source ***
+     1009   *** Encrypted Source ***
+     1010   *** Encrypted Source ***
+     1011   *** Encrypted Source ***
+     1012   *** Encrypted Source ***
+     1013   *** Encrypted Source ***
+     1014   *** Encrypted Source ***
+     1015   *** Encrypted Source ***
+     1016   *** Encrypted Source ***
+     1017   *** Encrypted Source ***
+     1018   *** Encrypted Source ***
+     1019   *** Encrypted Source ***
+     1020   *** Encrypted Source ***
+     1021   *** Encrypted Source ***
+     1022   *** Encrypted Source ***
+     1023   *** Encrypted Source ***
+     1024   *** Encrypted Source ***
+     1025   *** Encrypted Source ***
+     1026   *** Encrypted Source ***
+     1027   *** Encrypted Source ***
+     1028   *** Encrypted Source ***
+     1029   *** Encrypted Source ***
+     1030   *** Encrypted Source ***
+     1031   *** Encrypted Source ***
+     1032   *** Encrypted Source ***
+     1033   *** Encrypted Source ***
+     1034   *** Encrypted Source ***
+     1035   *** Encrypted Source ***
+     1036   *** Encrypted Source ***
+     1037   *** Encrypted Source ***
+     1038   *** Encrypted Source ***
+     1039   *** Encrypted Source ***
+     1040   *** Encrypted Source ***
+     1041   *** Encrypted Source ***
+     1042   *** Encrypted Source ***
+     1043   *** Encrypted Source ***
+     1044   *** Encrypted Source ***
+     1045   *** Encrypted Source ***
+     1046    
+     1047   
+     1048       case c-opcao:
+     1049           when "Parametro"
+     1050           then do on error undo, retry with frame f-parametros:
+     1051                   
+     1052                   update cd-evento-aux auto-return
+     1053                    HELP "F5 para Zoom"
+     1054                         1055   *** Encrypted Source ***
+     1056   *** Encrypted Source ***
+     1057   *** Encrypted Source ***
+     1058   *** Encrypted Source ***
+     1059   *** Encrypted Source ***
+     1060   *** Encrypted Source ***
+     1061   *** Encrypted Source ***
+     1062    
+     1063                    if   cd-evento-z <> ?
+     1064                    and  cd-retorno
+     1065                    then display cd-evento-z @ cd-evento-aux. end. 
+     1066   
+     1067                    find evenfatu where evenfatu.in-entidade = "FT"
+     1068                                    and evenfatu.cd-evento   = cd-evento-aux no-lock no-error. 
+     1069   
+     1070                    if avail evenfatu
+     1071                    then disp evenfatu.ds-evento. 
+     1072                    else do:
+     1073                            message "Evento nao cadastrado!"
+     1074                            view-as alert-box title "Atencao !!!".
+     1075                         end.
+     1076                   hide frame f-parametros.
+     1077                   assign lg-parametro-aux = yes.
+     1078                end.
+     1079   
+     1080           when "Executa"
+     1081           then do:
+     1082                   if not lg-parametro-aux
+     1083                   then do:
+     1084                            message "Acessar primeiro os parametros"
+     1085                            view-as alert-box title "Atencao !!!".
+     1086                            
+     1087                        end.
+     1088                   else do:
+     1089                           run executa-processo (input cd-evento-aux) .
+     1090                           message "Processo concluido."
+     1091                                    view-as alert-box title "Atencao !!!".
+     1092                        end.
+     1093                end.
+     1094   
+     1095           when "Fim"
+     1096           then do:
+     1097                   hide all no-pause.
+     1098                   leave.
+     1099                end.
+     1100       end case.
+     1101   end.
+     1102   
+     1103   procedure executa-processo:
+     1104       def input parameter cd-evento-par   as integer            no-undo. 
+     1105       def var   nr-fatura-aux             as integer            no-undo. 
+     1106       def var   nr-sequencia-aux          as integer            no-undo.
+     1107       def var   qt-lidos-aux              as int                no-undo. 
+     1108       DEF VAR lg-erro-jm-aux              AS LOG                NO-UNDO. 
+     1109       
+     1110       
+     1111       find first parafatu no-lock no-error. 
+     1112       
+     1113       find evenfatu where evenfatu.in-entidade = "FT"
+     1114                       and evenfatu.cd-evento   = cd-evento-par
+     1115                     no-lock no-error.
+     1116       
+     1117       if not avail evenfatu
+     1118       then return. 
+     1119   
+     1120       select count(*) into qt-registros from migrac-fatur  where migrac-fatur.cod-livre-1 = "RC".
+     1121   
+     1122       assign percent-concluido = 0
+     1123              qt-lidos-aux      = 0.
+     1124   
+     1125       disp qt-registros                                    
+     1126            percent-concluido                               
+     1127             with frame f-acompanhamento.      
+     1128   
+     1129       for each migrac-fatur where migrac-fatur.cod-livre-1 = "RC" no-lock
+     1130                             break by migrac-fatur.aa-referencia
+     1131                                   by migrac-fatur.num-mm-refer:
+     1132   
+     1133           assign qt-lidos-aux = qt-lidos-aux + 1.
+     1134   
+     1135           if qt-lidos-aux > 500
+     1136           then do:
+     1137                    disp qt-registros
+     1138                         ((percent-concluido / qt-registros) * 1000) @ percent-concluido
+     1139                         ((percent-erros / qt-registros) * 1000) @ percent-erros
+     1140                         with frame f-acompanhamento.
+     1141                    process events. 
+     1142                    assign qt-lidos-aux = 0. 
+     1143                end.
+     1144   
+     1145           for first propost  fields (propost.ep-codigo
+     1146                                      propost.cod-estabel
+     1147                                      propost.cd-modalidade
+     1148                                      propost.nr-ter-adesao
+     1149                                      propost.nr-proposta)
+     1150                              where propost.cd-modalidade   = migrac-fatur.cd-modalidade
+     1151                               and propost.nr-ter-adesao   = migrac-fatur.nr-ter-adesao no-lock: end.
+     1152   
+     1153           if not avail propost 
+     1154           then do:
+     1155                   run grava-erro(input "contrato nao cadastrado").
+     1156                   next. 
+     1157                end.
+     1158   
+     1159   
+     1160           for first tit_acr fields (tit_acr.cdn_cliente)
+     1161                             where tit_acr.cod_estab       = propost.cod-estabel
+     1162                               and tit_acr.cod_espec_docto = migrac-fatur.cd-especie
+     1163                               and tit_acr.cod_ser_docto   = migrac-fatur.serie
+     1164                               and tit_acr.cod_tit_acr     = migrac-fatur.nr-titulo-acr 
+     1165                               and (   tit_acr.cod_parcela = string(migrac-fatur.parcela) 
+     1166                                    or tit_acr.cod_parcela = "") no-lock: end.
+     1167   
+     1168           if not avail tit_acr
+     1169           then do:
+     1170                   /*if migrac-fatur.parcela = 0
+     1171                   then for first tit_acr where tit_acr.cod_estab       = propost.cod-estabel
+     1172                                            and tit_acr.cod_espec_docto = migrac-fatur.cd-especie
+     1173                                            and tit_acr.cod_ser_docto   = migrac-fatur.serie
+     1174                                            and tit_acr.cod_tit_acr     = migrac-fatur.nr-titulo-acr no-lock: end.
+     1175   
+     1176                   if not avail tit_acr
+     1177                   then do:*/
+     1178                           run grava-erro(input "titulo nao cadastrado").
+     1179                           next. 
+     1180                       /* end.*/
+     1181                end.
+     1182   
+     1183           /***********************BUSCA NUMERO FATURA **************************************/
+     1184           run rtp/rtnrfat.p(input  migrac-fatur.cd-modalidade,
+     1185                             input  tit_acr.cdn_cliente,
+     1186                             output nr-fatura-aux).
+     1187       
+     1188           find first fatura where fatura.cd-contratante = tit_acr.cdn_cliente
+     1189                               and fatura.nr-fatura      = nr-fatura-aux
+     1190                             no-lock no-error. 
+     1191       
+     1192           do while avail fatura:
+     1193              nr-fatura-aux = nr-fatura-aux + 1.
+     1194              find first fatura where fatura.cd-contratante = tit_acr.cdn_cliente
+     1195                                  and fatura.nr-fatura      = nr-fatura-aux no-lock no-error. 
+     1196           end.
+     1197           /*********************************************************************************/
+     1198       
+     1199           do transaction:
+     1200              create fatura.
+     1201              assign fatura.cd-contratante            = tit_acr.cdn_cliente
+     1202                     fatura.nr-fatura                 = nr-fatura-aux
+     1203                     fatura.aa-referencia             = migrac-fatur.aa-referencia  
+     1204                     fatura.mm-referencia             = migrac-fatur.num-mm-refer   
+     1205                     fatura.ep-codigo                 = propost.ep-codigo
+     1206                     fatura.cod-estabel               = propost.cod-estabel
+     1207                     fatura.cd-modalidade             = propost.cd-modalidade
+     1208                     fatura.cd-especie                = migrac-fatur.cd-especie
+     1209                     fatura.serie                     = migrac-fatur.serie
+     1210                     fatura.ds-mensagem               = "FATURA MIGRADA DO UNICOO"
+     1211                     fatura.portador                  = migrac-fatur.portador
+     1212                     fatura.modalidade                = migrac-fatur.modalidade
+     1213                     fatura.ct-codigo                 = ""
+     1214                     fatura.sc-codigo                 = ""
+     1215                     fatura.nr-titulo-acr             = migrac-fatur.nr-titulo-acr 
+     1216                     fatura.parcela                   = migrac-fatur.parcela
+     1217                     fatura.dt-emissao                = migrac-fatur.dt-emissao
+     1218                     fatura.dt-vencimento             = migrac-fatur.dt-vencimento
+     1219                     fatura.cd-tipo-vencimento        = 0
+     1220                     fatura.cd-sit-fatu               = 30
+     1221                     fatura.mo-codigo                 = 0
+     1222                     fatura.vl-total                  = migrac-fatur.vl-total 
+     1223                     fatura.in-tipo-fatura            = 3
+     1224                     fatura.cd-userid                 = "migracao"
+     1225                     fatura.dt-atualizacao            = today
+     1226                     fatura.date-3                    = today
+     1227                     fatura.lg-contabilizado          = yes.
+     1228   
+     1229              ASSIGN lg-erro-jm-aux = NO. 
+     1230   
+     1231              FOR EACH migrac-fatur-juros WHERE migrac-fatur-juros.cdd-seq-tab-pai = migrac-fatur.cdd-seq NO-LOCK:
+     1232   
+     1233                  for first tit_acr where tit_acr.cod_estab       = propost.cod-estabel
+     1234                                       and tit_acr.cod_espec_docto = migrac-fatur-juros.cd-especie
+     1235                                       and tit_acr.cod_ser_docto   = migrac-fatur-juros.serie
+     1236                                       and tit_acr.cod_tit_acr     = migrac-fatur-juros.nr-titulo-acr 
+     1237                                      /* and (   tit_acr.cod_parcela = string(migrac-fatur-juros.parcela) 
+     1238                                            or tit_acr.cod_parcela = "")*/
+     1239                                             no-lock: end.
+     1240   
+     1241                  IF NOT AVAIL tit_acr
+     1242                  THEN DO:
+     1243                          run grava-erro(input "titulo juros/multa nao cadastrado").
+     1244                          ASSIGN lg-erro-jm-aux = YES. 
+     1245                          next. 
+     1246                       END.
+     1247   
+     1248                  FOR each b-fatura WHERE b-fatura.aa-referencia  = migrac-fatur-juros.aa-referencia
+     1249                                      AND b-fatura.mm-referencia  = migrac-fatur-juros.num-mm-refer
+     1250                                      AND b-fatura.cd-contratante = fatura.cd-contratante
+     1251                                      AND b-fatura.nr-titulo-acr  = migrac-fatur-juros.nr-titulo-acr NO-LOCK, 
+     1252                      first notaserv where notaserv.cd-contratante = b-fatura.cd-contratante
+     1253                                       and notaserv.nr-fatura      = b-fatura.nr-fatura
+     1254                                       and notaserv.cd-modalidade  = migrac-fatur.cd-modalidade
+     1255                                       and notaserv.nr-ter-adesao  = migrac-fatur.nr-ter-adesao no-lock: leave. END.
+     1256   
+     1257                   IF NOT AVAIL b-fatura
+     1258                   THEN DO:
+     1259                          /*disp 'erro' migrac-fatur-juros.nr-titulo-acr  migrac-fatur-juros.aa-referencia  migrac-fatur-juros.num-mm-refer.*/
+     1260                            run grava-erro(input "fatura juros/multa nao cadastrado").
+     1261                           ASSIGN lg-erro-jm-aux = YES. 
+     1262                           next. 
+     1263                        END.
+     1264   
+     1265                  for first fatur-juros-multa where fatur-juros-multa.cd-contratante     = fatura.cd-contratante 
+     1266                                                and fatur-juros-multa.num-fatur          = b-fatura.nr-fatura
+     1267                                                and fatur-juros-multa.num-fatur-relacdo  = fatura.nr-fatura no-lock: end.
+     1268   
+     1269                  if avail fatur-juros-multa
+     1270                  then do:
+     1271                           run grava-erro(input "J/M jah cad." + string(fatura.cd-contratante) + "-" 
+     1272                                                               + string(b-fatura.nr-fatura)    + "-"
+     1273                                                               + string(fatura.nr-fatura) ).
+     1274                           next.
+     1275                       end.
+     1276   
+     1277                  CREATE fatur-juros-multa.
+     1278                  assign fatur-juros-multa.cd-contratante    = fatura.cd-contratante
+     1279                         fatur-juros-multa.num-fatur         = b-fatura.nr-fatura
+     1280                         fatur-juros-multa.num-fatur-relacdo = fatura.nr-fatura
+     1281                         fatur-juros-multa.dat-inic          = migrac-fatur-juros.dat-livre-1
+     1282                         fatur-juros-multa.dat-fim           = migrac-fatur-juros.dat-livre-2
+     1283                         fatur-juros-multa.val-juros         = migrac-fatur-juros.val-juros 
+     1284                         fatur-juros-multa.val-multa         = migrac-fatur-juros.val-multa.
+     1285   
+     1286                  IF tit_acr.dat_ult_liquidac < fatur-juros-multa.dat-fim
+     1287                  THEN ASSIGN fatur-juros-multa.dat-livre-1 = tit_acr.dat_ult_liquidac.
+     1288                  ELSE ASSIGN fatur-juros-multa.dat-livre-1 = fatur-juros-multa.dat-fim.
+     1289   
+     1290                  if  tit_acr.val_sdo_tit_acr = 0
+     1291                  and tit_acr.dat_ult_liquidac < fatur-juros-multa.dat-fim
+     1292                  then do:
+     1293                          find current b-fatura exclusive-lock no-error. 
+     1294                          if avail b-fatura
+     1295                          then assign b-fatura.log-15 = yes. 
+     1296                       end.
+     1297              END.
+     1298   
+     1299              IF lg-erro-jm-aux 
+     1300              then undo, NEXT.
+     1301   
+     1302              find last notaserv 
+     1303                  where notaserv.cd-modalidade         = propost.cd-modalidade    
+     1304                    and notaserv.cd-contratante        = fatura.cd-contratante    
+     1305                    and notaserv.cd-contratante-origem = 0                        
+     1306                    and notaserv.nr-ter-adesao         = migrac-fatur.nr-ter-adesao   
+     1307                    and notaserv.aa-referencia         = migrac-fatur.aa-referencia       
+     1308                    and notaserv.mm-referencia         = migrac-fatur.num-mm-refer        
+     1309                    no-lock no-error.
+     1310              
+     1311              if not available notaserv
+     1312              then nr-sequencia-aux = 1.
+     1313              else nr-sequencia-aux = notaserv.nr-sequencia + 1.
+     1314       
+     1315              create notaserv.
+     1316              assign notaserv.cd-modalidade         = propost.cd-modalidade
+     1317                     notaserv.cd-contratante        = fatura.cd-contratante
+     1318                     notaserv.cd-contratante-origem = 0
+     1319                     notaserv.nr-ter-adesao         = migrac-fatur.nr-ter-adesao 
+     1320                     notaserv.cd-especie            = migrac-fatur.cd-especie
+     1321                     notaserv.aa-referencia         = migrac-fatur.aa-referencia
+     1322                     notaserv.mm-referencia         = migrac-fatur.num-mm-refer
+     1323                     notaserv.nr-sequencia          = nr-sequencia-aux
+     1324                     notaserv.ep-codigo             = fatura.ep-codigo
+     1325                     notaserv.cod-estabel           = fatura.cod-estabel
+     1326                     notaserv.dt-emissao            = fatura.dt-emissao 
+     1327                     notaserv.dt-vencimento         = fatura.dt-vencimento
+     1328                     notaserv.mo-codigo             = 0
+     1329                     notaserv.vl-total              = fatura.vl-total
+     1330                     notaserv.nr-fatura             = fatura.nr-fatura
+     1331                     notaserv.lg-contabilizada      = yes
+     1332                     notaserv.cd-userid             = "migracao"
+     1333                     notaserv.dt-atualizacao        = today
+     1334                     notaserv.date-1                = today.
+     1335   
+     1336       
+     1337              create fatueven.
+     1338              assign fatueven.cd-modalidade         = notaserv.cd-modalidade    
+     1339                     fatueven.nr-sequencia          = notaserv.nr-sequencia     
+     1340                     fatueven.nr-ter-adesao         = notaserv.nr-ter-adesao    
+     1341                     fatueven.aa-referencia         = notaserv.aa-referencia    
+     1342                     fatueven.mm-referencia         = notaserv.mm-referencia    
+     1343                     fatueven.cd-evento             = cd-evento-par
+     1344                     fatueven.qt-evento             = 1
+     1345                     fatueven.vl-evento             = fatura.vl-total
+     1346                     fatueven.lg-cred-deb           = yes
+     1347                     fatueven.lg-destacado          = no
+     1348                     fatueven.lg-modulo             = no
+     1349                     fatueven.ct-codigo             = ""
+     1350                     fatueven.sc-codigo             = ""
+     1351                     fatueven.qt-evento-ref         = 0
+     1352                     fatueven.vl-evento-ref         = 0
+     1353                     fatueven.cd-tipo-cob           = 0
+     1354                     fatueven.cd-contratante        = notaserv.cd-contratante       
+     1355                     fatueven.cd-contratante-origem = notaserv.cd-contratante-origem
+     1356                     fatueven.cd-userid             = "migracao"
+     1357                     fatueven.dt-atualizacao        = today.
+     1358   
+     1359              release fatura.
+     1360              release notaserv.
+     1361              release fatueven.
+     1362              release fatur-juros-multa. 
+     1363                                         
+     1364              find b-migrac-fatur where rowid(b-migrac-fatur) = rowid(migrac-fatur)
+     1365                                        exclusive-lock no-error. 
+     1366   
+     1367              if avail b-migrac-fatur 
+     1368              then assign b-migrac-fatur.cod-livre-1 = 'IT'
+     1369                          percent-concluido          = percent-concluido + 1. 
+     1370   
+     1371           end.
+     1372       end.
+     1373   end procedure. 
+     1374   
+     1375   procedure grava-erro:
+     1376       def input parameter ds-mensagem-par as char no-undo. 
+     1377   
+     1378   
+     1379       find b-migrac-fatur where rowid(b-migrac-fatur) = rowid(migrac-fatur)
+     1380                                        exclusive-lock no-error. 
+     1381   
+     1382       if avail b-migrac-fatur 
+     1383       then assign b-migrac-fatur.cod-livre-1 = "PE"
+     1384                   b-migrac-fatur.cod-livre-2 = ds-mensagem-par
+     1385                   percent-erros              = percent-erros + 1. 
+     1386   end procedure. 

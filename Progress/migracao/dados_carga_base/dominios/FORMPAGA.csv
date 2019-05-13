@@ -1,0 +1,4 @@
+FORMA PAGTO.;DESCRICAO;DESCR.REDUZIDA;TIPO PAGAMENTO;
+ 01;PRE-PAGAMENTO                 ;PRE       ;FOR.PGTO  ;
+ 02;CUSTO OPERACIONAL             ;CO        ;FOR.PGTO  ;
+ 03;MISTA                         ;MISTA     ;NEGOCIACAO;

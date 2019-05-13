@@ -1,0 +1,26 @@
+-- monitorar status importacao faturas FP
+select f.cod_livre_1, count(*)
+from gp.migrac_fatur f
+group by f.cod_livre_1
+order by f.cod_livre_1;
+/*
+130264
+
+delete from gp.MIGRAC_FATUR mg where mg.cod_livre_1 = 'ER'
+select count(*) from MIGRAC_FATUR_JUROS
+MIGRAC_FATUR
+MIGRAC_FATUR_JUROS
+--select * from fatura
+select * from contrat con where con.id_pessoa = 2191
+select * from ems5.cliente c where c.cdn_cliente = 18299
+select * from gp.propost p where p.nr_insc_contratante = 156782
+
+select * from gp.propost p where p.nr_insc_contrat_origem = 156782
+select * from gp.usuario u where u.cdn_respons_financ = 18299
+select * from gp.usuario u where u.id_pessoa = 120583
+20	536
+20	1304
+select * from import_propost ip where ip.cd_modalidade = 20 and ip.num_livre_10 = 536
+select * from gp.usuario u where u.cd_modalidade = 20 and u.nr_proposta = 536
+
+*/

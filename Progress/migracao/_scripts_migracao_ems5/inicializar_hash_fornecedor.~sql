@@ -1,0 +1,20 @@
+--gerar hash para os fornecedores do unicoo correspondentes aos registros ja existentes em TI_FORNECEDOR
+declare
+  hash_atual varchar2(100);
+begin
+  for x in (select c.cdidentificador,
+                   c.nrsequencial_origem,
+                   f.nrseq_controle_integracao,
+                   f.cod_fornecedor,
+                   f.nrpessoa
+              from ti_fornecedor f, ti_controle_integracao c
+             where f.nrseq_controle_integracao = c.nrsequencial) loop
+  
+    hash_atual := gerar_hash_fornecedor_unicoo(x.cdidentificador,
+                                               x.nrsequencial_origem);
+  
+    pck_ems506unicoo.insere_hash('FN',
+                                 L_INTEGRA_CLIFOR.NRSEQUENCIAL_ORIGEM,
+                                 L_INTEGRA_CLIFOR.CDIDENTIFICADOR);
+  end loop;
+end;

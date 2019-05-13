@@ -1,0 +1,4 @@
+--LISTAR ERROS MIGRACAO CONTRATANTE
+select c.vlmoradia NRREGISTRO, e.*, c.* from erro_process_import e, temp_migracao_contratante c
+where e.num_seqcial_control = c.nrseq_controle
+and c.cdsituacao = 'ER';

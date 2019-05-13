@@ -1,0 +1,4 @@
+O objetivo dessa pasta é armazenar os arquivos/modelos de carga de dados (*.d, *.imp) utilizados durante a migração Unicoo -> TOTVS11.
+
+Esses arquivos são consumidos pelo programa tep/te-carga-base.p.
+

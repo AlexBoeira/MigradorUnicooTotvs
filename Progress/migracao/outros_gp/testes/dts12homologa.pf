@@ -1,0 +1,46 @@
+#***************************************************************************
+# Copyright DATASUL S.A. (2010)
+# All rights reserved.
+#
+# Arquivo...............: scripts-8080/datasul.pf
+# Descricao.............: Parametros de conexao Cliente/Servidor
+# Criado por............: Instalador TOTVS Datasul - GAPE
+# Data de criacao.......: 3-18-2014 09:55:08
+#***************************************************************************
+-mmax 16384
+-s 500
+-TB 31
+-TM 64
+-d dmy
+-Bt 10000
+-Mm 8192
+-cpstream ibm850
+-cpterm iso8859-1
+-q 
+-inp 32000
+-h 50
+-numsep 46
+-numdec 44
+-T c:\temp
+
+#-dslog c:\temp\data.lg
+
+
+
+# Log habilitar qdo preciso
+#-clearlog
+#-debugalert
+#-clientlog c:\temp\clientlog-login.txt
+#-logginglevel 4
+#-logentrytypes 4GLTrace,DB.Connects,FileID,4GLMessages
+#-y
+#-yx
+#-yc
+
+-db \\10.10.2.70\totvs\sholder\homologacao\shems2   -RO -ld shems2    -db ems2    -ld ems2        -U ems2/EMS2@GPSHOP01 -c 2000
+-db \\10.10.2.70\totvs\sholder\homologacao\shems5   -RO -ld shems5    -db ems5    -ld ems5        -U ems5/EMS5@GPSHOP01 -c 2000
+-db \\10.10.2.70\totvs\sholder\homologacao\shemsfnd -RO -ld shemsfnd  -db emsfnd  -ld emsfnd      -U emsfnd/EMSFND@GPSHOP01 -c 2000
+-db \\10.10.2.70\totvs\sholder\homologacao\shhcm    -RO -ld shhcm     -db hcm     -ld hcm         -U hcm/HCM@GPSHOP01 -c 2000
+-db \\10.10.2.70\totvs\sholder\homologacao\shgp     -RO -ld shgp      -db gp      -ld gp          -U gp/GP@GPSHOP01 -c 2000
+-db \\10.10.2.70\totvs\sholder\homologacao\shemsesp -RO -ld shemsesp  -db emsesp  -ld emsesp      -U emsesp/EMSESP@GPSHOP01 -c 2000
+

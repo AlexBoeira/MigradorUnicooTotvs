@@ -1,0 +1,12 @@
+truncate table gp.PLA_MOD;
+analyze table  GP.pla_mod      compute statistics for table for all indexes for all indexed columns;
+truncate table gp.TABPREPL;
+analyze table  GP.TABPREPL      compute statistics for table for all indexes for all indexed columns;
+truncate table gp.TABPREMO;
+analyze table  GP.TABPREMO      compute statistics for table for all indexes for all indexed columns;
+truncate table gp.FTPADCOB;
+analyze table  GP.FTPADCOB      compute statistics for table for all indexes for all indexed columns;
+truncate table gp.PARTINSU;
+analyze table  GP.PARTINSU      compute statistics for table for all indexes for all indexed columns;
+truncate table gp.PL_MO_AM;
+analyze table  GP.PL_MO_AM      compute statistics for table for all indexes for all indexed columns;

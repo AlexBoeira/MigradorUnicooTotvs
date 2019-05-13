@@ -1,0 +1,13 @@
+        1   def var in-status-aux   as char          no-undo.
+        2   assign  in-status-aux = session:param.
+        3   
+        4   REPEAT:
+        5     PROCESS EVENTS.
+        6     RUN atp/at0210a1.p("BATCH", /* in-batch-online */
+        7                        in-status-aux).
+        8     IF SEARCH("c:/temp/parar-migracao.txt") <> ?
+        9     THEN LEAVE.
+       10     ELSE PAUSE(1).
+       11   END.
+       12   QUIT.
+       13   

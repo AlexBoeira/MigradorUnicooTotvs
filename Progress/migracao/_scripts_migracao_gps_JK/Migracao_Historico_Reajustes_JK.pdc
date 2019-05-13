@@ -1,0 +1,313 @@
+set echo on
+set serveroutput on size 999999;
+declare
+   vnrregistro            number        := 0;
+   vnrcontrato            varchar2(4)   := '    ';
+   vprimeiro              varchar2(1)   := 'S';
+   vnoarquivo             varchar2(30)  := ' ';
+   vcomando               varchar2(300) := ' ';
+   vnrseq                 number        :=1;
+   texto                  varchar2(4000);
+   texto1                 varchar2(4000);
+   texto2                 varchar2(4000);
+   texto3                 varchar2(4000);
+   texto4                 varchar2(4000);
+   texto5                 varchar2(4000);
+   texto6                 varchar2(4000);
+   texto7                 varchar2(4000);
+   texto8                 varchar2(4000);
+   texto9                 varchar2(4000);
+   texto10                varchar2(4000);
+
+   vcd_modalidade         number;
+   vnr_proposta           number;
+   v_blob                 blob;
+   vao_ja_existe          varchar2(1);
+
+begin
+
+   select nrregistro, nrcontrato, qtde
+     into vnrregistro, vnrcontrato, vnrseq
+   from (select nrregistro, nrcontrato, count(*) qtde
+           from reajuste_contrato_pessoa
+          group by nrregistro, nrcontrato
+          order by 3 desc, 1,2
+         )
+   where rownum =1;
+   
+   dbms_output.put_line ('Processando. Aguarde.');
+   dbms_output.put_line ('---------------------');
+   dbms_output.put_line (' ');
+   dbms_output.put_line ('Atenção: O contrato com maior número de linhas é o: Reg: ' || vnrregistro || ' Contr: ' || vnrcontrato || ' com ' || vnrseq || ' registro.');
+   dbms_output.put_line ('-------  Se passarem informações na tela é porque não foi possível levar todos os históricos.');
+   dbms_output.put_line ('         Nesse caso, altere para levar a partir de uma determinada competencia em diante para este contrato.');
+   dbms_output.put_line (' ');
+
+   vnrregistro := 0;
+   vnrcontrato := ' ';
+   vnrseq      := 1;
+
+   delete temp_reajuste;
+
+   for x in (select r.nrregistro, r.nrcontrato, substr(r.nrperiodo,5,2) || '/' || substr(r.nrperiodo,1,4) nrperiodo, r.dtreajuste,
+                    cdsituacao_reajuste, decode(cdsituacao_reajuste,'0','Processado','Cancelado') nosituacao_reajuste,
+                    vlindice_mensalidade, vlindice_inscricao, txmotivo_reajuste, cdfuncionario, 
+                    dtcancelamento_reajuste, cdfuncionario_cancelou, txmotivo_cancelamento, 
+                    substr(nrperiodo_proximo_reajuste,5,2) || '/' || substr(nrperiodo_proximo_reajuste,1,4) nrperiodo_proximo_reajuste,
+                    r.cdlotacao, decode(r.cdlotacao,'*','Todas',l.txdescricao) nolotacao, r.nrreajuste
+               from reajuste_contrato_pessoa r, lotacao l
+              where l.cdlotacao(+)    = r.cdlotacao
+                and l.nrregistro(+)   = r.nrregistro
+                and l.nrcontrato(+)   = r.nrcontrato
+                and r.nrperiodo       > decode(r.nrcontrato,'0017','201012','190000')
+--                and r.nrcontrato=0017 and r.nrregistro in (5217)
+--                and r.nrcontrato='9972'
+--                and r.nrcontrato=7063 and r.nrregistro in (189123,184626)
+              order by 1,2,3)
+   loop
+
+      if x.nrregistro <> vnrregistro or x.nrcontrato <> vnrcontrato then
+
+         vnrregistro   := x.nrregistro;
+         vnrcontrato   := x.nrcontrato;
+         vnoarquivo    := 'r' || x.nrcontrato || '_' || x.nrregistro || '.html;';
+
+         vcomando := '<font face="Courier New" color="red"><b>=============================================================================================================================================================<br>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+         vcomando := '                                                          REAJUSTES PROCESSADOS NO SISTEMA UNICOO                                                          <br>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+         vcomando := '                                                          ---------------------------------------                                                          <br>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+         vcomando := '=============================================================================================================================================================<br>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+         vcomando := ' </b><br></font>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+      end if;
+
+      vcomando := '<font face="Courier New" color="red"><b>Periodo ..................:  ' || lpad(x.nrperiodo,15,' ') || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando := 'Data do Reajuste..........: ' || x.dtreajuste || '</b></font><br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := '<font face="Courier New">-------------------------------------------------------------------------------------------------------------------------------------------------------------<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Situacao do Reajuste .....: ' || x.cdsituacao_reajuste || '-' || x.nosituacao_reajuste || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Indice Mensalidade .......: ' || x.vlindice_mensalidade || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Indice Inscricao .........: ' || x.vlindice_inscricao || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Motivo Reajuste ..........: ' || x.txmotivo_reajuste || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Funcionario Reajuste .....: ' || x.cdfuncionario || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Data Cancelamento ........: ' || x.Dtcancelamento_reajuste || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Funcionario Cancelamento .: ' || x.cdfuncionario_cancelou || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Motivo Cancelamento ......: ' || x.txmotivo_cancelamento || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Proximo Reajute ..........: ' || x.nrperiodo_proximo_reajuste || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := 'Lotacao Reajustada .......: ' || x.cdlotacao || ' - ' || x.nolotacao || '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+
+      vprimeiro   := 'S';
+      
+      for rp in (select rp.nrregistro, rp.nrcontrato, rp.cdcontrato, rp.tpplano, decode(rp.cdcategserv,' ','Mensalidade',rp.cdcategserv) cdcategserv,
+                        rp.cdlotacao, rp.vlindice_mensalidade, rp.vlindice_inscricao
+                  from reajuste_contrato_plano rp
+                  where rp.nrreajuste  = x.nrreajuste
+                    and rp.nrcontrato  = x.nrcontrato
+                    and rp.nrregistro  = x.nrregistro
+                    and (rp.vlindice_mensalidade <> x.vlindice_mensalidade
+                      or rp.vlindice_inscricao   <> x.vlindice_inscricao))
+      loop
+         if vprimeiro = 'S' then
+            vcomando   := 'Reajuste Diferenciado ....: ';
+            vprimeiro  := 'N';
+         else
+            vcomando   := '..........................: ';
+         end if;
+         vcomando      := vcomando || 'Plano: ' || rp.cdcontrato ||
+                                      ' Indice Mens: ' || rp.vlindice_mensalidade || ' Indice Inscr: ' || rp.vlindice_inscricao ||
+                                      ' Tp Plano: ' || rp.tpplano || ' Categ: ' || rp.cdcategserv || ' Lotacao: ' || rp.cdlotacao || '<br>';
+         insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+         vnrseq      := vnrseq + 1;
+      
+      end loop;
+
+      vcomando    := '<br>';
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+      vcomando    := '<br></font>';   
+      insert into temp_reajuste values (vnrregistro, vnrcontrato, vnrseq,vcomando);
+      vnrseq      := vnrseq + 1;
+   end loop;
+
+   for x in (select distinct r.nrregistro, r.nrcontrato
+               from reajuste_contrato_pessoa r, lotacao l
+              where l.cdlotacao(+)    = r.cdlotacao
+                and l.nrregistro(+)   = r.nrregistro
+                and l.nrcontrato(+)   = r.nrcontrato
+                and r.nrperiodo       > decode(r.nrcontrato,'0017','201012','190000')
+--                and r.nrcontrato=0017 and r.nrregistro in (5217)
+--                and r.nrcontrato='9972'
+--                and r.nrcontrato=7063 and r.nrregistro in (189123,184626)
+              order by 1,2)
+   loop
+      vnoarquivo    := 'r' || x.nrcontrato || '_' || x.nrregistro || '.html';
+
+      begin
+        select u.cd_modalidade, u.nr_proposta
+          into vcd_modalidade, vnr_proposta
+          from usuario uu, import_bnfciar ib, gp.usuario u
+         where uu.nrregistro            = x.nrregistro
+           and uu.nrcontrato            = x.nrcontrato
+           and uu.nrfamilia             <> 0
+           and ib.num_seqcial_bnfciar   = uu.nrsequencial_usuario
+           and u.cd_carteira_antiga     = ib.cd_carteira_antiga
+           and rownum                   = 1;
+      exception
+        when no_data_found then
+          null;
+      end;
+
+      texto   := ' ';
+      texto1  := ' ';
+      texto2  := ' ';
+      texto3  := ' ';
+      texto4  := ' ';
+      texto5  := ' ';
+      texto6  := ' ';
+      texto7  := ' ';
+      texto8  := ' ';
+      texto9  := ' ';
+      texto10 := ' ';
+      
+      for txt in (select *
+                  from temp_reajuste tr
+                  where tr.nrregistro = x.nrregistro
+                    and tr.nrcontrato = x.nrcontrato
+                  order by tr.seq)
+      loop
+         if length(texto) < 3810 then
+            texto := texto || txt.linha;
+         else
+            if length(texto1) < 3810 then
+               texto1 := texto1 || txt.linha;
+            else
+               if length(texto2) < 3810 then
+                  texto2 := texto2 || txt.linha;
+               else 
+                  if length(texto3) < 3810 then
+                     texto3 := texto3 || txt.linha;
+                  else 
+                     if length(texto4) < 3810 then
+                        texto4 := texto4 || txt.linha;
+                     else
+                        if length(texto5) < 3810 then
+                           texto5 := texto5 || txt.linha;
+                        else 
+                           if length(texto6) < 3810 then
+                              texto6 := texto6 || txt.linha;
+                           else
+                              if length(texto7) < 3810 then
+                                 texto7 := texto7 || txt.linha;
+                              else
+--                                 if length(texto8) < 3810 then
+--                                    texto8 := texto8 || txt.linha;
+--                                 else
+--                                    if length(texto9) < 3810 then
+--                                       texto9 := texto9 || txt.linha;
+--                                    else
+--                                       if length(texto10) < 3810 then
+--                                          texto10 := texto10 || txt.linha;
+--                                       else
+                                          dbms_output.put_line (' ERRO !!! Contrato com muitos reajustes ou detalhamentos. Reg:' ||
+                                                                txt.nrregistro || ' Contr: ' || txt.nrcontrato || ' Seq: ' || txt.seq);
+--                                       end if;
+--                                    end if;
+--                                 end if;
+                              end if;
+                           end if;
+                        end if;
+                     end if;
+                  end if;
+               end if;
+            end if;         
+         end if;
+      end loop;
+
+      v_blob := utl_raw.cast_to_raw(texto);
+      
+      if length(texto1) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1);
+      end if;
+      if length(texto2) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2);
+      end if;
+      if length(texto3) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3);
+      end if;
+      if length(texto4) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4);
+      end if;
+      if length(texto5) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5);
+      end if;
+      if length(texto6) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5 || texto6);
+      end if;
+      if length(texto7) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5 || texto6 || texto7);
+      end if;
+/*      if length(texto8) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5 || texto6 || texto7 || texto8);
+      end if;
+      if length(texto9) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5 || texto6 || texto7 || texto8 || texto9);
+      end if;
+      if length(texto10) > 5 then
+         v_blob := utl_raw.cast_to_raw(texto || texto1 || texto2 || texto3 || texto4 || texto5 || texto6 || texto7 || texto8 || texto9 || texto10);
+      end if;
+*/
+      begin
+        select 'S' into vao_ja_existe
+		  from anexo_propost ap, anexo a
+   		 where ap.cdn_modalid = vcd_modalidade
+		   and ap.num_propost = vnr_proposta
+		   and a.cdd_anexo = ap.cdd_anexo
+		   and a.cdn_tip_anexo = '8'
+           and rownum = 1;
+      exception
+        when no_data_found then	  
+		  insert into anexo (nom_anexo,cdd_anexo,dat_ult_atualiz,blb_anexo,cdn_tip_anexo,progress_recid)
+					 values (vnoarquivo, gp.seq_anexo.nextval, '01/01/2000', v_blob, '8', gp.anexo_seq.nextval);
+
+		  insert into anexo_propost (cdd_anexo, cdn_modalid, num_propost, progress_recid)
+					 values (gp.seq_anexo.currval, vcd_modalidade, vnr_proposta, gp.anexo_propost_seq.nextval);
+	    when others then
+		  null;
+      end;
+   end loop;
+  commit;
+end;
+/

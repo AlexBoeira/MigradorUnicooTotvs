@@ -1,0 +1,9 @@
+SELECT MAX(ID_PESSOA) + 1
+  FROM (SELECT ID_PESSOA
+          FROM PESSOA_FISICA
+        UNION
+        SELECT ID_PESSOA
+          FROM PESSOA_JURIDICA)
+
+		  
+/*com essa informação, entrar na edição da sequence, trocar o valor e 'apply'*/		  

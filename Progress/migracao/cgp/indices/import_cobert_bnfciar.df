@@ -1,0 +1,6 @@
+ADD INDEX "imprtcbr_id3" ON "import-cobert-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 2
+  FOREIGN-NAME "SRG09572##IMPRTCBR_ID3"
+  INDEX-FIELD "num-seqcial-bnfciar" ASCENDING
+

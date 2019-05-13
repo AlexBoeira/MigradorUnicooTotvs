@@ -1,0 +1,4 @@
+begin
+  PCK_MIGRACAO_TXT_GP.POS_CARGA_TXT;
+end;
+  

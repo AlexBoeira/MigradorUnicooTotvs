@@ -1,0 +1,13 @@
+-- listar erros importacao beneficiario por quantidades de ocorrencias
+select e.des_erro, count(*)
+from gp.erro_process_import e, import_bnfciar b
+where e.num_seqcial_control = b.num_seqcial_control
+and b.u##ind_sit_import = 'PE'
+
+--  and (b.dt_exclusao_plano is null or b.dt_exclusao_plano > sysdate)
+
+--and exists(select 1 from import_propost ip where ip.u##nr_contrato_antigo = b.nr_contrato_antigo and ip.num_livre_3 = '9972') --apenas erros em remidos
+
+group by e.des_erro order by 2 desc;
+
+--update gp.import_bnfciar ib set ib.u##ind_sit_import = 'RC', ib.ind_sit_import = 'RC' where ib.u##ind_sit_import = 'PE'

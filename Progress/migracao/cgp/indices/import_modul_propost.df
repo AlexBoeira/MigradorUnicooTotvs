@@ -1,0 +1,13 @@
+ADD INDEX "imprtmda_id3" ON "import-modul-propost"
+  AREA "Schema Area"
+  INDEX-NUM 2
+  FOREIGN-NAME "SRG09575##IMPRTMDA_ID3"
+  INDEX-FIELD "num-seqcial-propost" ASCENDING
+  INDEX-FIELD "cd-modulo" ASCENDING
+
+ADD INDEX "imprtmda_id4" ON "import-modul-propost"
+  AREA "Schema Area"
+  INDEX-NUM 3
+  FOREIGN-NAME "SRG09575##IMPRTMDA_ID4"
+  INDEX-FIELD "num-seqcial-propost" ASCENDING
+  

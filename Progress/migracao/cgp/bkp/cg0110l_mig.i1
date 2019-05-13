@@ -1,0 +1,730 @@
+/******************************************************************************
+    Programa .....: cg0110l.i1
+    Data .........: 30/08/2002
+    Sistema ......: Cadastros Gerais
+    Empresa ......: DZSET SOLUCOES E SISTEMAS
+    Cliente ......: Cooperativas Medicas
+    Programador ..: ALEX
+    Objetivo .....: Geracao do arquivo texto no layout SERIOUS de importacao
+                    de prestadores
+*-----------------------------------------------------------------------------*
+    Versao     DATA         RESPONSAVEL
+    E.00.000   30/08/2002   ALEX
+******************************************************************************/
+
+procedure imprime-prestador:
+
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 1 --- */
+   put stream s-export
+       1                    format "9" at 1
+       c-cd-unidade         format "9999"
+       c-cd-prestador       format "99999999"
+       ""                   format "x(40)"
+       c-nome-abrev         format "x(12)"
+       c-in-tipo-pessoa     format "x(01)"
+       c-cd-grupo-prestador format "99".
+   if c-lg-medico
+   then put stream s-export
+            "S"             format "x(01)".
+   else put stream s-export
+            "N"             format "x(01)".
+   if c-lg-cooperado
+   then put stream s-export
+            "S"             format "x(01)".
+   else put stream s-export
+            "N"             format "x(01)".
+   put stream s-export
+       c-cd-unidade-seccional format "9999"
+       c-cd-conselho          format "x(05)"
+       c-cd-uf-conselho       format "x(02)"
+       c-nr-registro          format "99999999"
+       c-cd-magnus            format "999999999"
+       c-en-rua               format "x(40)"
+       c-en-bairro            format "x(15)"
+       c-cd-cidade            format "999999"
+       c-en-cep               format "99999999"
+       c-en-uf                format "x(02)"
+       ""                     format "x(24)"
+       c-dt-inclusao          format "99999999"
+       c-dt-exclusao          format "99999999".
+   if c-lg-sexo
+   then put stream s-export
+            "M"               format "x(01)".
+   else put stream s-export
+            "F"               format "x(01)".
+   put stream s-export
+       c-dt-nascimento        format "99999999"
+       c-cd-insc-unimed       format "9999"
+       c-cd-situac-sindic     format "x(02)"
+       c-qt-produtividade * 100 format "999999999999".
+   if c-lg-alvara
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if c-lg-registro
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if c-lg-diploma
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-cd-esp-resid         format "999"
+       c-cd-esp-titulo        format "999".
+   if c-lg-malote
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if c-lg-vinc-empreg
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-nr-ult-inss          format "999999"
+       ""                     format "x(08)"
+       c-nr-ramal[1]          format "x(05)"
+       c-nr-ramal[2]          format "x(05)"
+       c-cgc-cpf              format "x(19)".
+   if c-lg-representa-unidade
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-cd-tab-urge          format "99".
+   if   c-lg-recolhe-inss
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if c-lg-recolhe-participa
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+            
+   put stream s-export c-ds-observacao format "x(228)".
+   
+   if c-calc-irrf
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-incidir-irrf         format "99"
+       ""                     format "x(06)".
+   if   c-lg-calcula-adto
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-dt-calculo-adto      format "99999999"
+       c-nr-dependentes       format "99".
+   if   c-lg-pagamento-rh
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-nm-email             format "x(50)"
+       c-cd-tipo-fluxo        format "x(12)"
+       c-cd-imposto           format "x(05)"
+       c-cd-classificacao-imposto format "x(05)"
+       c-nr-pis-pasep         format "99999999999"
+       c-nr-inscricao-inss    format "x(14)".
+       
+   if   c-lg-divisao-honorario
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if   c-calc-cofins
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if   c-calc-pispasep
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   if   c-calc-csll
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-cd-cofins                      format "x(5)"    
+       c-cd-classificacao-cofins        format "x(5)" 
+       c-cd-pispasep                    format "x(5)"    
+       c-cd-classificacao-pispasep      format "x(5)"
+       c-cd-csll                        format "x(5)"    
+       c-cd-classificacao-csll          format "x(5)" 
+       c-cd-inss                        format "x(5)"
+       c-cd-classificacao-inss          format "x(5)".
+   if   c-calc-iss
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-cd-iss                         format "x(5)"
+       c-cd-classificacao-iss           format "x(5)".
+   if   c-deduz-iss
+   then put stream s-export
+            "S"               format "x(01)".
+   else put stream s-export
+            "N"               format "x(01)".
+   put stream s-export
+       c-nr-dias-validade    format "999"
+       c-portador            format "99999"
+       c-modalidade          format "9"
+       c-cd-banco            format "999"
+       c-agencia             format "x(08)"
+       c-conta-corren        format "x(20)"
+       c-agencia-digito      format "x(02)"
+       c-conta-corren-digito format "x(02)"
+       c-forma-pagto         format "x(03)".
+       
+   if c-retem-proc = "S"
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if c-retem-insu = "S"
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+     
+   if c-calc-imposto-unico     
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   put stream s-export      
+        c-cd-imposto-unico       format "x(5)"
+        c-cd-clas-imposto-unico  format "x(5)"
+        c-cd-tipo-classif-estab  format "x(1)"
+        c-cd-cnes                format "9999999"
+        c-nm-diretor-tecnico     format "x(40)"
+        "        "               format "x(8)"
+        c-cd-registro-ans        format "999999".
+        
+   if   c-dt-inicio-contratual <> ?
+   then put stream s-export c-dt-inicio-contratual format "99999999".
+   else put stream s-export "00000000".
+
+   put stream s-export
+       c-ds-natureza-doc-ident   format "x(40)"   /* Natureza docto. Identif.*/
+       c-nr-doc-ident            format "x(14)"   /* Nr.Docto. Identificacao */
+       c-ds-orgao-emissor-ident  format "x(30)"   /* Org∆o Emissor Docto */
+       c-nm-pais-emissor-ident   format "x(20)"   /* Pais Emissor Docto */
+       c-uf-emissor-ident        format "x(02)".   /* Estado Emissor Docto */
+       
+   if c-dt-emissao-doc-ident <> ?
+   then put stream s-export c-dt-emissao-doc-ident    format "99999999". /* Data emissao Docto */
+   else put stream s-export "00000000".
+       
+   put stream s-export 
+       c-ds-nacionalidade        format "x(40)" 
+       c-nr-telefone[1]          format "x(20)"
+       c-nr-telefone[2]          format "x(20)" 
+       c-tp-disponibilidade      format "9".
+       
+   if c-lg-cooperativa
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if c-lg-acid-trab
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if c-lg-tab-propria
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+             
+   put stream s-export 
+       c-in-perfil-assistencial format "99" 
+       c-in-tipo-prod-atende    format "9".
+       
+   if c-lg-guia-medico-aux              
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   put stream s-export
+       c-cd-conselho-dir-tec format "x(12)"
+       c-nr-conselho-dir-tec format "x(15)"
+       c-uf-conselho-dir-tec format "x(02)"
+       c-tp-rede             format "9".
+       
+   if c-lg-notivisa
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+
+   if c-lg-qualiss
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   put stream s-export
+       c-nr-registro1           format "9999999999"
+       c-nr-registro2           format "9999999999"
+       c-nr-leitos-hosp-dia     format "999999"
+       c-nm-end-web             format "x(50)"
+       c-nm-fantasia            format "x(40)"
+       c-nm-prestador           format "x(70)".
+   
+   if lg-publica-ans-aux
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if lg-indic-residencia-aux
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if lg-login-wsd-tiss-aux
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   if lg-cadu-aux
+   then put stream s-export "S" format "x(01)".
+   else put stream s-export "N" format "x(01)".
+   
+   put stream s-export skip.
+
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 2 --- */
+   for each wk-reg2:
+       put stream s-export
+                  2                     format "9" at 1
+                  wk-reg2.cd-vinculo    format "99"
+                  wk-reg2.cd-especialid format "999".
+                  
+       if wk-reg2.lg-principal
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       
+       if wk-reg2.lg-considera-qt-vinculo
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       
+       put stream s-export
+           wk-reg2.cd-registro-espec    format "x(10)"
+           wk-reg2.cd-tipo-contratualizacao format "x(1)".
+           
+       if wk-reg2.lg-rce
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       
+       put stream s-export
+           wk-reg2.cd-registro-espec-2    format "9999999999"
+           wk-reg2.in-tipo-especialidade  format "9"
+           wk-reg2.cd-tit-cert-esp        format "999".
+
+       put stream s-export skip.
+   end.
+   
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 3 --- */
+   for each wk-reg3:
+       put stream s-export
+           3                            format "9" at 1
+           wk-reg3.en-endereco          format "x(40)"
+           wk-reg3.en-bairro            format "x(15)"
+           wk-reg3.cd-cidade            format "999999"
+           wk-reg3.en-cep               format "99999999"
+           wk-reg3.en-uf                format "x(02)"
+           wk-reg3.nr-fone[1]           format "x(12)"
+           wk-reg3.nr-fone[2]           format "x(12)"
+           wk-reg3.nr-ramal[1]          format "x(05)"
+           wk-reg3.nr-ramal[2]          format "x(05)"
+           wk-reg3.hr-man-ent           format "x(04)"
+           wk-reg3.hr-man-sai           format "x(04)"
+           wk-reg3.hr-tar-ent           format "x(04)"
+           wk-reg3.hr-tar-sai           format "x(04)".
+       if wk-reg3.lg-dias-trab[1]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-segunda   format "x(04)"
+           wk-reg3.hr-man-sai-segunda   format "x(04)"
+           wk-reg3.hr-tar-ent-segunda   format "x(04)"
+           wk-reg3.hr-tar-sai-segunda   format "x(04)".
+       if wk-reg3.lg-dias-trab[2]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-terca     format "x(04)"
+           wk-reg3.hr-man-sai-terca     format "x(04)"
+           wk-reg3.hr-tar-ent-terca     format "x(04)"
+           wk-reg3.hr-tar-sai-terca     format "x(04)".
+       if wk-reg3.lg-dias-trab[3]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-quarta    format "x(04)"
+           wk-reg3.hr-man-sai-quarta    format "x(04)"
+           wk-reg3.hr-tar-ent-quarta    format "x(04)"
+           wk-reg3.hr-tar-sai-quarta    format "x(04)".
+       if wk-reg3.lg-dias-trab[4]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-quinta    format "x(04)"
+           wk-reg3.hr-man-sai-quinta    format "x(04)"
+           wk-reg3.hr-tar-ent-quinta    format "x(04)"
+           wk-reg3.hr-tar-sai-quinta    format "x(04)".
+       if wk-reg3.lg-dias-trab[5]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-sexta     format "x(04)"
+           wk-reg3.hr-man-sai-sexta     format "x(04)"
+           wk-reg3.hr-tar-ent-sexta     format "x(04)"
+           wk-reg3.hr-tar-sai-sexta     format "x(04)".
+       if wk-reg3.lg-dias-trab[6]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-sabado    format "x(04)"
+           wk-reg3.hr-man-sai-sabado    format "x(04)"
+           wk-reg3.hr-tar-ent-sabado    format "x(04)"
+           wk-reg3.hr-tar-sai-sabado    format "x(04)".
+       if wk-reg3.lg-dias-trab[7]
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.hr-man-ent-domingo   format "x(04)"
+           wk-reg3.hr-man-sai-domingo   format "x(04)"
+           wk-reg3.hr-tar-ent-domingo   format "x(04)"
+           wk-reg3.hr-tar-sai-domingo   format "x(04)".
+       if wk-reg3.lg-malote
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       if wk-reg3.lg-recebe-corresp
+       then put stream s-export "S"     format "x(01)".
+       else put stream s-export "N"     format "x(01)".
+       put stream s-export
+           wk-reg3.in-tipo-endereco     format "9"
+           wk-reg3.cd-cnes              format "9999999"        
+           wk-reg3.nr-leitos-tot        format "x(06)"
+           wk-reg3.nr-leitos-contrat    format "x(06)"
+           wk-reg3.nr-leitos-psiquiat   format "x(06)"
+           wk-reg3.nr-uti-adulto        format "x(06)"
+           wk-reg3.nr-uti-neonatal      format "x(06)"
+           wk-reg3.nr-uti-pediatria     format "x(06)"
+           wk-reg3.ds-complementar      format "x(15)".
+           
+        
+       if wk-reg3.lg-filial
+       then put stream s-export "S"     format "x(01)".                
+       else put stream s-export "N"     format "x(01)".                
+       
+       put stream s-export
+           wk-reg3.nr-cgc-cpf format "9999999999999999999"
+           wk-reg3.nr-uti-neo-interm-neo format "x(06)"
+           wk-reg3.nm-end-web            format "x(50)".
+           
+       put stream s-export
+           wk-reg3.nr-leitos-hosp-dia             format "999999"
+           wk-reg3.nr-leitos-tot-psic-n-uti       format "999999"
+           wk-reg3.nr-leitos-tot-cirur-n-uti      format "999999"
+           wk-reg3.nr-leitos-tot-ped-n-uti        format "999999"
+           wk-reg3.nr-leito-tot-obst-n-uti        format "999999"
+           wk-reg3.nm-latitue                     format "x(20)"        
+           wk-reg3.nm-longitude                   format "x(20)" 
+           wk-reg3.nr-uti-neo-interm              format "x(06)" 
+           skip.                   
+
+   end.
+   
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 4 --- */
+   for each wk-reg4:
+       put stream s-export
+           4                            format "9" at 1
+           wk-reg4.cod-instit           format "x(5)"
+           wk-reg4.cdn-nivel            format "9".
+           if wk-reg4.lg-autoriz-divulga
+           then put stream s-export "S"     format "x(01)".
+           else put stream s-export "N"     format "x(01)" 
+           wk-reg4.cd-seq-end           format "99" skip.
+   end.
+   
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 5 --- */
+   for each wk-reg5:
+       put stream s-export
+           5                            format "9" at 1
+           wk-reg5.divulga-obs skip.
+   end.
+   
+   /* ------------------------------------------- IMPRIME REGISTRO TIPO 6 --- */
+   if can-find (first wk-reg6)
+   then do:
+          for each wk-reg6:
+              put stream s-export
+                  6                               format "9" at 1
+                  wk-reg6.c-cd-unidade-subst      format "9999"
+                  wk-reg6.c-cd-prest-subst        format "99999999"
+                  wk-reg6.c-dt-inicio-subst       format "99999999" 
+                  "00"                            format "99" skip.
+          end.
+        end.
+   else do:
+          put stream s-export                                   
+              6                     format "9" at 1   
+              "0000"                format "9999"     
+              "00000000"            format "99999999" 
+              "00000000"            format "99999999" 
+              c-cd-motivo-exclusao  format "99" skip. 
+        end.                           
+  
+end procedure.
+/* -------------------------------------------------------------------------- */
+procedure gera-relat-erro:
+def input parameter cd-tipo-p  as int                                   no-undo.
+def input parameter ds-desc-p  as char format "x(132)"                  no-undo.
+ 
+case cd-tipo-p:
+  when 1  /*- erro de mensagem unica -*/
+    then do:
+         put stream s-erro "ERRO! : ".
+         put stream s-erro ds-desc-p skip.
+         if   tt-prest-erros = tt-prest-erros-atual
+         then assign tt-prest-erros = tt-prest-erros + 1.
+         put stream s-erro skip(1).
+         end.
+  when 2  /*- erro por temp-table wk-erros -*/
+    then do:
+         put stream s-erro skip(1).
+         find first wk-erros no-lock no-error.
+         if avail wk-erros
+         then do:
+              case wk-erros.cd-tipo-regs:
+                when 1
+                  then do:
+                       /* ativa negrito */
+                       put stream s-erro control ds-negrit-ativa-aux.
+ 
+                       put stream s-erro "Registro Nro. 1 - PRESTADORES" skip.
+ 
+                       /* desativa negrito */
+                       put stream s-erro control ds-negrit-desat-aux.
+ 
+                       display stream s-erro
+                               c-cd-unidade
+                               c-cd-prestador
+                               c-nm-prestador
+                               c-nome-abrev
+                               c-in-tipo-pessoa
+                               c-cgc-cpf
+                               with frame f-lista-1.
+                       down    with frame f-lista-1.
+                       end.
+                when 2
+                  then do:
+                       /* ativa negrito */
+                       put stream s-erro control ds-negrit-ativa-aux.
+ 
+                       put stream s-erro
+                              "   Registro Nro. 2 - PRESTADOR X VINCULO X "
+                              "ESPECIALIDADE." skip.
+ 
+                       /* desativa negrito */
+                       put stream s-erro control ds-negrit-desat-aux.
+ 
+                       display stream s-erro
+                               c-cd-unidade
+                               c-cd-prestador
+                               c-nm-prestador
+                               c-nome-abrev
+                               c-in-tipo-pessoa
+                               c-cgc-cpf
+                               with frame f-lista-2.
+                       down    with frame f-lista-2.
+
+                       find last wk-reg2 no-lock no-error.
+                       if avail wk-reg2
+                       then do:
+                            display stream s-erro
+                                    wk-reg2.cd-vinculo
+                                    wk-reg2.cd-especialid
+                                    with frame f-lista-2.
+                            down    with frame f-lista-2.
+                            end.
+                       end.
+                when 3
+                  then do:
+                       /* ativa negrito */
+                       put stream s-erro control ds-negrit-ativa-aux.
+ 
+                       put stream s-erro
+                           "   Registro Nro. 3 - ENDERECOS DO PRESTADOR" skip.
+ 
+                       /* desativa negrito */
+                       put stream s-erro control ds-negrit-desat-aux.
+ 
+                       find last wk-reg3 no-lock no-error.
+                       if avail wk-reg3
+                       then do:
+                            display stream s-erro
+                                    c-cd-unidade
+                                    c-cd-prestador
+                                    c-nm-prestador
+                                    c-nome-abrev
+                                    c-in-tipo-pessoa
+                                    c-cgc-cpf
+                                    with frame f-lista-3.
+                            down    with frame f-lista-3.
+                            end.
+                       end.
+                when 4
+                  then do:
+                       /* ativa negrito */
+                       put stream s-erro control ds-negrit-ativa-aux.
+ 
+                       put stream s-erro
+                           "   Registro Nro. 4 - INSTITUICOES ACREDITADORAS DO PRESTADOR" skip.
+ 
+                       /* desativa negrito */
+                       put stream s-erro control ds-negrit-desat-aux.
+ 
+                       find last wk-reg4 no-lock no-error.
+                       if avail wk-reg4
+                       then do:
+                            display stream s-erro
+                                    c-cd-unidade
+                                    c-cd-prestador
+                                    c-nm-prestador
+                                    c-nome-abrev
+                                    c-in-tipo-pessoa
+                                    c-cgc-cpf
+                                    with frame f-lista-4.
+                            down    with frame f-lista-4.
+                            end.
+                       end.
+              end case.
+ 
+              for each wk-erros
+                       no-lock:
+                  if wk-erros.cd-tipo-erro = "E"
+                  then if wk-erros.cd-tipo-regs = 1
+                       then put stream s-erro "ERRO! : ".
+                       else put stream s-erro "   ERRO! : ".
+                  else if wk-erros.cd-tipo-regs = 1
+                       then put stream s-erro "AVISO : ".
+                       else put stream s-erro "   AVISO : ".
+ 
+                  if wk-erros.cd-tipo-erro = "E"
+                  then do:
+                       if   tt-prest-erros = tt-prest-erros-atual
+                       then tt-prest-erros = tt-prest-erros + 1.
+                       end.
+                  else if wk-erros.cd-tipo-erro = "A"
+                       then do:
+                            if   tt-prest-aviso = tt-prest-aviso-atual
+                            then tt-prest-aviso = tt-prest-aviso + 1.
+                            end.
+ 
+                  put stream s-erro wk-erros.ds-desc skip.
+              end.
+ 
+              for each wk-erros:
+                  delete wk-erros.
+              end.
+              end.
+         end.
+end case.
+end procedure.
+
+/* ------------------------------------ CONSISTENCIA DE CAMPOS NUMERICOS --- */
+procedure consiste-numerico:
+ 
+   /* ----------------------- DEFINICAO DE PARAMETROS DE ENTRADA E SAIDA --- */
+   def input  parameter cd-campo-par    as char format "x(20)"         no-undo.
+   def output parameter lg-erro-par     as log                         no-undo.
+ 
+   /* ------------------------------------ DEFINICAO DE VARIAVEIS LOCAIS --- */
+   def var nr-tam-aux                   as int                         no-undo.
+   def var ct-cont-aux                  as int                         no-undo.
+ 
+   assign nr-tam-aux  = length(cd-campo-par)
+          lg-erro-par = no.
+ 
+   if   cd-campo-par <> ""
+   then do:
+          do ct-cont-aux = 1 to nr-tam-aux.
+ 
+             if   substring(cd-campo-par,ct-cont-aux,1) < "0"
+             or   substring(cd-campo-par,ct-cont-aux,1) > "9"
+             then do:
+                    assign lg-erro-par = yes.
+                    leave.
+                  end.
+          end.
+        end.
+ 
+end procedure.
+ 
+/* ----------------------------------------- CONSISTENCIA DE CAMPOS DATA --- */
+procedure consiste-data:
+ 
+   /* ----------------------- DEFINICAO DE PARAMETROS DE ENTRADA E SAIDA --- */
+   def input  parameter cd-campo-par    as char format "x(08)"         no-undo.
+   def output parameter lg-erro-par     as log                         no-undo.
+ 
+   assign lg-erro-par = no.
+ 
+   /* --------------------------------------------------- CONSISTE O ANO --- */
+   if   int(substr(cd-campo-par,05,04)) = 0
+   then assign lg-erro-par = yes.
+   else do:
+          /* -------------------------------------------- CONSISTE O MES --- */
+          if   int(substr(cd-campo-par,03,02)) < 1
+          or   int(substr(cd-campo-par,03,02)) > 12
+          then assign lg-erro-par = yes.
+          else do:
+                 /* ------------------------------------- CONSISTE O DIA --- */
+                 if   int(substr(cd-campo-par,03,02)) = 1
+                 or   int(substr(cd-campo-par,03,02)) = 3
+                 or   int(substr(cd-campo-par,03,02)) = 5
+                 or   int(substr(cd-campo-par,03,02)) = 7
+                 or   int(substr(cd-campo-par,03,02)) = 8
+                 or   int(substr(cd-campo-par,03,02)) = 10
+                 or   int(substr(cd-campo-par,03,02)) = 12
+                 then do:
+                        if   int(substr(cd-campo-par,01,02)) < 1
+                        or   int(substr(cd-campo-par,01,02)) > 31
+                        then assign lg-erro-par = yes.
+                      end.
+ 
+                 if   int(substr(cd-campo-par,03,02)) = 4
+                 or   int(substr(cd-campo-par,03,02)) = 6
+                 or   int(substr(cd-campo-par,03,02)) = 9
+                 or   int(substr(cd-campo-par,03,02)) = 11
+                 then do:
+                        if   int(substr(cd-campo-par,01,02)) < 1
+                        or   int(substr(cd-campo-par,01,02)) > 30
+                        then assign lg-erro-par = yes.
+                      end.
+ 
+                 if   int(substr(cd-campo-par,03,02)) = 2
+                 then do:
+                        if   int(substr(cd-campo-par,05,04)) modulo 4 = 0
+                        then do:
+                               if   int(substr(cd-campo-par,01,02)) < 1
+                               or   int(substr(cd-campo-par,01,02)) > 29
+                               then assign lg-erro-par = yes.
+                             end.
+                        else do:
+                               if   int(substr(cd-campo-par,01,02)) < 1
+                               or   int(substr(cd-campo-par,01,02)) > 28
+                               then assign lg-erro-par = yes.
+                             end.
+                      end.
+               end.
+        end.
+ 
+end procedure.
+ 
+

@@ -1,0 +1,58 @@
+#***************************************************************************
+# Copyright DATASUL S.A. (2010)
+# All rights reserved.
+#
+# Arquivo...............: scripts-8080/datasul.pf
+# Descricao.............: Parametros de conexao Cliente/Servidor
+# Criado por............: Instalador TOTVS Datasul - GAPE
+# Data de criacao.......: 9-8-2015 14:36:45
+#***************************************************************************
+
+#-mmax 16384
+-mmax 8192
+
+-s 500
+-TB 31
+#-TM 64 - segundo o help Progress, o valor máximo é 32
+-TM 32
+-d dmy
+-Bt 10000
+#-Bt 50000
+#-tmpbsize 8
+-tmpbsize 4
+#-Mm 8192
+-Mm 4096
+-cpstream ibm850
+-cpterm iso8859-1
+-q 
+#-inp 32000
+-inp 32000
+-h 50
+-numsep 46
+-numdec 44
+-l 50000
+#-Mr 512
+-Mr 32000
+-T c:\temp
+
+-D 5000
+#-plm PROLIB memory
+#-pls - swap
+-pls
+#-y
+#-yd
+#-yx
+#-yc
+
+-dslog c:\temp\dslog.txt
+
+-db \\totvs-hml\ERP\database-8180\shemsfnd		-RO -ld shemsfnd	-db emsfnd		-ld emsfnd		-U emsfnd/emsfnd@TREINA		-c 10000 
+#-db \\totvs-hml\ERP\database-8180\shems2cad		-RO -ld shmgcad		-db mgcad		-ld mgcad		-U ems2cad/ems2cad@TREINA		-c 10000
+#-db \\totvs-hml\ERP\database-8180\shems2mov		-RO -ld shmgmov		-db mgmov		-ld mgmov		-U ems2mov/ems2mov@TREINA		-c 10000
+-db \\totvs-hml\ERP\database-8180\shems5		-RO -ld shems5		-db ems5		-ld ems5		-U ems5/ems5@TREINA			-c 10000
+#-db \\totvs-hml\ERP\database-8180\shhcm			-RO -ld shhcm		-db hcm			-ld hcm			-U hcm/hcm@TREINA				-c 10000
+#-db \\totvs-hml\ERP\database-8180\srcadger		-RO -ld srcadger	-db shsrcadger	-ld shsrcadger	-U gp/gp@TREINA				-c 10000 -Dsrv qt_debug,SQL
+-db \\totvs-hml\ERP\database-8180\srcadger		-RO -ld srcadger	-db shsrcadger	-ld shsrcadger	-U gp/gp@TREINA				-c 10000
+
+-db \\totvs-hml\ERP\database-8180\srmovfin 		-RO -ld srmovfin	-db shsrmovfin	-ld shsrmovfin	-U gp/gp@TREINA				-c 10000
+-db \\totvs-hml\ERP\database-8180\shunimed 		-RO -ld shunimed	-db unimed	    -ld unimed   	-U ems506unicoo/ems506unicoo@TREINA	-c 10000

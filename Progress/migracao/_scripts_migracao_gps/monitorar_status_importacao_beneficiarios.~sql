@@ -1,0 +1,19 @@
+-- monitorar status importacao beneficiarios
+-- STATUS EV: Beneficiário eventual. Não é migrado nesse processo. É criado em processo posterior.
+select u##ind_sit_import, decode(log_respons,1,'T','D') TITULAR_DEPENDENTE, count(*) from import_bnfciar ib
+--  where (ib.dt_exclusao_plano is null or ib.dt_exclusao_plano > sysdate)
+  group by u##ind_sit_import, log_respons
+  order by u##ind_sit_import, log_respons desc;
+
+/*
+EV  T 734
+GA  T 40038
+GA  D 23385
+GE  T 213940
+GE  D 165635
+RC  T 79741
+*/
+
+--SELECT u##ind_sit_import, count(*) from gp.import_bnfciar ib where ib.cod_livre_9 is not null group by u##ind_sit_import
+
+--select * from tm_parametro for update

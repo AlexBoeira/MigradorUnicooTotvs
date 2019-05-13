@@ -1,0 +1,70 @@
+        1   /**
+        2    * Temporaria para tratar possiveis erros na tentativa de login.
+        3    */
+        4   Def Temp-table tt_erros No-undo
+        5       Field num-cod   As Integer
+        6       Field desc-erro As Character Format "x(256)":U
+        7           Field desc-arq  As Character.
+        8   
+        9   /**
+       10    * Variavel para tratar parametro de entrada.
+       11    */
+       12   DEF VAR in-param-aux AS CHAR no-undo.
+       13   ASSIGN in-param-aux = SESSION:PARAM.
+       14   
+       15   
+       16   Run fnd\btb\btapi910za.p(Input ENTRY(1, in-param-aux), /*USUARIO*/
+       17                            Input ENTRY(2, in-param-aux), /*SENHA*/
+       18                            Output Table tt_erros). 
+       19   
+       20   For Each tt_erros:
+       21       Message "Erro: " 
+       22               String(tt_erros.num-cod) + " - ":U + 
+       23               tt_erros.desc-erro 
+       24               View-as Alert-box Information.
+       25   End.
+       26   
+       27   
+       28   /********************************************************************************
+       29   ** Copyright DATASUL S.A. (1997)
+       30   ** Todos os Direitos Reservados.
+       31   **
+       32   ** Este fonte e de propriedade exclusiva da DATASUL, sua reproducao
+       33   ** parcial ou total por qualquer meio, so podera ser feita mediante
+       34   ** autorizacao expressa.
+       35   *******************************************************************************/
+       36   /*{include/i-prgvrs.i CG0210X 2.00.00.004 } /*** 010004 ***/
+       37   
+       38   &IF "{&EMSFND_VERSION}" >= "1.00" &THEN
+       39   {include/i-license-manager.i cg0210x MCG}
+       40   &ENDIF
+       41   */
+       42   def var rw-log-exec as rowid.
+       43   /*
+       44   run btb/btb918zb.p (input "hcg0210x", /* nome do programa */
+       45                       input-output rw-log-exec, /* rowid */
+       46                       input yes). /* inicia o log */
+       47   */
+       48   
+       49   /******************************************************************************
+       50   *      Programa .....: cg0210x.p                                              *
+       51   *      Data .........: 18 de Dezembro de 2002                                 *
+       52   *      Autor ........: DZSET SOLUCOES E SISTEMAS LTDA.                        *
+       53   *      Sistema ......: CG - CADASTROS GERAIS                                  *
+       54   *      Programador ..: Alex Boeira                                            *
+       55   *      Objetivo .....: Migracao dos dados dos Prestadores                     *
+       56   *---------------------------------------------------------------------------- *
+       57   *      VERSAO    DATA        RESPONSAVEL    MOTIVO                            *
+       58   *      6.00.000  18/12/2002  Alex           Desenvolvimento                   *
+       59   ******************************************************************************/
+       60   hide all no-pause.
+       61   
+       62   def var c-versao as char init "7.00.000"                                no-undo.
+       63   
+       64   run cgp/cg0110l_mig.p.
+       65   
+       66   /*run btb/btb918zb.p (input "hcg0210x", /* nome do programa */
+       67                       input-output rw-log-exec, /* rowid */
+       68                       input no). /* finaliza o log */
+       69   */                                      
+       70   QUIT.

@@ -1,0 +1,14 @@
+BEGIN FOR X IN (
+
+select 'alter system kill session ' || '''' || s.sid || ',' || s.serial# || '''' COMANDO
+  from v$session s, v$process p
+ where s.username = 'EMS506UNICOO'
+   and p.addr(+) = s.paddr
+
+
+) LOOP
+
+EXECUTE IMMEDIATE X.COMANDO;
+END LOOP;
+
+END;

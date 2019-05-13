@@ -1,0 +1,7 @@
+set echo on
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+begin
+  PCK_MIGRACAO_TXT_GP.POS_CARGA_TXT;
+  commit;
+end;
+/

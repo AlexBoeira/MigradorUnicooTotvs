@@ -1,0 +1,65 @@
+[19/03/08@11:02:33.297-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:33.298-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::353f3c213c21/*****@TOTVSGP. (2689)
+[19/03/08@11:02:33.301-0300] P-009788 T-012912 1 ORA    -- Usando biblioteca compartilhada C:\instantclient\OCI.DLL (oci 8.1) (14874)
+[19/03/08@11:02:33.302-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:33.460-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:33.460-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:33.461-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:33.461-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:36.164-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:36.164-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::353f3c75312437/*****@TOTVSGP. (2689)
+[19/03/08@11:02:36.164-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:36.189-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:36.189-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:36.190-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:36.190-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:37.247-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:37.248-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::353f3c753f2a25/*****@TOTVSGP. (2689)
+[19/03/08@11:02:37.248-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:37.293-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:37.295-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:37.295-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:37.295-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:38.496-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:38.496-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::353f3c72/*****@TOTVSGP. (2689)
+[19/03/08@11:02:38.496-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:38.541-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:38.541-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:38.541-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:38.541-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:41.468-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:41.469-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::3722/*****@TOTVSGP. (2689)
+[19/03/08@11:02:41.469-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:41.520-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:41.520-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:41.520-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:41.520-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:42.237-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:42.238-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::3722/*****@TOTVSGP. (2689)
+[19/03/08@11:02:42.238-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:42.257-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:42.463-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:42.463-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:42.463-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:42.631-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:42.631-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::353f3c726273263d39312028/*****@TOTVSGP. (2689)
+[19/03/08@11:02:42.632-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:42.672-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:42.673-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:42.676-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:42.676-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:02:58.967-0300] P-009788 T-012912 1 ORA    -- O execut†vel foi compilado em Oct 23 2017 as 11:58:07 (5067)
+[19/03/08@11:02:58.967-0300] P-009788 T-012912 1 ORA    -- Login ao BD dataserver como usuario oech1::383122/*****@TOTVSGP. (2689)
+[19/03/08@11:02:58.967-0300] P-009788 T-012912 1 ORA    -- ORACLE_HOME n∆o configurado ou NULL (14876)
+[19/03/08@11:02:59.006-0300] P-009788 T-012912 1 ORA    -- -Dsrv qt_debug: 0 (0x0 None) (6489)
+[19/03/08@11:02:59.006-0300] P-009788 T-012912 1 ORA    --   Cursor limit: 10000 (-c setting) (6490)
+[19/03/08@11:02:59.006-0300] P-009788 T-012912 1 ORA    -- Logging level set to = 2
+[19/03/08@11:02:59.006-0300] P-009788 T-012912 1 ORA    -- Log entry types activated: Connects
+[19/03/08@11:04:02.623-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::383122/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.626-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::353f3c726273263d39312028/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.629-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::3722/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.631-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::3722/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.634-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::353f3c72/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.636-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::353f3c753f2a25/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.638-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::353f3c75312437/*****@TOTVSGP. (2690)
+[19/03/08@11:04:02.641-0300] P-009788 T-012912 1 ORA    -- Logoff do BD dataserver como usuario oech1::353f3c213c21/*****@TOTVSGP. (2690)

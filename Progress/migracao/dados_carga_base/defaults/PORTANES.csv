@@ -1,0 +1,10 @@
+PORTE ANEST.;DESCRICAO;PORTE PADRAO;
+ 00;PORTE ANESTESICO AN0                    ;NAO;
+ 01;PORTE ANESTESICO AN1                    ;SIM;
+ 02;PORTE ANESTESICO AN2                    ;NAO;
+ 03;PORTE ANESTESICO AN3                    ;NAO;
+ 04;PORTE ANESTESICO AN4                    ;NAO;
+ 05;PORTE ANESTESICO AN5                    ;NAO;
+ 06;PORTE ANESTESICO AN6                    ;NAO;
+ 07;PORTE ANESTESICO AN7                    ;NAO;
+ 08;PORTE ANESTESICO AN8                    ;NAO;

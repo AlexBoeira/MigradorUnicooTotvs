@@ -1,0 +1,9 @@
+UPDATE TI_CLIENTE CL
+SET CL.COD_BANCO = ' ',
+    cl.cod_agenc_bcia = ' ',
+    cl.cod_cta_corren_bco =' ',
+    CL.CDSITUACAO = 'RC'
+WHERE NOT EXISTS (SELECT 1 FROM EMS5.BANCO B
+WHERE LPAD(TO_CHAR(CL.COD_BANCO),3,0) = B.COD_BANCO)
+AND CL.COD_BANCO> '0';
+COMMIT;

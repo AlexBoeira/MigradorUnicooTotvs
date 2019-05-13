@@ -1,0 +1,12 @@
+/**
+ * No TOTVS12 o parâmetro 'open_cursors' deve ser 30000
+ */
+
+SELECT max(a.value) as highest_open_cur, p.value as max_open_cur
+
+  FROM v$sesstat a, v$statname b, v$parameter p
+
+ WHERE a.statistic# = b.statistic#
+   and b.name = 'opened cursors current'
+   and p.name = 'open_cursors'
+ group by p.value;

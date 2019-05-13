@@ -1,0 +1,13 @@
+os arquivos dessa pasta foram criados originalmente na pasta C:\temp\teste_html_sqlplus.
+
+exemplo para chamada de select no SQLPLUS gerando um arquivo.html com o resultado.
+
+estudar forma de acoplar isso em rotinas do Jenkins, gerando os relatórios de erros em local estruturado e de fácil acesso e entendimento do cliente.
+
+pode fazer sentido separar erros de EXTRATOR dos erros de IMPORTACAO, pois são identificados em momentos diferentes, possibilitando ao cliente tomar ações corretivas de forma proativa.
+
+EXTRATOR: normalmente são correções de dados que o cliente precisa fazer no UNICOO.
+IMPORTACAO: normalmente são parametrizações que o cliente precisa fazer no TOTVS.
+
+
+material de apoio https://docs.oracle.com/cd/B12037_01/server.101/b12170/ch8.htm

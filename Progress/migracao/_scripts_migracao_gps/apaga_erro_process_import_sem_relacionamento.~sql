@@ -1,0 +1,42 @@
+-- eliminar os registros de ERRO_PROCESS_IMPORT sem relacionamento com CONTRATANTE, PROPOSTA e BENEFICIÁRIO
+delete from gp.erro_process_import e 
+ where exists(select 1 from temp_migracao_contratante c
+                      where c.nrseq_controle = e.num_seqcial_control
+                        and c.cdsituacao not in ('ER','PE'));
+                        
+delete from gp.erro_process_import e 
+ where exists(select 1 from gp.import_propost ip
+                      where ip.num_seqcial_control = e.num_seqcial_control
+                        and ip.u##ind_sit_import not in ('ER','PE'));
+                        
+delete from gp.erro_process_import e 
+ where exists(select 1 from gp.import_bnfciar ib
+                      where ib.num_seqcial_control = e.num_seqcial_control
+                        and ib.u##ind_sit_import not in ('ER','PE'));
+
+
+/*
+select * from ERRO_PROCESS_IMPORT e
+where not exists(select 1 from gp.import_propost ip where ip.num_seqcial_control = e.num_seqcial_control and ip.ind_sit_import <> 'IT')
+  and not exists(select 1 from gp.import_bnfciar ib where ib.num_seqcial_control = e.num_seqcial_control and ib.ind_sit_import <> 'IT')
+  and not exists(select 1 from temp_migracao_contratante c where c.nrseq_controle = e.num_seqcial_control and c.cdsituacao <> 'IT');
+*/
+/*
+delete from ERRO_PROCESS_IMPORT e
+where not exists(select 1 from gp.import_propost ip where ip.num_seqcial_control = e.num_seqcial_control and ip.ind_sit_import <> 'IT')
+  and not exists(select 1 from gp.import_bnfciar ib where ib.num_seqcial_control = e.num_seqcial_control and ib.ind_sit_import <> 'IT')
+  and not exists(select 1 from temp_migracao_contratante c where c.nrseq_controle = e.num_seqcial_control and c.cdsituacao <> 'IT');
+*/
+--analyze table gp.ERRO_PROCESS_IMPORT    compute statistics for table for all indexes for all indexed columns;
+--analyze table gp.import_guia_histor compute statistics for table for all indexes for all indexed columns;
+--analyze table gp.import_guia_movto compute statistics for table for all indexes for all indexed columns;
+
+--grant select, insert, update, delete, references, alter, index on GP.IMPORT_PROPOST to UNICOOGPS;
+
+--grant select, insert, update, delete, references, alter, index on GP.--analyze table gp.ERRO_PROCESS_IMPORT    compute statistics for table for all indexes for all indexed columns;
+/*
+select nom_tab_orig_erro, count(*) from erro_process_import group by nom_tab_orig_erro
+select ind_tip_migrac, count(*) from control_migrac group by ind_tip_migrac
+         
+select * from erro_process_import
+*/

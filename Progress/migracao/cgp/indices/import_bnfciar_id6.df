@@ -1,0 +1,7 @@
+ADD INDEX "imprtbnf_id6" ON "import-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 5
+  FOREIGN-NAME "SRG09566##IMPRTBNF_ID6"
+  INDEX-FIELD "nr-contrato-antigo" ASCENDING
+  INDEX-FIELD "ind-sit-import" ASCENDING
+	

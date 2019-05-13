@@ -1,0 +1,657 @@
+        1   DEF INPUT PARAM in-status-par AS CHAR NO-UNDO.
+        2   
+        3   /* -------------------------------------------------------------------- */
+        4   /* -------------------------------------------------------------------- */                                                       
+        5   /* -------------------------------------------------------------------- */
+        6   
+        7   /*****************************************************************************
+        8   *   Programa.........: pp0410f.i                                             *
+        9   *   Data.............: 08 de junho de 2001                                   *
+       10   *   Empresa..........: DZSET SOLUCOES & SISTEMAS                             *
+       11   *   Cliente..........: COOPERATIVAS MEDICAS                                  *
+       12   *   Sistema..........: Pagamento de Prestadores                              *
+       13   *   Programador......: Jaqueline Formigheri                                  *
+       14   *   Objetivo.........: Include das temp-tables do ems504 da                  *
+       15   *                      Geracao de Titulos para o Contas a Pagar              *
+       16   *--------------------------------------------------------------------------- *
+       17   *   VERSAO    DATA        RESPONSAVEL   MOTIVO                               *
+       18   *   E.00.000  08/06/2001  Jaque         Desenvolvimento                      *   
+       19   *****************************************************************************/
+       20   
+       21   /*** Antecipacoes - Utilizadas no programa apb9005za.py ***/ 
+       22   
+       23   def temp-table tt_integr_apb_antecip_pef_pend no-undo
+       24       field tta_cod_empresa      as character format "x(3)" 
+       25                                  label "Empresa" column-label "Empresa"
+       26       field tta_cod_estab        as character format "x(3)" 
+       27                                  label "Estabelecimento" column-label "Estab"
+       28       field tta_cod_refer        as character format "x(10)" label "Referência"
+       29                                  column-label "Referência"
+       30       field tta_cod_espec_docto  as character format "x(3)" 
+       31                                  label "Espécie Documento" column-label "Espécie"
+       32       field tta_cod_ser_docto    as character format "x(3)" 
+       33                                  label "Série Documento" column-label "Série"
+       34       field tta_cdn_fornecedor   as Integer format ">>>,>>>,>>9" initial 0 
+       35                                  label "Fornecedor" column-label "Fornecedor"
+       36       field tta_cod_tit_ap       as character format "x(10)" label "Título" 
+       37                                  column-label "Título"
+       38       field tta_cod_parcela      as character format "x(02)" label "Parcela" 
+       39                                  column-label "Parc"
+       40       field tta_cod_portador     as character format "x(5)" label "Portador" 
+       41                                  column-label "Portador"
+       42       field tta_cod_indic_econ   as character format "x(8)" label "Moeda" 
+       43                                  column-label "Moeda"
+       44       field tta_num_talon_cheq   as integer format ">>>,>>>,>>9" initial 0
+       45                                  label "Talonário Cheques"
+       46                                  column-label "Talonário Cheques"
+       47       field tta_num_cheque       as integer format ">>>>,>>>,>>9" initial ? 
+       48                                  label "Num Cheque" column-label "Num Cheque"
+       49       field tta_ind_favorec_cheq as character format "X(15)" initial "Portador"
+       50                                  label "Favorecido" column-label "Favorecido"
+       51       field tta_nom_favorec_cheq as character format "x(40)" 
+       52                                  label "Nome Favorecido"
+       53                                  column-label "Nome Favorecido"
+       54       field tta_val_tit_ap       as decimal format "->>>,>>>,>>9.99" decimals 2 
+       55                                  initial 0 label "Valor Título"
+       56                                  column-label "Valor Título"
+       57       field tta_val_cotac_indic_econ as decimal format ">>>>,>>9.9999999999" 
+       58                                  decimals 10 initial 0 label "Cotação" 
+       59                                  column-label "Cotação"
+       60       field tta_dat_emis_docto   as date format "99/99/9999" initial today 
+       61                                  label "Data  Emissão" column-label "Dt Emissão"
+       62       field tta_dat_vencto_tit_ap as date format "99/99/9999" initial today 
+       63                                  label "Data Vencimento" column-label "Dt Vencto"
+       64       field tta_ind_tip_refer    as character format "X(22)"
+       65                                  label "Tipo Referência" column-label "Tipo"
+       66       field tta_cod_seguradora   as character format "x(8)" label "Seguradora"
+       67                                  column-label "Seguradora"
+       68       field tta_cod_apol_seguro  as character format "x(12)"
+       69                                  label "Apólice Seguro"
+       70                                  column-label "Apolice Seguro"
+       71       field tta_cod_arrendador   as character format "x(6)" label "Arrendador" 
+       72                                  column-label "Arrendador"
+       73       field tta_cod_contrat_leas as character format "x(12)" 
+       74                                  label "Contrato Leasing"
+       75                                  column-label "Contr Leas"
+       76       field tta_cod_histor_padr  as character format "x(8)" 
+       77                                  label "Histórico Padrão" 
+       78                                  column-label "Histórico Padrão"
+       79       field tta_des_text_histor  as character format "x(2000)" 
+       80                                  label "Histórico" column-label "Histórico"
+       81       field tta_ind_natur_cta_ctbl as character format "X(08)" initial "DB" 
+       82                                  label "Natureza Contábil" 
+       83                                  column-label "Natureza Contábil"
+       84       field tta_cod_usuar_gerac_movto as character format "x(12)" 
+       85                                  label "Usuario Gerac Movto" 
+       86                                  column-label "Usuario"
+       87       field ttv_cod_empresa_ext  as character format "x(3)" 
+       88                                  label "Código Empresa Ext"
+       89                                  column-label "Cód Emp Ext"
+       90       field tta_cod_estab_ext    as character format "x(8)" 
+       91                                  label "Estabelecimento Exte" 
+       92                                  column-label "Estabelecimento Ext"
+       93       field tta_cod_portad_ext   as character format "x(8)" 
+       94                                  label "Portador Externo" 
+       95                                  column-label "Portador Externo"
+       96       field tta_cod_modalid_ext  as character format "x(8)" 
+       97                                  label "Modalidade Externa" 
+       98                                  column-label "Modalidade Externa"
+       99       field ttv_rec_antecip_pef_pend as recid format ">>>>>>9"
+      100       field tta_ind_origin_tit_ap as character format "X(03)" 
+      101                                   initial "APB" label "Origem" 
+      102                                   column-label "Origem"
+      103       field tta_cod_cart_bcia     as character format "x(3)"
+      104                                   label "Carteira" column-label "Carteira"
+      105       index tt_antcppfp_id        is primary unique
+      106             tta_cod_estab         ascending
+      107             tta_cod_refer         ascending
+      108       index tt_antcppfp_tip_refer 
+      109             tta_cod_empresa       ascending
+      110             tta_ind_tip_refer     ascending
+      111             tta_cod_estab         ascending
+      112             tta_cod_refer         ascending
+      113       index tt_recid                 
+      114             ttv_rec_antecip_pef_pend ascending.
+      115                                                          
+      116   /*** Abatimento de Antecipacoes ***/
+      117   
+      118   def new shared temp-table tt_integr_apb_abat_antecip_vouc no-undo 
+      119       field ttv_rec_integr_apb_item_lote as recid format ">>>>>>9" 
+      120       field tta_cod_estab       as character format "x(3)" 
+      121                                 label "Estabelecimento" column-label "Estab" 
+      122       field tta_cod_espec_docto as character format "x(3)" 
+      123                                 label "Esp‚cie Documento" column-label "Esp‚cie" 
+      124       field tta_cod_ser_docto   as character format "x(3)" 
+      125                                 label "S‚rie Documento" column-label "S‚rie" 
+      126       field tta_cdn_fornecedor  as Integer format ">>>,>>>,>>9" initial 0 
+      127                                 label "Fornecedor" column-label "Fornecedor" 
+      128       field tta_cod_tit_ap      as character format "x(10)" 
+      129                                 label "T¡tulo" column-label "T¡tulo" 
+      130       field tta_cod_parcela     as character format "x(02)" 
+      131                                 label "Parcela" column-label "Parc" 
+      132       field tta_val_abat_tit_ap as decimal format "->>>,>>>,>>9.99" decimals 2 
+      133                                 initial 0 label "Valor Abatimento" 
+      134                                 column-label "Vl Abatimento" 
+      135       index tt_integr_apb_abat_antecip_vouc  is primary unique 
+      136             ttv_rec_integr_apb_item_lote     ascending 
+      137             tta_cod_estab                    ascending 
+      138             tta_cod_espec_docto              ascending 
+      139             tta_cod_ser_docto                ascending 
+      140             tta_cdn_fornecedor               ascending 
+      141             tta_cod_tit_ap                   ascending 
+      142             tta_cod_parcela                  ascending.
+      143   
+      144   
+      145   /*** Abatimentos de Previsões ou Provisões ***/
+      146   
+      147   def new shared temp-table tt_integr_apb_abat_prev_provis no-undo 
+      148       field ttv_rec_integr_apb_item_lote as recid format ">>>>>>9" 
+      149       field ttv_rec_antecip_pef_pend as recid format ">>>>>>9" 
+      150       field tta_cod_estab            as character format "x(3)" 
+      151                                      LABEL "Estabelecimento" column-label "Estab" 
+      152       field tta_cod_espec_docto      as character format "x(3)" 
+      153                                      label "Esp‚cie Documento" column-label "Esp‚cie" 
+      154       field tta_cod_ser_docto        as character format "x(3)" 
+      155                                      label "S‚rie Documento" column-label "S‚rie" 
+      156       field tta_cdn_fornecedor       as Integer format ">>>,>>>,>>9" initial 0 
+      157                                      label "Fornecedor" column-label "Fornecedor" 
+      158       field tta_cod_tit_ap           as character format "x(10)" 
+      159                                      label "T¡tulo" column-label "T¡tulo" 
+      160       field tta_cod_parcela          as character format "x(02)" 
+      161                                      label "Parcela" column-label "Parc" 
+      162       field tta_val_abat_tit_ap      as decimal format "->>>,>>>,>>9.99" decimals 2 
+      163                                      initial 0 label "Valor Abatimento" 
+      164                                      column-label "Vl Abatimento" 
+      165       index tt_integr_apb_abat_prev          is unique 
+      166             ttv_rec_antecip_pef_pend         ascending 
+      167             tta_cod_estab                    ascending 
+      168             tta_cod_espec_docto              ascending 
+      169             tta_cod_ser_docto                ascending 
+      170             tta_cdn_fornecedor               ascending 
+      171             tta_cod_tit_ap                   ascending 
+      172             tta_cod_parcela                  ascending 
+      173       index tt_integr_apb_abat_prev_provis   is primary unique 
+      174             ttv_rec_integr_apb_item_lote     ascending 
+      175             tta_cod_estab                    ascending 
+      176             tta_cod_espec_docto              ascending 
+      177             tta_cod_ser_docto                ascending 
+      178             tta_cdn_fornecedor               ascending 
+      179             tta_cod_tit_ap                   ascending 
+      180             tta_cod_parcela                  ascending. 
+      181   
+      182   /*** Apropriações dos títulos ***/
+      183   
+      184   def new shared temp-table tt_integr_apb_aprop_ctbl_pend no-undo 
+      185       field ttv_rec_integr_apb_item_lote  as recid format ">>>>>>9" 
+      186       field ttv_rec_antecip_pef_pend      as recid format ">>>>>>9" 
+      187       field ttv_rec_integr_apb_impto_pend as recid format ">>>>>>9" 
+      188       field tta_cod_plano_cta_ctbl        as character format "x(8)" 
+      189                label "Plano Contas" column-label "Plano Contas" 
+      190       field tta_cod_cta_ctbl              as character format "x(20)" 
+      191                label "Conta Cont bil" column-label "Conta Cont bil" 
+      192       field tta_cod_unid_negoc            as character format "x(3)" 
+      193                label "Unid Neg¢cio"  column-label "Un Neg" 
+      194       field tta_cod_plano_ccusto          as character format "x(8)" 
+      195                label "Plano Centros Custo" column-label "Plano Centros Custo" 
+      196       field tta_cod_ccusto                as Character format "x(11)" 
+      197                label "Centro Custo" column-label "Centro Custo" 
+      198       field tta_cod_tip_fluxo_financ      as character format "x(12)" 
+      199                label "Tipo Fluxo Financ" column-label "Tipo Fluxo Financ" 
+      200       field tta_val_aprop_ctbl            as decimal format "->>>,>>>,>>9.99" decimals 2 
+      201                initial 0 label "Valor Aprop Ctbl" column-label "Vl Aprop Ctbl" 
+      202       field tta_cod_pais                  as character format "x(3)" 
+      203                label "Pa¡s" column-label "Pa¡s" 
+      204       field tta_cod_unid_federac          as character format "x(3)" 
+      205                label "Unidade Federa‡Æo" column-label "UF" 
+      206       field tta_cod_imposto               as character format "x(5)"
+      207                label "Imposto" column-label "Imposto" 
+      208       field tta_cod_classif_impto         as character format "x(05)" 
+      209                initial "00000" label "Class Imposto" column-label "Class Imposto" 
+      210       field ttv_cod_tip_fluxo_financ_ext  as character format "x(12)"
+      211                label "Tipo Fluxo Financ" column-label "Tipo Fluxo Financ" 
+      212       field tta_cod_cta_ctbl_ext          as character format "x(20)"
+      213                label "Conta Contab Extern" column-label "Conta Contab Extern" 
+      214       field tta_cod_sub_cta_ctbl_ext      as character format "x(15)" 
+      215                label "Sub Conta Externa" column-label "Sub Conta Externa" 
+      216       field tta_cod_ccusto_ext            as character format "x(8)"
+      217                label "Centro Custo Externo" column-label "CCusto Externo" 
+      218       field tta_cod_unid_negoc_ext        as character format "x(8)" 
+      219                label "Unid Neg¢cio Externa" column-label "Unid Neg¢cio Externa" 
+      220       index tt_aprop_ctbl_pend_ap_integr_ant 
+      221             ttv_rec_antecip_pef_pend         ascending 
+      222             ttv_rec_integr_apb_impto_pend    ascending 
+      223             tta_cod_plano_cta_ctbl           ascending 
+      224             tta_cod_cta_ctbl                 ascending 
+      225             tta_cod_unid_negoc               ascending 
+      226             tta_cod_plano_ccusto             ascending 
+      227             tta_cod_ccusto                   ascending 
+      228             tta_cod_tip_fluxo_financ         ascending 
+      229       index tt_aprop_ctbl_pend_ap_integr_id  
+      230             ttv_rec_integr_apb_item_lote     ascending 
+      231             ttv_rec_integr_apb_impto_pend    ascending 
+      232             tta_cod_plano_cta_ctbl           ascending 
+      233             tta_cod_cta_ctbl                 ascending 
+      234             tta_cod_unid_negoc               ascending 
+      235             tta_cod_plano_ccusto             ascending 
+      236             tta_cod_ccusto                   ascending 
+      237             tta_cod_tip_fluxo_financ         ascending.
+      238   
+      239   /*** Apropriações referentes a notas de crédito e notas de débito ***/
+      240   
+      241   def new shared temp-table tt_integr_apb_aprop_relacto no-undo 
+      242       field ttv_rec_integr_apb_relacto_pend  as recid format ">>>>>>9" 
+      243       field tta_cod_plano_cta_ctbl as character format "x(8)" 
+      244                       LABEL "Plano Contas" column-label "Plano Contas" 
+      245       field tta_cod_cta_ctbl       as character format "x(20)" 
+      246                       label "Conta Cont bil" column-label "Conta Cont bil" 
+      247       field tta_val_aprop_ctbl     as decimal format "->>>,>>>,>>9.99" decimals 2 
+      248                       initial 0 label "Valor Aprop Ctbl" column-label "Vl Aprop Ctbl" 
+      249       field tta_ind_tip_aprop_ctbl as character format "x(19)" initial "Saldo" 
+      250                       label "Tipo Aprop Ctbl" column-label "Tipo Aprop Ctbl" 
+      251       index tt_integr_apb_aprop_relacto      is primary unique 
+      252             ttv_rec_integr_apb_relacto_pend  ascending 
+      253             tta_cod_plano_cta_ctbl           ascending 
+      254             tta_cod_cta_ctbl                 ascending.
+      255   
+      256   /*** Impostos vinculados aos títulos importados ***/
+      257   
+      258   def new shared temp-table tt_integr_apb_impto_impl_pend no-undo 
+      259       field ttv_rec_integr_apb_item_lote as recid format ">>>>>>9" 
+      260       field ttv_rec_antecip_pef_pend     as recid format ">>>>>>9" 
+      261       field tta_cod_pais                 as character format "x(3)"
+      262                               label "Pa¡s" column-label "Pa¡s" 
+      263       field tta_cod_unid_federac         as character format "x(3)" 
+      264                               label "Unidade Federa‡Æo" column-label "UF" 
+      265       field tta_cod_imposto              as character format "x(5)"
+      266                               label "Imposto" column-label "Imposto" 
+      267       field tta_cod_classif_impto        as character format "x(05)" initial "00000" 
+      268                               label "Class Imposto" column-label "Class Imposto" 
+      269       field tta_ind_clas_impto           as character format "X(14)" initial "Retido"
+      270                               label "Classe Imposto" column-label "Classe Imposto" 
+      271       field tta_cod_plano_cta_ctbl       as character format "x(8)"
+      272                               label "Plano Contas" column-label "Plano Contas" 
+      273       field tta_cod_cta_ctbl             as character format "x(20)"
+      274                               label "Conta Cont bil" column-label "Conta Cont bil" 
+      275       field tta_cod_espec_docto          as character format "x(3)" 
+      276                               label "Esp‚cie Documento" column-label "Esp‚cie" 
+      277       field tta_cod_ser_docto            as character format "x(3)" 
+      278                               label "S‚rie Documento" column-label "S‚rie" 
+      279       field tta_cod_tit_ap               as character format "x(10)"
+      280                               label "T¡tulo" column-label "T¡tulo" 
+      281       field tta_cod_parcela              as character format "x(02)" 
+      282                               label "Parcela" column-label "Parc" 
+      283       field tta_val_rendto_tribut        as decimal format ">,>>>,>>>,>>9.99" decimals 2 
+      284                initial 0 label "Rendto Tribut vel" column-label "Vl Rendto Tribut" 
+      285       field tta_val_deduc_inss           as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      286                initial 0 label "Dedu‡Æo Inss" column-label "Dedu‡Æo Inss" 
+      287       field tta_val_deduc_depend         as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      288                initial 0 label "Dedu‡Æo Dependentes" column-label "Dedu‡Æo Dependentes" 
+      289       field tta_val_deduc_pensao         as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      290                initial 0 label "Deducao PensÆo" column-label "Deducao PensÆo" 
+      291       field tta_val_outras_deduc_impto   as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      292                initial 0 label "Outras Dedu‡äes" column-label "Outras Dedu‡äes" 
+      293       field tta_val_base_liq_impto       as decimal format ">,>>>,>>>,>>9.99" decimals 2 
+      294                initial 0 label "Base L¡quida Imposto" column-label "Base L¡quida Imposto" 
+      295       field tta_val_aliq_impto           as decimal format ">9.99" decimals 2 
+      296                initial 0.00 label "Al¡quota" column-label "Aliq" 
+      297       field tta_val_impto_ja_recolhid    as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      298                initial 0 label "Imposto J  Recolhido" column-label "Imposto J  Recolhido" 
+      299       field tta_val_imposto              as decimal format ">,>>>,>>>,>>9.99" decimals 2
+      300                initial 0 label "Valor Imposto" column-label "Vl Imposto" 
+      301       field tta_dat_vencto_tit_ap        as date format "99/99/9999" initial today 
+      302                label "Data Vencimento" column-label "Dt Vencto" 
+      303       field tta_cod_indic_econ           as character format "x(8)" 
+      304                label "Moeda" column-label "Moeda" 
+      305       field tta_val_impto_indic_econ_impto as decimal format "->>>,>>>,>>9.99" decimals 2
+      306                initial 0 label "Val Finalid Impto" column-label "Val Finalid Impto" 
+      307       field tta_des_text_histor          as character format "x(2000)" 
+      308                label "Hist¢rico" column-label "Hist¢rico" 
+      309       field tta_cdn_fornec_favorec       as Integer format ">>>,>>>,>>9" initial 0 
+      310                label "Fornec Favorecido" column-label "Fornec Favorecido" 
+      311       field tta_val_deduc_faixa_impto    as decimal format ">,>>>,>>>,>>9.99" decimals 2 
+      312                initial 0 label "Valor Deducao" column-label "Valor Dedu‡Æo" 
+      313       field tta_num_id_tit_ap            as integer format "9999999999" initial 0 
+      314                label "Token Tit AP" column-label "Token Tit AP" 
+      315       field tta_num_id_movto_tit_ap      as integer format "9999999999" initial 0
+      316                label "Token Movto Tit AP" column-label "Id Tit AP" 
+      317       field tta_num_id_movto_cta_corren  as integer format "9999999999" initial 0
+      318                label "ID Movto Conta" column-label "ID Movto Conta" 
+      319       field tta_cod_pais_ext             as character format "x(20)"
+      320                label "Pa¡s Externo" column-label "Pa¡s Externo" 
+      321       field tta_cod_cta_ctbl_ext         as character format "x(20)" 
+      322                label "Conta Contab Extern" column-label "Conta Contab Extern" 
+      323       field tta_cod_sub_cta_ctbl_ext     as character format "x(15)"
+      324                label "Sub Conta Externa" column-label "Sub Conta Externa" 
+      325       field ttv_cod_tip_fluxo_financ_ext as character format "x(12)" 
+      326                label "Tipo Fluxo Financ" column-label "Tipo Fluxo Financ" 
+      327       index tt_impto_impl_pend_ap_integr     is primary unique 
+      328             ttv_rec_integr_apb_item_lote     ascending 
+      329             tta_cod_pais                     ascending 
+      330             tta_cod_unid_federac             ascending 
+      331             tta_cod_imposto                  ascending 
+      332             tta_cod_classif_impto            ascending 
+      333       index tt_impto_impl_pend_ap_integr_ant is unique 
+      334             ttv_rec_antecip_pef_pend         ascending 
+      335             tta_cod_pais                     ascending 
+      336             tta_cod_unid_federac             ascending 
+      337             tta_cod_imposto                  ascending 
+      338             tta_cod_classif_impto            ascending.
+      339   
+      340   
+      341   /*** Itens dos lote de implantação a serem criados no Datasul-EMS5 ***/
+      342   
+      343   def new shared temp-table tt_integr_apb_item_lote_impl no-undo 
+      344       field ttv_rec_integr_apb_lote_impl as recid format ">>>>>>9" 
+      345       field tta_num_seq_refer        as integer format ">>>9" initial 0 
+      346                     label "Sequˆncia" column-label "Seq" 
+      347       field tta_cdn_fornecedor       as Integer format ">>>,>>>,>>9" initial 0 
+      348                     label "Fornecedor" column-label "Fornecedor" 
+      349       field tta_cod_espec_docto      as character format "x(3)" 
+      350                     label "Esp‚cie Documento" column-label "Esp‚cie" 
+      351       field tta_cod_ser_docto        as character format "x(3)" 
+      352                     label "S‚rie Documento" column-label "S‚rie" 
+      353       field tta_cod_tit_ap           as character format "x(10)"
+      354                     label "T¡tulo" column-label "T¡tulo" 
+      355       field tta_cod_parcela          as character format "x(02)" 
+      356                     label "Parcela" column-label "Parc" 
+      357       field tta_dat_emis_docto       as date format "99/99/9999" initial today 
+      358                     label "Data  EmissÆo" column-label "Dt EmissÆo" 
+      359       field tta_dat_vencto_tit_ap    as date format "99/99/9999" initial today 
+      360                     label "Data Vencimento" column-label "Dt Vencto" 
+      361       field tta_dat_prev_pagto       AS date format "99/99/9999" initial today 
+      362                     label "Data Prevista Pgto" column-label "Dt Prev Pagto" 
+      363       field tta_dat_desconto         as date format "99/99/9999" initial ? 
+      364                     label "Data Desconto" column-label "Dt Descto" 
+      365       field tta_cod_indic_econ       as character format "x(8)" 
+      366                     label "Moeda" column-label "Moeda" 
+      367       field tta_val_tit_ap           as decimal format "->>>,>>>,>>9.99" decimals 2 
+      368                     initial 0 label "Valor T¡tulo" column-label "Valor T¡tulo" 
+      369       field tta_val_desconto         as decimal format "->>>,>>>,>>9.99" decimals 2
+      370                     initial 0 label "Valor Desconto" column-label "Valor Desconto" 
+      371       field tta_val_perc_desc        as decimal format ">9.9999" decimals 4 
+      372                     initial 0 label "Percentual Desconto" column-label "Perc Descto" 
+      373       field tta_num_dias_atraso      AS integer format ">9" initial 0 
+      374                     label "Dias Atraso" column-label "Dias Atr" 
+      375       field tta_val_juros_dia_atraso as decimal format "->>>,>>>,>>9.99" decimals 2 
+      376                     initial 0 label "Valor Juro" column-label "Vl Juro" 
+      377       field tta_val_perc_juros_dia_atraso as decimal format ">9.999999" decimals 6
+      378                     initial 00.00 label "Perc Jur Dia Atraso" column-label "Perc Dia" 
+      379       field tta_val_perc_multa_atraso as decimal format ">9.99" decimals 2
+      380                     initial 00.00 label "Perc Multa Atraso" column-label "Multa Atr" 
+      381       field tta_cod_portador         AS character format "x(5)"
+      382                     label "Portador" column-label "Portador" 
+      383       field tta_cod_apol_seguro      as character format "x(12)" 
+      384                     label "Ap¢lice Seguro" column-label "Apolice Seguro" 
+      385       field tta_cod_seguradora       as character format "x(8)" 
+      386                     label "Seguradora" column-label "Seguradora" 
+      387       field tta_cod_arrendador       as character format "x(6)" 
+      388                     label "Arrendador" column-label "Arrendador" 
+      389       field tta_cod_contrat_leas     as character format "x(12)"
+      390                     label "Contrato Leasing" column-label "Contr Leas" 
+      391       field tta_des_text_histor      as character format "x(2000)"
+      392                     label "Hist¢rico" column-label "Hist¢rico" 
+      393       field tta_num_id_tit_ap        as integer format "9999999999" initial 0
+      394                     label "Token Tit AP" column-label "Token Tit AP" 
+      395       field tta_num_id_movto_tit_ap  as integer format "9999999999" initial 0
+      396                     label "Token Movto Tit AP" column-label "Id Tit AP" 
+      397       field tta_num_id_movto_cta_corren as integer format "9999999999" initial 0 
+      398                     label "ID Movto Conta" column-label "ID Movto Conta" 
+      399       field ttv_qtd_parc_tit_ap      as decimal format ">>9" initial 1
+      400                     label "Quantidade Parcelas" column-label "Quantidade Parcelas" 
+      401       field ttv_num_dias             as integer format ">>>>,>>9"
+      402                     label "N£mero de Dias" column-label "N£mero de Dias" 
+      403       field ttv_ind_vencto_previs    as character format "X(4)" initial "Mˆs" 
+      404                     label "C lculo Vencimento" column-label "C lculo Vencimento" 
+      405       field ttv_log_gerad            as logical format "Sim/NÆo" initial no 
+      406       field tta_cod_finalid_econ_ext as character format "x(8)" 
+      407                     label "Finalid Econ Externa" column-label "Finalidade Externa" 
+      408       field tta_cod_portad_ext       as character format "x(8)" 
+      409                     label "Portador Externo" column-label "Portador Externo" 
+      410       field tta_cod_modalid_ext      as character format "x(8)" 
+      411                     label "Modalidade Externa" column-label "Modalidade Externa" 
+      412       field tta_cod_cart_bcia        as character format "x(3)" 
+      413                     label "Carteira" column-label "Carteira" 
+      414       field tta_cod_forma_pagto      as character format "x(3)"
+      415                     label "Forma Pagamento" column-label "F Pagto" 
+      416       index tt_item_lote_impl_ap_integr_id   is primary unique 
+      417             ttv_rec_integr_apb_lote_impl     ascending 
+      418             tta_num_seq_refer                ascending.
+      419   
+      420   /*** Lotes de implantação, necessários para a vinculação dos itens ***/
+      421   
+      422   def new shared temp-table tt_integr_apb_lote_impl no-undo 
+      423       field tta_cod_estab                 AS character format "x(3)" 
+      424                label "Estabelecimento" column-label "Estab" 
+      425       field tta_cod_refer                 as character format "x(10)" 
+      426                label "Referˆncia" column-label "Referˆncia" 
+      427       field tta_cod_espec_docto           as character format "x(3)" 
+      428                label "Esp‚cie Documento" column-label "Esp‚cie" 
+      429       field tta_dat_transacao             as date format "99/99/9999"
+      430                initial today label "Data Transa‡Æo" column-label "Dat Transac" 
+      431       field tta_ind_origin_tit_ap         as character format "X(03)" initial "APB"
+      432                label "Origem" column-label "Origem" 
+      433       field tta_cod_estab_ext             as character format "x(8)" 
+      434                label "Estabelecimento Exte" column-label "Estabelecimento Ext" 
+      435       field tta_val_tot_lote_impl_tit_ap  as decimal format ">>,>>>,>>>,>>9.99" 
+      436                decimals 2 initial 0 label "Total  Movimento" column-label "Total Movto" 
+      437       field tta_cod_empresa               as character format "x(3)" 
+      438                label "Empresa" column-label "Empresa" 
+      439       field ttv_cod_empresa_ext           as character format "x(3)" 
+      440                label "C¢digo Empresa Ext" column-label "C¢d Emp Ext" 
+      441       field tta_cod_finalid_econ_ext      as character format "x(8)"
+      442                label "Finalid Econ Externa" column-label "Finalidade Externa" 
+      443       field tta_cod_indic_econ            as character format "x(8)" 
+      444                label "Moeda" column-label "Moeda" 
+      445       index tt_lote_impl_tit_ap_integr_id is primary unique 
+      446             tta_cod_estab                 ascending 
+      447             tta_cod_refer                 ascending 
+      448             tta_cod_estab_ext             ascending.
+      449   
+      450   /**** Notas de Débito e Notas de Crédito ***/
+      451   
+      452   def new shared temp-table tt_integr_apb_relacto_pend no-undo 
+      453       field ttv_rec_integr_apb_item_lote     as recid format ">>>>>>9" 
+      454       field tta_cod_estab_tit_ap_pai         as character format "x(3)" 
+      455                      label "Estab Tit Pai" column-label "Estab Tit Pai" 
+      456       field tta_num_id_tit_ap_pai            as integer format "9999999999" 
+      457                      initial 0 label "Token" column-label "Token" 
+      458       field tta_val_relacto_tit_ap           as decimal format "->>>,>>>,>>9.99" 
+      459                      decimals 2 initial 0 label "Valor" column-label "Valor" 
+      460       field tta_ind_motiv_acerto_val         as character format "X(12)" 
+      461                      initial "Altera‡Æo" label "Motivo Acerto Valor" 
+      462                      column-label "Motivo Acerto Valor" 
+      463       index tt_integr_apb_relacto_pend       is primary unique 
+      464             ttv_rec_integr_apb_item_lote     ascending 
+      465             tta_cod_estab_tit_ap_pai         ascending 
+      466             tta_num_id_tit_ap_pai            ascending.
+      467   
+      468   /*** Erros encontrados durante as validações para a criação dos títulos ***/
+      469   
+      470   def new shared temp-table tt_log_erros_atualiz no-undo 
+      471       field tta_cod_estab       as character format "x(3)" 
+      472                          label "Estabelecimento" column-label "Estab" 
+      473       field tta_cod_refer       as character format "x(10)" 
+      474                          label "Referˆncia" column-label "Referˆncia" 
+      475       field tta_num_seq_refer   as integer format ">>>9" initial 0 
+      476                          label "Sequˆncia" column-label "Seq" 
+      477       field ttv_num_mensagem    as integer format ">>>>,>>9" 
+      478                          label "N£mero" column-label "N£mero Mensagem" 
+      479       field ttv_des_msg_erro    as character format "x(60)"
+      480                          label "Mensagem Erro" column-label "Inconsistˆncia" 
+      481       field ttv_des_msg_ajuda   as character format "x(40)" 
+      482                          label "Mensagem Ajuda" column-label "Mensagem Ajuda" 
+      483       field ttv_ind_tip_relacto AS character format "X(15)" 
+      484                          label "Tipo Relacionamento" column-label "Tipo Relac" 
+      485       field ttv_num_relacto     as integer format ">>>>,>>9" 
+      486                          label "Relacionamento" column-label "Relacionamento". 
+      487   
+      488   /*** Itens dos lote de implantação a serem criados no Datasul-EMS5 ***/
+      489   
+      490   def temp-table tt_integr_apb_item_lote_impl_1 no-undo
+      491       field ttv_rec_integr_apb_lote_impl     as recid format ">>>>>>9"
+      492       field tta_num_seq_refer                as integer format ">>>9" initial 0 
+      493                   label "Sequência" column-label "Seq"
+      494       field tta_cdn_fornecedor               as Integer format ">>>,>>>,>>9" 
+      495                   initial 0 label "Fornecedor" column-label "Fornecedor"
+      496       field tta_cod_espec_docto              as character format "x(3)" 
+      497                   label "Espécie Documento" column-label "Espécie"
+      498       field tta_cod_ser_docto                as character format "x(3)" 
+      499                   label "Série Documento" column-label "Série"
+      500       field tta_cod_tit_ap                   as character format "x(10)"
+      501                   label "Título" column-label "Título"
+      502       field tta_cod_parcela                  as character format "x(02)" 
+      503                   label "Parcela" column-label "Parc"
+      504       field tta_dat_emis_docto               as date format "99/99/9999" 
+      505                   initial today label "Data  Emissão" column-label "Dt Emissão"
+      506       field tta_dat_vencto_tit_ap            as date format "99/99/9999"
+      507                   initial today label "Data Vencimento" column-label "Dt Vencto"
+      508       field tta_dat_prev_pagto               as date format "99/99/9999"
+      509                   initial today label "Data Prevista Pgto" 
+      510                   column-label "Dt Prev Pagto"
+      511       field tta_dat_desconto                 as date format "99/99/9999"
+      512                   initial ? label "Data Desconto" column-label "Dt Descto"
+      513       field tta_cod_indic_econ               as character format "x(8)" 
+      514                   label "Moeda" column-label "Moeda"
+      515       field tta_val_tit_ap                   as decimal format "->>>,>>>,>>9.99" 
+      516                   decimals 2 initial 0 label "Valor Título"
+      517                   column-label "Valor Título"
+      518       field tta_val_desconto                 as decimal format "->>>,>>>,>>9.99"
+      519                   decimals 2 initial 0 label "Valor Desconto" 
+      520                   column-label "Valor Desconto"
+      521       field tta_val_perc_desc                as decimal format ">9.9999" 
+      522                   decimals 4 initial 0 label "Percentual Desconto"
+      523                   column-label "Perc Descto"
+      524       field tta_num_dias_atraso              as integer format ">9" initial 0
+      525                   label "Dias Atraso" column-label "Dias Atr"
+      526       field tta_val_juros_dia_atraso         as decimal format "->>>,>>>,>>9.99" 
+      527                   decimals 2 initial 0 label "Valor Juro" column-label "Vl Juro"
+      528       field tta_val_perc_juros_dia_atraso    as decimal format ">9.999999" 
+      529                   decimals 6 initial 00.00 label "Perc Jur Dia Atraso" 
+      530                   column-label "Perc Dia"
+      531       field tta_val_perc_multa_atraso        as decimal format ">9.99" 
+      532                   decimals 2 initial 00.00 label "Perc Multa Atraso"
+      533                   column-label "Multa Atr"
+      534       field tta_cod_portador                 as character format "x(5)"
+      535                   label "Portador" column-label "Portador"
+      536       field tta_cod_apol_seguro              as character format "x(12)" 
+      537                   label "Apólice Seguro" column-label "Apolice Seguro"
+      538       field tta_cod_seguradora               as character format "x(8)" 
+      539                   label "Seguradora" column-label "Seguradora"
+      540       field tta_cod_arrendador               as character format "x(6)" 
+      541                   label "Arrendador" column-label "Arrendador"
+      542       field tta_cod_contrat_leas             as character format "x(12)"
+      543                   label "Contrato Leasing" column-label "Contr Leas"
+      544       field tta_des_text_histor              as character format "x(2000)"
+      545                   label "Histórico" column-label "Histórico"
+      546       field tta_num_id_tit_ap                as integer format "9999999999"
+      547                   initial 0 label "Token Tit AP" column-label "Token Tit AP"
+      548       field tta_num_id_movto_tit_ap          as integer format "9999999999" 
+      549                   initial 0 label "Token Movto Tit AP" column-label "Id Tit AP"
+      550       field tta_num_id_movto_cta_corren      as integer format "9999999999" 
+      551                   initial 0 label "ID Movto Conta" column-label "ID Movto Conta"
+      552       field ttv_qtd_parc_tit_ap              as decimal format ">>9" initial 1 
+      553                   label "Quantidade Parcelas" column-label "Quantidade Parcelas"
+      554       field ttv_num_dias                     as integer format ">>>>,>>9"
+      555                   label "Número de Dias" column-label "Número de Dias"
+      556       field ttv_ind_vencto_previs            as character format "X(4)" 
+      557                   initial "Mês" label "Cálculo Vencimento" 
+      558                   column-label "Cálculo Vencimento"
+      559       field ttv_log_gerad                 as logical format "Sim/Não" initial no
+      560       field tta_cod_finalid_econ_ext         as character format "x(8)"   
+      561                   label "Finalid Econ Externa" column-label "Finalidade Externa"
+      562       field tta_cod_portad_ext               as character format "x(8)" 
+      563                   label "Portador Externo" column-label "Portador Externo"
+      564       field tta_cod_modalid_ext              as character format "x(8)" 
+      565                   label "Modalidade Externa" column-label "Modalidade Externa"
+      566       field tta_cod_cart_bcia                as character format "x(3)"
+      567                   label "Carteira" column-label "Carteira"
+      568       field tta_cod_forma_pagto              as character format "x(3)" 
+      569                   label "Forma Pagamento" column-label "F Pagto"
+      570       field tta_val_cotac_indic_econ         as decimal 
+      571                   format ">>>>,>>9.9999999999" decimals 10 initial 0
+      572                   label "Cotação" column-label "Cotação"
+      573       field ttv_rec_integr_apb_item_lote     as recid format ">>>>>>9"
+      574       index tt_item_lote_impl_ap_integr_id   is primary unique
+      575             ttv_rec_integr_apb_lote_impl     ascending
+      576             tta_num_seq_refer                ascending.
+      577   
+      578   def temp-table tt_integr_apb_item_lote_impl_3 no-undo
+      579       field ttv_rec_integr_apb_lote_impl     as recid format ">>>>>>9"
+      580       field tta_num_seq_refer                as integer format ">>>9" initial 0 label "Sequência" column-label "Seq"
+      581       field tta_cdn_fornecedor               as Integer format ">>>,>>>,>>9" initial 0 label "Fornecedor" column-label "Fornecedor"
+      582       field tta_cod_espec_docto              as character format "x(3)" label "Espécie Documento" column-label "Espécie"
+      583       field tta_cod_ser_docto                as character format "x(3)" label "Série Documento" column-label "Série"
+      584       field tta_cod_tit_ap                   as character format "x(10)" label "Título" column-label "Título"
+      585       field tta_cod_parcela                  as character format "x(02)" label "Parcela" column-label "Parc"
+      586       field tta_dat_emis_docto               as date format "99/99/9999" initial today label "Data  Emissão" column-label "Dt Emissão"
+      587       field tta_dat_vencto_tit_ap            as date format "99/99/9999" initial today label "Data Vencimento" column-label "Dt Vencto"
+      588       field tta_dat_prev_pagto               as date format "99/99/9999" initial today label "Data Prevista Pgto" column-label "Dt Prev Pagto"
+      589       field tta_dat_desconto                 as date format "99/99/9999" initial ? label "Data Desconto" column-label "Dt Descto"
+      590       field tta_cod_indic_econ               as character format "x(8)" label "Moeda" column-label "Moeda"
+      591       field tta_val_tit_ap                   as decimal format "->>>,>>>,>>9.99" decimals 2 initial 0 label "Valor Título" column-label "Valor Título"
+      592       field tta_val_desconto                 as decimal format "->>>,>>>,>>9.99" decimals 2 initial 0 label "Valor Desconto" column-label "Valor Desconto"
+      593       field tta_val_perc_desc                as decimal format ">9.9999" decimals 4 initial 0 label "Percentual Desconto" column-label "Perc Descto"
+      594       field tta_num_dias_atraso              as integer format ">9" initial 0 label "Dias Atraso" column-label "Dias Atr"
+      595       field tta_val_juros_dia_atraso         as decimal format "->>>,>>>,>>9.99" decimals 2 initial 0 label "Valor Juro" column-label "Vl Juro"
+      596       field tta_val_perc_juros_dia_atraso    as decimal format ">9.999999" decimals 6 initial 00.00 label "Perc Jur Dia Atraso" column-label "Perc Dia"
+      597       field tta_val_perc_multa_atraso        as decimal format ">9.99" decimals 2 initial 00.00 label "Perc Multa Atraso" column-label "Multa Atr"
+      598       field tta_cod_portador                 as character format "x(5)" label "Portador" column-label "Portador"
+      599       field tta_cod_apol_seguro              as character format "x(12)" label "Apólice Seguro" column-label "Apolice Seguro"
+      600       field tta_cod_seguradora               as character format "x(8)" label "Seguradora" column-label "Seguradora"
+      601       field tta_cod_arrendador               as character format "x(6)" label "Arrendador" column-label "Arrendador"
+      602       field tta_cod_contrat_leas             as character format "x(12)" label "Contrato Leasing" column-label "Contr Leas"
+      603       field tta_des_text_histor              as character format "x(2000)" label "Histórico" column-label "Histórico"
+      604       field tta_num_id_tit_ap                as integer format "9999999999" initial 0 label "Token Tit AP" column-label "Token Tit AP"
+      605       field tta_num_id_movto_tit_ap          as integer format "9999999999" initial 0 label "Token Movto Tit AP" column-label "Id Tit AP"
+      606       field tta_num_id_movto_cta_corren      as integer format "9999999999" initial 0 label "ID Movto Conta" column-label "ID Movto Conta"
+      607       field ttv_qtd_parc_tit_ap              as decimal format ">>9" initial 1 label "Quantidade Parcelas" column-label "Quantidade Parcelas"
+      608       field ttv_num_dias                     as integer format ">>>>,>>9" label "Número de Dias" column-label "Número de Dias"
+      609       field ttv_ind_vencto_previs            as character format "X(4)" initial "Mês" label "Cálculo Vencimento" column-label "Cálculo Vencimento"
+      610       field ttv_log_gerad                    as logical format "Sim/Não" initial no
+      611       field tta_cod_finalid_econ_ext         as character format "x(8)" label "Finalid Econ Externa" column-label "Finalidade Externa"
+      612       field tta_cod_portad_ext               as character format "x(8)" label "Portador Externo" column-label "Portador Externo"
+      613       field tta_cod_modalid_ext              as character format "x(8)" label "Modalidade Externa" column-label "Modalidade Externa"
+      614       field tta_cod_cart_bcia                as character format "x(3)" label "Carteira" column-label "Carteira"
+      615       field tta_cod_forma_pagto              as character format "x(3)" label "Forma Pagamento" column-label "F Pagto"
+      616       field tta_val_cotac_indic_econ         as decimal format ">>>>,>>9.9999999999" decimals 10 initial 0 label "Cotação" column-label "Cotação"
+      617       field ttv_num_ord_invest               as integer format ">>>>>,>>9" initial 0 label "Ordem Investimento" column-label "Ordem Invest"
+      618       field tta_cod_livre_1                  as character format "x(100)" label "Livre 1" column-label "Livre 1"
+      619       field tta_cod_livre_2                  as character format "x(100)" label "Livre 2" column-label "Livre 2"
+      620       field tta_dat_livre_1                  as date format "99/99/9999" initial ? label "Livre 1" column-label "Livre 1"
+      621       field tta_dat_livre_2                  as date format "99/99/9999" initial ? label "Livre 2" column-label "Livre 2"
+      622       field tta_log_livre_1                  as logical format "Sim/Não" initial no label "Livre 1" column-label "Livre 1"
+      623       field tta_log_livre_2                  as logical format "Sim/Não" initial no label "Livre 2" column-label "Livre 2"
+      624       field tta_num_livre_1                  as integer format ">>>>>9" initial 0 label "Livre 1" column-label "Livre 1"
+      625       field tta_num_livre_2                  as integer format ">>>>>9" initial 0 label "Livre 2" column-label "Livre 2"
+      626       field tta_val_livre_1                  as decimal format ">>>,>>>,>>9.9999" decimals 4 initial 0 label "Livre 1" column-label "Livre 1"
+      627       field tta_val_livre_2                  as decimal format ">>>,>>>,>>9.9999" decimals 4 initial 0 label "Livre 2" column-label "Livre 2"
+      628       field ttv_rec_integr_apb_item_lote     as recid format ">>>>>>9"
+      629       field ttv_val_1099                     as decimal format "->>,>>>,>>>,>>9.99" decimals 2
+      630       field tta_cod_tax_ident_number         as character format "x(15)" label "Tax Id Number" column-label "Tax Id Number"
+      631       field tta_ind_tip_trans_1099           as character format "X(50)" initial "Rents" label "Tipo Transacao 1099" column-label "Tipo Transacao 1099"
+      632       index tt_item_lote_impl_ap_integr_id   is primary unique
+      633             ttv_rec_integr_apb_lote_impl     ascending
+      634             tta_num_seq_refer                ascending
+      635       .
+      636   /*** Final do include ***/
+      637   
+      638    
+      639   def temp-table tp_erros no-undo
+      640       field ds_mensagem as char format "x(132)"
+      641       field cd_erro     as int format 999999999999
+      642       field tp_erro     as char format "x(15)".
+      643   
+      644   def buffer b_TI_TIT_APB for TI_TIT_APB.
+      645   def buffer b2_TI_TIT_APB for TI_TIT_APB.
+      646   DEF BUFFER b_ti_controle_integracao FOR ti_controle_integracao.
+      647      
+      648   
+      649   /*--------------------- Procedure rtapi044 e variaveis ----------------------*/
+      650   
+      651   /*
+      652   {rtp/rtapi044.i} 
+      653   */
+      654   def var cd-referencia-aux    as char no-undo.
+      655   def var lg-ocorreu-erro-aux  as log                                no-undo.
+      656   def var cod_unid_negoc_aux like estab_unid_negoc.cod_unid_negoc no-undo.
+      657   def var cod_fornecedor_aux like emsuni.fornecedor.cdn_fornecedor no-undo.

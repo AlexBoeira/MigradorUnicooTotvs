@@ -1,0 +1,13 @@
+GRAU PARENT.;DESCRICAO;TIPO DEPENDENCIA;GERA PARTO COBERTO;NIVEL DEPENDENCIA;
+ 01;TITULAR             ;1 - Responsavel;NAO;0 - Nao Informado;
+ 02;CONJUGE             ;2 - Conjuge/Companheiro;NAO;0 - Nao Informado;
+ 03;COMPANHEIRO         ;2 - Conjuge/Companheiro;NAO;0 - Nao Informado;
+ 04;FILHOS (AS)         ;3 - Filhos;NAO;0 - Nao Informado;
+ 05;FILHOS (AS) UNIVERS ;3 - Filhos;NAO;0 - Nao Informado;
+ 06;FILHOS (AS) ADOTIVOS;4 - Filho Adotivo;NAO;0 - Nao Informado;
+ 07;PAIS                ;5 - Pai/mae;NAO;0 - Nao Informado;
+ 08;SOGRO (A)           ;6 - Outros;NAO;0 - Nao Informado;
+ 09;ENTEADO (A)         ;6 - Outros;NAO;0 - Nao Informado;
+ 10;IRMAOS (AS)         ;6 - Outros;NAO;0 - Nao Informado;
+ 11;PRIMOS (AS)         ;6 - Outros;NAO;0 - Nao Informado;
+ 99;AGREGADOS           ;6 - Outros;NAO;0 - Nao Informado;

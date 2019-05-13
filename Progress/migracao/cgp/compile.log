@@ -1,0 +1,523 @@
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\*.p
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\api\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\api\api-gera-termo-migracao.p
+Unknown database name emsfnd. (855)
+Unknown database name emsfnd. (855)
+Unknown or ambiguous table ped_exec. (545)
+** \\totvs-hml-prod\ERP\migracao\api\api-gera-termo-migracao.p Nao entendi a linha 14. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\api\api-insere-observacao-usu.p
+Unknown or ambiguous table usuario. (545)
+** \\totvs-hml-prod\ERP\migracao\api\api-insere-observacao-usu.p Nao entendi a linha 5. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\api\api-migra-particip-escalonada.p
+Unknown or ambiguous table moviproc. (725)
+** \\totvs-hml-prod\ERP\migracao\api\api-migra-particip-escalonada.p Nao entendi a linha 18. (196)
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\atp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\atp\at0210a.p
+Compiling \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 9. (193)
+** "hdp\hdvarregua.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 28. (193)
+** "hdp\hdregarquexe.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 29. (193)
+** "hdp\hdregarquexe.f" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 30. (193)
+** "hdp\hdvarrel.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 32. (193)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a1.p Nao entendi a linha 32. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\atp\at0210a2.p
+Compiling \\totvs-hml-prod\ERP\migracao\atp\at0210a3.p
+Unknown or ambiguous table import-guia. (725)
+** \\totvs-hml-prod\ERP\migracao\atp\at0210a3.p Nao entendi a linha 23. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\atp\at0210a_batch.p
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\bosau\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\bosau\bosaudemographic.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosaudemographic.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table paravpmc. (725)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosaudemographic.p Nao entendi a linha 60. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\bosau\bosauproposalcoverage_.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosauproposalcoverage_.p Nao entendi a linha 9. (193)
+** "bosau\bosauproposalcoverage.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosauproposalcoverage_.p Nao entendi a linha 32. (193)
+** "rtp\rtrowerror.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosauproposalcoverage_.p Nao entendi a linha 33. (193)
+TEMP TABLE tmpProposalCoverage nao pode ser encontrada. (5445)
+** \\totvs-hml-prod\ERP\migracao\bosau\bosauproposalcoverage_.p Nao entendi a linha 40. (196)
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\bosau\global\*.p
+11:38:59 Looking for \\totvs-hml-prod\ERP\migracao\cgp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\baka-proposta.p
+Unknown or ambiguous table car-ide. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\baka-proposta.p Nao entendi a linha 8. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 10. (193)
+** "trs\wrpreviesp.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 26. (193)
+** "trs\wrpreserv.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 27. (193)
+** "trs\wrcontrat.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 28. (193)
+** "trs\wrusuario.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 29. (193)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0110l_mig.p Nao entendi a linha 29. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 9. (193)
+** "rtp\rtendere.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 74. (193)
+** "hdp\hdsistem.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 79. (193)
+** "rtp\rtapi044.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 80. (193)
+** "cgp\cg0110l_mig.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 81. (193)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0111l_mig.p Nao entendi a linha 81. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 21. (193)
+** "trs\wrusuario.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 38. (193)
+** "trs\wrter-ade.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 39. (193)
+** "trs\wrpro-pla.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 40. (193)
+** "trs\wrpreserv.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 41. (193)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0210c1.p Nao entendi a linha 41. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310v.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310v1.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310v1.p Nao entendi a linha 762. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310v_batch.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310x.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310x1.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310x1.p Nao entendi a linha 810. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310x_batch.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310z.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 9. (193)
+** "hdp\hdvarregua.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 32. (193)
+** "hdp\hdregarquexe.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 33. (193)
+** "hdp\hdregarquexe.f" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 34. (193)
+** "hdp\hdvarrel.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 35. (193)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z1.p Nao entendi a linha 35. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310z2.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310z3.p
+Unknown or ambiguous table import-docto-revis-ctas. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0310z3.p Nao entendi a linha 23. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0310z_batch.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0311v.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311v.p Nao entendi a linha 144. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0311x.p
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311x.p Nao entendi a linha 167. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 10. (193)
+** "hdp\hdsistem.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 27. (193)
+** "srincl\srespecr.iv" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 29. (193)
+** "hdp\hdlog.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 33. (193)
+** "hdp\hdrunpersis.iv" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 36. (193)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0311z.p Nao entendi a linha 36. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p Nao entendi a linha 9. (193)
+** "hdp\hdvarregua.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p Nao entendi a linha 23. (193)
+** "hdp\hdregparexec.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p Nao entendi a linha 24. (193)
+** "hdp\hdregparexec.f" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p Nao entendi a linha 25. (193)
+Unknown or ambiguous table evenfatu. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cg0410f.p Nao entendi a linha 27. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\chama-baka-proposta.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\compila.p
+Compiling \\totvs-hml-prod\ERP\migracao\cgp\cria-sit-aprov-proposta.p
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\cgp\cria-sit-aprov-proposta.p Nao entendi a linha 3. (196)
+11:39:00 Looking for \\totvs-hml-prod\ERP\migracao\cgp\indices\*.p
+11:39:00 Looking for \\totvs-hml-prod\ERP\migracao\ems5\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama-baixa-titulos-acr.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama-integ-cliente.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama-integ-fornecedor.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama-integ-titulos-acr.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama-integ-titulos-apb.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama_distribui_titulos_ACR_fila_importacao.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\chama_distribui_titulos_APB_fila_importacao.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\CX_BX_ACR.p
+Unknown or ambiguous table ti_cx_bx_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\CX_BX_ACR.p Nao entendi a linha 383. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\CX_BX_ACR_TESTE.p
+Unknown or ambiguous table tit_acr. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\CX_BX_ACR_TESTE.p Nao entendi a linha 403. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\elim-tit_acr.p
+Unknown or ambiguous table tit_acr. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\elim-tit_acr.p Nao entendi a linha 70. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\exclui_tit_ap.p
+Unknown or ambiguous table movto_tit_ap. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\exclui_tit_ap.p Nao entendi a linha 122. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_cliente.p
+Unknown or ambiguous table pessoa_jurid. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_cliente.p Nao entendi a linha 604. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_cliente_bkp_utb765ze.p
+** "INTEGRACAO\deftemps.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_cliente_bkp_utb765ze.p Nao entendi a linha 6. (193)
+Unknown or ambiguous table pessoa_jurid. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_cliente_bkp_utb765ze.p Nao entendi a linha 12. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_distribui_titulos_ACR_fila_importacao.p
+Unknown or ambiguous table ti_tit_acr. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_distribui_titulos_ACR_fila_importacao.p Nao entendi a linha 23. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_distribui_titulos_APB_fila_importacao.p
+Unknown or ambiguous table ti_tit_apb. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_distribui_titulos_APB_fila_importacao.p Nao entendi a linha 23. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_fornecedor.p
+Unknown or ambiguous table ti_controle_integracao. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_fornecedor.p Nao entendi a linha 7. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_gera_codigos_cliente_fornecedor.p
+Unknown or ambiguous table ti_pessoa. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_gera_codigos_cliente_fornecedor.p Nao entendi a linha 13. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_tit_acr.p
+Unknown or ambiguous table ti_tit_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_tit_acr.p Nao entendi a linha 469. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\ti_tit_acr_sem_buffer.p
+Unknown or ambiguous table ti_tit_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\ti_tit_acr_sem_buffer.p Nao entendi a linha 469. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\TI_TIT_APB.p
+** "INTEGRACAO\deftemp-app.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\ems5\TI_TIT_APB.p Nao entendi a linha 6. (193)
+Unknown or ambiguous table TI_TIT_APB. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\TI_TIT_APB.p Nao entendi a linha 12. (196)
+11:39:00 Looking for \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\chama_ti_gera_codigos_cliente_fornecedor.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\CX_BX_ACR.p
+Unknown or ambiguous table ti_cx_bx_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\CX_BX_ACR.p Nao entendi a linha 380. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\CX_BX_APB.p
+Unknown or ambiguous table ti_cx_bx_apb. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\CX_BX_APB.p Nao entendi a linha 263. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\EMS506UNICOO-CTBL.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\EMS506UNICOO-CX.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\EMS506UNICOO.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\EMS506UNICOOII.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\EMS506UNICOOIII.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\estorn_tit_ap.p
+Unknown or ambiguous table movto_tit_ap. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\estorn_tit_ap.p Nao entendi a linha 122. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama-cx.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama-integracao-cx.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama-integracao.p
+** An open comment string (/*) was found, but no closing string. (134)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama-integracao.p Nao entendi a linha 8. (193)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-chama_ctbl.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int-config-gpsi.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\Integra_CMG.p
+Unknown or ambiguous table ti_movimento_cta_corrente. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\Integra_CMG.p Nao entendi a linha 89. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int_ti_cliente.p
+** "INTEGRACAO\deftemps.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int_ti_cliente.p Nao entendi a linha 4. (193)
+Unknown or ambiguous table TMP_TI_CLIENTE. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\int_ti_cliente.p Nao entendi a linha 5. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\TESTE1_CX_BX_APB.p
+Unknown or ambiguous table TIT_AP. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\TESTE1_CX_BX_APB.p Nao entendi a linha 293. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\TESTE_CX_BX_APB.p
+Unknown or ambiguous table TIT_AP. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\TESTE_CX_BX_APB.p Nao entendi a linha 293. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_chama_distribui_ti_cliente_fornecedor_fila_importacao(old).p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_contabilizacao.p
+** "INTEGRACAO\deftemp-ctb.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_contabilizacao.p Nao entendi a linha 95. (193)
+Unknown or ambiguous table ti_lote_ctbl. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_contabilizacao.p Nao entendi a linha 102. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_distribuir_ti_cliente_RC(teste.nao usar).p
+** Nenhum banco conectado. (543)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_distribuir_ti_cliente_RC(teste.nao usar).p Nao entendi a linha 5. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_distribui_ti_cliente_fornecedor_fila_importacao(old).p
+Unknown or ambiguous table ti_fornecedor. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_distribui_ti_cliente_fornecedor_fila_importacao(old).p Nao entendi a linha 43. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_fornecedorUni.p
+Unknown or ambiguous table pessoa_jurid. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_fornecedorUni.p Nao entendi a linha 609. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr-cx.p
+Unknown or ambiguous table ti_tit_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr-cx.p Nao entendi a linha 468. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr_estorno.p
+Unknown or ambiguous table ti_tit_acr_estorno. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr_estorno.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr_Impt.p
+Unknown or ambiguous table ti_tit_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\ti_tit_acr_Impt.p Nao entendi a linha 487. (196)
+11:39:01 Looking for \\totvs-hml-prod\ERP\migracao\ems5\temp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\temp\chama_ti_distribui_ti_titulos_fila_importacao.p
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\temp\ti_distribui_ti_titulos_fila_importacao.p
+Unknown or ambiguous table ti_tit_apb. (725)
+** \\totvs-hml-prod\ERP\migracao\ems5\temp\ti_distribui_ti_titulos_fila_importacao.p Nao entendi a linha 23. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\temp\ti_tit_acr.p
+Unknown or ambiguous table ti_tit_acr. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\temp\ti_tit_acr.p Nao entendi a linha 469. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\ems5\temp\TI_TIT_APB.p
+** "INTEGRACAO\deftemp-app.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\ems5\temp\TI_TIT_APB.p Nao entendi a linha 6. (193)
+Unknown or ambiguous table TI_TIT_APB. (545)
+** \\totvs-hml-prod\ERP\migracao\ems5\temp\TI_TIT_APB.p Nao entendi a linha 12. (196)
+11:39:01 Looking for \\totvs-hml-prod\ERP\migracao\lap\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\lap\lamc007a-simul.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007a-simul.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table usuario. (725)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007a-simul.p Nao entendi a linha 61. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\lap\lamc007b-simul.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007b-simul.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table usuario. (725)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007b-simul.p Nao entendi a linha 61. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\lap\lamc007c-simul.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007c-simul.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table usuario. (725)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007c-simul.p Nao entendi a linha 31. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\lap\lamc007d-simul.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007d-simul.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table usuario. (725)
+** \\totvs-hml-prod\ERP\migracao\lap\lamc007d-simul.p Nao entendi a linha 60. (196)
+11:39:01 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\cg0410f.p
+Unknown or ambiguous table evenfatu. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\cg0410f.p Nao entendi a linha 695. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD.p
+Unknown database name ems5. (855)
+Unknown or ambiguous table APROP_LANCTO_CTBL. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD.p Nao entendi a linha 1. (196)
+Unknown database name ems5hml. (855)
+Unknown database name ems5hml. (855)
+Unknown or ambiguous table APROP_LANCTO_CTBL. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD.p Nao entendi a linha 2. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD_GP.p
+Unknown database name ems5. (855)
+Unknown or ambiguous table ABRAPLAN. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD_GP.p Nao entendi a linha 1. (196)
+Unknown database name cdgrhml. (855)
+Unknown database name cdgrhml. (855)
+Unknown or ambiguous table ABRAPLAN. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\script_carrega_parametros_HML_no_HMLPROD_GP.p Nao entendi a linha 2. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 9. (193)
+** "hdp\hdvarregua.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 21. (193)
+** "hdp\hdregexecpar.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 22. (193)
+** "hdp\hdregexecpar.f" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 23. (193)
+** "hdp\hdvarrel.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 24. (193)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\spcarganovaescalonada.p Nao entendi a linha 24. (193)
+11:39:01 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\AJUSTE-FINO-UEVENTUAL.p
+** "rtp\rtrowerror.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\AJUSTE-FINO-UEVENTUAL.p Nao entendi a linha 7. (193)
+** "hdp\hdrunpersis.iv" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\AJUSTE-FINO-UEVENTUAL.p Nao entendi a linha 8. (193)
+** "hdp\hdrunpersis.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\AJUSTE-FINO-UEVENTUAL.p Nao entendi a linha 11. (193)
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\AJUSTE-FINO-UEVENTUAL.p Nao entendi a linha 18. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\baca-cria-modulo.p
+Unknown or ambiguous table import-propost. (545)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\baca-cria-modulo.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\baka-completo-simul.p
+Unknown or ambiguous table mensiste. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\baka-completo-simul.p Nao entendi a linha 238. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\dts12alias-editorfaoro.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\dts12alias-prod.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\editor_homologacao.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\executa-benef.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\executa-proposta.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\executa-termo.p
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\executa-termo.p Nao entendi a linha 68. (196)
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\executa-termo.p Nao entendi a linha 70. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-gera-carteira.p
+Unknown database name emsfnd. (855)
+Unknown database name emsfnd. (855)
+Unknown or ambiguous table ped_exec. (545)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-gera-carteira.p Nao entendi a linha 18. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-gera-termo-migracao.p
+Unknown database name emsfnd. (855)
+Unknown database name emsfnd. (855)
+Unknown or ambiguous table ped_exec. (545)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-gera-termo-migracao.p Nao entendi a linha 18. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-mens-pre-pagamento.p
+Unknown or ambiguous table mensiste. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\api-mens-pre-pagamento.p Nao entendi a linha 444. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\atp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\atp\at0210a.p
+Unknown or ambiguous table modalid. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\atp\at0210a.p Nao entendi a linha 707. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310vR1.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310vR1.p Nao entendi a linha 732. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310x.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310x.p Nao entendi a linha 749. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310z.p
+Unknown or ambiguous table docrecon. (545)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0310z.p Nao entendi a linha 749. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311v.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311v.p Nao entendi a linha 143. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311x.p
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311x.p Nao entendi a linha 163. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311z.p
+Unknown or ambiguous table import-docto-revis-ctas. (545)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0311z.p Nao entendi a linha 217. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0410f.p
+Unknown or ambiguous table evenfatu. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\cg0410f.p Nao entendi a linha 635. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310v.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310v.p Nao entendi a linha 727. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310vR0.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310vR0.p Nao entendi a linha 727. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310x1.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\cg0310x1.p Nao entendi a linha 745. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\__executa.p
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\__executa.p Nao entendi a linha 15. (196)
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\__executa.p Nao entendi a linha 17. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0310v.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0310v.p Nao entendi a linha 727. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0310x.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0310x.p Nao entendi a linha 745. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0311v.p
+Unknown or ambiguous table parammo. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0311v.p Nao entendi a linha 143. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0311x.p
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\cg0311x.p Nao entendi a linha 163. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\__executa.p
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\__executa.p Nao entendi a linha 15. (196)
+Unknown or ambiguous table paramecp. (725)
+** \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\__executa.p Nao entendi a linha 17. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\pontoR\*.p
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\rtp\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\rtp\rtcgccpf.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\rtp\rtcgccpf.p Nao entendi a linha 9. (193)
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\rtp\rtcgccpf.p Nao entendi a linha 37. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\rtp\rthorurg.p
+** "include\i-prgvrs.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\rtp\rthorurg.p Nao entendi a linha 9. (193)
+** "hdp\hdsistem.i" nao foi encontrado. (293)
+** \\totvs-hml-prod\ERP\migracao\rtp\rthorurg.p Nao entendi a linha 42. (193)
+Unknown or ambiguous table tranrevi. (725)
+** \\totvs-hml-prod\ERP\migracao\rtp\rthorurg.p Nao entendi a linha 45. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\srincl\*.p
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\tep\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\tep\te-finaliza-migracao-unicoo.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\tep\te-finaliza-migracao-unicoo.p Nao entendi a linha 9. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\tep\te-inicializa-sequences.p
+Unknown or ambiguous table pessoa-fisica. (725)
+** \\totvs-hml-prod\ERP\migracao\tep\te-inicializa-sequences.p Nao entendi a linha 31. (196)
+11:39:02 Looking for \\totvs-hml-prod\ERP\migracao\_scripts_migracao_ems5\*.p
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\*.p
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\ajuste-fluxo-financeiro.p
+Unknown or ambiguous table clien_financ. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\ajuste-fluxo-financeiro.p Nao entendi a linha 4. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-cliente-no-contrat.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-cliente-no-contrat.p Nao entendi a linha 2. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-contratante-na-propost.p
+Unknown or ambiguous table propost. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-contratante-na-propost.p Nao entendi a linha 4. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-contratante-no-contrat-pelo-nomeabrev.p
+Unknown or ambiguous table contrat. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-cd-contratante-no-contrat-pelo-nomeabrev.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-data-inicio-modulo-benef.p
+Unknown or ambiguous table import-bnfciar. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\corrige-data-inicio-modulo-benef.p Nao entendi a linha 3. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\criar-plamodpr.p
+Unknown or ambiguous table ti-pl-sa. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\criar-plamodpr.p Nao entendi a linha 85. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\dep-x-resp.p
+Unknown or ambiguous table usuario. (545)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\dep-x-resp.p Nao entendi a linha 2. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\lista-resp-dep-cont-origem-diferente.p
+Unknown or ambiguous table usuario. (545)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\lista-resp-dep-cont-origem-diferente.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\lista-resp-dep-cont-origem-igual.p
+Unknown or ambiguous table usuario. (545)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\lista-resp-dep-cont-origem-igual.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\resp-x-depend.p
+Unknown or ambiguous table usuario. (545)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\resp-x-depend.p Nao entendi a linha 1. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_EMS5.p
+Unknown database name ems5. (855)
+Unknown or ambiguous table APROP_LANCTO_CTBL. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_EMS5.p Nao entendi a linha 1. (196)
+Unknown database name ems5hml. (855)
+Unknown database name ems5hml. (855)
+Unknown or ambiguous table APROP_LANCTO_CTBL. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_EMS5.p Nao entendi a linha 2. (196)
+Compiling \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_GP.p
+Unknown database name ems5. (855)
+Unknown or ambiguous table ABRAPLAN. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_GP.p Nao entendi a linha 1. (196)
+Unknown database name cdgrhml. (855)
+Unknown database name cdgrhml. (855)
+Unknown or ambiguous table ABRAPLAN. (725)
+** \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\script_carrega_parametros_HML_no_HMLPROD_GP.p Nao entendi a linha 2. (196)
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\api\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\atp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\bosau\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\bosau\global\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\cgp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\cgp\indices\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\ems5\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\ems5\nao_usados\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\ems5\temp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\lap\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\api\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\atp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp\old\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\outros_gp\testes\cgp - bk 18 02  1835\pontoR\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\rtp\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\srincl\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\tep\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\_scripts_migracao_ems5\*.w
+11:39:03 Looking for \\totvs-hml-prod\ERP\migracao\_scripts_migracao_gps\*.w

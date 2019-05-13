@@ -1,0 +1,58 @@
+--GESTAO
+begin
+
+     execute immediate 'truncate table GP.HISTABPRECO';
+     execute immediate 'truncate table GP.PRO_PLA';
+     execute immediate 'truncate table GP.TEADGRPA';
+     execute immediate 'truncate table GP.PROPOST';
+     execute immediate 'truncate table GP.USUARIO';
+     execute immediate 'truncate table GP.USUCAREN';
+     execute immediate 'truncate table GP.USUMODU';
+     execute immediate 'truncate table GP.HIST_MOVTO_USUARIO';
+     execute immediate 'truncate table GP.CAR_IDE';
+     execute immediate 'truncate table GP.TER_ADE';
+     execute immediate 'truncate table GP.SIT_APROV_PROPOSTA';
+     execute immediate 'truncate table gp.usureate';
+     execute immediate 'truncate table gp.usurepas';
+     execute immediate 'truncate table gp.propcopa';
+     execute immediate 'truncate table gp.histor_param_faturam';
+     execute immediate 'truncate table gp.audit_cad ';
+     execute immediate 'truncate table gp.campprop ';
+     execute immediate 'truncate table gp.histabpreco ';
+     execute immediate 'truncate table gp.histor_param_faturam ';
+     execute immediate 'truncate table gp.hist_alter_gp ';
+     execute immediate 'truncate table gp.hist_aprov_proposta ';
+     execute immediate 'truncate table gp.hist_movto_usuario ';
+     execute immediate 'truncate table gp.menslid_estrut_histor ';
+     execute immediate 'truncate table gp.partic_limit ';
+     execute immediate 'truncate table gp.propcart ';
+     execute immediate 'truncate table gp.propcopa ';
+     execute immediate 'truncate table gp.propunim ';
+     execute immediate 'truncate table gp.pro_pla ';
+     execute immediate 'truncate table gp.sit_aprov_proposta ';
+     execute immediate 'truncate table gp.usucaren ';
+     execute immediate 'truncate table gp.usumodu ';
+     execute immediate 'truncate table gp.usureate ';
+     execute immediate 'truncate table gp.usurepas     ';
+     execute immediate 'truncate table gp.ESTRUT_DESC_MENSLID';
+     execute immediate 'truncate table GP.DESPLAUS';
+     execute immediate 'truncate table gp.suspusua';
+
+  end;
+
+--IMPORTS
+begin
+
+     execute immediate 'truncate table gp.import_bnfciar ';
+     execute immediate 'truncate table gp.import_propost';
+     execute immediate 'truncate table gp.import_modul_bnfciar';
+     execute immediate 'truncate table gp.import_modul_propost';
+     execute immediate 'truncate table gp.erro_process_import';
+     execute immediate 'truncate table gp.control_migrac';
+     execute immediate 'truncate table gp.import_negociac_bnfciar';
+     execute immediate 'truncate table gp.import_negociac_propost';
+     execute immediate 'truncate table gp.import_atendim_bnfciar';
+     execute immediate  'truncate table gp.importpadrcobertpropost';
+     execute immediate  'truncate table tm_controle_propostas';
+
+  end;

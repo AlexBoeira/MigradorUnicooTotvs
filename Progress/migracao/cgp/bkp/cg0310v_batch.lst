@@ -1,0 +1,27 @@
+        1   /**
+        2    * in-param-aux: esse parametro eh enviado pelo chamador, que eh um arquivo.bat
+        3    *    entry 1: situacao a ser tratada pela importacao (R0, R1, R2, etc)
+        4    *    entry 2: se deve processar apenas beneficiarios Ativos (AT); Ambos (A); somente Inativos (I);
+        5    *    entry 3: se deve criar a carteira do usuario com o valor da Carteira Antiga (S) ou montar pelo padrao do GPS (N);
+        6    */
+        7   DEF VAR in-param-aux AS CHAR NO-UNDO.
+        8   ASSIGN  in-param-aux = session:param.
+        9   
+       10   REPEAT:
+       11     PROCESS EVENTS.
+       12     RUN cgp/cg0310v1.p("BATCH", /* in-batch-online */
+       13                        entry(1, in-param-aux),
+       14                        NO,      /* lg-plano */
+       15                        NO,      /* lg-medocup */
+       16                        YES,     /* lg-registro-modulos */
+       17                        YES,     /* lg-registro-repasse */
+       18                        3,       /* in-classif */  
+       19                        0,       /* qt-sair-aux */
+       20                        entry(2, in-param-aux),   /* lg-ativos */
+       21                        entry(3, in-param-aux)).  /* lg-cateira-antiga */
+       22     IF SEARCH("c:/temp/parar-migracao.txt") <> ?
+       23     THEN LEAVE.
+       24     ELSE PAUSE(1).
+       25   END.
+       26   QUIT.
+       27       

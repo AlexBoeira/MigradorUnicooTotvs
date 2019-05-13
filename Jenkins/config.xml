@@ -1,0 +1,148 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors/>
+  <version>2.150.2</version>
+  <installStateName>RUNNING</installStateName>
+  <numExecutors>100</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:admin</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:admin</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:admin</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:admin</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:admin</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:consultor</permission>
+    <permission>hudson.model.Computer.Build:admin</permission>
+    <permission>hudson.model.Computer.Configure:admin</permission>
+    <permission>hudson.model.Computer.Connect:admin</permission>
+    <permission>hudson.model.Computer.Create:admin</permission>
+    <permission>hudson.model.Computer.Delete:admin</permission>
+    <permission>hudson.model.Computer.Disconnect:admin</permission>
+    <permission>hudson.model.Hudson.Administer:admin</permission>
+    <permission>hudson.model.Hudson.Read:admin</permission>
+    <permission>hudson.model.Hudson.Read:consultor</permission>
+    <permission>hudson.model.Item.Build:admin</permission>
+    <permission>hudson.model.Item.Build:consultor</permission>
+    <permission>hudson.model.Item.Cancel:admin</permission>
+    <permission>hudson.model.Item.Cancel:consultor</permission>
+    <permission>hudson.model.Item.Configure:admin</permission>
+    <permission>hudson.model.Item.Create:admin</permission>
+    <permission>hudson.model.Item.Delete:admin</permission>
+    <permission>hudson.model.Item.Discover:admin</permission>
+    <permission>hudson.model.Item.Discover:consultor</permission>
+    <permission>hudson.model.Item.Move:admin</permission>
+    <permission>hudson.model.Item.Read:admin</permission>
+    <permission>hudson.model.Item.Read:consultor</permission>
+    <permission>hudson.model.Item.Workspace:admin</permission>
+    <permission>hudson.model.Item.Workspace:consultor</permission>
+    <permission>hudson.model.Run.Delete:admin</permission>
+    <permission>hudson.model.Run.Delete:consultor</permission>
+    <permission>hudson.model.Run.Replay:admin</permission>
+    <permission>hudson.model.Run.Replay:consultor</permission>
+    <permission>hudson.model.Run.Update:admin</permission>
+    <permission>hudson.model.Run.Update:consultor</permission>
+    <permission>hudson.model.View.Configure:admin</permission>
+    <permission>hudson.model.View.Create:admin</permission>
+    <permission>hudson.model.View.Delete:admin</permission>
+    <permission>hudson.model.View.Read:admin</permission>
+    <permission>hudson.model.View.Read:consultor</permission>
+    <permission>hudson.scm.SCM.Tag:admin</permission>
+    <permission>org.jenkins.plugins.lockableresources.LockableResourcesManager.Reserve:admin</permission>
+    <permission>org.jenkins.plugins.lockableresources.LockableResourcesManager.Unlock:admin</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>true</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${JENKINS_HOME}/workspace/${ITEM_FULL_NAME}</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <markupFormatter class="hudson.markup.EscapedMarkupFormatter"/>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds/>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+  </views>
+  <primaryView>all</primaryView>
+  <slaveAgentPort>-1</slaveAgentPort>
+  <label></label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
+  </crumbIssuer>
+  <nodeProperties/>
+  <globalNodeProperties>
+    <hudson.slaves.EnvironmentVariablesNodeProperty>
+      <envVars serialization="custom">
+        <unserializable-parents/>
+        <tree-map>
+          <default>
+            <comparator class="hudson.util.CaseInsensitiveComparator"/>
+          </default>
+          <int>25</int>
+          <string>_PROGRESS</string>
+          <string>C:\DLC116\bin\_progres.exe</string>
+          <string>CLIENTLOG_CONF</string>
+          <string>-clearlog -logginglevel 2 -logentrytypes 4GLMessages,4GLTrace,DB.Connects,FileID -clientlog</string>
+          <string>CONN_EMS505UNICOO</string>
+          <string>owner/senha@instancia</string>
+          <string>CONN_UNICOOGPS</string>
+          <string>owner/senha@instancia</string>
+          <string>CSS_RELATORIOS_MIGRACAO</string>
+          <string>\\totvs-prod-testes\ERPGP\migracao\style.css</string>
+          <string>DT_CONTABIL_ACR</string>
+          <string>SYSDATE</string>
+          <string>DT_CONTABIL_APB</string>
+          <string>SYSDATE</string>
+          <string>EVENTO_FATURAS_MIGRADAS</string>
+          <string>1</string>
+          <string>INI</string>
+          <string>C:\TOTVS\datasul\dts-0\ERP\scripts\dtsgp_migracao\datasul-progress.ini</string>
+          <string>PASTA_STATUS_MIGRACAO</string>
+          <string>\\totvs-prod-testes\ERPGP\migracao\__STATUS_MIGRACAO</string>
+          <string>PATH_SCRIPTS_EMS5</string>
+          <string>C:\TOTVS\datasul\dts-0\ERP\migracao\_scripts_migracao_ems5_JK</string>
+          <string>PATH_SCRIPTS_GPS</string>
+          <string>C:\TOTVS\datasul\dts-0\ERP\migracao\_scripts_migracao_gps_JK</string>
+          <string>PF</string>
+          <string>C:\TOTVS\datasul\dts-0\ERP\scripts\dtsgp_migracao\datasul.pf</string>
+          <string>PQT_GUIAS_POR_CICLO</string>
+          <string>10000</string>
+          <string>PROWIN32</string>
+          <string>C:\DLC116\bin\prowin32.exe</string>
+          <string>QT_FILAS_IMPORTACAO_BENEFICIARIOS</string>
+          <string>20</string>
+          <string>QT_FILAS_IMPORTACAO_CLIENTES</string>
+          <string>10</string>
+          <string>QT_FILAS_IMPORTACAO_FATURAS</string>
+          <string>20</string>
+          <string>QT_FILAS_IMPORTACAO_FORNECEDORES</string>
+          <string>5</string>
+          <string>QT_FILAS_IMPORTACAO_GUIAS</string>
+          <string>20</string>
+          <string>QT_FILAS_IMPORTACAO_PROPOSTAS</string>
+          <string>20</string>
+          <string>QT_FILAS_IMPORTACAO_TIT_ACR</string>
+          <string>20</string>
+          <string>QT_FILAS_IMPORTACAO_TIT_APB</string>
+          <string>10</string>
+          <string>SENHA</string>
+          <string>migracao</string>
+          <string>USUARIO</string>
+          <string>migracao</string>
+        </tree-map>
+      </envVars>
+    </hudson.slaves.EnvironmentVariablesNodeProperty>
+  </globalNodeProperties>
+</hudson>

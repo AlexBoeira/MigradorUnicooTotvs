@@ -1,0 +1,18 @@
+body {
+ color: blue;
+ background-color: #EEE;
+ font-size: 11px;
+ font-family: arial, sans-serif;
+}
+
+table {
+ color: blue;
+ background-color: #EEE;
+ font-size: 11px;
+ font-family: arial, sans-serif;
+ border: 1px solid black;
+ border-collapse: collapse;
+ width: 50%;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}

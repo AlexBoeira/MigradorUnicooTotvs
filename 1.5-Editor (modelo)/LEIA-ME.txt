@@ -1,0 +1,4 @@
+Essa pasta contém os artefatos modelo para criação de um atalho de conexão a um Editor Progress com os artefatos da migração.
+
+Ao criar um editor "na prática" em um cliente, tomar como base os arquivos .ini e .pf que já existirem no ambiente.
+

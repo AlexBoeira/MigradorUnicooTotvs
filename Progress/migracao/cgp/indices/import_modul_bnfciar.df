@@ -1,0 +1,14 @@
+ADD INDEX "imprtmdl_id3" ON "import-modul-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 2
+  FOREIGN-NAME "SRG09568##IMPRTMDL_ID3"
+  INDEX-FIELD "num-seqcial-bnfciar" ASCENDING
+  INDEX-FIELD "cdn-modul" ASCENDING
+
+ADD INDEX "imprtmdl_id4" ON "import-modul-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 3
+  FOREIGN-NAME "SRG09568##IMPRTMDL_ID4"
+  INDEX-FIELD "num-seqcial-bnfciar" ASCENDING
+
+

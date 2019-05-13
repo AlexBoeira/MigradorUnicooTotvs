@@ -1,0 +1,5 @@
+consultar os indices do banco
+
+select COUNT(*) from dba_indexes
+where OWNER = 'GP'
+AND STATUS = 'UNUSABLE';

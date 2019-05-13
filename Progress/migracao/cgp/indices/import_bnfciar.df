@@ -1,0 +1,17 @@
+ADD INDEX "imprtbnf_id3" ON "import-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 2
+  FOREIGN-NAME "SRG09566##IMPRTBNF_ID3"
+  INDEX-FIELD "ind-sit-import" ASCENDING
+
+ADD INDEX "imprtbnf_id4" ON "import-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 3
+  FOREIGN-NAME "SRG09566##IMPRTBNF_ID4"
+  INDEX-FIELD "cd-carteira-antiga" ASCENDING
+  
+ADD INDEX "imprtbnf_id5" ON "import-bnfciar"
+  AREA "Schema Area"
+  INDEX-NUM 4
+  FOREIGN-NAME "SRG09566##IMPRTBNF_ID5"
+  INDEX-FIELD "num-seqcial-control" ASCENDING

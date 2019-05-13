@@ -1,0 +1,1 @@
+C:\DLC102B\bin\prowin32.exe -pf \\totvs-hml\ERP\scripts-8180\editor\datasul.pf -ininame \\totvs-hml\ERP\scripts-8180\editor\datasul-progress.ini -p \\totvs-hml\ERP\scripts-8180\editor\alias.p

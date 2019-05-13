@@ -1,0 +1,1 @@
+sqlplus ems506unicoo/ems506unicoo@totvsgp @C:\temp\teste_html_sqlplus\HTML_monitorar_importacao_FORNECEDORES_JK.sql

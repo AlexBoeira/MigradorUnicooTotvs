@@ -1,0 +1,15 @@
+SIT.PROPOSTA;DESCRICAO;
+ 01;INCLUIDA                      ;
+ 02;CONFIRMADA                    ;
+ 03;ANALISE DE CREDITO            ;
+ 04;APROVADA                      ;
+ 05;LIBERACAO DE DOCUMENTACAO     ;
+ 06;PROCESSADA TAXA INSCRICAO     ;
+ 07;COBRANCA NORMAL               ;
+ 08;REPROVADA                     ;
+ 09;MIGRADA                       ;
+ 80;MIGRACAO VIA MEIO MAGNETICO   ;
+ 85;SUSPENSA SEM TERMO DE ADESAO  ;
+ 90;EXCLUIDO                      ;
+ 91;CANCELADO PELO CLIENTE        ;
+ 95;PROPOSTA CANCELADA SEM TERMO  ;

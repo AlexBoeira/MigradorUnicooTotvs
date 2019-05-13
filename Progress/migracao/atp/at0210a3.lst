@@ -1,0 +1,28 @@
+        1   /**
+        2    * Varrer todos os import-guia e trocar a situacao RC para R0, R1, R2...
+        3    */
+        4    
+        5   DEF VAR in-status-aux  AS CHAR INIT "R0" NO-UNDO.
+        6   
+        7   FUNCTION proximo-status RETURNS CHAR():
+        8     CASE in-status-aux:
+        9         WHEN "R0" THEN ASSIGN in-status-aux = "R1".
+       10         WHEN "R1" THEN ASSIGN in-status-aux = "R2".
+       11         WHEN "R2" THEN ASSIGN in-status-aux = "R3".
+       12         WHEN "R3" THEN ASSIGN in-status-aux = "R4".
+       13         WHEN "R4" THEN ASSIGN in-status-aux = "R5".
+       14         WHEN "R5" THEN ASSIGN in-status-aux = "R6".
+       15         WHEN "R6" THEN ASSIGN in-status-aux = "R7".
+       16         WHEN "R7" THEN ASSIGN in-status-aux = "R8".
+       17         WHEN "R8" THEN ASSIGN in-status-aux = "R9".
+       18         WHEN "R9" THEN ASSIGN in-status-aux = "R0".
+       19     END CASE.
+       20     RETURN in-status-aux.
+       21   END FUNCTION.
+       22   
+       23   for each import-guia where import-guia.ind-sit-import = "RC" exclusive-lock:
+       24       MESSAGE "Distribuindo Guia AT " import-guia.num-seqcial-control.
+       25   
+       26       assign import-guia.ind-sit-import = proximo-status().
+       27   
+       28   end.

@@ -1,0 +1,5 @@
+SIT.TERMO;DESCRICAO;
+ 01;NORMAL                        ;
+ 02;CONGELADO                     ;
+ 90;EXCLUIDO                      ;
+ 91;EXCLUIDO A PEDIDO CONTRATANTE ;

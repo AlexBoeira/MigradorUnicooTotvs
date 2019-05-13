@@ -1,0 +1,67 @@
+SELECT C.OWNER,
+       C.OBJECT_NAME,
+       C.OBJECT_TYPE,
+       B.PROGRAM,
+       B.USERNAME,
+       B.SID,
+       B.SERIAL#,
+       B.STATUS,
+       B.OSUSER,
+       B.MACHINE,
+       B.BLOCKING_SESSION,
+       B.BLOCKING_SESSION_STATUS
+  FROM V$LOCKED_OBJECT A, V$SESSION B, DBA_OBJECTS C
+ WHERE B.SID = A.SESSION_ID
+   AND A.OBJECT_ID = C.OBJECT_ID;
+
+
+=============================
+
+select b.osuser,
+       a.sid,
+       b.username,
+       a.type,
+       d.name || '.' || c.name name,
+       a.id1,
+       a.id2,
+       decode(lmode,
+              1,
+              'null',
+              2,
+              'RS',
+              3,
+              'RX',
+              4,
+              'S',
+              5,
+              'SRX',
+              6,
+              'X',
+              0,
+              'NONE',
+              lmode) lmode,
+       decode(request,
+              1,
+              'null',
+              2,
+              'RS',
+              3,
+              'RX',
+              4,
+              'S',
+              5,
+              'SRX',
+              6,
+              'X',
+              0,
+              'NONE',
+              request) request,
+       a.ctime / 60 minutos
+  from v$lock a, v$session b, sys.obj$ c, sys.user$ d
+ where a.id1 = c.OBJ#(+)
+   and a.sid = b.sid
+   and c.owner# = d.user#(+)
+   and b.username is not null
+   and d.name in ('GP','EMS5','UNICOOGPS','EMS506UNICOO')
+ order by 10 desc, 1, 5;
+
