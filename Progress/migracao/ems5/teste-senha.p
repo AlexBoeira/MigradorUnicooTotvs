@@ -9,6 +9,8 @@ def new global shared var v_cod_usuar_corren
 
 DEF VAR usuar_antes AS CHAR NO-UNDO.
 
+DEF VAR valor-retorno AS CHAR NO-UNDO.
+
 /**
  * Temporaria para tratar possiveis erros na tentativa de login.
  */
@@ -39,3 +41,12 @@ end.
 MESSAGE "antes do login: " usuar_antes SKIP
         "depois do login: " v_cod_usuar_corren
     VIEW-AS ALERT-BOX INFO BUTTONS OK.
+
+MESSAGE SESSION:PARAMETER
+    VIEW-AS ALERT-BOX INFO BUTTONS OK.
+
+RUN men/men906zb.p(ENTRY(10,SESSION:PARAMETER),ENTRY(9,SESSION:PARAMETER),ENTRY(11,SESSION:PARAMETER),ENTRY(12,SESSION:PARAMETER),"","getProperty","","","access.security.active","",FALSE).
+ASSIGN valor-retorno = RETURN-VALUE.
+
+MESSAGE valor-retorno
+   VIEW-AS ALERT-BOX INFO BUTTONS OK.

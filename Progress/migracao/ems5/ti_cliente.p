@@ -622,18 +622,15 @@ DEF BUFFER b_ti_cliente FOR ti_cliente.
 find last param_geral_ems where param_geral_ems.dat_ult_atualiz <= today no-lock no-error.
 if   not avail param_geral_ems then do:
    hide message no-pause.
-   message "Parametros gerais do EMS504 nao cadastrados com" skip
-           "data igual ou inferior a de hoje."
-           view-as alert-box title " Atencao !!! ".
+   run escrever-log("Parametros gerais do EMS504 nao cadastrados com data igual ou inferior a de hoje.").
    return.
 end.
 
 IF NOT PARAM_geral_ems.LOG_clien_fornec_unico 
 THEN DO:
-       MESSAGE "Atencao! O parametro 'Codigo unico para cliente e fornecedor' nao esta ativado nos 'Parametros Gerais do EMS'." SKIP
-               "O processo de migracao nao pode continuar a partir deste ponto." SKIP
-               "Ative o parametro antes de continuar com este processo."
-           VIEW-AS ALERT-BOX INFO BUTTONS OK.
+       run escrever-log("Atencao! O parametro 'Codigo unico para cliente e fornecedor' nao esta ativado nos 'Parametros Gerais do EMS'. " +
+               "O processo de migracao nao pode continuar a partir deste ponto. " +
+               "Ative o parametro antes de continuar com este processo.").
        RETURN.
      END.
 
@@ -654,8 +651,8 @@ for each ti_cliente EXCLUSIVE-LOCK where ti_cliente.cdsituacao = in-status-par:
      * Essa parada ajuda a evitar estouro de instancias da utb persistidas em memoria.
 	 * O chamador controla o laco ate encerrarem as pendencias de importacao.
      */
-    IF ix-cont-aux >= 500
-    THEN LEAVE.
+/*    IF ix-cont-aux >= 500
+    THEN LEAVE.*/
     
     PROCESS EVENTS.
     
@@ -744,7 +741,7 @@ for each ti_cliente EXCLUSIVE-LOCK where ti_cliente.cdsituacao = in-status-par:
                                        
                                        if valid-handle(v_hdl_utb765zl) 
                                        then do:
-                                              /*
+                                              
                                               OUTPUT TO c:\temp\tt_telef_pessoa_integr.csv APPEND.
                                               FOR EACH tt_telef_pessoa_integr:
                                                   EXPORT DELIMITER ";" tt_telef_pessoa_integr.
@@ -847,7 +844,13 @@ for each ti_cliente EXCLUSIVE-LOCK where ti_cliente.cdsituacao = in-status-par:
                                                   EXPORT DELIMITER ";" tt_telef_integr.
                                               END.
                                               OUTPUT CLOSE.
-                                              */
+
+                                              OUTPUT TO c:\temp\tt_clien_financ_integr_e.csv APPEND.
+                                              FOR EACH tt_clien_financ_integr_e:
+                                                  EXPORT DELIMITER ";" tt_clien_financ_integr_e.
+                                              END.
+                                              OUTPUT CLOSE.
+                                              
                                               
                                               run pi_main_block_utb765zl_8 in v_hdl_utb765zl (Input table tt_cliente_integr_j,
                                                                                               Input table tt_fornecedor_integr_k,
@@ -885,19 +888,20 @@ for each ti_cliente EXCLUSIVE-LOCK where ti_cliente.cdsituacao = in-status-par:
                                                * Se conseguiu criar Pessoa, Cliente e Cliente Financeiro no EMS5, entao nao acionar
                                                * o flag de erro. Se retornaram mensagens, serao de aviso, e nao de erro.
                                                */
-                                              FOR FIRST tt_cliente_integr_j:
-                                                  IF CAN-FIND(FIRST cliente
-                                                              WHERE cliente.cdn_cliente = tt_cliente_integr_j.tta_cdn_cliente
-                                                                AND CAN-FIND(FIRST clien_financ
-                                                                             WHERE clien_financ.cod_empresa = cliente.cod_empresa
-                                                                               AND clien_financ.cdn_cliente = cliente.cdn_cliente
-                                                                               AND (    (tt_cliente_integr_j.ttv_ind_pessoa = "1" /*juridica*/ AND CAN-FIND(FIRST pessoa_jurid WHERE pessoa_jurid.num_pessoa_jurid = cliente.num_pessoa))
-                                                                                     OR (tt_cliente_integr_j.ttv_ind_pessoa = "2" /*fisica*/   AND CAN-FIND(FIRST pessoa_fisic WHERE pessoa_fisic.num_pessoa_fisic = cliente.num_pessoa))
-                                                                                   )
-                                                                            )
-                                                             )
-                                                  THEN lg-criou-ok-aux = true.
-                                              END.
+                                              if ti_cliente.cod_acao = "I"
+                                              THEN FOR FIRST tt_cliente_integr_j:
+                                                       IF CAN-FIND(FIRST cliente
+                                                                   WHERE cliente.cdn_cliente = tt_cliente_integr_j.tta_cdn_cliente
+                                                                     AND CAN-FIND(FIRST clien_financ
+                                                                                  WHERE clien_financ.cod_empresa = cliente.cod_empresa
+                                                                                    AND clien_financ.cdn_cliente = cliente.cdn_cliente
+                                                                                    AND (    (tt_cliente_integr_j.ttv_ind_pessoa = "1" /*juridica*/ AND CAN-FIND(FIRST pessoa_jurid WHERE pessoa_jurid.num_pessoa_jurid = cliente.num_pessoa))
+                                                                                          OR (tt_cliente_integr_j.ttv_ind_pessoa = "2" /*fisica*/   AND CAN-FIND(FIRST pessoa_fisic WHERE pessoa_fisic.num_pessoa_fisic = cliente.num_pessoa))
+                                                                                        )
+                                                                                 )
+                                                                  )
+                                                       THEN lg-criou-ok-aux = true.
+                                                   END.
 
                                               for each tt_retorno_clien_fornec no-lock:
                                                   run p_grava_falha(tt_retorno_clien_fornec.ttv_des_ajuda,
@@ -1242,6 +1246,11 @@ Procedure grava_tt_cliente_financ_integr_e:
                                         output ds-erro-aux).
         end.
 
+        OUTPUT TO "c:\temp\gregorio.txt" APPEND.
+             PUT "ponto 1" SKIP
+                 "ti_cliente.cod_tip_fluxo_financ   :" ti_cliente.cod_tip_fluxo_financ   SKIP(2).
+             OUTPUT CLOSE.
+
    create tt_clien_financ_integr_e.
    assign tt_clien_financ_integr_e.tta_cod_empresa               = ti_cliente.cod_empresa 
           tt_clien_financ_integr_e.tta_cdn_cliente               = cod_cliente_par /* ti_cliente.cod_cliente   */
@@ -1281,6 +1290,14 @@ Procedure grava_tt_cliente_financ_integr_e:
           tt_clien_financ_integr_e.tta_cod_digito_agenc_bcia     = ""  
           tt_clien_financ_integr_e.tta_cod_cart_bcia             = ti_cliente.cod_cart_bcia_prefer 
           tt_clien_financ_integr_e.tta_cod_cart_bcia_prefer      = ti_cliente.cod_cart_bcia_prefer.
+
+
+          OUTPUT TO "c:\temp\gregorio.txt" APPEND.
+          PUT "ponto 2" SKIP
+              "tt_clien_financ_integr_e.tta_cod_tip_fluxo_financ   :" tt_clien_financ_integr_e.tta_cod_tip_fluxo_financ   SKIP(2).
+          OUTPUT CLOSE.
+
+
           
 end procedure.
   
@@ -1550,6 +1567,10 @@ procedure preenche-verifica-mascara private:
     ds-campo-valida-par = replace(ds-campo-valida-par,".","").
 
 end procedure.
+
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-mensagem-par AS CHAR NO-UNDO.
+END.
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------- EOF - */

@@ -1,9 +1,10 @@
-------------------------------------------------------
--- Export file for user EMS506UNICOO                --
--- Created by Administrator on 08/01/2019, 17:48:59 --
-------------------------------------------------------
+------------------------------------------------
+-- Export file for user EMS506UNICOO          --
+-- Created by Totvs01 on 13/05/2019, 11:25:52 --
+------------------------------------------------
 
-spool PCK_EMS506UNICOO_61.log
+set define off
+spool PCK_EMS506UNICOO.log
 
 prompt
 prompt Creating table BKP_TI_TIPO_MOVIMENTO_TIT_ACR
@@ -11,24 +12,33 @@ prompt ============================================
 prompt
 create table EMS506UNICOO.BKP_TI_TIPO_MOVIMENTO_TIT_ACR
 (
-  NRSEQUENCIAL              NUMBER(4) not null,
-  CDEMPRESA                 VARCHAR2(5) not null,
-  CDMOVIMENTO               VARCHAR2(4) not null,
-  CDMODULO                  VARCHAR2(4) not null,
-  NOMOVIMENTO               VARCHAR2(40),
-  COD_GRP_CLIEN             VARCHAR2(4) not null,
-  COD_ESTAB                 VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  COD_CART_BCIA             VARCHAR2(3),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_PORTADOR              VARCHAR2(6),
-  COD_TIP_FLUXO_FINANC_EMS2 VARCHAR2(12)
+  nrsequencial              NUMBER(4) not null,
+  cdempresa                 VARCHAR2(5) not null,
+  cdmovimento               VARCHAR2(4) not null,
+  cdmodulo                  VARCHAR2(4) not null,
+  nomovimento               VARCHAR2(40),
+  cod_grp_clien             VARCHAR2(4) not null,
+  cod_estab                 VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_ccusto                VARCHAR2(11),
+  cod_espec_docto           VARCHAR2(3),
+  cod_cart_bcia             VARCHAR2(3),
+  cod_empresa               VARCHAR2(3),
+  cod_portador              VARCHAR2(6),
+  cod_tip_fluxo_financ_ems2 VARCHAR2(12)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.BKP_TI_TIPO_MOVIMENTO_TIT_ACR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CAD_GER_ENCON
@@ -36,47 +46,78 @@ prompt ============================
 prompt
 create table EMS506UNICOO.CAD_GER_ENCON
 (
-  CD_USUARIO_CRIACAO    VARCHAR2(12),
-  COD_CART_BCIA_ACR     VARCHAR2(6),
-  COD_CART_BCIA_APB     VARCHAR2(6),
-  COD_CCUSTO_BAI_ACR    VARCHAR2(11),
-  COD_CCUSTO_BAI_APB    VARCHAR2(11),
-  COD_CCUSTO_IMPL_ACR   VARCHAR2(11),
-  COD_CCUSTO_IMPL_APB   VARCHAR2(11),
-  U##COD_CENAR_CTBL     VARCHAR2(30),
-  COD_CENAR_CTBL        VARCHAR2(30),
-  COD_CTA_CTBL_BAI_ACR  VARCHAR2(20),
-  COD_CTA_CTBL_BAI_APB  VARCHAR2(20),
-  COD_CTA_CTBL_IMPL_ACR VARCHAR2(20),
-  COD_CTA_CTBL_IMPL_APB VARCHAR2(20),
-  U##COD_EMPRESA        VARCHAR2(6),
-  COD_EMPRESA           VARCHAR2(6),
-  COD_ESPEC_ACR         VARCHAR2(6),
-  COD_ESPEC_APB         VARCHAR2(6),
-  U##COD_ESTAB          VARCHAR2(6),
-  COD_ESTAB             VARCHAR2(6),
-  COD_FORMA_PAGTO_ACR   VARCHAR2(6),
-  COD_FORMA_PAGTO_APB   VARCHAR2(6),
-  U##COD_PLANO_CCUSTO   VARCHAR2(30),
-  COD_PLANO_CCUSTO      VARCHAR2(30),
-  U##COD_PLANO_CTA_CTBL VARCHAR2(30),
-  COD_PLANO_CTA_CTBL    VARCHAR2(30),
-  COD_PORTADOR_ACR      VARCHAR2(6),
-  COD_PORTADOR_APB      VARCHAR2(6),
-  COD_SER_ACR           VARCHAR2(6),
-  COD_SER_APB           VARCHAR2(6),
-  COD_TIP_FLUXO_ACR     VARCHAR2(12),
-  COD_TIP_FLUXO_APB     VARCHAR2(12),
-  U##COD_UNID_NEGOC     VARCHAR2(6),
-  COD_UNID_NEGOC        VARCHAR2(6),
-  DT_CRIACAO            DATE,
-  NR_SEQ_LOTE_COD_REF   NUMBER,
-  PROGRESS_RECID        NUMBER
+  cd_usuario_criacao    VARCHAR2(12),
+  cod_cart_bcia_acr     VARCHAR2(6),
+  cod_cart_bcia_apb     VARCHAR2(6),
+  cod_ccusto_bai_acr    VARCHAR2(11),
+  cod_ccusto_bai_apb    VARCHAR2(11),
+  cod_ccusto_impl_acr   VARCHAR2(11),
+  cod_ccusto_impl_apb   VARCHAR2(11),
+  u##cod_cenar_ctbl     VARCHAR2(30),
+  cod_cenar_ctbl        VARCHAR2(30),
+  cod_cta_ctbl_bai_acr  VARCHAR2(20),
+  cod_cta_ctbl_bai_apb  VARCHAR2(20),
+  cod_cta_ctbl_impl_acr VARCHAR2(20),
+  cod_cta_ctbl_impl_apb VARCHAR2(20),
+  u##cod_empresa        VARCHAR2(6),
+  cod_empresa           VARCHAR2(6),
+  cod_espec_acr         VARCHAR2(6),
+  cod_espec_apb         VARCHAR2(6),
+  u##cod_estab          VARCHAR2(6),
+  cod_estab             VARCHAR2(6),
+  cod_forma_pagto_acr   VARCHAR2(6),
+  cod_forma_pagto_apb   VARCHAR2(6),
+  u##cod_plano_ccusto   VARCHAR2(30),
+  cod_plano_ccusto      VARCHAR2(30),
+  u##cod_plano_cta_ctbl VARCHAR2(30),
+  cod_plano_cta_ctbl    VARCHAR2(30),
+  cod_portador_acr      VARCHAR2(6),
+  cod_portador_apb      VARCHAR2(6),
+  cod_ser_acr           VARCHAR2(6),
+  cod_ser_apb           VARCHAR2(6),
+  cod_tip_fluxo_acr     VARCHAR2(12),
+  cod_tip_fluxo_apb     VARCHAR2(12),
+  u##cod_unid_negoc     VARCHAR2(6),
+  cod_unid_negoc        VARCHAR2(6),
+  dt_criacao            DATE,
+  nr_seq_lote_cod_ref   NUMBER,
+  progress_recid        NUMBER
 )
-;
-create unique index EMS506UNICOO.CAD_GER_##GERALENCON on EMS506UNICOO.CAD_GER_ENCON (U##COD_EMPRESA, U##COD_ESTAB, U##COD_CENAR_CTBL, U##COD_UNID_NEGOC, U##COD_PLANO_CCUSTO, U##COD_PLANO_CTA_CTBL);
-create unique index EMS506UNICOO.CAD_GER_##REC on EMS506UNICOO.CAD_GER_ENCON (PROGRESS_RECID);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CAD_GER_ENCON to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAD_GER_##GERALENCON on EMS506UNICOO.CAD_GER_ENCON (U##COD_EMPRESA, U##COD_ESTAB, U##COD_CENAR_CTBL, U##COD_UNID_NEGOC, U##COD_PLANO_CCUSTO, U##COD_PLANO_CTA_CTBL)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAD_GER_##REC on EMS506UNICOO.CAD_GER_ENCON (PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CAM_COMPENSACAO
@@ -84,17 +125,48 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.CAM_COMPENSACAO
 (
-  CDNFORNECEDORPRINCIPAL NUMBER not null,
-  COD_USUARIO_CRIACAO    VARCHAR2(12),
-  DES_CAMARA             VARCHAR2(20),
-  DT_CRIACAO             DATE,
-  CDN_CAMARA             NUMBER not null,
-  PROGRESS_RECID         NUMBER
+  cdnfornecedorprincipal NUMBER not null,
+  cod_usuario_criacao    VARCHAR2(12),
+  des_camara             VARCHAR2(20),
+  dt_criacao             DATE,
+  cdn_camara             NUMBER not null,
+  progress_recid         NUMBER
 )
-;
-create unique index EMS506UNICOO.CAM_COMP##CAMPRIN on EMS506UNICOO.CAM_COMPENSACAO (CDNFORNECEDORPRINCIPAL, CDN_CAMARA);
-create unique index EMS506UNICOO.CAM_COMP##REC on EMS506UNICOO.CAM_COMPENSACAO (PROGRESS_RECID);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CAM_COMPENSACAO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAM_COMP##CAMPRIN on EMS506UNICOO.CAM_COMPENSACAO (CDNFORNECEDORPRINCIPAL, CDN_CAMARA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAM_COMP##REC on EMS506UNICOO.CAM_COMPENSACAO (PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CAM_COMPENSACAO_FORNEC
@@ -102,16 +174,47 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.CAM_COMPENSACAO_FORNEC
 (
-  CDN_CAMARA          NUMBER not null,
-  CDN_FORNECEDOR      NUMBER not null,
-  COD_USUARIO_CRIACAO VARCHAR2(12),
-  DT_CRIACAO          DATE,
-  PROGRESS_RECID      NUMBER
+  cdn_camara          NUMBER not null,
+  cdn_fornecedor      NUMBER not null,
+  cod_usuario_criacao VARCHAR2(12),
+  dt_criacao          DATE,
+  progress_recid      NUMBER
 )
-;
-create unique index EMS506UNICOO.CAM_COM1##CAMFORNEC on EMS506UNICOO.CAM_COMPENSACAO_FORNEC (CDN_CAMARA, CDN_FORNECEDOR);
-create unique index EMS506UNICOO.CAM_COM1##REC on EMS506UNICOO.CAM_COMPENSACAO_FORNEC (PROGRESS_RECID);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CAM_COMPENSACAO_FORNEC to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAM_COM1##CAMFORNEC on EMS506UNICOO.CAM_COMPENSACAO_FORNEC (CDN_CAMARA, CDN_FORNECEDOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.CAM_COM1##REC on EMS506UNICOO.CAM_COMPENSACAO_FORNEC (PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIEN_FIN_EMS_BKP_2701
@@ -119,56 +222,65 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.CLIEN_FIN_EMS_BKP_2701
 (
-  U##COD_EMPRESA          VARCHAR2(12) not null,
-  COD_EMPRESA             VARCHAR2(12) not null,
-  CDN_CLIENTE             NUMBER not null,
-  CDN_REPRES              NUMBER,
-  COD_TIP_CLIEN           VARCHAR2(16) not null,
-  COD_PORTAD_PREFER       VARCHAR2(12),
-  U##COD_PORTADOR         VARCHAR2(12),
-  COD_PORTADOR            VARCHAR2(12),
-  COD_BANCO               VARCHAR2(16),
-  COD_AGENC_BCIA          VARCHAR2(20),
-  COD_CTA_CORREN_BCO      VARCHAR2(40),
-  COD_DIGITO_CTA_CORREN   VARCHAR2(12),
-  U##COD_CLASSIF_MSG_COBR VARCHAR2(16),
-  COD_CLASSIF_MSG_COBR    VARCHAR2(16),
-  COD_INSTRUC_BCIA_1_ACR  VARCHAR2(12) not null,
-  COD_INSTRUC_BCIA_2_ACR  VARCHAR2(12) not null,
-  LOGHABILITEMISBOLETO    NUMBER not null,
-  LOG_HABILIT_GERA_AVDEB  NUMBER not null,
-  LOG_RETENC_IMPTO        NUMBER not null,
-  LOG_HABILIT_DB_AUTOM    NUMBER not null,
-  NUM_TIT_ACR_ABER        NUMBER not null,
-  INDSITCLIENPERDADEDUT   VARCHAR2(42) not null,
-  COD_DIGITO_AGENC_BCIA   VARCHAR2(12) not null,
-  COD_LIVRE_1             VARCHAR2(500),
-  LOG_LIVRE_1             NUMBER,
-  NUM_LIVRE_1             NUMBER,
-  VAL_LIVRE_1             NUMBER,
-  DAT_LIVRE_1             DATE,
-  COD_CART_BCIA           VARCHAR2(12) not null,
-  COD_CART_BCIA_PREFER    VARCHAR2(12) not null,
-  COD_LIVRE_2             VARCHAR2(500),
-  LOG_LIVRE_2             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  VAL_LIVRE_2             NUMBER,
-  DAT_LIVRE_2             DATE,
-  DES_LIVRE_1             VARCHAR2(2000) not null,
-  LOG_UTILIZ_VERBA        NUMBER,
-  VAL_PERC_VERBA          NUMBER,
-  VAL_MIN_AVDEB           NUMBER,
-  LOG_CALC_MULTA          NUMBER not null,
-  NUM_DIAS_ATRASO_AVDEB   NUMBER not null,
-  COD_TIP_FLUXO_FINANC    VARCHAR2(24) not null,
-  LOG_ENVIO_BCO_HISTOR    NUMBER not null,
-  CDD_VERSION             NUMBER,
-  CDN_ID_RESERVE          NUMBER,
-  LOG_ENVDO_SERASA        NUMBER,
-  PROGRESS_RECID          NUMBER
+  u##cod_empresa          VARCHAR2(12) not null,
+  cod_empresa             VARCHAR2(12) not null,
+  cdn_cliente             NUMBER not null,
+  cdn_repres              NUMBER,
+  cod_tip_clien           VARCHAR2(16) not null,
+  cod_portad_prefer       VARCHAR2(12),
+  u##cod_portador         VARCHAR2(12),
+  cod_portador            VARCHAR2(12),
+  cod_banco               VARCHAR2(16),
+  cod_agenc_bcia          VARCHAR2(20),
+  cod_cta_corren_bco      VARCHAR2(40),
+  cod_digito_cta_corren   VARCHAR2(12),
+  u##cod_classif_msg_cobr VARCHAR2(16),
+  cod_classif_msg_cobr    VARCHAR2(16),
+  cod_instruc_bcia_1_acr  VARCHAR2(12) not null,
+  cod_instruc_bcia_2_acr  VARCHAR2(12) not null,
+  loghabilitemisboleto    NUMBER not null,
+  log_habilit_gera_avdeb  NUMBER not null,
+  log_retenc_impto        NUMBER not null,
+  log_habilit_db_autom    NUMBER not null,
+  num_tit_acr_aber        NUMBER not null,
+  indsitclienperdadedut   VARCHAR2(42) not null,
+  cod_digito_agenc_bcia   VARCHAR2(12) not null,
+  cod_livre_1             VARCHAR2(500),
+  log_livre_1             NUMBER,
+  num_livre_1             NUMBER,
+  val_livre_1             NUMBER,
+  dat_livre_1             DATE,
+  cod_cart_bcia           VARCHAR2(12) not null,
+  cod_cart_bcia_prefer    VARCHAR2(12) not null,
+  cod_livre_2             VARCHAR2(500),
+  log_livre_2             NUMBER,
+  num_livre_2             NUMBER,
+  val_livre_2             NUMBER,
+  dat_livre_2             DATE,
+  des_livre_1             VARCHAR2(2000) not null,
+  log_utiliz_verba        NUMBER,
+  val_perc_verba          NUMBER,
+  val_min_avdeb           NUMBER,
+  log_calc_multa          NUMBER not null,
+  num_dias_atraso_avdeb   NUMBER not null,
+  cod_tip_fluxo_financ    VARCHAR2(24) not null,
+  log_envio_bco_histor    NUMBER not null,
+  cdd_version             NUMBER,
+  cdn_id_reserve          NUMBER,
+  log_envdo_serasa        NUMBER,
+  progress_recid          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIEN_FIN_EMS_BKP_2701 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIEN_FINANC_EMS_BKP
@@ -176,56 +288,65 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.CLIEN_FINANC_EMS_BKP
 (
-  U##COD_EMPRESA          VARCHAR2(12) not null,
-  COD_EMPRESA             VARCHAR2(12) not null,
-  CDN_CLIENTE             NUMBER not null,
-  CDN_REPRES              NUMBER,
-  COD_TIP_CLIEN           VARCHAR2(16) not null,
-  COD_PORTAD_PREFER       VARCHAR2(12),
-  U##COD_PORTADOR         VARCHAR2(12),
-  COD_PORTADOR            VARCHAR2(12),
-  COD_BANCO               VARCHAR2(16),
-  COD_AGENC_BCIA          VARCHAR2(20),
-  COD_CTA_CORREN_BCO      VARCHAR2(40),
-  COD_DIGITO_CTA_CORREN   VARCHAR2(12),
-  U##COD_CLASSIF_MSG_COBR VARCHAR2(16),
-  COD_CLASSIF_MSG_COBR    VARCHAR2(16),
-  COD_INSTRUC_BCIA_1_ACR  VARCHAR2(12) not null,
-  COD_INSTRUC_BCIA_2_ACR  VARCHAR2(12) not null,
-  LOGHABILITEMISBOLETO    NUMBER not null,
-  LOG_HABILIT_GERA_AVDEB  NUMBER not null,
-  LOG_RETENC_IMPTO        NUMBER not null,
-  LOG_HABILIT_DB_AUTOM    NUMBER not null,
-  NUM_TIT_ACR_ABER        NUMBER not null,
-  INDSITCLIENPERDADEDUT   VARCHAR2(42) not null,
-  COD_DIGITO_AGENC_BCIA   VARCHAR2(12) not null,
-  COD_LIVRE_1             VARCHAR2(500),
-  LOG_LIVRE_1             NUMBER,
-  NUM_LIVRE_1             NUMBER,
-  VAL_LIVRE_1             NUMBER,
-  DAT_LIVRE_1             DATE,
-  COD_CART_BCIA           VARCHAR2(12) not null,
-  COD_CART_BCIA_PREFER    VARCHAR2(12) not null,
-  COD_LIVRE_2             VARCHAR2(500),
-  LOG_LIVRE_2             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  VAL_LIVRE_2             NUMBER,
-  DAT_LIVRE_2             DATE,
-  DES_LIVRE_1             VARCHAR2(2000) not null,
-  LOG_UTILIZ_VERBA        NUMBER,
-  VAL_PERC_VERBA          NUMBER,
-  VAL_MIN_AVDEB           NUMBER,
-  LOG_CALC_MULTA          NUMBER not null,
-  NUM_DIAS_ATRASO_AVDEB   NUMBER not null,
-  COD_TIP_FLUXO_FINANC    VARCHAR2(24) not null,
-  LOG_ENVIO_BCO_HISTOR    NUMBER not null,
-  CDD_VERSION             NUMBER,
-  CDN_ID_RESERVE          NUMBER,
-  LOG_ENVDO_SERASA        NUMBER,
-  PROGRESS_RECID          NUMBER
+  u##cod_empresa          VARCHAR2(12) not null,
+  cod_empresa             VARCHAR2(12) not null,
+  cdn_cliente             NUMBER not null,
+  cdn_repres              NUMBER,
+  cod_tip_clien           VARCHAR2(16) not null,
+  cod_portad_prefer       VARCHAR2(12),
+  u##cod_portador         VARCHAR2(12),
+  cod_portador            VARCHAR2(12),
+  cod_banco               VARCHAR2(16),
+  cod_agenc_bcia          VARCHAR2(20),
+  cod_cta_corren_bco      VARCHAR2(40),
+  cod_digito_cta_corren   VARCHAR2(12),
+  u##cod_classif_msg_cobr VARCHAR2(16),
+  cod_classif_msg_cobr    VARCHAR2(16),
+  cod_instruc_bcia_1_acr  VARCHAR2(12) not null,
+  cod_instruc_bcia_2_acr  VARCHAR2(12) not null,
+  loghabilitemisboleto    NUMBER not null,
+  log_habilit_gera_avdeb  NUMBER not null,
+  log_retenc_impto        NUMBER not null,
+  log_habilit_db_autom    NUMBER not null,
+  num_tit_acr_aber        NUMBER not null,
+  indsitclienperdadedut   VARCHAR2(42) not null,
+  cod_digito_agenc_bcia   VARCHAR2(12) not null,
+  cod_livre_1             VARCHAR2(500),
+  log_livre_1             NUMBER,
+  num_livre_1             NUMBER,
+  val_livre_1             NUMBER,
+  dat_livre_1             DATE,
+  cod_cart_bcia           VARCHAR2(12) not null,
+  cod_cart_bcia_prefer    VARCHAR2(12) not null,
+  cod_livre_2             VARCHAR2(500),
+  log_livre_2             NUMBER,
+  num_livre_2             NUMBER,
+  val_livre_2             NUMBER,
+  dat_livre_2             DATE,
+  des_livre_1             VARCHAR2(2000) not null,
+  log_utiliz_verba        NUMBER,
+  val_perc_verba          NUMBER,
+  val_min_avdeb           NUMBER,
+  log_calc_multa          NUMBER not null,
+  num_dias_atraso_avdeb   NUMBER not null,
+  cod_tip_fluxo_financ    VARCHAR2(24) not null,
+  log_envio_bco_histor    NUMBER not null,
+  cdd_version             NUMBER,
+  cdn_id_reserve          NUMBER,
+  log_envdo_serasa        NUMBER,
+  progress_recid          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIEN_FINANC_EMS_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIEN_FINANC_EMS_BKP_2
@@ -233,56 +354,65 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.CLIEN_FINANC_EMS_BKP_2
 (
-  U##COD_EMPRESA          VARCHAR2(12) not null,
-  COD_EMPRESA             VARCHAR2(12) not null,
-  CDN_CLIENTE             NUMBER not null,
-  CDN_REPRES              NUMBER,
-  COD_TIP_CLIEN           VARCHAR2(16) not null,
-  COD_PORTAD_PREFER       VARCHAR2(12),
-  U##COD_PORTADOR         VARCHAR2(12),
-  COD_PORTADOR            VARCHAR2(12),
-  COD_BANCO               VARCHAR2(16),
-  COD_AGENC_BCIA          VARCHAR2(20),
-  COD_CTA_CORREN_BCO      VARCHAR2(40),
-  COD_DIGITO_CTA_CORREN   VARCHAR2(12),
-  U##COD_CLASSIF_MSG_COBR VARCHAR2(16),
-  COD_CLASSIF_MSG_COBR    VARCHAR2(16),
-  COD_INSTRUC_BCIA_1_ACR  VARCHAR2(12) not null,
-  COD_INSTRUC_BCIA_2_ACR  VARCHAR2(12) not null,
-  LOGHABILITEMISBOLETO    NUMBER not null,
-  LOG_HABILIT_GERA_AVDEB  NUMBER not null,
-  LOG_RETENC_IMPTO        NUMBER not null,
-  LOG_HABILIT_DB_AUTOM    NUMBER not null,
-  NUM_TIT_ACR_ABER        NUMBER not null,
-  INDSITCLIENPERDADEDUT   VARCHAR2(42) not null,
-  COD_DIGITO_AGENC_BCIA   VARCHAR2(12) not null,
-  COD_LIVRE_1             VARCHAR2(500),
-  LOG_LIVRE_1             NUMBER,
-  NUM_LIVRE_1             NUMBER,
-  VAL_LIVRE_1             NUMBER,
-  DAT_LIVRE_1             DATE,
-  COD_CART_BCIA           VARCHAR2(12) not null,
-  COD_CART_BCIA_PREFER    VARCHAR2(12) not null,
-  COD_LIVRE_2             VARCHAR2(500),
-  LOG_LIVRE_2             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  VAL_LIVRE_2             NUMBER,
-  DAT_LIVRE_2             DATE,
-  DES_LIVRE_1             VARCHAR2(2000) not null,
-  LOG_UTILIZ_VERBA        NUMBER,
-  VAL_PERC_VERBA          NUMBER,
-  VAL_MIN_AVDEB           NUMBER,
-  LOG_CALC_MULTA          NUMBER not null,
-  NUM_DIAS_ATRASO_AVDEB   NUMBER not null,
-  COD_TIP_FLUXO_FINANC    VARCHAR2(24) not null,
-  LOG_ENVIO_BCO_HISTOR    NUMBER not null,
-  CDD_VERSION             NUMBER,
-  CDN_ID_RESERVE          NUMBER,
-  LOG_ENVDO_SERASA        NUMBER,
-  PROGRESS_RECID          NUMBER
+  u##cod_empresa          VARCHAR2(12) not null,
+  cod_empresa             VARCHAR2(12) not null,
+  cdn_cliente             NUMBER not null,
+  cdn_repres              NUMBER,
+  cod_tip_clien           VARCHAR2(16) not null,
+  cod_portad_prefer       VARCHAR2(12),
+  u##cod_portador         VARCHAR2(12),
+  cod_portador            VARCHAR2(12),
+  cod_banco               VARCHAR2(16),
+  cod_agenc_bcia          VARCHAR2(20),
+  cod_cta_corren_bco      VARCHAR2(40),
+  cod_digito_cta_corren   VARCHAR2(12),
+  u##cod_classif_msg_cobr VARCHAR2(16),
+  cod_classif_msg_cobr    VARCHAR2(16),
+  cod_instruc_bcia_1_acr  VARCHAR2(12) not null,
+  cod_instruc_bcia_2_acr  VARCHAR2(12) not null,
+  loghabilitemisboleto    NUMBER not null,
+  log_habilit_gera_avdeb  NUMBER not null,
+  log_retenc_impto        NUMBER not null,
+  log_habilit_db_autom    NUMBER not null,
+  num_tit_acr_aber        NUMBER not null,
+  indsitclienperdadedut   VARCHAR2(42) not null,
+  cod_digito_agenc_bcia   VARCHAR2(12) not null,
+  cod_livre_1             VARCHAR2(500),
+  log_livre_1             NUMBER,
+  num_livre_1             NUMBER,
+  val_livre_1             NUMBER,
+  dat_livre_1             DATE,
+  cod_cart_bcia           VARCHAR2(12) not null,
+  cod_cart_bcia_prefer    VARCHAR2(12) not null,
+  cod_livre_2             VARCHAR2(500),
+  log_livre_2             NUMBER,
+  num_livre_2             NUMBER,
+  val_livre_2             NUMBER,
+  dat_livre_2             DATE,
+  des_livre_1             VARCHAR2(2000) not null,
+  log_utiliz_verba        NUMBER,
+  val_perc_verba          NUMBER,
+  val_min_avdeb           NUMBER,
+  log_calc_multa          NUMBER not null,
+  num_dias_atraso_avdeb   NUMBER not null,
+  cod_tip_fluxo_financ    VARCHAR2(24) not null,
+  log_envio_bco_histor    NUMBER not null,
+  cdd_version             NUMBER,
+  cdn_id_reserve          NUMBER,
+  log_envdo_serasa        NUMBER,
+  progress_recid          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIEN_FINANC_EMS_BKP_2 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIEN_FINANC_EMS_BKP_3
@@ -290,56 +420,65 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.CLIEN_FINANC_EMS_BKP_3
 (
-  U##COD_EMPRESA          VARCHAR2(12) not null,
-  COD_EMPRESA             VARCHAR2(12) not null,
-  CDN_CLIENTE             NUMBER not null,
-  CDN_REPRES              NUMBER,
-  COD_TIP_CLIEN           VARCHAR2(16) not null,
-  COD_PORTAD_PREFER       VARCHAR2(12),
-  U##COD_PORTADOR         VARCHAR2(12),
-  COD_PORTADOR            VARCHAR2(12),
-  COD_BANCO               VARCHAR2(16),
-  COD_AGENC_BCIA          VARCHAR2(20),
-  COD_CTA_CORREN_BCO      VARCHAR2(40),
-  COD_DIGITO_CTA_CORREN   VARCHAR2(12),
-  U##COD_CLASSIF_MSG_COBR VARCHAR2(16),
-  COD_CLASSIF_MSG_COBR    VARCHAR2(16),
-  COD_INSTRUC_BCIA_1_ACR  VARCHAR2(12) not null,
-  COD_INSTRUC_BCIA_2_ACR  VARCHAR2(12) not null,
-  LOGHABILITEMISBOLETO    NUMBER not null,
-  LOG_HABILIT_GERA_AVDEB  NUMBER not null,
-  LOG_RETENC_IMPTO        NUMBER not null,
-  LOG_HABILIT_DB_AUTOM    NUMBER not null,
-  NUM_TIT_ACR_ABER        NUMBER not null,
-  INDSITCLIENPERDADEDUT   VARCHAR2(42) not null,
-  COD_DIGITO_AGENC_BCIA   VARCHAR2(12) not null,
-  COD_LIVRE_1             VARCHAR2(500),
-  LOG_LIVRE_1             NUMBER,
-  NUM_LIVRE_1             NUMBER,
-  VAL_LIVRE_1             NUMBER,
-  DAT_LIVRE_1             DATE,
-  COD_CART_BCIA           VARCHAR2(12) not null,
-  COD_CART_BCIA_PREFER    VARCHAR2(12) not null,
-  COD_LIVRE_2             VARCHAR2(500),
-  LOG_LIVRE_2             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  VAL_LIVRE_2             NUMBER,
-  DAT_LIVRE_2             DATE,
-  DES_LIVRE_1             VARCHAR2(2000) not null,
-  LOG_UTILIZ_VERBA        NUMBER,
-  VAL_PERC_VERBA          NUMBER,
-  VAL_MIN_AVDEB           NUMBER,
-  LOG_CALC_MULTA          NUMBER not null,
-  NUM_DIAS_ATRASO_AVDEB   NUMBER not null,
-  COD_TIP_FLUXO_FINANC    VARCHAR2(24) not null,
-  LOG_ENVIO_BCO_HISTOR    NUMBER not null,
-  CDD_VERSION             NUMBER,
-  CDN_ID_RESERVE          NUMBER,
-  LOG_ENVDO_SERASA        NUMBER,
-  PROGRESS_RECID          NUMBER
+  u##cod_empresa          VARCHAR2(12) not null,
+  cod_empresa             VARCHAR2(12) not null,
+  cdn_cliente             NUMBER not null,
+  cdn_repres              NUMBER,
+  cod_tip_clien           VARCHAR2(16) not null,
+  cod_portad_prefer       VARCHAR2(12),
+  u##cod_portador         VARCHAR2(12),
+  cod_portador            VARCHAR2(12),
+  cod_banco               VARCHAR2(16),
+  cod_agenc_bcia          VARCHAR2(20),
+  cod_cta_corren_bco      VARCHAR2(40),
+  cod_digito_cta_corren   VARCHAR2(12),
+  u##cod_classif_msg_cobr VARCHAR2(16),
+  cod_classif_msg_cobr    VARCHAR2(16),
+  cod_instruc_bcia_1_acr  VARCHAR2(12) not null,
+  cod_instruc_bcia_2_acr  VARCHAR2(12) not null,
+  loghabilitemisboleto    NUMBER not null,
+  log_habilit_gera_avdeb  NUMBER not null,
+  log_retenc_impto        NUMBER not null,
+  log_habilit_db_autom    NUMBER not null,
+  num_tit_acr_aber        NUMBER not null,
+  indsitclienperdadedut   VARCHAR2(42) not null,
+  cod_digito_agenc_bcia   VARCHAR2(12) not null,
+  cod_livre_1             VARCHAR2(500),
+  log_livre_1             NUMBER,
+  num_livre_1             NUMBER,
+  val_livre_1             NUMBER,
+  dat_livre_1             DATE,
+  cod_cart_bcia           VARCHAR2(12) not null,
+  cod_cart_bcia_prefer    VARCHAR2(12) not null,
+  cod_livre_2             VARCHAR2(500),
+  log_livre_2             NUMBER,
+  num_livre_2             NUMBER,
+  val_livre_2             NUMBER,
+  dat_livre_2             DATE,
+  des_livre_1             VARCHAR2(2000) not null,
+  log_utiliz_verba        NUMBER,
+  val_perc_verba          NUMBER,
+  val_min_avdeb           NUMBER,
+  log_calc_multa          NUMBER not null,
+  num_dias_atraso_avdeb   NUMBER not null,
+  cod_tip_fluxo_financ    VARCHAR2(24) not null,
+  log_envio_bco_histor    NUMBER not null,
+  cdd_version             NUMBER,
+  cdn_id_reserve          NUMBER,
+  log_envdo_serasa        NUMBER,
+  progress_recid          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIEN_FINANC_EMS_BKP_3 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIENTE_EMS_BKP
@@ -347,44 +486,53 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.CLIENTE_EMS_BKP
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_CLIENTE            NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_CLIEN       VARCHAR2(12),
-  COD_GRP_CLIEN          VARCHAR2(12),
-  U##COD_TIP_CLIEN       VARCHAR2(16) not null,
-  COD_TIP_CLIEN          VARCHAR2(16) not null,
-  DAT_IMPL_CLIEN         DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_cliente            NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_clien       VARCHAR2(12),
+  cod_grp_clien          VARCHAR2(12),
+  u##cod_tip_clien       VARCHAR2(16) not null,
+  cod_tip_clien          VARCHAR2(16) not null,
+  dat_impl_clien         DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIENTE_EMS_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIENTE_EMS_BKP_2
@@ -392,44 +540,53 @@ prompt ================================
 prompt
 create table EMS506UNICOO.CLIENTE_EMS_BKP_2
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_CLIENTE            NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_CLIEN       VARCHAR2(12),
-  COD_GRP_CLIEN          VARCHAR2(12),
-  U##COD_TIP_CLIEN       VARCHAR2(16) not null,
-  COD_TIP_CLIEN          VARCHAR2(16) not null,
-  DAT_IMPL_CLIEN         DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_cliente            NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_clien       VARCHAR2(12),
+  cod_grp_clien          VARCHAR2(12),
+  u##cod_tip_clien       VARCHAR2(16) not null,
+  cod_tip_clien          VARCHAR2(16) not null,
+  dat_impl_clien         DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIENTE_EMS_BKP_2 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIENTE_EMS_BKP_2701
@@ -437,44 +594,53 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.CLIENTE_EMS_BKP_2701
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_CLIENTE            NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_CLIEN       VARCHAR2(12),
-  COD_GRP_CLIEN          VARCHAR2(12),
-  U##COD_TIP_CLIEN       VARCHAR2(16) not null,
-  COD_TIP_CLIEN          VARCHAR2(16) not null,
-  DAT_IMPL_CLIEN         DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_cliente            NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_clien       VARCHAR2(12),
+  cod_grp_clien          VARCHAR2(12),
+  u##cod_tip_clien       VARCHAR2(16) not null,
+  cod_tip_clien          VARCHAR2(16) not null,
+  dat_impl_clien         DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIENTE_EMS_BKP_2701 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CLIENTE_EMS_BKP_3
@@ -482,44 +648,53 @@ prompt ================================
 prompt
 create table EMS506UNICOO.CLIENTE_EMS_BKP_3
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_CLIENTE            NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_CLIEN       VARCHAR2(12),
-  COD_GRP_CLIEN          VARCHAR2(12),
-  U##COD_TIP_CLIEN       VARCHAR2(16) not null,
-  COD_TIP_CLIEN          VARCHAR2(16) not null,
-  DAT_IMPL_CLIEN         DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_cliente            NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_clien       VARCHAR2(12),
+  cod_grp_clien          VARCHAR2(12),
+  u##cod_tip_clien       VARCHAR2(16) not null,
+  cod_tip_clien          VARCHAR2(16) not null,
+  dat_impl_clien         DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CLIENTE_EMS_BKP_3 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CONTROLE_RETORNO_TITULO_ACR
@@ -527,15 +702,36 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.CONTROLE_RETORNO_TITULO_ACR
 (
-  NRSEQUENCIAL   NUMBER(8) not null,
-  COD_REFER      VARCHAR2(10),
-  DAT_GERACAO    DATE,
-  DAT_LIQUIDACAO DATE
+  nrsequencial   NUMBER(8) not null,
+  cod_refer      VARCHAR2(10),
+  dat_geracao    DATE,
+  dat_liquidacao DATE
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.CONTROLE_RETORNO_TITULO_ACR
-  add constraint PK_CONTROLE_RETORNO_TITULO primary key (NRSEQUENCIAL);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CONTROLE_RETORNO_TITULO_ACR to UNICOOGPS;
+  add constraint PK_CONTROLE_RETORNO_TITULO primary key (NRSEQUENCIAL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_JOSIAS_BANCO_CLIENTE
@@ -543,16 +739,25 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.CST_JOSIAS_BANCO_CLIENTE
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  CDIDENTIFICADOR           VARCHAR2(40),
-  COD_CLIENTE               NUMBER(9) not null,
-  NOM_ABREV                 VARCHAR2(15),
-  COD_ID_FEDER              VARCHAR2(20) not null,
-  COD_BANCO                 VARCHAR2(8) not null,
-  TXFALHA                   VARCHAR2(2000)
+  nrseq_controle_integracao NUMBER(9) not null,
+  cdidentificador           VARCHAR2(40),
+  cod_cliente               NUMBER(9) not null,
+  nom_abrev                 VARCHAR2(15),
+  cod_id_feder              VARCHAR2(20) not null,
+  cod_banco                 VARCHAR2(8) not null,
+  txfalha                   VARCHAR2(2000)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_JOSIAS_BANCO_CLIENTE to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_JOSIAS_FOR
@@ -560,10 +765,19 @@ prompt =============================
 prompt
 create table EMS506UNICOO.CST_JOSIAS_FOR
 (
-  CDIDENTIFICADOR VARCHAR2(40)
+  cdidentificador VARCHAR2(40)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_JOSIAS_FOR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_JOSIAS_FORNEC_ERRO
@@ -571,15 +785,24 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.CST_JOSIAS_FORNEC_ERRO
 (
-  NRREGISTRO             NUMBER(10) not null,
-  NRREGISTRO_PAI         NUMBER(10),
-  COD_FORNECEDOR         NUMBER(9),
-  CDN_FORNECEDOR         NUMBER(10),
-  NOM_ABREV              VARCHAR2(15) not null,
-  NOABREVIADO_FORNECEDOR VARCHAR2(15)
+  nrregistro             NUMBER(10) not null,
+  nrregistro_pai         NUMBER(10),
+  cod_fornecedor         NUMBER(9),
+  cdn_fornecedor         NUMBER(10),
+  nom_abrev              VARCHAR2(15) not null,
+  noabreviado_fornecedor VARCHAR2(15)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_JOSIAS_FORNEC_ERRO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_POSICAO_COONTABIL_PAGAR
@@ -587,43 +810,52 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.CST_POSICAO_COONTABIL_PAGAR
 (
-  NRREGISTRO_TITULO     NUMBER(10) not null,
-  NRREGISTRO_FORNECEDOR NUMBER(8),
-  CDEMPRESA             VARCHAR2(5) not null,
-  IDCONTRATO            VARCHAR2(12),
-  CDHISTORICO           NUMBER,
-  NRDOCUMENTO           VARCHAR2(12),
-  CDPORTADOR            VARCHAR2(3),
-  TPDOCUMENTO           VARCHAR2(3),
-  CDSITUACAO            VARCHAR2(1),
-  CDOPERACAO            VARCHAR2(3),
-  DTVENCIMENTO          DATE,
-  DTTITULO              DATE,
-  CDDIVISAO             NUMBER(6),
-  TXHISTORICO           VARCHAR2(255),
-  CDFORNECEDOR          VARCHAR2(6) not null,
-  CDGRUPO_FORNECEDOR    NUMBER(4) not null,
-  NOGRUPO_FORNECEDOR    VARCHAR2(30),
-  NOPESSOA              VARCHAR2(60),
-  NRCGC_CPF             VARCHAR2(15),
-  TPPESSOA              VARCHAR2(1),
-  NOEMPRESA             VARCHAR2(45),
-  NODOCUMENTO           VARCHAR2(30),
-  NOPORTADOR            VARCHAR2(30),
-  VLTITULO              NUMBER,
-  DTULTIMO_RECEBIMENTO  DATE,
-  VLPAGO                NUMBER,
-  VLDEVIDO              NUMBER,
-  VLDESCONTO            NUMBER,
-  VLABATIMENTO          NUMBER,
-  VLABATIMENTO_2        NUMBER,
-  VLJUROS               NUMBER,
-  VLMULTA               NUMBER,
-  VLTAXA_BANCARIA       NUMBER,
-  CDCONTA_CONTABIL      VARCHAR2(20)
+  nrregistro_titulo     NUMBER(10) not null,
+  nrregistro_fornecedor NUMBER(8),
+  cdempresa             VARCHAR2(5) not null,
+  idcontrato            VARCHAR2(12),
+  cdhistorico           NUMBER,
+  nrdocumento           VARCHAR2(12),
+  cdportador            VARCHAR2(3),
+  tpdocumento           VARCHAR2(3),
+  cdsituacao            VARCHAR2(1),
+  cdoperacao            VARCHAR2(3),
+  dtvencimento          DATE,
+  dttitulo              DATE,
+  cddivisao             NUMBER(6),
+  txhistorico           VARCHAR2(255),
+  cdfornecedor          VARCHAR2(6) not null,
+  cdgrupo_fornecedor    NUMBER(4) not null,
+  nogrupo_fornecedor    VARCHAR2(30),
+  nopessoa              VARCHAR2(60),
+  nrcgc_cpf             VARCHAR2(15),
+  tppessoa              VARCHAR2(1),
+  noempresa             VARCHAR2(45),
+  nodocumento           VARCHAR2(30),
+  noportador            VARCHAR2(30),
+  vltitulo              NUMBER,
+  dtultimo_recebimento  DATE,
+  vlpago                NUMBER,
+  vldevido              NUMBER,
+  vldesconto            NUMBER,
+  vlabatimento          NUMBER,
+  vlabatimento_2        NUMBER,
+  vljuros               NUMBER,
+  vlmulta               NUMBER,
+  vltaxa_bancaria       NUMBER,
+  cdconta_contabil      VARCHAR2(20)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_POSICAO_COONTABIL_PAGAR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_TIT_ACR_GERADO_JOSIAS
@@ -631,18 +863,27 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.CST_TIT_ACR_GERADO_JOSIAS
 (
-  COD_REFER           VARCHAR2(20),
-  NRSEQUENCIAL        NUMBER,
-  NRSEQUENCIAL_ORIGEM NUMBER(10),
-  TPINTEGRACAO        VARCHAR2(2),
-  VAL_TITULO          NUMBER,
-  SIT_TI_CONTROLE     VARCHAR2(2),
-  SIT_TI_TIT_APB      VARCHAR2(2),
-  VLORIGINAL          NUMBER,
-  VAL_SDO_TIT_AP      NUMBER
+  cod_refer           VARCHAR2(20),
+  nrsequencial        NUMBER,
+  nrsequencial_origem NUMBER(10),
+  tpintegracao        VARCHAR2(2),
+  val_titulo          NUMBER,
+  sit_ti_controle     VARCHAR2(2),
+  sit_ti_tit_apb      VARCHAR2(2),
+  vloriginal          NUMBER,
+  val_sdo_tit_ap      NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_TIT_ACR_GERADO_JOSIAS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CST_TIT_APB_GERADO_JOSIAS
@@ -650,19 +891,28 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.CST_TIT_APB_GERADO_JOSIAS
 (
-  COD_REFER           VARCHAR2(20),
-  NRSEQUENCIAL        NUMBER,
-  NRSEQUENCIAL_ORIGEM NUMBER(10),
-  TPINTEGRACAO        VARCHAR2(2),
-  VAL_TITULO          NUMBER,
-  VAL_IMPOSTO         NUMBER,
-  SIT_TI_CONTROLE     VARCHAR2(2),
-  SIT_TI_TIT_APB      VARCHAR2(2),
-  VLORIGINAL          NUMBER,
-  VAL_SDO_TIT_AP      NUMBER
+  cod_refer           VARCHAR2(20),
+  nrsequencial        NUMBER,
+  nrsequencial_origem NUMBER(10),
+  tpintegracao        VARCHAR2(2),
+  val_titulo          NUMBER,
+  val_imposto         NUMBER,
+  sit_ti_controle     VARCHAR2(2),
+  sit_ti_tit_apb      VARCHAR2(2),
+  vloriginal          NUMBER,
+  val_sdo_tit_ap      NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CST_TIT_APB_GERADO_JOSIAS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_CORREN_FORNEC_FALHA
@@ -670,36 +920,45 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.CTA_CORREN_FORNEC_FALHA
 (
-  U##COD_EMPRESA           VARCHAR2(12) not null,
-  COD_EMPRESA              VARCHAR2(12) not null,
-  CDN_FORNECEDOR           NUMBER not null,
-  U##COD_BANCO             VARCHAR2(16) not null,
-  COD_BANCO                VARCHAR2(16) not null,
-  U##COD_AGENC_BCIA        VARCHAR2(20) not null,
-  COD_AGENC_BCIA           VARCHAR2(20) not null,
-  U##COD_DIGITO_AGENC_BCIA VARCHAR2(12) not null,
-  COD_DIGITO_AGENC_BCIA    VARCHAR2(12) not null,
-  U##COD_CTA_CORREN_BCO    VARCHAR2(40) not null,
-  COD_CTA_CORREN_BCO       VARCHAR2(40) not null,
-  U##COD_DIGITO_CTA_CORREN VARCHAR2(12) not null,
-  COD_DIGITO_CTA_CORREN    VARCHAR2(12) not null,
-  DES_CTA_CORREN           VARCHAR2(60),
-  LOG_CTA_CORREN_PREFER    NUMBER not null,
-  COD_LIVRE_1              VARCHAR2(500),
-  COD_LIVRE_2              VARCHAR2(500),
-  LOG_LIVRE_1              NUMBER,
-  LOG_LIVRE_2              NUMBER,
-  NUM_LIVRE_1              NUMBER,
-  NUM_LIVRE_2              NUMBER,
-  VAL_LIVRE_1              NUMBER,
-  VAL_LIVRE_2              NUMBER,
-  DAT_LIVRE_1              DATE,
-  DAT_LIVRE_2              DATE,
-  PROGRESS_RECID           NUMBER,
-  TXFALHA                  VARCHAR2(200)
+  u##cod_empresa           VARCHAR2(12) not null,
+  cod_empresa              VARCHAR2(12) not null,
+  cdn_fornecedor           NUMBER not null,
+  u##cod_banco             VARCHAR2(16) not null,
+  cod_banco                VARCHAR2(16) not null,
+  u##cod_agenc_bcia        VARCHAR2(20) not null,
+  cod_agenc_bcia           VARCHAR2(20) not null,
+  u##cod_digito_agenc_bcia VARCHAR2(12) not null,
+  cod_digito_agenc_bcia    VARCHAR2(12) not null,
+  u##cod_cta_corren_bco    VARCHAR2(40) not null,
+  cod_cta_corren_bco       VARCHAR2(40) not null,
+  u##cod_digito_cta_corren VARCHAR2(12) not null,
+  cod_digito_cta_corren    VARCHAR2(12) not null,
+  des_cta_corren           VARCHAR2(60),
+  log_cta_corren_prefer    NUMBER not null,
+  cod_livre_1              VARCHAR2(500),
+  cod_livre_2              VARCHAR2(500),
+  log_livre_1              NUMBER,
+  log_livre_2              NUMBER,
+  num_livre_1              NUMBER,
+  num_livre_2              NUMBER,
+  val_livre_1              NUMBER,
+  val_livre_2              NUMBER,
+  dat_livre_1              DATE,
+  dat_livre_2              DATE,
+  progress_recid           NUMBER,
+  txfalha                  VARCHAR2(200)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_CORREN_FORNEC_FALHA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_CTBL_2018_02_20
@@ -707,51 +966,60 @@ prompt ==================================
 prompt
 create table EMS506UNICOO.CTA_CTBL_2018_02_20
 (
-  U##COD_PLANO_CTA_CTBL    VARCHAR2(16) not null,
-  COD_PLANO_CTA_CTBL       VARCHAR2(16) not null,
-  U##COD_CTA_CTBL          VARCHAR2(40) not null,
-  COD_CTA_CTBL             VARCHAR2(40) not null,
-  U##DES_TIT_CTBL          VARCHAR2(80) not null,
-  DES_TIT_CTBL             VARCHAR2(80) not null,
-  U##COD_ALTERN_CTA_CTBL   VARCHAR2(24) not null,
-  COD_ALTERN_CTA_CTBL      VARCHAR2(24) not null,
-  CODCTACTBLPADRINTERNAC   VARCHAR2(60),
-  U##COD_TIP_GRP_CTA_CTBL  VARCHAR2(16) not null,
-  COD_TIP_GRP_CTA_CTBL     VARCHAR2(16) not null,
-  U##COD_GRP_CTA_CTBL      VARCHAR2(16) not null,
-  COD_GRP_CTA_CTBL         VARCHAR2(16) not null,
-  U##IND_ESPEC_CTA_CTBL    VARCHAR2(20) not null,
-  IND_ESPEC_CTA_CTBL       VARCHAR2(20) not null,
-  IND_NATUR_CTA_CTBL       VARCHAR2(16) not null,
-  INDUTILIZCTBLFINALID     VARCHAR2(38) not null,
-  U##COD_FINALID_ECON      VARCHAR2(20),
-  COD_FINALID_ECON         VARCHAR2(20),
-  U##COD_UNID_MEDID        VARCHAR2(12),
-  COD_UNID_MEDID           VARCHAR2(12),
-  IND_TIP_TAXAC_CTBL       VARCHAR2(40) not null,
-  U##COD_CENAR_CTBL_EXCLUS VARCHAR2(16),
-  COD_CENAR_CTBL_EXCLUS    VARCHAR2(16),
-  LOGCTACTBLEXCLUSANALIT   NUMBER not null,
-  LOGCONSIDAPURACRESTDO    NUMBER not null,
-  LOG_CONSID_BALAN_PAT     NUMBER not null,
-  DES_ANOT_TAB             VARCHAR2(2000) not null,
-  DAT_INIC_VALID           DATE,
-  DAT_FIM_VALID            DATE not null,
-  COD_LIVRE_1              VARCHAR2(500),
-  LOG_LIVRE_1              NUMBER,
-  NUM_LIVRE_1              NUMBER,
-  VAL_LIVRE_1              NUMBER,
-  DAT_LIVRE_1              DATE,
-  COD_LIVRE_2              VARCHAR2(500),
-  DAT_LIVRE_2              DATE,
-  LOG_LIVRE_2              NUMBER,
-  NUM_LIVRE_2              NUMBER,
-  VAL_LIVRE_2              NUMBER,
-  CDD_VERSION              NUMBER,
-  PROGRESS_RECID           NUMBER
+  u##cod_plano_cta_ctbl    VARCHAR2(16) not null,
+  cod_plano_cta_ctbl       VARCHAR2(16) not null,
+  u##cod_cta_ctbl          VARCHAR2(40) not null,
+  cod_cta_ctbl             VARCHAR2(40) not null,
+  u##des_tit_ctbl          VARCHAR2(80) not null,
+  des_tit_ctbl             VARCHAR2(80) not null,
+  u##cod_altern_cta_ctbl   VARCHAR2(24) not null,
+  cod_altern_cta_ctbl      VARCHAR2(24) not null,
+  codctactblpadrinternac   VARCHAR2(60),
+  u##cod_tip_grp_cta_ctbl  VARCHAR2(16) not null,
+  cod_tip_grp_cta_ctbl     VARCHAR2(16) not null,
+  u##cod_grp_cta_ctbl      VARCHAR2(16) not null,
+  cod_grp_cta_ctbl         VARCHAR2(16) not null,
+  u##ind_espec_cta_ctbl    VARCHAR2(20) not null,
+  ind_espec_cta_ctbl       VARCHAR2(20) not null,
+  ind_natur_cta_ctbl       VARCHAR2(16) not null,
+  indutilizctblfinalid     VARCHAR2(38) not null,
+  u##cod_finalid_econ      VARCHAR2(20),
+  cod_finalid_econ         VARCHAR2(20),
+  u##cod_unid_medid        VARCHAR2(12),
+  cod_unid_medid           VARCHAR2(12),
+  ind_tip_taxac_ctbl       VARCHAR2(40) not null,
+  u##cod_cenar_ctbl_exclus VARCHAR2(16),
+  cod_cenar_ctbl_exclus    VARCHAR2(16),
+  logctactblexclusanalit   NUMBER not null,
+  logconsidapuracrestdo    NUMBER not null,
+  log_consid_balan_pat     NUMBER not null,
+  des_anot_tab             VARCHAR2(2000) not null,
+  dat_inic_valid           DATE,
+  dat_fim_valid            DATE not null,
+  cod_livre_1              VARCHAR2(500),
+  log_livre_1              NUMBER,
+  num_livre_1              NUMBER,
+  val_livre_1              NUMBER,
+  dat_livre_1              DATE,
+  cod_livre_2              VARCHAR2(500),
+  dat_livre_2              DATE,
+  log_livre_2              NUMBER,
+  num_livre_2              NUMBER,
+  val_livre_2              NUMBER,
+  cdd_version              NUMBER,
+  progress_recid           NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_CTBL_2018_02_20 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_CTBL_INTEGR_2018_02_19
@@ -759,32 +1027,41 @@ prompt =========================================
 prompt
 create table EMS506UNICOO.CTA_CTBL_INTEGR_2018_02_19
 (
-  U##COD_MODUL_DTSUL    VARCHAR2(12) not null,
-  COD_MODUL_DTSUL       VARCHAR2(12) not null,
-  U##COD_PLANO_CTA_CTBL VARCHAR2(16) not null,
-  COD_PLANO_CTA_CTBL    VARCHAR2(16) not null,
-  U##COD_CTA_CTBL       VARCHAR2(40) not null,
-  COD_CTA_CTBL          VARCHAR2(40) not null,
-  DAT_INIC_VALID        DATE not null,
-  DAT_FIM_VALID         DATE not null,
-  U##IND_FINALID_CTBL   VARCHAR2(60) not null,
-  IND_FINALID_CTBL      VARCHAR2(60) not null,
-  DES_ANOT_TAB          VARCHAR2(2000) not null,
-  COD_LIVRE_1           VARCHAR2(500),
-  LOG_LIVRE_1           NUMBER,
-  NUM_LIVRE_1           NUMBER,
-  VAL_LIVRE_1           NUMBER,
-  DAT_LIVRE_1           DATE,
-  COD_LIVRE_2           VARCHAR2(500),
-  DAT_LIVRE_2           DATE,
-  LOG_LIVRE_2           NUMBER,
-  NUM_LIVRE_2           NUMBER,
-  VAL_LIVRE_2           NUMBER,
-  CDD_VERSION           NUMBER,
-  PROGRESS_RECID        NUMBER
+  u##cod_modul_dtsul    VARCHAR2(12) not null,
+  cod_modul_dtsul       VARCHAR2(12) not null,
+  u##cod_plano_cta_ctbl VARCHAR2(16) not null,
+  cod_plano_cta_ctbl    VARCHAR2(16) not null,
+  u##cod_cta_ctbl       VARCHAR2(40) not null,
+  cod_cta_ctbl          VARCHAR2(40) not null,
+  dat_inic_valid        DATE not null,
+  dat_fim_valid         DATE not null,
+  u##ind_finalid_ctbl   VARCHAR2(60) not null,
+  ind_finalid_ctbl      VARCHAR2(60) not null,
+  des_anot_tab          VARCHAR2(2000) not null,
+  cod_livre_1           VARCHAR2(500),
+  log_livre_1           NUMBER,
+  num_livre_1           NUMBER,
+  val_livre_1           NUMBER,
+  dat_livre_1           DATE,
+  cod_livre_2           VARCHAR2(500),
+  dat_livre_2           DATE,
+  log_livre_2           NUMBER,
+  num_livre_2           NUMBER,
+  val_livre_2           NUMBER,
+  cdd_version           NUMBER,
+  progress_recid        NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_CTBL_INTEGR_2018_02_19 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_CTBL_INTEGR_BKP_2018_01_16
@@ -792,32 +1069,41 @@ prompt =============================================
 prompt
 create table EMS506UNICOO.CTA_CTBL_INTEGR_BKP_2018_01_16
 (
-  U##COD_MODUL_DTSUL    VARCHAR2(12) not null,
-  COD_MODUL_DTSUL       VARCHAR2(12) not null,
-  U##COD_PLANO_CTA_CTBL VARCHAR2(16) not null,
-  COD_PLANO_CTA_CTBL    VARCHAR2(16) not null,
-  U##COD_CTA_CTBL       VARCHAR2(40) not null,
-  COD_CTA_CTBL          VARCHAR2(40) not null,
-  DAT_INIC_VALID        DATE not null,
-  DAT_FIM_VALID         DATE not null,
-  U##IND_FINALID_CTBL   VARCHAR2(60) not null,
-  IND_FINALID_CTBL      VARCHAR2(60) not null,
-  DES_ANOT_TAB          VARCHAR2(2000) not null,
-  COD_LIVRE_1           VARCHAR2(500),
-  LOG_LIVRE_1           NUMBER,
-  NUM_LIVRE_1           NUMBER,
-  VAL_LIVRE_1           NUMBER,
-  DAT_LIVRE_1           DATE,
-  COD_LIVRE_2           VARCHAR2(500),
-  DAT_LIVRE_2           DATE,
-  LOG_LIVRE_2           NUMBER,
-  NUM_LIVRE_2           NUMBER,
-  VAL_LIVRE_2           NUMBER,
-  CDD_VERSION           NUMBER,
-  PROGRESS_RECID        NUMBER
+  u##cod_modul_dtsul    VARCHAR2(12) not null,
+  cod_modul_dtsul       VARCHAR2(12) not null,
+  u##cod_plano_cta_ctbl VARCHAR2(16) not null,
+  cod_plano_cta_ctbl    VARCHAR2(16) not null,
+  u##cod_cta_ctbl       VARCHAR2(40) not null,
+  cod_cta_ctbl          VARCHAR2(40) not null,
+  dat_inic_valid        DATE not null,
+  dat_fim_valid         DATE not null,
+  u##ind_finalid_ctbl   VARCHAR2(60) not null,
+  ind_finalid_ctbl      VARCHAR2(60) not null,
+  des_anot_tab          VARCHAR2(2000) not null,
+  cod_livre_1           VARCHAR2(500),
+  log_livre_1           NUMBER,
+  num_livre_1           NUMBER,
+  val_livre_1           NUMBER,
+  dat_livre_1           DATE,
+  cod_livre_2           VARCHAR2(500),
+  dat_livre_2           DATE,
+  log_livre_2           NUMBER,
+  num_livre_2           NUMBER,
+  val_livre_2           NUMBER,
+  cdd_version           NUMBER,
+  progress_recid        NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_CTBL_INTEGR_BKP_2018_01_16 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_GRP_CLIEN_BKP_2018_01_16
@@ -825,45 +1111,54 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.CTA_GRP_CLIEN_BKP_2018_01_16
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  U##COD_ESPEC_DOCTO     VARCHAR2(12) not null,
-  COD_ESPEC_DOCTO        VARCHAR2(12) not null,
-  U##COD_GRP_CLIEN       VARCHAR2(12) not null,
-  COD_GRP_CLIEN          VARCHAR2(12) not null,
-  U##COD_FINALID_ECON    VARCHAR2(20) not null,
-  COD_FINALID_ECON       VARCHAR2(20) not null,
-  U##IND_TIP_ESPEC_DOCTO VARCHAR2(34) not null,
-  IND_TIP_ESPEC_DOCTO    VARCHAR2(34) not null,
-  U##IND_FINALID_CTBL    VARCHAR2(60) not null,
-  IND_FINALID_CTBL       VARCHAR2(60) not null,
-  IND_CONTROL_CTBL       VARCHAR2(36) not null,
-  NUM_SEQ_CTA_GRP_CLIEN  NUMBER not null,
-  DAT_INIC_VALID         DATE not null,
-  DAT_FIM_VALID          DATE not null,
-  U##COD_PLANO_CTA_CTBL  VARCHAR2(16) not null,
-  COD_PLANO_CTA_CTBL     VARCHAR2(16) not null,
-  U##COD_CTA_CTBL        VARCHAR2(40) not null,
-  COD_CTA_CTBL           VARCHAR2(40) not null,
-  COD_CTA_CTBL_ATIV      VARCHAR2(40) not null,
-  COD_CTA_CTBL_PASSIV    VARCHAR2(40) not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  COD_PLANO_CCUSTO       VARCHAR2(16) not null,
-  COD_CCUSTO             VARCHAR2(22) not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_1            DATE,
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_1            NUMBER,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  u##cod_espec_docto     VARCHAR2(12) not null,
+  cod_espec_docto        VARCHAR2(12) not null,
+  u##cod_grp_clien       VARCHAR2(12) not null,
+  cod_grp_clien          VARCHAR2(12) not null,
+  u##cod_finalid_econ    VARCHAR2(20) not null,
+  cod_finalid_econ       VARCHAR2(20) not null,
+  u##ind_tip_espec_docto VARCHAR2(34) not null,
+  ind_tip_espec_docto    VARCHAR2(34) not null,
+  u##ind_finalid_ctbl    VARCHAR2(60) not null,
+  ind_finalid_ctbl       VARCHAR2(60) not null,
+  ind_control_ctbl       VARCHAR2(36) not null,
+  num_seq_cta_grp_clien  NUMBER not null,
+  dat_inic_valid         DATE not null,
+  dat_fim_valid          DATE not null,
+  u##cod_plano_cta_ctbl  VARCHAR2(16) not null,
+  cod_plano_cta_ctbl     VARCHAR2(16) not null,
+  u##cod_cta_ctbl        VARCHAR2(40) not null,
+  cod_cta_ctbl           VARCHAR2(40) not null,
+  cod_cta_ctbl_ativ      VARCHAR2(40) not null,
+  cod_cta_ctbl_passiv    VARCHAR2(40) not null,
+  cod_livre_1            VARCHAR2(500),
+  cod_plano_ccusto       VARCHAR2(16) not null,
+  cod_ccusto             VARCHAR2(22) not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_1            DATE,
+  dat_livre_2            DATE,
+  log_livre_1            NUMBER,
+  log_livre_2            NUMBER,
+  num_livre_1            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_1            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_GRP_CLIEN_BKP_2018_01_16 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table CTA_GRP_FORNEC_BKP_2018_01_16
@@ -871,45 +1166,54 @@ prompt ============================================
 prompt
 create table EMS506UNICOO.CTA_GRP_FORNEC_BKP_2018_01_16
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  U##COD_ESPEC_DOCTO     VARCHAR2(12) not null,
-  COD_ESPEC_DOCTO        VARCHAR2(12) not null,
-  U##IND_TIP_ESPEC_DOCTO VARCHAR2(34) not null,
-  IND_TIP_ESPEC_DOCTO    VARCHAR2(34) not null,
-  U##COD_GRP_FORNEC      VARCHAR2(12) not null,
-  COD_GRP_FORNEC         VARCHAR2(12) not null,
-  U##COD_FINALID_ECON    VARCHAR2(20) not null,
-  COD_FINALID_ECON       VARCHAR2(20) not null,
-  U##IND_FINALID_CTBL    VARCHAR2(60) not null,
-  IND_FINALID_CTBL       VARCHAR2(60) not null,
-  NUM_SEQ_CTA_GRP_FORNEC NUMBER not null,
-  U##COD_PLANO_CTA_CTBL  VARCHAR2(16) not null,
-  COD_PLANO_CTA_CTBL     VARCHAR2(16) not null,
-  U##COD_CTA_CTBL        VARCHAR2(40) not null,
-  COD_CTA_CTBL           VARCHAR2(40) not null,
-  DAT_INIC_VALID         DATE not null,
-  DAT_FIM_VALID          DATE not null,
-  COD_CTA_CTBL_ATIV      VARCHAR2(40) not null,
-  COD_CTA_CTBL_PASSIV    VARCHAR2(40) not null,
-  IND_CONTROL_CTBL       VARCHAR2(36) not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  COD_PLANO_CCUSTO       VARCHAR2(16) not null,
-  COD_CCUSTO             VARCHAR2(22) not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_1            DATE,
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_1            NUMBER,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  u##cod_espec_docto     VARCHAR2(12) not null,
+  cod_espec_docto        VARCHAR2(12) not null,
+  u##ind_tip_espec_docto VARCHAR2(34) not null,
+  ind_tip_espec_docto    VARCHAR2(34) not null,
+  u##cod_grp_fornec      VARCHAR2(12) not null,
+  cod_grp_fornec         VARCHAR2(12) not null,
+  u##cod_finalid_econ    VARCHAR2(20) not null,
+  cod_finalid_econ       VARCHAR2(20) not null,
+  u##ind_finalid_ctbl    VARCHAR2(60) not null,
+  ind_finalid_ctbl       VARCHAR2(60) not null,
+  num_seq_cta_grp_fornec NUMBER not null,
+  u##cod_plano_cta_ctbl  VARCHAR2(16) not null,
+  cod_plano_cta_ctbl     VARCHAR2(16) not null,
+  u##cod_cta_ctbl        VARCHAR2(40) not null,
+  cod_cta_ctbl           VARCHAR2(40) not null,
+  dat_inic_valid         DATE not null,
+  dat_fim_valid          DATE not null,
+  cod_cta_ctbl_ativ      VARCHAR2(40) not null,
+  cod_cta_ctbl_passiv    VARCHAR2(40) not null,
+  ind_control_ctbl       VARCHAR2(36) not null,
+  cod_livre_1            VARCHAR2(500),
+  cod_plano_ccusto       VARCHAR2(16) not null,
+  cod_ccusto             VARCHAR2(22) not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_1            DATE,
+  dat_livre_2            DATE,
+  log_livre_1            NUMBER,
+  log_livre_2            NUMBER,
+  num_livre_1            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_1            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.CTA_GRP_FORNEC_BKP_2018_01_16 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table DEPARA_HIST_APB_NAO_MIGRAR
@@ -917,10 +1221,19 @@ prompt =========================================
 prompt
 create table EMS506UNICOO.DEPARA_HIST_APB_NAO_MIGRAR
 (
-  CDHISTORICO NUMBER(4)
+  cdhistorico NUMBER(4)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.DEPARA_HIST_APB_NAO_MIGRAR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 30
+  maxtrans 255
+  storage
+  (
+    initial 18M
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table EMS_FALHA_ACR_UNICOO
@@ -928,12 +1241,21 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.EMS_FALHA_ACR_UNICOO
 (
-  NUM_ID_TIT_ACR NUMBER(12),
-  TXFALHA        VARCHAR2(4000),
-  DTFALHA        DATE
+  num_id_tit_acr NUMBER(12),
+  txfalha        VARCHAR2(4000),
+  dtfalha        DATE
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.EMS_FALHA_ACR_UNICOO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table EMS_MOVIMENTO_TITULO_ACR
@@ -941,43 +1263,97 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR
 (
-  DTMOVIMENTO_EMS       DATE,
-  DTMOVIMENTO_UNICOO    DATE,
-  TXULTIMA_FALHA        VARCHAR2(4000),
-  NUM_ID_TIT_ACR        NUMBER not null,
-  NUM_ID_MOVTO_TIT_ACR  NUMBER not null,
-  COD_SER_DOCTO         VARCHAR2(6) not null,
-  COD_TIT_ACR           VARCHAR2(10) not null,
-  COD_PARCELA           VARCHAR2(6),
-  VAL_LIQ_TIT_ACR       NUMBER(12,2),
-  DAT_VENCTO_TIT_ACR    DATE,
-  VAL_AJUST_VAL_TIT_ACR NUMBER(12,2),
-  VAL_MOVTO_TIT_ACR     NUMBER(12,2) not null,
-  VAL_MULTA_TIT_ACR     NUMBER(12,2) not null,
-  VAL_JUROS             NUMBER(12,2) not null,
-  VAL_DESCONTO          NUMBER(12,2) not null,
-  VAL_ABAT_TIT_ACR      NUMBER(12,2) not null,
-  VAL_DESPES_BCIA       NUMBER(12,2),
-  DAT_CR_MOVTO_TIT_ACR  DATE,
-  DAT_TRANSACAO         DATE not null,
-  IND_TRANS_ACR_ABREV   VARCHAR2(6),
-  COD_TIT_ACR_BCO       VARCHAR2(20),
-  COD_REFER             VARCHAR2(10),
-  COD_ESTAB             VARCHAR2(6),
-  COD_ESPEC_DOCTO       VARCHAR2(6),
-  NRMOVIMENTO           NUMBER(10),
-  IND_TIP_ESPEC_DOCTO   VARCHAR2(17),
-  NRREGISTRO_TITULO     NUMBER(8),
-  NRDOCUMENTO           VARCHAR2(20),
-  DAT_LIQUIDAC_TIT_ACR  DATE
+  dtmovimento_ems       DATE,
+  dtmovimento_unicoo    DATE,
+  txultima_falha        VARCHAR2(4000),
+  num_id_tit_acr        NUMBER not null,
+  num_id_movto_tit_acr  NUMBER not null,
+  cod_ser_docto         VARCHAR2(6) not null,
+  cod_tit_acr           VARCHAR2(10) not null,
+  cod_parcela           VARCHAR2(6),
+  val_liq_tit_acr       NUMBER(12,2),
+  dat_vencto_tit_acr    DATE,
+  val_ajust_val_tit_acr NUMBER(12,2),
+  val_movto_tit_acr     NUMBER(12,2) not null,
+  val_multa_tit_acr     NUMBER(12,2) not null,
+  val_juros             NUMBER(12,2) not null,
+  val_desconto          NUMBER(12,2) not null,
+  val_abat_tit_acr      NUMBER(12,2) not null,
+  val_despes_bcia       NUMBER(12,2),
+  dat_cr_movto_tit_acr  DATE,
+  dat_transacao         DATE not null,
+  ind_trans_acr_abrev   VARCHAR2(6),
+  cod_tit_acr_bco       VARCHAR2(20),
+  cod_refer             VARCHAR2(10),
+  cod_estab             VARCHAR2(6),
+  cod_espec_docto       VARCHAR2(6),
+  nrmovimento           NUMBER(10),
+  ind_tip_espec_docto   VARCHAR2(17),
+  nrregistro_titulo     NUMBER(8),
+  nrdocumento           VARCHAR2(20),
+  dat_liquidac_tit_acr  DATE
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_03 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (COD_ESTAB, COD_ESPEC_DOCTO, COD_SER_DOCTO, COD_TIT_ACR, COD_PARCELA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_04 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (NRDOCUMENTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_05 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (COD_SER_DOCTO, COD_TIT_ACR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR
-  add constraint PK_EMS_MOVTO_TITULO_ACR primary key (NUM_ID_MOVTO_TIT_ACR);
-create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_03 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (COD_ESTAB, COD_ESPEC_DOCTO, COD_SER_DOCTO, COD_TIT_ACR, COD_PARCELA);
-create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_04 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (NRDOCUMENTO);
-create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_ACR_05 on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR (COD_SER_DOCTO, COD_TIT_ACR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR to UNICOOGPS;
+  add constraint PK_EMS_MOVTO_TITULO_ACR primary key (NUM_ID_MOVTO_TIT_ACR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table EMS_MOVIMENTO_TITULO_ACR_LOG
@@ -985,40 +1361,61 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR_LOG
 (
-  DTMOVIMENTO_EMS       DATE,
-  DTMOVIMENTO_UNICOO    DATE,
-  TXULTIMA_FALHA        VARCHAR2(4000),
-  NUM_ID_TIT_ACR        NUMBER not null,
-  NUM_ID_MOVTO_TIT_ACR  NUMBER not null,
-  COD_SER_DOCTO         VARCHAR2(6) not null,
-  COD_TIT_ACR           VARCHAR2(10) not null,
-  COD_PARCELA           VARCHAR2(6),
-  VAL_LIQ_TIT_ACR       NUMBER(12,2),
-  DAT_VENCTO_TIT_ACR    DATE,
-  VAL_AJUST_VAL_TIT_ACR NUMBER(12,2),
-  VAL_MOVTO_TIT_ACR     NUMBER(12,2) not null,
-  VAL_MULTA_TIT_ACR     NUMBER(12,2) not null,
-  VAL_JUROS             NUMBER(12,2) not null,
-  VAL_DESCONTO          NUMBER(12,2) not null,
-  VAL_ABAT_TIT_ACR      NUMBER(12,2) not null,
-  VAL_DESPES_BCIA       NUMBER(12,2),
-  DAT_CR_MOVTO_TIT_ACR  DATE,
-  DAT_TRANSACAO         DATE not null,
-  IND_TRANS_ACR_ABREV   VARCHAR2(6),
-  COD_TIT_ACR_BCO       VARCHAR2(20),
-  COD_REFER             VARCHAR2(10),
-  COD_ESTAB             VARCHAR2(6),
-  COD_ESPEC_DOCTO       VARCHAR2(6),
-  NRMOVIMENTO           NUMBER(10),
-  IND_TIP_ESPEC_DOCTO   VARCHAR2(17),
-  NRREGISTRO_TITULO     NUMBER(8),
-  NRDOCUMENTO           VARCHAR2(12),
-  DAT_LIQUIDAC_TIT_ACR  DATE
+  dtmovimento_ems       DATE,
+  dtmovimento_unicoo    DATE,
+  txultima_falha        VARCHAR2(4000),
+  num_id_tit_acr        NUMBER not null,
+  num_id_movto_tit_acr  NUMBER not null,
+  cod_ser_docto         VARCHAR2(6) not null,
+  cod_tit_acr           VARCHAR2(10) not null,
+  cod_parcela           VARCHAR2(6),
+  val_liq_tit_acr       NUMBER(12,2),
+  dat_vencto_tit_acr    DATE,
+  val_ajust_val_tit_acr NUMBER(12,2),
+  val_movto_tit_acr     NUMBER(12,2) not null,
+  val_multa_tit_acr     NUMBER(12,2) not null,
+  val_juros             NUMBER(12,2) not null,
+  val_desconto          NUMBER(12,2) not null,
+  val_abat_tit_acr      NUMBER(12,2) not null,
+  val_despes_bcia       NUMBER(12,2),
+  dat_cr_movto_tit_acr  DATE,
+  dat_transacao         DATE not null,
+  ind_trans_acr_abrev   VARCHAR2(6),
+  cod_tit_acr_bco       VARCHAR2(20),
+  cod_refer             VARCHAR2(10),
+  cod_estab             VARCHAR2(6),
+  cod_espec_docto       VARCHAR2(6),
+  nrmovimento           NUMBER(10),
+  ind_tip_espec_docto   VARCHAR2(17),
+  nrregistro_titulo     NUMBER(8),
+  nrdocumento           VARCHAR2(12),
+  dat_liquidac_tit_acr  DATE
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR_LOG
-  add constraint PK_EMS_MOVTO_TITULO_ACR_LOG primary key (NUM_ID_MOVTO_TIT_ACR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.EMS_MOVIMENTO_TITULO_ACR_LOG to UNICOOGPS;
+  add constraint PK_EMS_MOVTO_TITULO_ACR_LOG primary key (NUM_ID_MOVTO_TIT_ACR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table EMS_TRANSACAO_ACR
@@ -1026,17 +1423,38 @@ prompt ================================
 prompt
 create table EMS506UNICOO.EMS_TRANSACAO_ACR
 (
-  CDTRANSACAO VARCHAR2(6) not null,
-  NOTRANSACAO VARCHAR2(29),
-  VLSINAL     NUMBER(1),
-  CDMOVIMENTO VARCHAR2(2),
-  AODESCONTO  VARCHAR2(1) default 'N',
-  CDDESCONTO  VARCHAR2(2)
+  cdtransacao VARCHAR2(6) not null,
+  notransacao VARCHAR2(29),
+  vlsinal     NUMBER(1),
+  cdmovimento VARCHAR2(2),
+  aodesconto  VARCHAR2(1) default 'N',
+  cddesconto  VARCHAR2(2)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.EMS_TRANSACAO_ACR
-  add constraint PK_EMS_TRANSACAO_ACR primary key (CDTRANSACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.EMS_TRANSACAO_ACR to UNICOOGPS;
+  add constraint PK_EMS_TRANSACAO_ACR primary key (CDTRANSACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table ENCONTAS
@@ -1044,33 +1462,64 @@ prompt =======================
 prompt
 create table EMS506UNICOO.ENCONTAS
 (
-  CDN_CAMARA            NUMBER,
-  CDN_ENCONTAS          NUMBER not null,
-  U##COD_ESTAB          VARCHAR2(6) not null,
-  COD_ESTAB             VARCHAR2(6) not null,
-  COD_FORNECEDOR        NUMBER not null,
-  COD_REFER_ACR         VARCHAR2(10),
-  COD_REFER_APB         VARCHAR2(10),
-  COD_TIT_ENCONTAS      VARCHAR2(10),
-  CODUSUARIOCONFIRMACAO VARCHAR2(12),
-  COD_USUARIO_CRIACAO   VARCHAR2(12),
-  DES_ENCONTAS          VARCHAR2(30),
-  DT_ALTERACAO          DATE,
-  DT_CANCELAMENTO       DATE,
-  DT_CONFIRMACAO        DATE,
-  DT_CRIACAO_ENCONTAS   DATE,
-  DT_VENCIMENTO         DATE,
-  IN_STATUS_ENCONTAS    VARCHAR2(10),
-  LG_MODULO_ENCONTRO    NUMBER,
-  NUM_ID_ENCONTAS       NUMBER,
-  VL_ENCONTAS           NUMBER,
-  VL_SALDO              NUMBER,
-  PROGRESS_RECID        NUMBER
+  cdn_camara            NUMBER,
+  cdn_encontas          NUMBER not null,
+  u##cod_estab          VARCHAR2(6) not null,
+  cod_estab             VARCHAR2(6) not null,
+  cod_fornecedor        NUMBER not null,
+  cod_refer_acr         VARCHAR2(10),
+  cod_refer_apb         VARCHAR2(10),
+  cod_tit_encontas      VARCHAR2(10),
+  codusuarioconfirmacao VARCHAR2(12),
+  cod_usuario_criacao   VARCHAR2(12),
+  des_encontas          VARCHAR2(30),
+  dt_alteracao          DATE,
+  dt_cancelamento       DATE,
+  dt_confirmacao        DATE,
+  dt_criacao_encontas   DATE,
+  dt_vencimento         DATE,
+  in_status_encontas    VARCHAR2(10),
+  lg_modulo_encontro    NUMBER,
+  num_id_encontas       NUMBER,
+  vl_encontas           NUMBER,
+  vl_saldo              NUMBER,
+  progress_recid        NUMBER
 )
-;
-create unique index EMS506UNICOO.ENCONTAS##ENCONTA on EMS506UNICOO.ENCONTAS (CDN_ENCONTAS, U##COD_ESTAB, COD_FORNECEDOR);
-create unique index EMS506UNICOO.ENCONTAS##REC on EMS506UNICOO.ENCONTAS (PROGRESS_RECID);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.ENCONTAS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.ENCONTAS##ENCONTA on EMS506UNICOO.ENCONTAS (CDN_ENCONTAS, U##COD_ESTAB, COD_FORNECEDOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.ENCONTAS##REC on EMS506UNICOO.ENCONTAS (PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table END_MIGRA
@@ -1078,16 +1527,25 @@ prompt ========================
 prompt
 create table EMS506UNICOO.END_MIGRA
 (
-  LOGRA_UNICOO VARCHAR2(40),
-  COMPL_UNICOO VARCHAR2(15),
-  LOGRA_TOTVS  VARCHAR2(40),
-  COMPL_TOTVS  VARCHAR2(10),
-  LINHA        NUMBER,
-  NR_UNICOO    VARCHAR2(6),
-  NRREGISTRO   NUMBER(10)
+  logra_unicoo VARCHAR2(40),
+  compl_unicoo VARCHAR2(15),
+  logra_totvs  VARCHAR2(40),
+  compl_totvs  VARCHAR2(10),
+  linha        NUMBER,
+  nr_unicoo    VARCHAR2(6),
+  nrregistro   NUMBER(10)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.END_MIGRA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table ENDERECO_UNICOO
@@ -1095,43 +1553,64 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.ENDERECO_UNICOO
 (
-  NRREGISTRO            NUMBER(8) not null,
-  TPENDERECO            VARCHAR2(4) not null,
-  NOLOGRADOURO          VARCHAR2(40),
-  NRIMOVEL              NUMBER(5),
-  TXCOMPLEMENTO         VARCHAR2(15),
-  NOBAIRRO              VARCHAR2(25),
-  CDCIDADE              VARCHAR2(4),
-  CDESTADO              VARCHAR2(2),
-  NRCEP                 VARCHAR2(8),
-  NRTELEFONE            VARCHAR2(24),
-  NRFAX                 VARCHAR2(24),
-  NOCONTATO             VARCHAR2(30),
-  NOCARGOCONTATO        VARCHAR2(20),
-  CDEMAIL               VARCHAR2(40),
-  TXOBSERVACOES         VARCHAR2(255),
-  AOCORRESPONDENCIA     VARCHAR2(1),
-  NOOPERADOR            VARCHAR2(20),
-  NRCELULAR             VARCHAR2(24),
-  AOSITUACAO            VARCHAR2(1),
-  NRDDD                 VARCHAR2(4),
-  TXREFERENCIA_ENDERECO VARCHAR2(60),
-  AORESIDE_EXTERIOR     VARCHAR2(1),
-  TPLOGRADOURO_PTU      VARCHAR2(2),
-  CDEMAIL_ADICIONAL     VARCHAR2(255)
+  nrregistro            NUMBER(8) not null,
+  tpendereco            VARCHAR2(4) not null,
+  nologradouro          VARCHAR2(40),
+  nrimovel              NUMBER(5),
+  txcomplemento         VARCHAR2(15),
+  nobairro              VARCHAR2(25),
+  cdcidade              VARCHAR2(4),
+  cdestado              VARCHAR2(2),
+  nrcep                 VARCHAR2(8),
+  nrtelefone            VARCHAR2(24),
+  nrfax                 VARCHAR2(24),
+  nocontato             VARCHAR2(30),
+  nocargocontato        VARCHAR2(20),
+  cdemail               VARCHAR2(40),
+  txobservacoes         VARCHAR2(255),
+  aocorrespondencia     VARCHAR2(1),
+  nooperador            VARCHAR2(20),
+  nrcelular             VARCHAR2(24),
+  aosituacao            VARCHAR2(1),
+  nrddd                 VARCHAR2(4),
+  txreferencia_endereco VARCHAR2(60),
+  aoreside_exterior     VARCHAR2(1),
+  tplogradouro_ptu      VARCHAR2(2),
+  cdemail_adicional     VARCHAR2(255)
 )
-;
-comment on column EMS506UNICOO.ENDERECO_UNICOO.TXREFERENCIA_ENDERECO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.ENDERECO_UNICOO.txreferencia_endereco
   is 'Esse campo será um auxiliar do complemento do endereço.';
-comment on column EMS506UNICOO.ENDERECO_UNICOO.AORESIDE_EXTERIOR
+comment on column EMS506UNICOO.ENDERECO_UNICOO.aoreside_exterior
   is 'Informa se o usuario reside ou nco no exterior. Valores possmveis ''N'' - Nco reside; ''S'' - Reside.';
-comment on column EMS506UNICOO.ENDERECO_UNICOO.TPLOGRADOURO_PTU
+comment on column EMS506UNICOO.ENDERECO_UNICOO.tplogradouro_ptu
   is 'Tipo de Logradouro do PTU (Valores possíveis: tabela de código ''TIPO_LOGRADOURO_PTU'')';
-comment on column EMS506UNICOO.ENDERECO_UNICOO.CDEMAIL_ADICIONAL
+comment on column EMS506UNICOO.ENDERECO_UNICOO.cdemail_adicional
   is 'Opção para um e-mail adicional';
 alter table EMS506UNICOO.ENDERECO_UNICOO
-  add constraint PK_ENDERECO primary key (NRREGISTRO, TPENDERECO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.ENDERECO_UNICOO to UNICOOGPS;
+  add constraint PK_ENDERECO primary key (NRREGISTRO, TPENDERECO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table ES_PARAM_RECIBO
@@ -1139,24 +1618,88 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.ES_PARAM_RECIBO
 (
-  DES_DIR_REC_ACR VARCHAR2(60),
-  DES_DIR_REC_APB VARCHAR2(60),
-  DES_DIR_DARF    VARCHAR2(60),
-  NUM_SEQ         NUMBER,
-  NUM_SEQ_AP      NUMBER,
-  NUM_SEQ_CR      NUMBER,
-  NUM_SEQ_DARF    NUMBER,
-  LIVRE_1         VARCHAR2(200),
-  LIVRE_2         VARCHAR2(200),
-  PROGRESS_RECID  NUMBER
+  des_dir_rec_acr VARCHAR2(60),
+  des_dir_rec_apb VARCHAR2(60),
+  des_dir_darf    VARCHAR2(60),
+  num_seq         NUMBER,
+  num_seq_ap      NUMBER,
+  num_seq_cr      NUMBER,
+  num_seq_darf    NUMBER,
+  livre_1         VARCHAR2(200),
+  livre_2         VARCHAR2(200),
+  progress_recid  NUMBER
 )
-;
-create unique index EMS506UNICOO.ES_PARAM_RECIBO on EMS506UNICOO.ES_PARAM_RECIBO (PROGRESS_RECID);
-create unique index EMS506UNICOO.ES_PARAM_RECIBO##ID on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ);
-create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_AP on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_AP, PROGRESS_RECID);
-create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_CR on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_CR, PROGRESS_RECID);
-create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_DARF on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_DARF, PROGRESS_RECID);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.ES_PARAM_RECIBO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.ES_PARAM_RECIBO on EMS506UNICOO.ES_PARAM_RECIBO (PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.ES_PARAM_RECIBO##ID on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_AP on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_AP, PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_CR on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_CR, PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.ES_PARAM_RECIBO##SEQ_DARF on EMS506UNICOO.ES_PARAM_RECIBO (NUM_SEQ_DARF, PROGRESS_RECID)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNEC_FINAC_EMS_BKP_2701
@@ -1164,64 +1707,73 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.FORNEC_FINAC_EMS_BKP_2701
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##COD_PORTADOR        VARCHAR2(12) not null,
-  COD_PORTADOR           VARCHAR2(12) not null,
-  COD_BANCO              VARCHAR2(16) not null,
-  COD_AGENC_BCIA         VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA  VARCHAR2(12) not null,
-  COD_CTA_CORREN_BCO     VARCHAR2(40) not null,
-  COD_DIGITO_CTA_CORREN  VARCHAR2(12) not null,
-  U##COD_FORMA_PAGTO     VARCHAR2(12),
-  COD_FORMA_PAGTO        VARCHAR2(12),
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  COD_TIP_FLUXO_FINANC   VARCHAR2(24) not null,
-  IND_TRATAM_VENCTO_SAB  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_DOM  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_FER  VARCHAR2(16) not null,
-  INDPAGTOJUROSFORNECAP  VARCHAR2(16) not null,
-  IND_TIP_FORNECTO       VARCHAR2(16) not null,
-  IND_ARMAZ_VAL_PAGTO    VARCHAR2(24) not null,
-  LOG_FORNEC_SERV_EXPORT NUMBER not null,
-  LOG_PAGTO_BLOQDO       NUMBER not null,
-  LOG_RETENC_IMPTO       NUMBER not null,
-  DAT_ULT_IMPL_TIT_AP    DATE,
-  DAT_ULT_PAGTO          DATE,
-  DAT_IMPL_MAIOR_TIT_AP  DATE,
-  NUM_ANTECIP_ABER       NUMBER,
-  NUM_TIT_AP_ABER        NUMBER,
-  VAL_TIT_AP_MAIOR_VAL   NUMBER,
-  VALTITAPMAIORVALABER   NUMBER,
-  VAL_SDO_ANTECIP_ABER   NUMBER,
-  VAL_SDO_TIT_AP_ABER    NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  VAL_ULT_IMPL_TIT_AP    NUMBER not null,
-  NUM_RENDTO_TRIBUT      NUMBER not null,
-  LOGVENCTODIANAOUTIL    NUMBER not null,
-  VAL_PERCENT_BONIF      NUMBER not null,
-  LOG_INDIC_RENDTO       NUMBER not null,
-  NUM_DIAS_COMPCAO       NUMBER not null,
-  LOG_ENVIO_BCO_HISTOR   NUMBER not null,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_ASSOC_DESPORT      NUMBER,
-  LOG_COOPERAT           NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##cod_portador        VARCHAR2(12) not null,
+  cod_portador           VARCHAR2(12) not null,
+  cod_banco              VARCHAR2(16) not null,
+  cod_agenc_bcia         VARCHAR2(20) not null,
+  cod_digito_agenc_bcia  VARCHAR2(12) not null,
+  cod_cta_corren_bco     VARCHAR2(40) not null,
+  cod_digito_cta_corren  VARCHAR2(12) not null,
+  u##cod_forma_pagto     VARCHAR2(12),
+  cod_forma_pagto        VARCHAR2(12),
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  cod_tip_fluxo_financ   VARCHAR2(24) not null,
+  ind_tratam_vencto_sab  VARCHAR2(16) not null,
+  ind_tratam_vencto_dom  VARCHAR2(16) not null,
+  ind_tratam_vencto_fer  VARCHAR2(16) not null,
+  indpagtojurosfornecap  VARCHAR2(16) not null,
+  ind_tip_fornecto       VARCHAR2(16) not null,
+  ind_armaz_val_pagto    VARCHAR2(24) not null,
+  log_fornec_serv_export NUMBER not null,
+  log_pagto_bloqdo       NUMBER not null,
+  log_retenc_impto       NUMBER not null,
+  dat_ult_impl_tit_ap    DATE,
+  dat_ult_pagto          DATE,
+  dat_impl_maior_tit_ap  DATE,
+  num_antecip_aber       NUMBER,
+  num_tit_ap_aber        NUMBER,
+  val_tit_ap_maior_val   NUMBER,
+  valtitapmaiorvalaber   NUMBER,
+  val_sdo_antecip_aber   NUMBER,
+  val_sdo_tit_ap_aber    NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  val_ult_impl_tit_ap    NUMBER not null,
+  num_rendto_tribut      NUMBER not null,
+  logvenctodianaoutil    NUMBER not null,
+  val_percent_bonif      NUMBER not null,
+  log_indic_rendto       NUMBER not null,
+  num_dias_compcao       NUMBER not null,
+  log_envio_bco_histor   NUMBER not null,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_assoc_desport      NUMBER,
+  log_cooperat           NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNEC_FINAC_EMS_BKP_2701 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNEC_FINANC_EMS_BKP
@@ -1229,64 +1781,73 @@ prompt ====================================
 prompt
 create table EMS506UNICOO.FORNEC_FINANC_EMS_BKP
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##COD_PORTADOR        VARCHAR2(12) not null,
-  COD_PORTADOR           VARCHAR2(12) not null,
-  COD_BANCO              VARCHAR2(16) not null,
-  COD_AGENC_BCIA         VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA  VARCHAR2(12) not null,
-  COD_CTA_CORREN_BCO     VARCHAR2(40) not null,
-  COD_DIGITO_CTA_CORREN  VARCHAR2(12) not null,
-  U##COD_FORMA_PAGTO     VARCHAR2(12),
-  COD_FORMA_PAGTO        VARCHAR2(12),
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  COD_TIP_FLUXO_FINANC   VARCHAR2(24) not null,
-  IND_TRATAM_VENCTO_SAB  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_DOM  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_FER  VARCHAR2(16) not null,
-  INDPAGTOJUROSFORNECAP  VARCHAR2(16) not null,
-  IND_TIP_FORNECTO       VARCHAR2(16) not null,
-  IND_ARMAZ_VAL_PAGTO    VARCHAR2(24) not null,
-  LOG_FORNEC_SERV_EXPORT NUMBER not null,
-  LOG_PAGTO_BLOQDO       NUMBER not null,
-  LOG_RETENC_IMPTO       NUMBER not null,
-  DAT_ULT_IMPL_TIT_AP    DATE,
-  DAT_ULT_PAGTO          DATE,
-  DAT_IMPL_MAIOR_TIT_AP  DATE,
-  NUM_ANTECIP_ABER       NUMBER,
-  NUM_TIT_AP_ABER        NUMBER,
-  VAL_TIT_AP_MAIOR_VAL   NUMBER,
-  VALTITAPMAIORVALABER   NUMBER,
-  VAL_SDO_ANTECIP_ABER   NUMBER,
-  VAL_SDO_TIT_AP_ABER    NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  VAL_ULT_IMPL_TIT_AP    NUMBER not null,
-  NUM_RENDTO_TRIBUT      NUMBER not null,
-  LOGVENCTODIANAOUTIL    NUMBER not null,
-  VAL_PERCENT_BONIF      NUMBER not null,
-  LOG_INDIC_RENDTO       NUMBER not null,
-  NUM_DIAS_COMPCAO       NUMBER not null,
-  LOG_ENVIO_BCO_HISTOR   NUMBER not null,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_ASSOC_DESPORT      NUMBER,
-  LOG_COOPERAT           NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##cod_portador        VARCHAR2(12) not null,
+  cod_portador           VARCHAR2(12) not null,
+  cod_banco              VARCHAR2(16) not null,
+  cod_agenc_bcia         VARCHAR2(20) not null,
+  cod_digito_agenc_bcia  VARCHAR2(12) not null,
+  cod_cta_corren_bco     VARCHAR2(40) not null,
+  cod_digito_cta_corren  VARCHAR2(12) not null,
+  u##cod_forma_pagto     VARCHAR2(12),
+  cod_forma_pagto        VARCHAR2(12),
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  cod_tip_fluxo_financ   VARCHAR2(24) not null,
+  ind_tratam_vencto_sab  VARCHAR2(16) not null,
+  ind_tratam_vencto_dom  VARCHAR2(16) not null,
+  ind_tratam_vencto_fer  VARCHAR2(16) not null,
+  indpagtojurosfornecap  VARCHAR2(16) not null,
+  ind_tip_fornecto       VARCHAR2(16) not null,
+  ind_armaz_val_pagto    VARCHAR2(24) not null,
+  log_fornec_serv_export NUMBER not null,
+  log_pagto_bloqdo       NUMBER not null,
+  log_retenc_impto       NUMBER not null,
+  dat_ult_impl_tit_ap    DATE,
+  dat_ult_pagto          DATE,
+  dat_impl_maior_tit_ap  DATE,
+  num_antecip_aber       NUMBER,
+  num_tit_ap_aber        NUMBER,
+  val_tit_ap_maior_val   NUMBER,
+  valtitapmaiorvalaber   NUMBER,
+  val_sdo_antecip_aber   NUMBER,
+  val_sdo_tit_ap_aber    NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  val_ult_impl_tit_ap    NUMBER not null,
+  num_rendto_tribut      NUMBER not null,
+  logvenctodianaoutil    NUMBER not null,
+  val_percent_bonif      NUMBER not null,
+  log_indic_rendto       NUMBER not null,
+  num_dias_compcao       NUMBER not null,
+  log_envio_bco_histor   NUMBER not null,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_assoc_desport      NUMBER,
+  log_cooperat           NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNEC_FINANC_EMS_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNEC_FINANC_EMS_BKP_2
@@ -1294,64 +1855,73 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.FORNEC_FINANC_EMS_BKP_2
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##COD_PORTADOR        VARCHAR2(12) not null,
-  COD_PORTADOR           VARCHAR2(12) not null,
-  COD_BANCO              VARCHAR2(16) not null,
-  COD_AGENC_BCIA         VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA  VARCHAR2(12) not null,
-  COD_CTA_CORREN_BCO     VARCHAR2(40) not null,
-  COD_DIGITO_CTA_CORREN  VARCHAR2(12) not null,
-  U##COD_FORMA_PAGTO     VARCHAR2(12),
-  COD_FORMA_PAGTO        VARCHAR2(12),
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  COD_TIP_FLUXO_FINANC   VARCHAR2(24) not null,
-  IND_TRATAM_VENCTO_SAB  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_DOM  VARCHAR2(16) not null,
-  IND_TRATAM_VENCTO_FER  VARCHAR2(16) not null,
-  INDPAGTOJUROSFORNECAP  VARCHAR2(16) not null,
-  IND_TIP_FORNECTO       VARCHAR2(16) not null,
-  IND_ARMAZ_VAL_PAGTO    VARCHAR2(24) not null,
-  LOG_FORNEC_SERV_EXPORT NUMBER not null,
-  LOG_PAGTO_BLOQDO       NUMBER not null,
-  LOG_RETENC_IMPTO       NUMBER not null,
-  DAT_ULT_IMPL_TIT_AP    DATE,
-  DAT_ULT_PAGTO          DATE,
-  DAT_IMPL_MAIOR_TIT_AP  DATE,
-  NUM_ANTECIP_ABER       NUMBER,
-  NUM_TIT_AP_ABER        NUMBER,
-  VAL_TIT_AP_MAIOR_VAL   NUMBER,
-  VALTITAPMAIORVALABER   NUMBER,
-  VAL_SDO_ANTECIP_ABER   NUMBER,
-  VAL_SDO_TIT_AP_ABER    NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  VAL_ULT_IMPL_TIT_AP    NUMBER not null,
-  NUM_RENDTO_TRIBUT      NUMBER not null,
-  LOGVENCTODIANAOUTIL    NUMBER not null,
-  VAL_PERCENT_BONIF      NUMBER not null,
-  LOG_INDIC_RENDTO       NUMBER not null,
-  NUM_DIAS_COMPCAO       NUMBER not null,
-  LOG_ENVIO_BCO_HISTOR   NUMBER not null,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_ASSOC_DESPORT      NUMBER,
-  LOG_COOPERAT           NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##cod_portador        VARCHAR2(12) not null,
+  cod_portador           VARCHAR2(12) not null,
+  cod_banco              VARCHAR2(16) not null,
+  cod_agenc_bcia         VARCHAR2(20) not null,
+  cod_digito_agenc_bcia  VARCHAR2(12) not null,
+  cod_cta_corren_bco     VARCHAR2(40) not null,
+  cod_digito_cta_corren  VARCHAR2(12) not null,
+  u##cod_forma_pagto     VARCHAR2(12),
+  cod_forma_pagto        VARCHAR2(12),
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  cod_tip_fluxo_financ   VARCHAR2(24) not null,
+  ind_tratam_vencto_sab  VARCHAR2(16) not null,
+  ind_tratam_vencto_dom  VARCHAR2(16) not null,
+  ind_tratam_vencto_fer  VARCHAR2(16) not null,
+  indpagtojurosfornecap  VARCHAR2(16) not null,
+  ind_tip_fornecto       VARCHAR2(16) not null,
+  ind_armaz_val_pagto    VARCHAR2(24) not null,
+  log_fornec_serv_export NUMBER not null,
+  log_pagto_bloqdo       NUMBER not null,
+  log_retenc_impto       NUMBER not null,
+  dat_ult_impl_tit_ap    DATE,
+  dat_ult_pagto          DATE,
+  dat_impl_maior_tit_ap  DATE,
+  num_antecip_aber       NUMBER,
+  num_tit_ap_aber        NUMBER,
+  val_tit_ap_maior_val   NUMBER,
+  valtitapmaiorvalaber   NUMBER,
+  val_sdo_antecip_aber   NUMBER,
+  val_sdo_tit_ap_aber    NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  val_ult_impl_tit_ap    NUMBER not null,
+  num_rendto_tribut      NUMBER not null,
+  logvenctodianaoutil    NUMBER not null,
+  val_percent_bonif      NUMBER not null,
+  log_indic_rendto       NUMBER not null,
+  num_dias_compcao       NUMBER not null,
+  log_envio_bco_histor   NUMBER not null,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_assoc_desport      NUMBER,
+  log_cooperat           NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNEC_FINANC_EMS_BKP_2 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNECEDOR_EMS_BKP
@@ -1359,49 +1929,58 @@ prompt =================================
 prompt
 create table EMS506UNICOO.FORNECEDOR_EMS_BKP
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_FORNEC      VARCHAR2(12) not null,
-  COD_GRP_FORNEC         VARCHAR2(12) not null,
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  DAT_IMPL_FORNEC        DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  LOG_CR_PIS             NUMBER not null,
-  LOG_CONTROL_INSS       NUMBER not null,
-  LOG_CR_COFINS          NUMBER not null,
-  CDN_CLASSIF_FORNEC     NUMBER,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_fornec      VARCHAR2(12) not null,
+  cod_grp_fornec         VARCHAR2(12) not null,
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  dat_impl_fornec        DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  log_cr_pis             NUMBER not null,
+  log_control_inss       NUMBER not null,
+  log_cr_cofins          NUMBER not null,
+  cdn_classif_fornec     NUMBER,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNECEDOR_EMS_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNECEDOR_EMS_BKP_2
@@ -1409,49 +1988,58 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.FORNECEDOR_EMS_BKP_2
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_FORNEC      VARCHAR2(12) not null,
-  COD_GRP_FORNEC         VARCHAR2(12) not null,
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  DAT_IMPL_FORNEC        DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  LOG_CR_PIS             NUMBER not null,
-  LOG_CONTROL_INSS       NUMBER not null,
-  LOG_CR_COFINS          NUMBER not null,
-  CDN_CLASSIF_FORNEC     NUMBER,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_fornec      VARCHAR2(12) not null,
+  cod_grp_fornec         VARCHAR2(12) not null,
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  dat_impl_fornec        DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  log_cr_pis             NUMBER not null,
+  log_control_inss       NUMBER not null,
+  log_cr_cofins          NUMBER not null,
+  cdn_classif_fornec     NUMBER,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNECEDOR_EMS_BKP_2 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table FORNECEDOR_EMS_BKP_2701
@@ -1459,49 +2047,58 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.FORNECEDOR_EMS_BKP_2701
 (
-  U##COD_EMPRESA         VARCHAR2(12) not null,
-  COD_EMPRESA            VARCHAR2(12) not null,
-  CDN_FORNECEDOR         NUMBER not null,
-  U##NOM_PESSOA          VARCHAR2(80) not null,
-  NOM_PESSOA             VARCHAR2(80) not null,
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(30) not null,
-  NOM_ABREV              VARCHAR2(30) not null,
-  U##COD_PAIS            VARCHAR2(12) not null,
-  COD_PAIS               VARCHAR2(12) not null,
-  U##COD_ID_FEDER        VARCHAR2(40) not null,
-  COD_ID_FEDER           VARCHAR2(40) not null,
-  U##COD_GRP_FORNEC      VARCHAR2(12) not null,
-  COD_GRP_FORNEC         VARCHAR2(12) not null,
-  U##COD_TIP_FORNEC      VARCHAR2(16) not null,
-  COD_TIP_FORNEC         VARCHAR2(16) not null,
-  DAT_IMPL_FORNEC        DATE not null,
-  LOG_EMS_20_ATLZDO      NUMBER not null,
-  COD_LIVRE_1            VARCHAR2(500),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  LOG_CR_PIS             NUMBER not null,
-  LOG_CONTROL_INSS       NUMBER not null,
-  LOG_CR_COFINS          NUMBER not null,
-  CDN_CLASSIF_FORNEC     NUMBER,
-  LOG_RETENC_IMPTO_PAGTO NUMBER not null,
-  COD_LIVRE_2            VARCHAR2(500),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  CDD_VERSION            NUMBER,
-  LOG_REPLIC_EMIT_HCM    NUMBER,
-  LOG_REPLIC_EMIT_GPS    NUMBER,
-  LOG_REPLIC_EMIT_CRM    NUMBER,
-  LOG_REPLIC_EMIT_FINANC NUMBER,
-  LOG_REPLIC_EMIT_ERP    NUMBER,
-  PROGRESS_RECID         NUMBER
+  u##cod_empresa         VARCHAR2(12) not null,
+  cod_empresa            VARCHAR2(12) not null,
+  cdn_fornecedor         NUMBER not null,
+  u##nom_pessoa          VARCHAR2(80) not null,
+  nom_pessoa             VARCHAR2(80) not null,
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(30) not null,
+  nom_abrev              VARCHAR2(30) not null,
+  u##cod_pais            VARCHAR2(12) not null,
+  cod_pais               VARCHAR2(12) not null,
+  u##cod_id_feder        VARCHAR2(40) not null,
+  cod_id_feder           VARCHAR2(40) not null,
+  u##cod_grp_fornec      VARCHAR2(12) not null,
+  cod_grp_fornec         VARCHAR2(12) not null,
+  u##cod_tip_fornec      VARCHAR2(16) not null,
+  cod_tip_fornec         VARCHAR2(16) not null,
+  dat_impl_fornec        DATE not null,
+  log_ems_20_atlzdo      NUMBER not null,
+  cod_livre_1            VARCHAR2(500),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  log_cr_pis             NUMBER not null,
+  log_control_inss       NUMBER not null,
+  log_cr_cofins          NUMBER not null,
+  cdn_classif_fornec     NUMBER,
+  log_retenc_impto_pagto NUMBER not null,
+  cod_livre_2            VARCHAR2(500),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  cdd_version            NUMBER,
+  log_replic_emit_hcm    NUMBER,
+  log_replic_emit_gps    NUMBER,
+  log_replic_emit_crm    NUMBER,
+  log_replic_emit_financ NUMBER,
+  log_replic_emit_erp    NUMBER,
+  progress_recid         NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.FORNECEDOR_EMS_BKP_2701 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table IMPTO_VINCUL_FORNEC_BKP
@@ -1509,33 +2106,43 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.IMPTO_VINCUL_FORNEC_BKP
 (
-  U##COD_EMPRESA       VARCHAR2(12) not null,
-  COD_EMPRESA          VARCHAR2(12) not null,
-  CDN_FORNECEDOR       NUMBER not null,
-  U##COD_PAIS          VARCHAR2(12) not null,
-  COD_PAIS             VARCHAR2(12) not null,
-  U##COD_UNID_FEDERAC  VARCHAR2(12) not null,
-  COD_UNID_FEDERAC     VARCHAR2(12) not null,
-  U##COD_IMPOSTO       VARCHAR2(12) not null,
-  COD_IMPOSTO          VARCHAR2(12) not null,
-  U##COD_CLASSIF_IMPTO VARCHAR2(12) not null,
-  COD_CLASSIF_IMPTO    VARCHAR2(12) not null,
-  LOG_IMPTO_OPCNAL     NUMBER not null,
-  COD_LIVRE_1          VARCHAR2(500),
-  LOG_LIVRE_1          NUMBER,
-  NUM_LIVRE_1          NUMBER,
-  VAL_LIVRE_1          NUMBER,
-  DAT_LIVRE_1          DATE,
-  NUMREDUZRENDTOTRIBUT NUMBER not null,
-  COD_LIVRE_2          VARCHAR2(500),
-  DAT_LIVRE_2          DATE,
-  LOG_LIVRE_2          NUMBER,
-  NUM_LIVRE_2          NUMBER,
-  VAL_LIVRE_2          NUMBER,
-  CDD_VERSION          NUMBER,
-  PROGRESS_RECID       NUMBER
+  u##cod_empresa       VARCHAR2(12) not null,
+  cod_empresa          VARCHAR2(12) not null,
+  cdn_fornecedor       NUMBER not null,
+  u##cod_pais          VARCHAR2(12) not null,
+  cod_pais             VARCHAR2(12) not null,
+  u##cod_unid_federac  VARCHAR2(12) not null,
+  cod_unid_federac     VARCHAR2(12) not null,
+  u##cod_imposto       VARCHAR2(12) not null,
+  cod_imposto          VARCHAR2(12) not null,
+  u##cod_classif_impto VARCHAR2(12) not null,
+  cod_classif_impto    VARCHAR2(12) not null,
+  log_impto_opcnal     NUMBER not null,
+  cod_livre_1          VARCHAR2(500),
+  log_livre_1          NUMBER,
+  num_livre_1          NUMBER,
+  val_livre_1          NUMBER,
+  dat_livre_1          DATE,
+  numreduzrendtotribut NUMBER not null,
+  cod_livre_2          VARCHAR2(500),
+  dat_livre_2          DATE,
+  log_livre_2          NUMBER,
+  num_livre_2          NUMBER,
+  val_livre_2          NUMBER,
+  cdd_version          NUMBER,
+  progress_recid       NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table JOSIAS_IMPOSTO
@@ -1543,34 +2150,43 @@ prompt =============================
 prompt
 create table EMS506UNICOO.JOSIAS_IMPOSTO
 (
-  U##COD_EMPRESA       VARCHAR2(4000),
-  COD_EMPRESA          VARCHAR2(4000),
-  CDN_FORNECEDOR       NUMBER(10),
-  U##COD_PAIS          VARCHAR2(4000),
-  COD_PAIS             VARCHAR2(4000),
-  U##COD_UNID_FEDERAC  VARCHAR2(3),
-  COD_UNID_FEDERAC     VARCHAR2(3),
-  U##COD_IMPOSTO       VARCHAR2(4000),
-  COD_IMPOSTO          VARCHAR2(4000),
-  U##COD_CLASSIF_IMPTO VARCHAR2(4000),
-  COD_CLASSIF_IMPTO    VARCHAR2(4000),
-  LOG_IMPTO_OPCNAL     NUMBER,
-  COD_LIVRE_1          CHAR(1),
-  LOG_LIVRE_1          NUMBER,
-  NUM_LIVRE_1          NUMBER,
-  VAL_LIVRE_1          NUMBER,
-  DAT_LIVRE_1          DATE,
-  NUMREDUZRENDTOTRIBUT NUMBER,
-  COD_LIVRE_2          CHAR(1),
-  DAT_LIVRE_2          CHAR(1),
-  LOG_LIVRE_2          NUMBER,
-  NUM_LIVRE_2          NUMBER,
-  VAL_LIVRE_2          NUMBER,
-  CDD_VERSION          NUMBER,
-  PROGRESS_RECID       NUMBER
+  u##cod_empresa       VARCHAR2(4000),
+  cod_empresa          VARCHAR2(4000),
+  cdn_fornecedor       NUMBER(10),
+  u##cod_pais          VARCHAR2(4000),
+  cod_pais             VARCHAR2(4000),
+  u##cod_unid_federac  VARCHAR2(3),
+  cod_unid_federac     VARCHAR2(3),
+  u##cod_imposto       VARCHAR2(4000),
+  cod_imposto          VARCHAR2(4000),
+  u##cod_classif_impto VARCHAR2(4000),
+  cod_classif_impto    VARCHAR2(4000),
+  log_impto_opcnal     NUMBER,
+  cod_livre_1          CHAR(1),
+  log_livre_1          NUMBER,
+  num_livre_1          NUMBER,
+  val_livre_1          NUMBER,
+  dat_livre_1          DATE,
+  numreduzrendtotribut NUMBER,
+  cod_livre_2          CHAR(1),
+  dat_livre_2          CHAR(1),
+  log_livre_2          NUMBER,
+  num_livre_2          NUMBER,
+  val_livre_2          NUMBER,
+  cdd_version          NUMBER,
+  progress_recid       NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.JOSIAS_IMPOSTO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_CLIENTE
@@ -1578,47 +2194,68 @@ prompt ==========================
 prompt
 create table EMS506UNICOO.LG$_CLIENTE
 (
-  DTATUALIZACAO$$   DATE not null,
-  NRSEQUENCIA$$     NUMBER not null,
-  TPOPERACAO$$      VARCHAR2(1) not null,
-  NOUSUARIO$$       VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$  VARCHAR2(30),
-  NOMAQUINA$$       VARCHAR2(64),
-  NOPROGRAMA$$      VARCHAR2(48),
-  U##COD_EMPRESA    VARCHAR2(6),
-  COD_EMPRESA       VARCHAR2(6),
-  CDN_CLIENTE       NUMBER,
-  U##NOM_PESSOA     VARCHAR2(40),
-  NOM_PESSOA        VARCHAR2(40),
-  NUM_PESSOA        NUMBER,
-  U##NOM_ABREV      VARCHAR2(15),
-  NOM_ABREV         VARCHAR2(15),
-  U##COD_PAIS       VARCHAR2(6),
-  COD_PAIS          VARCHAR2(6),
-  U##COD_ID_FEDER   VARCHAR2(20),
-  COD_ID_FEDER      VARCHAR2(20),
-  U##COD_GRP_CLIEN  VARCHAR2(6),
-  COD_GRP_CLIEN     VARCHAR2(6),
-  U##COD_TIP_CLIEN  VARCHAR2(8),
-  COD_TIP_CLIEN     VARCHAR2(8),
-  DAT_IMPL_CLIEN    DATE,
-  LOG_EMS_20_ATLZDO NUMBER,
-  COD_LIVRE_1       VARCHAR2(100),
-  LOG_LIVRE_1       NUMBER,
-  NUM_LIVRE_1       NUMBER,
-  VAL_LIVRE_1       NUMBER,
-  DAT_LIVRE_1       DATE,
-  COD_LIVRE_2       VARCHAR2(100),
-  DAT_LIVRE_2       DATE,
-  LOG_LIVRE_2       NUMBER,
-  NUM_LIVRE_2       NUMBER,
-  VAL_LIVRE_2       NUMBER,
-  PROGRESS_RECID    NUMBER
+  dtatualizacao$$   DATE not null,
+  nrsequencia$$     NUMBER not null,
+  tpoperacao$$      VARCHAR2(1) not null,
+  nousuario$$       VARCHAR2(30) not null,
+  nousuario_rede$$  VARCHAR2(30),
+  nomaquina$$       VARCHAR2(64),
+  noprograma$$      VARCHAR2(48),
+  u##cod_empresa    VARCHAR2(6),
+  cod_empresa       VARCHAR2(6),
+  cdn_cliente       NUMBER,
+  u##nom_pessoa     VARCHAR2(40),
+  nom_pessoa        VARCHAR2(40),
+  num_pessoa        NUMBER,
+  u##nom_abrev      VARCHAR2(15),
+  nom_abrev         VARCHAR2(15),
+  u##cod_pais       VARCHAR2(6),
+  cod_pais          VARCHAR2(6),
+  u##cod_id_feder   VARCHAR2(20),
+  cod_id_feder      VARCHAR2(20),
+  u##cod_grp_clien  VARCHAR2(6),
+  cod_grp_clien     VARCHAR2(6),
+  u##cod_tip_clien  VARCHAR2(8),
+  cod_tip_clien     VARCHAR2(8),
+  dat_impl_clien    DATE,
+  log_ems_20_atlzdo NUMBER,
+  cod_livre_1       VARCHAR2(100),
+  log_livre_1       NUMBER,
+  num_livre_1       NUMBER,
+  val_livre_1       NUMBER,
+  dat_livre_1       DATE,
+  cod_livre_2       VARCHAR2(100),
+  dat_livre_2       DATE,
+  log_livre_2       NUMBER,
+  num_livre_2       NUMBER,
+  val_livre_2       NUMBER,
+  progress_recid    NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_CLIENTE
-  add constraint PK_LG$_CLIENTE primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_CLIENTE to UNICOOGPS;
+  add constraint PK_LG$_CLIENTE primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_FORNECEDOR
@@ -1626,52 +2263,73 @@ prompt =============================
 prompt
 create table EMS506UNICOO.LG$_FORNECEDOR
 (
-  DTATUALIZACAO$$        DATE not null,
-  NRSEQUENCIA$$          NUMBER not null,
-  TPOPERACAO$$           VARCHAR2(1) not null,
-  NOUSUARIO$$            VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$       VARCHAR2(30),
-  NOMAQUINA$$            VARCHAR2(64),
-  NOPROGRAMA$$           VARCHAR2(48),
-  U##COD_EMPRESA         VARCHAR2(6),
-  COD_EMPRESA            VARCHAR2(6),
-  CDN_FORNECEDOR         NUMBER,
-  U##NOM_PESSOA          VARCHAR2(40),
-  NOM_PESSOA             VARCHAR2(40),
-  NUM_PESSOA             NUMBER,
-  U##NOM_ABREV           VARCHAR2(15),
-  NOM_ABREV              VARCHAR2(15),
-  U##COD_PAIS            VARCHAR2(6),
-  COD_PAIS               VARCHAR2(6),
-  U##COD_ID_FEDER        VARCHAR2(20),
-  COD_ID_FEDER           VARCHAR2(20),
-  U##COD_GRP_FORNEC      VARCHAR2(6),
-  COD_GRP_FORNEC         VARCHAR2(6),
-  U##COD_TIP_FORNEC      VARCHAR2(8),
-  COD_TIP_FORNEC         VARCHAR2(8),
-  DAT_IMPL_FORNEC        DATE,
-  LOG_EMS_20_ATLZDO      NUMBER,
-  COD_LIVRE_1            VARCHAR2(100),
-  LOG_LIVRE_1            NUMBER,
-  NUM_LIVRE_1            NUMBER,
-  VAL_LIVRE_1            NUMBER,
-  DAT_LIVRE_1            DATE,
-  LOG_CR_PIS             NUMBER,
-  LOG_CONTROL_INSS       NUMBER,
-  LOG_CR_COFINS          NUMBER,
-  CDN_CLASSIF_FORNEC     NUMBER,
-  LOG_RETENC_IMPTO_PAGTO NUMBER,
-  COD_LIVRE_2            VARCHAR2(100),
-  DAT_LIVRE_2            DATE,
-  LOG_LIVRE_2            NUMBER,
-  NUM_LIVRE_2            NUMBER,
-  VAL_LIVRE_2            NUMBER,
-  PROGRESS_RECID         NUMBER
+  dtatualizacao$$        DATE not null,
+  nrsequencia$$          NUMBER not null,
+  tpoperacao$$           VARCHAR2(1) not null,
+  nousuario$$            VARCHAR2(30) not null,
+  nousuario_rede$$       VARCHAR2(30),
+  nomaquina$$            VARCHAR2(64),
+  noprograma$$           VARCHAR2(48),
+  u##cod_empresa         VARCHAR2(6),
+  cod_empresa            VARCHAR2(6),
+  cdn_fornecedor         NUMBER,
+  u##nom_pessoa          VARCHAR2(40),
+  nom_pessoa             VARCHAR2(40),
+  num_pessoa             NUMBER,
+  u##nom_abrev           VARCHAR2(15),
+  nom_abrev              VARCHAR2(15),
+  u##cod_pais            VARCHAR2(6),
+  cod_pais               VARCHAR2(6),
+  u##cod_id_feder        VARCHAR2(20),
+  cod_id_feder           VARCHAR2(20),
+  u##cod_grp_fornec      VARCHAR2(6),
+  cod_grp_fornec         VARCHAR2(6),
+  u##cod_tip_fornec      VARCHAR2(8),
+  cod_tip_fornec         VARCHAR2(8),
+  dat_impl_fornec        DATE,
+  log_ems_20_atlzdo      NUMBER,
+  cod_livre_1            VARCHAR2(100),
+  log_livre_1            NUMBER,
+  num_livre_1            NUMBER,
+  val_livre_1            NUMBER,
+  dat_livre_1            DATE,
+  log_cr_pis             NUMBER,
+  log_control_inss       NUMBER,
+  log_cr_cofins          NUMBER,
+  cdn_classif_fornec     NUMBER,
+  log_retenc_impto_pagto NUMBER,
+  cod_livre_2            VARCHAR2(100),
+  dat_livre_2            DATE,
+  log_livre_2            NUMBER,
+  num_livre_2            NUMBER,
+  val_livre_2            NUMBER,
+  progress_recid         NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_FORNECEDOR
-  add constraint PK_LG$_FORNECEDOR primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_FORNECEDOR to UNICOOGPS;
+  add constraint PK_LG$_FORNECEDOR primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_MOVTO_CTA_CORREN
@@ -1679,78 +2337,99 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.LG$_MOVTO_CTA_CORREN
 (
-  DTATUALIZACAO$$         DATE not null,
-  NRSEQUENCIA$$           NUMBER not null,
-  TPOPERACAO$$            VARCHAR2(1) not null,
-  NOUSUARIO$$             VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$        VARCHAR2(30),
-  NOMAQUINA$$             VARCHAR2(64),
-  NOPROGRAMA$$            VARCHAR2(48),
-  U##COD_CTA_CORREN       VARCHAR2(20),
-  COD_CTA_CORREN          VARCHAR2(20),
-  DAT_MOVTO_CTA_CORREN    DATE,
-  NUMSEQMOVTOCTACORREN    NUMBER,
-  COD_CENAR_CTBL          VARCHAR2(16),
-  COD_INDIC_ECON          VARCHAR2(16),
-  U##COD_TIP_TRANS_CX     VARCHAR2(16),
-  COD_TIP_TRANS_CX        VARCHAR2(16),
-  COD_HISTOR_PADR         VARCHAR2(16),
-  U##CODDOCTOMOVTOCTABCO  VARCHAR2(40),
-  CODDOCTOMOVTOCTABCO     VARCHAR2(40),
-  COD_USUAR_ULT_ATUALIZ   VARCHAR2(24),
-  CODUSUAREMISAVISOLANCTO VARCHAR2(16),
-  COD_MODUL_DTSUL         VARCHAR2(12),
-  DAT_TRANSACAO           DATE,
-  DAT_EMIS_AVISO_LANCTO   DATE,
-  DAT_ULT_ATUALIZ         DATE,
-  DESHISTORMOVTOCTACORREN VARCHAR2(2000),
-  DESHISTORMOVTOCONCIL    VARCHAR2(2000),
-  INDFLUXOMOVTOCTACORREN  VARCHAR2(12),
-  U##INDTIPMOVTOCTACORREN VARCHAR2(12),
-  INDTIPMOVTOCTACORREN    VARCHAR2(12),
-  INDORIGIMPTOMOVTOFINANC VARCHAR2(12),
-  INDSITCONCILMOVTOCTA    VARCHAR2(12),
-  INDLIGACCONCILCTACORREN VARCHAR2(12),
-  INDEMISDOCTOTRANSFBCIA  VARCHAR2(34),
-  VAL_MOVTO_CTA_CORREN    NUMBER,
-  VALIMPTOMOVTOCTACORREN  NUMBER,
-  VALPENDCONCILCTACORREN  NUMBER,
-  LOGMOVTOCTACORRENAUTOM  NUMBER,
-  LOG_CONCIL_CTA_CORREN   NUMBER,
-  LOGCTBZMOVTOCTACORREN   NUMBER,
-  NUMIDMOVTOCTATRANSF     NUMBER,
-  NUMIDMOVTOCTACORREN     NUMBER,
-  NUM_ID_MOVTO_CTA_IMPTO  NUMBER,
-  NUMIDMOVTOORIGMUTUO     NUMBER,
-  NUM_ID_CHEQ             NUMBER,
-  NUMIDMOVTOCTAESTORN     NUMBER,
-  NUMCALCENCARGOCTACORREN NUMBER,
-  NUMAVISOLANCTOCTACORREN NUMBER,
-  HRA_EMIS_AVISO_LANCTO   VARCHAR2(16),
-  HRA_ULT_ATUALIZ         VARCHAR2(16),
-  COD_LIVRE_1             VARCHAR2(500),
-  NUMIDMOVTODESPESBCIA    NUMBER,
-  DAT_PREV_ORIG           DATE,
-  COD_ESTAB_BORD          VARCHAR2(12),
-  LOG_SDO_BCO_HISTOR      NUMBER,
-  COD_USUAR_GERAC_CTBZ    VARCHAR2(24),
-  DAT_GERAC_CTBZ          DATE,
-  HRA_GERAC_CTBZ          VARCHAR2(16),
-  COD_LIVRE_2             VARCHAR2(500),
-  DAT_LIVRE_1             DATE,
-  DAT_LIVRE_2             DATE,
-  LOG_LIVRE_1             NUMBER,
-  LOG_LIVRE_2             NUMBER,
-  NUM_LIVRE_1             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  VAL_LIVRE_1             NUMBER,
-  VAL_LIVRE_2             NUMBER,
-  PROGRESS_RECID          NUMBER
+  dtatualizacao$$         DATE not null,
+  nrsequencia$$           NUMBER not null,
+  tpoperacao$$            VARCHAR2(1) not null,
+  nousuario$$             VARCHAR2(30) not null,
+  nousuario_rede$$        VARCHAR2(30),
+  nomaquina$$             VARCHAR2(64),
+  noprograma$$            VARCHAR2(48),
+  u##cod_cta_corren       VARCHAR2(20),
+  cod_cta_corren          VARCHAR2(20),
+  dat_movto_cta_corren    DATE,
+  numseqmovtoctacorren    NUMBER,
+  cod_cenar_ctbl          VARCHAR2(16),
+  cod_indic_econ          VARCHAR2(16),
+  u##cod_tip_trans_cx     VARCHAR2(16),
+  cod_tip_trans_cx        VARCHAR2(16),
+  cod_histor_padr         VARCHAR2(16),
+  u##coddoctomovtoctabco  VARCHAR2(40),
+  coddoctomovtoctabco     VARCHAR2(40),
+  cod_usuar_ult_atualiz   VARCHAR2(24),
+  codusuaremisavisolancto VARCHAR2(16),
+  cod_modul_dtsul         VARCHAR2(12),
+  dat_transacao           DATE,
+  dat_emis_aviso_lancto   DATE,
+  dat_ult_atualiz         DATE,
+  deshistormovtoctacorren VARCHAR2(2000),
+  deshistormovtoconcil    VARCHAR2(2000),
+  indfluxomovtoctacorren  VARCHAR2(12),
+  u##indtipmovtoctacorren VARCHAR2(12),
+  indtipmovtoctacorren    VARCHAR2(12),
+  indorigimptomovtofinanc VARCHAR2(12),
+  indsitconcilmovtocta    VARCHAR2(12),
+  indligacconcilctacorren VARCHAR2(12),
+  indemisdoctotransfbcia  VARCHAR2(34),
+  val_movto_cta_corren    NUMBER,
+  valimptomovtoctacorren  NUMBER,
+  valpendconcilctacorren  NUMBER,
+  logmovtoctacorrenautom  NUMBER,
+  log_concil_cta_corren   NUMBER,
+  logctbzmovtoctacorren   NUMBER,
+  numidmovtoctatransf     NUMBER,
+  numidmovtoctacorren     NUMBER,
+  num_id_movto_cta_impto  NUMBER,
+  numidmovtoorigmutuo     NUMBER,
+  num_id_cheq             NUMBER,
+  numidmovtoctaestorn     NUMBER,
+  numcalcencargoctacorren NUMBER,
+  numavisolanctoctacorren NUMBER,
+  hra_emis_aviso_lancto   VARCHAR2(16),
+  hra_ult_atualiz         VARCHAR2(16),
+  cod_livre_1             VARCHAR2(500),
+  numidmovtodespesbcia    NUMBER,
+  dat_prev_orig           DATE,
+  cod_estab_bord          VARCHAR2(12),
+  log_sdo_bco_histor      NUMBER,
+  cod_usuar_gerac_ctbz    VARCHAR2(24),
+  dat_gerac_ctbz          DATE,
+  hra_gerac_ctbz          VARCHAR2(16),
+  cod_livre_2             VARCHAR2(500),
+  dat_livre_1             DATE,
+  dat_livre_2             DATE,
+  log_livre_1             NUMBER,
+  log_livre_2             NUMBER,
+  num_livre_1             NUMBER,
+  num_livre_2             NUMBER,
+  val_livre_1             NUMBER,
+  val_livre_2             NUMBER,
+  progress_recid          NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_MOVTO_CTA_CORREN
-  add constraint PK_LG$_MOVTO_CTA_CORREN primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_MOVTO_CTA_CORREN to UNICOOGPS;
+  add constraint PK_LG$_MOVTO_CTA_CORREN primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_PESSOA_FISIC
@@ -1758,76 +2437,97 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.LG$_PESSOA_FISIC
 (
-  DTATUALIZACAO$$            DATE not null,
-  NRSEQUENCIA$$              NUMBER not null,
-  TPOPERACAO$$               VARCHAR2(1) not null,
-  NOUSUARIO$$                VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$           VARCHAR2(30),
-  NOMAQUINA$$                VARCHAR2(64),
-  NOPROGRAMA$$               VARCHAR2(48),
-  NUM_PESSOA_FISIC           NUMBER,
-  U##NOM_PESSOA              VARCHAR2(40),
-  NOM_PESSOA                 VARCHAR2(40),
-  U##COD_ID_FEDER            VARCHAR2(20),
-  COD_ID_FEDER               VARCHAR2(20),
-  U##COD_ID_ESTAD_FISIC      VARCHAR2(20),
-  COD_ID_ESTAD_FISIC         VARCHAR2(20),
-  CODORGAOEMISIDESTAD        VARCHAR2(10),
-  U##CODUNIDFEDERACEMISESTAD VARCHAR2(6),
-  CODUNIDFEDERACEMISESTAD    VARCHAR2(6),
-  NOM_ENDERECO               VARCHAR2(40),
-  NOM_ENDER_COMPL            VARCHAR2(10),
-  NOM_BAIRRO                 VARCHAR2(20),
-  NOM_CIDADE                 VARCHAR2(32),
-  NOM_CONDADO                VARCHAR2(32),
-  U##COD_PAIS                VARCHAR2(6),
-  COD_PAIS                   VARCHAR2(6),
-  U##COD_UNID_FEDERAC        VARCHAR2(6),
-  COD_UNID_FEDERAC           VARCHAR2(6),
-  COD_CEP                    VARCHAR2(20),
-  COD_CX_POST                VARCHAR2(20),
-  COD_TELEFONE               VARCHAR2(20),
-  COD_RAMAL                  VARCHAR2(7),
-  COD_FAX                    VARCHAR2(20),
-  COD_RAMAL_FAX              VARCHAR2(7),
-  COD_TELEX                  VARCHAR2(7),
-  COD_MODEM                  VARCHAR2(20),
-  COD_RAMAL_MODEM            VARCHAR2(7),
-  COD_E_MAIL                 VARCHAR2(40),
-  DAT_NASC_PESSOA_FISIC      DATE,
-  COD_PAIS_NASC              VARCHAR2(6),
-  COD_UNID_FEDERAC_NASC      VARCHAR2(6),
-  DES_ANOT_TAB               VARCHAR2(2000),
-  COD_USUAR_ULT_ATUALIZ      VARCHAR2(12),
-  DAT_ULT_ATUALIZ            DATE,
-  HRA_ULT_ATUALIZ            VARCHAR2(8),
-  U##NOM_MAE_PESSOA          VARCHAR2(40),
-  NOM_MAE_PESSOA             VARCHAR2(40),
-  COD_IMAGEM                 VARCHAR2(30),
-  LOG_EMS_20_ATLZDO          NUMBER,
-  COD_LIVRE_1                VARCHAR2(100),
-  LOG_LIVRE_1                NUMBER,
-  NUM_LIVRE_1                NUMBER,
-  VAL_LIVRE_1                NUMBER,
-  DAT_LIVRE_1                DATE,
-  IND_TIP_PESSOA_FISIC       VARCHAR2(15),
-  NOMNACIONPESSOAFISIC       VARCHAR2(40),
-  NOMPROFISPESSOAFISIC       VARCHAR2(40),
-  INDESTADOCIVILPESSOA       VARCHAR2(10),
-  NOM_HOME_PAGE              VARCHAR2(40),
-  NOM_ENDER_TEXT             VARCHAR2(2000),
-  LOG_ENVIO_BCO_HISTOR       NUMBER,
-  COD_LIVRE_2                VARCHAR2(100),
-  DAT_LIVRE_2                DATE,
-  LOG_LIVRE_2                NUMBER,
-  NUM_LIVRE_2                NUMBER,
-  VAL_LIVRE_2                NUMBER,
-  PROGRESS_RECID             NUMBER
+  dtatualizacao$$            DATE not null,
+  nrsequencia$$              NUMBER not null,
+  tpoperacao$$               VARCHAR2(1) not null,
+  nousuario$$                VARCHAR2(30) not null,
+  nousuario_rede$$           VARCHAR2(30),
+  nomaquina$$                VARCHAR2(64),
+  noprograma$$               VARCHAR2(48),
+  num_pessoa_fisic           NUMBER,
+  u##nom_pessoa              VARCHAR2(40),
+  nom_pessoa                 VARCHAR2(40),
+  u##cod_id_feder            VARCHAR2(20),
+  cod_id_feder               VARCHAR2(20),
+  u##cod_id_estad_fisic      VARCHAR2(20),
+  cod_id_estad_fisic         VARCHAR2(20),
+  codorgaoemisidestad        VARCHAR2(10),
+  u##codunidfederacemisestad VARCHAR2(6),
+  codunidfederacemisestad    VARCHAR2(6),
+  nom_endereco               VARCHAR2(40),
+  nom_ender_compl            VARCHAR2(10),
+  nom_bairro                 VARCHAR2(20),
+  nom_cidade                 VARCHAR2(32),
+  nom_condado                VARCHAR2(32),
+  u##cod_pais                VARCHAR2(6),
+  cod_pais                   VARCHAR2(6),
+  u##cod_unid_federac        VARCHAR2(6),
+  cod_unid_federac           VARCHAR2(6),
+  cod_cep                    VARCHAR2(20),
+  cod_cx_post                VARCHAR2(20),
+  cod_telefone               VARCHAR2(20),
+  cod_ramal                  VARCHAR2(7),
+  cod_fax                    VARCHAR2(20),
+  cod_ramal_fax              VARCHAR2(7),
+  cod_telex                  VARCHAR2(7),
+  cod_modem                  VARCHAR2(20),
+  cod_ramal_modem            VARCHAR2(7),
+  cod_e_mail                 VARCHAR2(40),
+  dat_nasc_pessoa_fisic      DATE,
+  cod_pais_nasc              VARCHAR2(6),
+  cod_unid_federac_nasc      VARCHAR2(6),
+  des_anot_tab               VARCHAR2(2000),
+  cod_usuar_ult_atualiz      VARCHAR2(12),
+  dat_ult_atualiz            DATE,
+  hra_ult_atualiz            VARCHAR2(8),
+  u##nom_mae_pessoa          VARCHAR2(40),
+  nom_mae_pessoa             VARCHAR2(40),
+  cod_imagem                 VARCHAR2(30),
+  log_ems_20_atlzdo          NUMBER,
+  cod_livre_1                VARCHAR2(100),
+  log_livre_1                NUMBER,
+  num_livre_1                NUMBER,
+  val_livre_1                NUMBER,
+  dat_livre_1                DATE,
+  ind_tip_pessoa_fisic       VARCHAR2(15),
+  nomnacionpessoafisic       VARCHAR2(40),
+  nomprofispessoafisic       VARCHAR2(40),
+  indestadocivilpessoa       VARCHAR2(10),
+  nom_home_page              VARCHAR2(40),
+  nom_ender_text             VARCHAR2(2000),
+  log_envio_bco_histor       NUMBER,
+  cod_livre_2                VARCHAR2(100),
+  dat_livre_2                DATE,
+  log_livre_2                NUMBER,
+  num_livre_2                NUMBER,
+  val_livre_2                NUMBER,
+  progress_recid             NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_PESSOA_FISIC
-  add constraint PK_LG$_PESSOA_FISIC primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_PESSOA_FISIC to UNICOOGPS;
+  add constraint PK_LG$_PESSOA_FISIC primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_PESSOA_JURID
@@ -1835,96 +2535,117 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.LG$_PESSOA_JURID
 (
-  DTATUALIZACAO$$           DATE not null,
-  NRSEQUENCIA$$             NUMBER not null,
-  TPOPERACAO$$              VARCHAR2(1) not null,
-  NOUSUARIO$$               VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$          VARCHAR2(30),
-  NOMAQUINA$$               VARCHAR2(64),
-  NOPROGRAMA$$              VARCHAR2(48),
-  NUM_PESSOA_JURID          NUMBER,
-  U##NOM_PESSOA             VARCHAR2(40),
-  NOM_PESSOA                VARCHAR2(40),
-  U##COD_ID_FEDER           VARCHAR2(20),
-  COD_ID_FEDER              VARCHAR2(20),
-  COD_ID_ESTAD_JURID        VARCHAR2(20),
-  COD_ID_MUNIC_JURID        VARCHAR2(20),
-  U##COD_ID_PREVID_SOCIAL   VARCHAR2(20),
-  COD_ID_PREVID_SOCIAL      VARCHAR2(20),
-  LOG_FINS_LUCRAT           NUMBER,
-  NUMPESSOAJURIDMATRIZ      NUMBER,
-  NOM_ENDERECO              VARCHAR2(40),
-  NOM_ENDER_COMPL           VARCHAR2(10),
-  NOM_BAIRRO                VARCHAR2(20),
-  NOM_CIDADE                VARCHAR2(32),
-  NOM_CONDADO               VARCHAR2(32),
-  U##COD_PAIS               VARCHAR2(6),
-  COD_PAIS                  VARCHAR2(6),
-  U##COD_UNID_FEDERAC       VARCHAR2(6),
-  COD_UNID_FEDERAC          VARCHAR2(6),
-  COD_CEP                   VARCHAR2(20),
-  COD_CX_POST               VARCHAR2(20),
-  COD_TELEFONE              VARCHAR2(20),
-  COD_FAX                   VARCHAR2(20),
-  COD_RAMAL_FAX             VARCHAR2(7),
-  COD_TELEX                 VARCHAR2(7),
-  COD_MODEM                 VARCHAR2(20),
-  COD_RAMAL_MODEM           VARCHAR2(7),
-  COD_E_MAIL                VARCHAR2(40),
-  COD_E_MAIL_COBR           VARCHAR2(40),
-  NUM_PESSOA_JURID_COBR     NUMBER,
-  NOM_ENDER_COBR            VARCHAR2(40),
-  NOM_ENDER_COMPL_COBR      VARCHAR2(10),
-  NOM_BAIRRO_COBR           VARCHAR2(20),
-  NOM_CIDAD_COBR            VARCHAR2(32),
-  NOM_CONDAD_COBR           VARCHAR2(32),
-  U##COD_UNID_FEDERAC_COBR  VARCHAR2(6),
-  COD_UNID_FEDERAC_COBR     VARCHAR2(6),
-  U##COD_PAIS_COBR          VARCHAR2(6),
-  COD_PAIS_COBR             VARCHAR2(6),
-  COD_CEP_COBR              VARCHAR2(20),
-  COD_CX_POST_COBR          VARCHAR2(20),
-  NUM_PESSOA_JURID_PAGTO    NUMBER,
-  NOM_ENDER_PAGTO           VARCHAR2(40),
-  NOM_ENDER_COMPL_PAGTO     VARCHAR2(10),
-  NOM_BAIRRO_PAGTO          VARCHAR2(20),
-  NOM_CIDAD_PAGTO           VARCHAR2(32),
-  NOM_CONDAD_PAGTO          VARCHAR2(32),
-  U##COD_PAIS_PAGTO         VARCHAR2(6),
-  COD_PAIS_PAGTO            VARCHAR2(6),
-  U##COD_UNID_FEDERAC_PAGTO VARCHAR2(6),
-  COD_UNID_FEDERAC_PAGTO    VARCHAR2(6),
-  COD_CEP_PAGTO             VARCHAR2(20),
-  COD_CX_POST_PAGTO         VARCHAR2(20),
-  DES_ANOT_TAB              VARCHAR2(2000),
-  IND_TIP_PESSOA_JURID      VARCHAR2(8),
-  INDTIPCAPITPESSOAJURID    VARCHAR2(13),
-  COD_USUAR_ULT_ATUALIZ     VARCHAR2(12),
-  DAT_ULT_ATUALIZ           DATE,
-  HRA_ULT_ATUALIZ           VARCHAR2(8),
-  COD_IMAGEM                VARCHAR2(30),
-  LOG_EMS_20_ATLZDO         NUMBER,
-  COD_LIVRE_1               VARCHAR2(100),
-  LOG_LIVRE_1               NUMBER,
-  NUM_LIVRE_1               NUMBER,
-  VAL_LIVRE_1               NUMBER,
-  DAT_LIVRE_1               DATE,
-  NOM_HOME_PAGE             VARCHAR2(40),
-  NOM_ENDER_TEXT            VARCHAR2(2000),
-  NOM_ENDER_COBR_TEXT       VARCHAR2(2000),
-  NOM_ENDER_PAGTO_TEXT      VARCHAR2(2000),
-  LOG_ENVIO_BCO_HISTOR      NUMBER,
-  COD_LIVRE_2               VARCHAR2(100),
-  DAT_LIVRE_2               DATE,
-  LOG_LIVRE_2               NUMBER,
-  NUM_LIVRE_2               NUMBER,
-  VAL_LIVRE_2               NUMBER,
-  PROGRESS_RECID            NUMBER
+  dtatualizacao$$           DATE not null,
+  nrsequencia$$             NUMBER not null,
+  tpoperacao$$              VARCHAR2(1) not null,
+  nousuario$$               VARCHAR2(30) not null,
+  nousuario_rede$$          VARCHAR2(30),
+  nomaquina$$               VARCHAR2(64),
+  noprograma$$              VARCHAR2(48),
+  num_pessoa_jurid          NUMBER,
+  u##nom_pessoa             VARCHAR2(40),
+  nom_pessoa                VARCHAR2(40),
+  u##cod_id_feder           VARCHAR2(20),
+  cod_id_feder              VARCHAR2(20),
+  cod_id_estad_jurid        VARCHAR2(20),
+  cod_id_munic_jurid        VARCHAR2(20),
+  u##cod_id_previd_social   VARCHAR2(20),
+  cod_id_previd_social      VARCHAR2(20),
+  log_fins_lucrat           NUMBER,
+  numpessoajuridmatriz      NUMBER,
+  nom_endereco              VARCHAR2(40),
+  nom_ender_compl           VARCHAR2(10),
+  nom_bairro                VARCHAR2(20),
+  nom_cidade                VARCHAR2(32),
+  nom_condado               VARCHAR2(32),
+  u##cod_pais               VARCHAR2(6),
+  cod_pais                  VARCHAR2(6),
+  u##cod_unid_federac       VARCHAR2(6),
+  cod_unid_federac          VARCHAR2(6),
+  cod_cep                   VARCHAR2(20),
+  cod_cx_post               VARCHAR2(20),
+  cod_telefone              VARCHAR2(20),
+  cod_fax                   VARCHAR2(20),
+  cod_ramal_fax             VARCHAR2(7),
+  cod_telex                 VARCHAR2(7),
+  cod_modem                 VARCHAR2(20),
+  cod_ramal_modem           VARCHAR2(7),
+  cod_e_mail                VARCHAR2(40),
+  cod_e_mail_cobr           VARCHAR2(40),
+  num_pessoa_jurid_cobr     NUMBER,
+  nom_ender_cobr            VARCHAR2(40),
+  nom_ender_compl_cobr      VARCHAR2(10),
+  nom_bairro_cobr           VARCHAR2(20),
+  nom_cidad_cobr            VARCHAR2(32),
+  nom_condad_cobr           VARCHAR2(32),
+  u##cod_unid_federac_cobr  VARCHAR2(6),
+  cod_unid_federac_cobr     VARCHAR2(6),
+  u##cod_pais_cobr          VARCHAR2(6),
+  cod_pais_cobr             VARCHAR2(6),
+  cod_cep_cobr              VARCHAR2(20),
+  cod_cx_post_cobr          VARCHAR2(20),
+  num_pessoa_jurid_pagto    NUMBER,
+  nom_ender_pagto           VARCHAR2(40),
+  nom_ender_compl_pagto     VARCHAR2(10),
+  nom_bairro_pagto          VARCHAR2(20),
+  nom_cidad_pagto           VARCHAR2(32),
+  nom_condad_pagto          VARCHAR2(32),
+  u##cod_pais_pagto         VARCHAR2(6),
+  cod_pais_pagto            VARCHAR2(6),
+  u##cod_unid_federac_pagto VARCHAR2(6),
+  cod_unid_federac_pagto    VARCHAR2(6),
+  cod_cep_pagto             VARCHAR2(20),
+  cod_cx_post_pagto         VARCHAR2(20),
+  des_anot_tab              VARCHAR2(2000),
+  ind_tip_pessoa_jurid      VARCHAR2(8),
+  indtipcapitpessoajurid    VARCHAR2(13),
+  cod_usuar_ult_atualiz     VARCHAR2(12),
+  dat_ult_atualiz           DATE,
+  hra_ult_atualiz           VARCHAR2(8),
+  cod_imagem                VARCHAR2(30),
+  log_ems_20_atlzdo         NUMBER,
+  cod_livre_1               VARCHAR2(100),
+  log_livre_1               NUMBER,
+  num_livre_1               NUMBER,
+  val_livre_1               NUMBER,
+  dat_livre_1               DATE,
+  nom_home_page             VARCHAR2(40),
+  nom_ender_text            VARCHAR2(2000),
+  nom_ender_cobr_text       VARCHAR2(2000),
+  nom_ender_pagto_text      VARCHAR2(2000),
+  log_envio_bco_histor      NUMBER,
+  cod_livre_2               VARCHAR2(100),
+  dat_livre_2               DATE,
+  log_livre_2               NUMBER,
+  num_livre_2               NUMBER,
+  val_livre_2               NUMBER,
+  progress_recid            NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_PESSOA_JURID
-  add constraint PK_LG$_PESSOA_JURID primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_PESSOA_JURID to UNICOOGPS;
+  add constraint PK_LG$_PESSOA_JURID primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LG$_TI_CONTROLE_INTEGRACAO
@@ -1932,35 +2653,56 @@ prompt =========================================
 prompt
 create table EMS506UNICOO.LG$_TI_CONTROLE_INTEGRACAO
 (
-  DTATUALIZACAO$$               DATE not null,
-  NRSEQUENCIA$$                 NUMBER not null,
-  TPOPERACAO$$                  VARCHAR2(1) not null,
-  NOUSUARIO$$                   VARCHAR2(30) not null,
-  NOUSUARIO_REDE$$              VARCHAR2(30),
-  NOMAQUINA$$                   VARCHAR2(64),
-  NOPROGRAMA$$                  VARCHAR2(48),
-  NRSEQUENCIAL                  NUMBER(10),
-  TPINTEGRACAO                  VARCHAR2(2),
-  DTGERACAO                     DATE,
-  NRSEQUENCIAL_ORIGEM           NUMBER(10),
-  DTPROCESSAMENTO               DATE,
-  DTINTEGRACAO                  DATE,
-  CDACAO                        VARCHAR2(1),
-  CDIDENTIFICADOR               VARCHAR2(40),
-  TXOBSERVACAO                  VARCHAR2(500),
-  CDSITUACAO                    VARCHAR2(2),
-  NRSEQ_CONTROLE_INTEGRACAO_ORG NUMBER(10),
-  CDEMPRESA                     VARCHAR2(5),
-  CDMODULO                      VARCHAR2(4),
-  CDMOVIMENTO                   VARCHAR2(4),
-  NRSESSAO                      NUMBER(10),
-  CDDIVISAO                     VARCHAR2(4),
-  CDCENTRO_CUSTO                VARCHAR2(4)
+  dtatualizacao$$               DATE not null,
+  nrsequencia$$                 NUMBER not null,
+  tpoperacao$$                  VARCHAR2(1) not null,
+  nousuario$$                   VARCHAR2(30) not null,
+  nousuario_rede$$              VARCHAR2(30),
+  nomaquina$$                   VARCHAR2(64),
+  noprograma$$                  VARCHAR2(48),
+  nrsequencial                  NUMBER(10),
+  tpintegracao                  VARCHAR2(2),
+  dtgeracao                     DATE,
+  nrsequencial_origem           NUMBER(10),
+  dtprocessamento               DATE,
+  dtintegracao                  DATE,
+  cdacao                        VARCHAR2(1),
+  cdidentificador               VARCHAR2(40),
+  txobservacao                  VARCHAR2(500),
+  cdsituacao                    VARCHAR2(2),
+  nrseq_controle_integracao_org NUMBER(10),
+  cdempresa                     VARCHAR2(5),
+  cdmodulo                      VARCHAR2(4),
+  cdmovimento                   VARCHAR2(4),
+  nrsessao                      NUMBER(10),
+  cddivisao                     VARCHAR2(4),
+  cdcentro_custo                VARCHAR2(4)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.LG$_TI_CONTROLE_INTEGRACAO
-  add constraint PK_LG$_TI_CONTROLE_INTEGRACAO primary key (NRSEQUENCIA$$, TPOPERACAO$$);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LG$_TI_CONTROLE_INTEGRACAO to UNICOOGPS;
+  add constraint PK_LG$_TI_CONTROLE_INTEGRACAO primary key (NRSEQUENCIA$$, TPOPERACAO$$)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table LOG_RECEBIMENTO_RECIBO
@@ -1968,40 +2710,60 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.LOG_RECEBIMENTO_RECIBO
 (
-  DS_USUARIO_REDE VARCHAR2(100),
-  DS_COMPUTADOR   VARCHAR2(100),
-  DS_PROGRAMA     VARCHAR2(100),
-  DT_GERACAO      DATE,
-  COD_REFER       VARCHAR2(10),
-  AO_IMPRESSO     VARCHAR2(1) default 'N',
-  COD_ESTAB_REFER VARCHAR2(6),
-  COD_CLIENTE     NUMBER,
-  AO_ATIVO        VARCHAR2(1) default 'S',
-  PROGRESS_RECID  NUMBER
+  ds_usuario_rede VARCHAR2(100),
+  ds_computador   VARCHAR2(100),
+  ds_programa     VARCHAR2(100),
+  dt_geracao      DATE,
+  cod_refer       VARCHAR2(10),
+  ao_impresso     VARCHAR2(1) default 'N',
+  cod_estab_refer VARCHAR2(6),
+  cod_cliente     NUMBER,
+  ao_ativo        VARCHAR2(1) default 'S',
+  progress_recid  NUMBER
 )
-;
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.DS_USUARIO_REDE
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.ds_usuario_rede
   is 'NOME DO USUARIO LOGADO NA REDE';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.DS_COMPUTADOR
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.ds_computador
   is 'DESCRICAO DO COMPUTADOR QUE ORIGINOU O RECIBO';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.DS_PROGRAMA
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.ds_programa
   is 'PROGRAMA QUE ORIGINOU O RECIBO';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.DT_GERACAO
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.dt_geracao
   is 'DATA DA GERACAO DO MOVIMENTO';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.COD_REFER
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.cod_refer
   is 'CODIGO MOVIMENTO LOTE_LIQUID_ACR';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.AO_IMPRESSO
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.ao_impresso
   is 'INDICA SE O RECIBO FOI IMPRESSO';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.COD_ESTAB_REFER
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.cod_estab_refer
   is 'CHAVE RELACIONAMENTO COM LOTE_LIQUID_ACR';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.COD_CLIENTE
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.cod_cliente
   is 'CODIGO DO CLIENTE';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.AO_ATIVO
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.ao_ativo
   is 'INDICADOR SE A LIQUIDACAO ESTA ATIVA OU FOI ESTORNADA';
-comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.PROGRESS_RECID
+comment on column EMS506UNICOO.LOG_RECEBIMENTO_RECIBO.progress_recid
   is 'PROGRESS_RECID DA TABELA EMS506PORO9P10104MFIN.MOVTO_TIT_ACR';
-create index EMS506UNICOO.PK_LOG_RECEBIMENTO_RECIBO on EMS506UNICOO.LOG_RECEBIMENTO_RECIBO (COD_ESTAB_REFER, COD_CLIENTE, COD_REFER);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.LOG_RECEBIMENTO_RECIBO to UNICOOGPS;
+create index EMS506UNICOO.PK_LOG_RECEBIMENTO_RECIBO on EMS506UNICOO.LOG_RECEBIMENTO_RECIBO (COD_ESTAB_REFER, COD_CLIENTE, COD_REFER)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table MENSAGEM_MONITOR_EVENTOS
@@ -2009,16 +2771,25 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.MENSAGEM_MONITOR_EVENTOS
 (
-  DT_CRIACAO      DATE,
-  DS_ROTINA       VARCHAR2(60),
-  DT_ENVIAR       VARCHAR2(60),
-  DS_REMETENTE    VARCHAR2(60),
-  DS_DESTINATARIO VARCHAR2(60),
-  DS_ASSUNTO      VARCHAR2(60),
-  DS_MENSAGEM     VARCHAR2(60)
+  dt_criacao      DATE,
+  ds_rotina       VARCHAR2(60),
+  dt_enviar       VARCHAR2(60),
+  ds_remetente    VARCHAR2(60),
+  ds_destinatario VARCHAR2(60),
+  ds_assunto      VARCHAR2(60),
+  ds_mensagem     VARCHAR2(60)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.MENSAGEM_MONITOR_EVENTOS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table MOVIMENTO_RETORNO_TITULO_ACR
@@ -2026,44 +2797,76 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.MOVIMENTO_RETORNO_TITULO_ACR
 (
-  NRSEQUENCIAL           NUMBER(8) not null,
-  NRSEQ_CONTROLE         NUMBER(8),
-  COD_REFER              VARCHAR2(10),
-  NOM_CLIENTE            VARCHAR2(40),
-  COD_PORTAD             VARCHAR2(6),
-  COD_CART_BCIA          VARCHAR2(6),
-  COD_ESPEC_DOCTO        VARCHAR2(6),
-  COD_TITULO_ACR         VARCHAR2(10),
-  COD_PARCELA            VARCHAR2(6),
-  DAT_EMISSAO            DATE,
-  DAT_VENCIMENTO         DATE,
-  DAT_BAIXA              DATE,
-  DAT_CREDITO            DATE,
-  DAT_RECEBIMENTO        DATE,
-  VAL_SALDO              NUMBER(12,2),
-  VAL_PAGO               NUMBER(12,2),
-  VAL_ABATIMENTO         NUMBER(12,2),
-  VAL_DESCONTO           NUMBER(12,2),
-  VAL_JUROS              NUMBER(12,2),
-  COD_TIT_ACR_BCO        VARCHAR2(20),
-  DES_MENSAGEM           VARCHAR2(500),
-  LOG_FALHA              VARCHAR2(1),
-  VAL_DESCONTO_CALCULADO NUMBER(12,2),
-  COD_EMPRESA            VARCHAR2(6),
-  COD_ESTAB              VARCHAR2(6),
-  CDN_CLIENTE            NUMBER,
-  COD_INDIC_ECON         VARCHAR2(8),
-  COD_SER_DOCTO          VARCHAR2(6),
-  NUM_ID_TIT_ACR         NUMBER(8),
-  TIP_COBRANCA           VARCHAR2(3),
-  COD_OPERACAO           VARCHAR2(3),
-  COD_CONVENIO           VARCHAR2(15)
+  nrsequencial           NUMBER(8) not null,
+  nrseq_controle         NUMBER(8),
+  cod_refer              VARCHAR2(10),
+  nom_cliente            VARCHAR2(40),
+  cod_portad             VARCHAR2(6),
+  cod_cart_bcia          VARCHAR2(6),
+  cod_espec_docto        VARCHAR2(6),
+  cod_titulo_acr         VARCHAR2(10),
+  cod_parcela            VARCHAR2(6),
+  dat_emissao            DATE,
+  dat_vencimento         DATE,
+  dat_baixa              DATE,
+  dat_credito            DATE,
+  dat_recebimento        DATE,
+  val_saldo              NUMBER(12,2),
+  val_pago               NUMBER(12,2),
+  val_abatimento         NUMBER(12,2),
+  val_desconto           NUMBER(12,2),
+  val_juros              NUMBER(12,2),
+  cod_tit_acr_bco        VARCHAR2(20),
+  des_mensagem           VARCHAR2(500),
+  log_falha              VARCHAR2(1),
+  val_desconto_calculado NUMBER(12,2),
+  cod_empresa            VARCHAR2(6),
+  cod_estab              VARCHAR2(6),
+  cdn_cliente            NUMBER,
+  cod_indic_econ         VARCHAR2(8),
+  cod_ser_docto          VARCHAR2(6),
+  num_id_tit_acr         NUMBER(8),
+  tip_cobranca           VARCHAR2(3),
+  cod_operacao           VARCHAR2(3),
+  cod_convenio           VARCHAR2(15)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_MOVIMENTO_TITULO_ACR_01 on EMS506UNICOO.MOVIMENTO_RETORNO_TITULO_ACR (NRSEQ_CONTROLE, NUM_ID_TIT_ACR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.MOVIMENTO_RETORNO_TITULO_ACR
-  add constraint PK_MOVTO_RETORNO_TITULO_ACR primary key (NRSEQUENCIAL);
-create index EMS506UNICOO.IDX_MOVIMENTO_TITULO_ACR_01 on EMS506UNICOO.MOVIMENTO_RETORNO_TITULO_ACR (NRSEQ_CONTROLE, NUM_ID_TIT_ACR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.MOVIMENTO_RETORNO_TITULO_ACR to UNICOOGPS;
+  add constraint PK_MOVTO_RETORNO_TITULO_ACR primary key (NRSEQUENCIAL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table PESSOA_BKP_HML
@@ -2071,43 +2874,52 @@ prompt =============================
 prompt
 create table EMS506UNICOO.PESSOA_BKP_HML
 (
-  NRREGISTRO             NUMBER(8) not null,
-  NOPESSOA               VARCHAR2(60),
-  CDSITPESSOA            VARCHAR2(4),
-  TPPESSOA               VARCHAR2(1),
-  NRCGC_CPF              VARCHAR2(15),
-  NRINSCEST_RG           VARCHAR2(15),
-  CDRAMOATIV             VARCHAR2(5),
-  DTNASCIMENTO           DATE,
-  CDSEXO                 VARCHAR2(1),
-  CDESTADOCIVIL          VARCHAR2(1),
-  NOMAE                  VARCHAR2(70),
-  NRREG_NASCTO           VARCHAR2(6),
-  NOCARTORIO_REG         VARCHAR2(30),
-  TXOBSERVACOES          VARCHAR2(400),
-  NOOPERADOR             VARCHAR2(20),
-  NONATURALIDADE         VARCHAR2(20),
-  CDNACIONALIDADE        VARCHAR2(4),
-  NOORGAO_EMISSOR_RG     VARCHAR2(6),
-  NRPIS                  VARCHAR2(11),
-  CDGRAU_DE_INSTRUCAO    VARCHAR2(4),
-  CDRELIGIAO             VARCHAR2(4),
-  NOPAI                  VARCHAR2(70),
-  NOESPOSO               VARCHAR2(40),
-  CDETNIA                VARCHAR2(4),
-  NRINSCMUN              VARCHAR2(15),
-  NRCEI                  VARCHAR2(15),
-  NRCARTAO_CONVENIO      VARCHAR2(15),
-  NOABREVIADO            VARCHAR2(25),
-  CDPAIS_EMISSOR_ID      NUMBER(3),
-  NRCNS                  NUMBER(15),
-  DTEXPEDICAO_RG         DATE,
-  CDESTADO_EMISSOR_RG    VARCHAR2(2),
-  NRDECLARACAO_NASC_VIVO VARCHAR2(15),
-  CDCIDADE_NATURALIDADE  VARCHAR2(4)
+  nrregistro             NUMBER(8) not null,
+  nopessoa               VARCHAR2(60),
+  cdsitpessoa            VARCHAR2(4),
+  tppessoa               VARCHAR2(1),
+  nrcgc_cpf              VARCHAR2(15),
+  nrinscest_rg           VARCHAR2(15),
+  cdramoativ             VARCHAR2(5),
+  dtnascimento           DATE,
+  cdsexo                 VARCHAR2(1),
+  cdestadocivil          VARCHAR2(1),
+  nomae                  VARCHAR2(70),
+  nrreg_nascto           VARCHAR2(6),
+  nocartorio_reg         VARCHAR2(30),
+  txobservacoes          VARCHAR2(400),
+  nooperador             VARCHAR2(20),
+  nonaturalidade         VARCHAR2(20),
+  cdnacionalidade        VARCHAR2(4),
+  noorgao_emissor_rg     VARCHAR2(6),
+  nrpis                  VARCHAR2(11),
+  cdgrau_de_instrucao    VARCHAR2(4),
+  cdreligiao             VARCHAR2(4),
+  nopai                  VARCHAR2(70),
+  noesposo               VARCHAR2(40),
+  cdetnia                VARCHAR2(4),
+  nrinscmun              VARCHAR2(15),
+  nrcei                  VARCHAR2(15),
+  nrcartao_convenio      VARCHAR2(15),
+  noabreviado            VARCHAR2(25),
+  cdpais_emissor_id      NUMBER(3),
+  nrcns                  NUMBER(15),
+  dtexpedicao_rg         DATE,
+  cdestado_emissor_rg    VARCHAR2(2),
+  nrdeclaracao_nasc_vivo VARCHAR2(15),
+  cdcidade_naturalidade  VARCHAR2(4)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.PESSOA_BKP_HML to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table PROG_DTSUL_BKP
@@ -2115,54 +2927,63 @@ prompt =============================
 prompt
 create table EMS506UNICOO.PROG_DTSUL_BKP
 (
-  COD_PROG_DTSUL          VARCHAR2(200) not null,
-  DES_PROG_DTSUL          VARCHAR2(80) not null,
-  COD_PROCED              VARCHAR2(64) not null,
-  NOM_PROG_DTSUL_MENU     VARCHAR2(80) not null,
-  NOM_PROG_EXT            VARCHAR2(508) not null,
-  LOG_REG_PADR            NUMBER not null,
-  LOG_VISUALIZ_MENU       NUMBER not null,
-  LOG_GERA_LOG_EXEC       NUMBER not null,
-  NUM_TOPICO              NUMBER,
-  NOM_PROG_UPC            VARCHAR2(100),
-  IDI_TEMPLATE            NUMBER,
-  NOM_PROG_APPC           VARCHAR2(100),
-  LOG_EXEC_PROG_RPC       NUMBER,
-  NOM_PROG_DPC            VARCHAR2(100),
-  COD_LIVRE_1             VARCHAR2(200),
-  COD_LIVRE_2             VARCHAR2(200),
-  VAL_LIVRE_1             NUMBER(19,4),
-  VAL_LIVRE_2             NUMBER(19,4),
-  NUM_LIVRE_1             NUMBER,
-  NUM_LIVRE_2             NUMBER,
-  LOG_LIVRE_1             NUMBER,
-  LOG_LIVRE_2             NUMBER,
-  DAT_LIVRE_1             DATE,
-  DAT_LIVRE_2             DATE,
-  DES_CHECKSUM            VARCHAR2(40),
-  LOG_EXEC_PROG_RPC_USUAR NUMBER not null,
-  LOG_PROG_LIBERD_CLIEN   NUMBER,
-  LOG_WEB_ENABLE          NUMBER,
-  LOG_OUTRO_PRODUT_DTSUL  NUMBER,
-  LOG_PREPDO_RPC          NUMBER,
-  IDI_INTERFAC            NUMBER,
-  IDI_DTSUL               NUMBER not null,
-  IDI_CATEG_PROG_DTSUL    NUMBER,
-  IDI_DTSUL_UI_RESOURCE   NUMBER,
-  IDI_DTSUL_MODUL_DTSUL   NUMBER not null,
-  NOM_PROG_MENU_VERBAL    VARCHAR2(508),
-  NOM_TAG_PROG_MENU       VARCHAR2(508),
-  DAT_ULT_ACES            DATE,
-  NUM_TOT_ACES            NUMBER,
-  DAT_CADAST_PROG_DTSUL   DATE,
-  LOG_TIP_EXEC            NUMBER,
-  LOG_ATUALIZ_QUERY       NUMBER,
-  IDI_TIP_PROG_DTSUL      NUMBER not null,
-  LOG_LOGIN_INTERM_AUTOM  NUMBER not null,
-  PROGRESS_RECID          NUMBER
+  cod_prog_dtsul          VARCHAR2(200) not null,
+  des_prog_dtsul          VARCHAR2(80) not null,
+  cod_proced              VARCHAR2(64) not null,
+  nom_prog_dtsul_menu     VARCHAR2(80) not null,
+  nom_prog_ext            VARCHAR2(508) not null,
+  log_reg_padr            NUMBER not null,
+  log_visualiz_menu       NUMBER not null,
+  log_gera_log_exec       NUMBER not null,
+  num_topico              NUMBER,
+  nom_prog_upc            VARCHAR2(100),
+  idi_template            NUMBER,
+  nom_prog_appc           VARCHAR2(100),
+  log_exec_prog_rpc       NUMBER,
+  nom_prog_dpc            VARCHAR2(100),
+  cod_livre_1             VARCHAR2(200),
+  cod_livre_2             VARCHAR2(200),
+  val_livre_1             NUMBER(19,4),
+  val_livre_2             NUMBER(19,4),
+  num_livre_1             NUMBER,
+  num_livre_2             NUMBER,
+  log_livre_1             NUMBER,
+  log_livre_2             NUMBER,
+  dat_livre_1             DATE,
+  dat_livre_2             DATE,
+  des_checksum            VARCHAR2(40),
+  log_exec_prog_rpc_usuar NUMBER not null,
+  log_prog_liberd_clien   NUMBER,
+  log_web_enable          NUMBER,
+  log_outro_produt_dtsul  NUMBER,
+  log_prepdo_rpc          NUMBER,
+  idi_interfac            NUMBER,
+  idi_dtsul               NUMBER not null,
+  idi_categ_prog_dtsul    NUMBER,
+  idi_dtsul_ui_resource   NUMBER,
+  idi_dtsul_modul_dtsul   NUMBER not null,
+  nom_prog_menu_verbal    VARCHAR2(508),
+  nom_tag_prog_menu       VARCHAR2(508),
+  dat_ult_aces            DATE,
+  num_tot_aces            NUMBER,
+  dat_cadast_prog_dtsul   DATE,
+  log_tip_exec            NUMBER,
+  log_atualiz_query       NUMBER,
+  idi_tip_prog_dtsul      NUMBER not null,
+  log_login_interm_autom  NUMBER not null,
+  progress_recid          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.PROG_DTSUL_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_ACERT_TIPO
@@ -2170,11 +2991,20 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TEMP_ACERT_TIPO
 (
-  CDMOVIMENTO          NUMBER,
-  COD_TIP_FLUXO_FINANC VARCHAR2(999)
+  cdmovimento          NUMBER,
+  cod_tip_fluxo_financ VARCHAR2(999)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_ACERT_TIPO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_ANALIS_CLIENTE
@@ -2182,74 +3012,83 @@ prompt ==================================
 prompt
 create table EMS506UNICOO.TEMP_ANALIS_CLIENTE
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  NRSEQ_FAVORECIDO          NUMBER(8),
-  CDSITUACAO                VARCHAR2(2) not null,
-  COD_ACAO                  VARCHAR2(1) not null,
-  COD_AGENC_BCIA            VARCHAR2(10) not null,
-  COD_BANCO                 VARCHAR2(8) not null,
-  COD_CART_BCIA_PREFER      VARCHAR2(3) not null,
-  COD_CEP                   VARCHAR2(20) not null,
-  COD_CEP_COBR              VARCHAR2(20) not null,
-  COD_CLIENTE               NUMBER(9) not null,
-  COD_CTA_CORREN_BCO        VARCHAR2(20) not null,
-  COD_CX_POST               VARCHAR2(20) not null,
-  COD_CX_POST_COBR          VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA     VARCHAR2(2) not null,
-  COD_DIGITO_CTA_CORREN     VARCHAR2(2) not null,
-  COD_E_MAIL                VARCHAR2(40) not null,
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_FAX                   VARCHAR2(20) not null,
-  COD_GRP_CLIEN             VARCHAR2(4) not null,
-  COD_ID_ESTAD_FISIC        VARCHAR2(20) not null,
-  COD_ID_FEDER              VARCHAR2(20) not null,
-  COD_ID_FEDER_EMIS_ESTAD   VARCHAR2(3) not null,
-  COD_ID_FEDER_ESTAD_JURID  VARCHAR2(20) not null,
-  COD_ID_FEDER_JURID        VARCHAR2(20) not null,
-  COD_ID_FEDER_MATRIZ       VARCHAR2(20) not null,
-  COD_ID_FEDER_NASC         VARCHAR2(3) not null,
-  COD_ID_MUNIC_JURID        VARCHAR2(20),
-  COD_ID_PREVID_SOCIAL      VARCHAR2(20) not null,
-  COD_ORG_EMIS_ID_ESTAD     VARCHAR2(10) not null,
-  COD_PAIS_NASC             VARCHAR2(3) not null,
-  COD_PORTAD_PREFER         VARCHAR2(5) not null,
-  COD_RAMAL_FAX             VARCHAR2(20) not null,
-  COD_TELEFONE_1            VARCHAR2(20) not null,
-  COD_TELEFONE_2            VARCHAR2(20) not null,
-  COD_TELEFONE_3            VARCHAR2(20) not null,
-  COD_TIP_CLIEN             VARCHAR2(8) not null,
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12) not null,
-  COD_UNID_FEDER            VARCHAR2(3) not null,
-  COD_UNID_FEDER_COBR       VARCHAR2(3) not null,
-  DAT_ENVIO                 DATE,
-  DAT_IMPL_CLIEN            DATE not null,
-  DAT_NASCIMENTO            DATE,
-  DAT_PROCESSAMENTO         DATE not null,
-  DEST_ANOT_TABELA          VARCHAR2(2000) not null,
-  IND_ESTADO_CIVIL          VARCHAR2(10) not null,
-  IND_OCORRENCIA            NUMBER(1) not null,
-  IND_TIPO_PESSOA           VARCHAR2(8) not null,
-  LOG_CALC_MULTA            VARCHAR2(1) not null,
-  LOG_FINS_LUCRAT           VARCHAR2(1) not null,
-  NOM_ABREV                 VARCHAR2(15),
-  NOM_BAIRRO                VARCHAR2(20) not null,
-  NOM_BAIRRO_COBR           VARCHAR2(20) not null,
-  NOM_CIDADE                VARCHAR2(32) not null,
-  NOM_CIDADE_COBR           VARCHAR2(32) not null,
-  NOM_CLIENTE               VARCHAR2(40) not null,
-  NOM_ENDER_COMPL           VARCHAR2(10) not null,
-  NOM_ENDER_COMPL_COBR      VARCHAR2(10) not null,
-  NOM_ENDERECO              VARCHAR2(40) not null,
-  NOM_ENDERECO_COBR         VARCHAR2(40) not null,
-  NOM_HOME_PAGE             VARCHAR2(40) not null,
-  NOM_MAE                   VARCHAR2(40) not null,
-  NOM_NACIONALIDADE         VARCHAR2(40) not null,
-  NOM_PROFISSAO             VARCHAR2(40) not null,
-  NUM_DIAS_ATRASO_AVDEB     NUMBER(3) not null,
-  NRPESSOA                  NUMBER(10)
+  nrseq_controle_integracao NUMBER(9) not null,
+  nrseq_favorecido          NUMBER(8),
+  cdsituacao                VARCHAR2(2) not null,
+  cod_acao                  VARCHAR2(1) not null,
+  cod_agenc_bcia            VARCHAR2(10) not null,
+  cod_banco                 VARCHAR2(8) not null,
+  cod_cart_bcia_prefer      VARCHAR2(3) not null,
+  cod_cep                   VARCHAR2(20) not null,
+  cod_cep_cobr              VARCHAR2(20) not null,
+  cod_cliente               NUMBER(9) not null,
+  cod_cta_corren_bco        VARCHAR2(20) not null,
+  cod_cx_post               VARCHAR2(20) not null,
+  cod_cx_post_cobr          VARCHAR2(20) not null,
+  cod_digito_agenc_bcia     VARCHAR2(2) not null,
+  cod_digito_cta_corren     VARCHAR2(2) not null,
+  cod_e_mail                VARCHAR2(40) not null,
+  cod_empresa               VARCHAR2(3) not null,
+  cod_fax                   VARCHAR2(20) not null,
+  cod_grp_clien             VARCHAR2(4) not null,
+  cod_id_estad_fisic        VARCHAR2(20) not null,
+  cod_id_feder              VARCHAR2(20) not null,
+  cod_id_feder_emis_estad   VARCHAR2(3) not null,
+  cod_id_feder_estad_jurid  VARCHAR2(20) not null,
+  cod_id_feder_jurid        VARCHAR2(20) not null,
+  cod_id_feder_matriz       VARCHAR2(20) not null,
+  cod_id_feder_nasc         VARCHAR2(3) not null,
+  cod_id_munic_jurid        VARCHAR2(20),
+  cod_id_previd_social      VARCHAR2(20) not null,
+  cod_org_emis_id_estad     VARCHAR2(10) not null,
+  cod_pais_nasc             VARCHAR2(3) not null,
+  cod_portad_prefer         VARCHAR2(5) not null,
+  cod_ramal_fax             VARCHAR2(20) not null,
+  cod_telefone_1            VARCHAR2(20) not null,
+  cod_telefone_2            VARCHAR2(20) not null,
+  cod_telefone_3            VARCHAR2(20) not null,
+  cod_tip_clien             VARCHAR2(8) not null,
+  cod_tip_fluxo_financ      VARCHAR2(12) not null,
+  cod_unid_feder            VARCHAR2(3) not null,
+  cod_unid_feder_cobr       VARCHAR2(3) not null,
+  dat_envio                 DATE,
+  dat_impl_clien            DATE not null,
+  dat_nascimento            DATE,
+  dat_processamento         DATE not null,
+  dest_anot_tabela          VARCHAR2(2000) not null,
+  ind_estado_civil          VARCHAR2(10) not null,
+  ind_ocorrencia            NUMBER(1) not null,
+  ind_tipo_pessoa           VARCHAR2(8) not null,
+  log_calc_multa            VARCHAR2(1) not null,
+  log_fins_lucrat           VARCHAR2(1) not null,
+  nom_abrev                 VARCHAR2(15),
+  nom_bairro                VARCHAR2(20) not null,
+  nom_bairro_cobr           VARCHAR2(20) not null,
+  nom_cidade                VARCHAR2(32) not null,
+  nom_cidade_cobr           VARCHAR2(32) not null,
+  nom_cliente               VARCHAR2(40) not null,
+  nom_ender_compl           VARCHAR2(10) not null,
+  nom_ender_compl_cobr      VARCHAR2(10) not null,
+  nom_endereco              VARCHAR2(40) not null,
+  nom_endereco_cobr         VARCHAR2(40) not null,
+  nom_home_page             VARCHAR2(40) not null,
+  nom_mae                   VARCHAR2(40) not null,
+  nom_nacionalidade         VARCHAR2(40) not null,
+  nom_profissao             VARCHAR2(40) not null,
+  num_dias_atraso_avdeb     NUMBER(3) not null,
+  nrpessoa                  NUMBER(10)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_ANALIS_CLIENTE to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_ANALIS_FORNECEDOR
@@ -2257,72 +3096,81 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TEMP_ANALIS_FORNECEDOR
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  NRSEQ_FAVORECIDO          NUMBER(8),
-  CDSITUACAO                VARCHAR2(2),
-  COD_ACAO                  VARCHAR2(1),
-  COD_AGENC_BCIA            VARCHAR2(10),
-  COD_BANCO                 VARCHAR2(8) not null,
-  COD_CEP                   VARCHAR2(20) not null,
-  COD_CEP_PAGTO             VARCHAR2(20) not null,
-  COD_CTA_CORREN_BCO        VARCHAR2(20) not null,
-  COD_CX_POST               VARCHAR2(20) not null,
-  COD_CX_POST_PAGTO         VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA     VARCHAR2(2) not null,
-  COD_DIGITO_CTA_CORREN     VARCHAR2(2) not null,
-  COD_E_MAIL                VARCHAR2(40) not null,
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_FAX                   VARCHAR2(20) not null,
-  COD_FORMA_PAGTO           VARCHAR2(6) not null,
-  COD_FORNECEDOR            NUMBER(9),
-  COD_GRP_FORNECEDOR        VARCHAR2(4) not null,
-  COD_ID_ESTAD_FISIC        VARCHAR2(20) not null,
-  COD_ID_FEDER              VARCHAR2(20) not null,
-  COD_ID_FEDER_ESTAD_JURID  VARCHAR2(20) not null,
-  COD_ID_FEDER_JURID        VARCHAR2(20) not null,
-  COD_ID_FEDER_MATRIZ       VARCHAR2(20) not null,
-  COD_ID_FEDER_NASC         VARCHAR2(3) not null,
-  COD_ID_MUNIC_JURID        VARCHAR2(20) not null,
-  COD_ID_PREVID_SOCIAL      VARCHAR2(20) not null,
-  COD_ORG_EMIS_ID_ESTAD     VARCHAR2(10) not null,
-  COD_PAIS_NASC             VARCHAR2(3) not null,
-  COD_PORTAD_PREFER         VARCHAR2(5) not null,
-  COD_RAMAL_FAX             VARCHAR2(20) not null,
-  COD_TELEFONE_1            VARCHAR2(20) not null,
-  COD_TELEFONE_2            VARCHAR2(20) not null,
-  COD_TELEFONE_3            VARCHAR2(20) not null,
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12) not null,
-  COD_TIP_FORNECEDOR        VARCHAR2(8) not null,
-  COD_UNID_FEDER            VARCHAR2(3) not null,
-  COD_UNID_FEDER_EMIS_ESTAD VARCHAR2(3) not null,
-  COD_UNID_FEDER_PAGTO      VARCHAR2(3) not null,
-  DAT_ENVIO                 DATE,
-  DAT_IMPL_FORNECEDOR       DATE,
-  DAT_NASCIMENTO            DATE,
-  DAT_PROCESSAMENTO         DATE,
-  DEST_ANOT_TABELA          VARCHAR2(2000),
-  IND_ESTADO_CIVIL          VARCHAR2(10) not null,
-  IND_OCORRENCIA            NUMBER(1) not null,
-  IND_TIPO_PESSOA           VARCHAR2(1) not null,
-  LOG_FINS_LUCRAT           VARCHAR2(1) not null,
-  NOM_ABREV                 VARCHAR2(15) not null,
-  NOM_BAIRRO                VARCHAR2(20) not null,
-  NOM_BAIRRO_PAGTO          VARCHAR2(20),
-  NOM_CIDADE                VARCHAR2(32) not null,
-  NOM_CIDADE_PAGTO          VARCHAR2(32),
-  NOM_ENDER_COMPL           VARCHAR2(10),
-  NOM_ENDER_COMPL_PAGTO     VARCHAR2(10),
-  NOM_ENDERECO              VARCHAR2(40) not null,
-  NOM_ENDERECO_PAGTO        VARCHAR2(40),
-  NOM_FORNECEDOR            VARCHAR2(40) not null,
-  NOM_HOME_PAGE             VARCHAR2(40),
-  NOM_MAE                   VARCHAR2(40),
-  NOM_NACIONALIDADE         VARCHAR2(40),
-  NOM_PROFISSAO             VARCHAR2(40),
-  NRPESSOA                  NUMBER(10)
+  nrseq_controle_integracao NUMBER(9) not null,
+  nrseq_favorecido          NUMBER(8),
+  cdsituacao                VARCHAR2(2),
+  cod_acao                  VARCHAR2(1),
+  cod_agenc_bcia            VARCHAR2(10),
+  cod_banco                 VARCHAR2(8) not null,
+  cod_cep                   VARCHAR2(20) not null,
+  cod_cep_pagto             VARCHAR2(20) not null,
+  cod_cta_corren_bco        VARCHAR2(20) not null,
+  cod_cx_post               VARCHAR2(20) not null,
+  cod_cx_post_pagto         VARCHAR2(20) not null,
+  cod_digito_agenc_bcia     VARCHAR2(2) not null,
+  cod_digito_cta_corren     VARCHAR2(2) not null,
+  cod_e_mail                VARCHAR2(40) not null,
+  cod_empresa               VARCHAR2(3) not null,
+  cod_fax                   VARCHAR2(20) not null,
+  cod_forma_pagto           VARCHAR2(6) not null,
+  cod_fornecedor            NUMBER(9),
+  cod_grp_fornecedor        VARCHAR2(4) not null,
+  cod_id_estad_fisic        VARCHAR2(20) not null,
+  cod_id_feder              VARCHAR2(20) not null,
+  cod_id_feder_estad_jurid  VARCHAR2(20) not null,
+  cod_id_feder_jurid        VARCHAR2(20) not null,
+  cod_id_feder_matriz       VARCHAR2(20) not null,
+  cod_id_feder_nasc         VARCHAR2(3) not null,
+  cod_id_munic_jurid        VARCHAR2(20) not null,
+  cod_id_previd_social      VARCHAR2(20) not null,
+  cod_org_emis_id_estad     VARCHAR2(10) not null,
+  cod_pais_nasc             VARCHAR2(3) not null,
+  cod_portad_prefer         VARCHAR2(5) not null,
+  cod_ramal_fax             VARCHAR2(20) not null,
+  cod_telefone_1            VARCHAR2(20) not null,
+  cod_telefone_2            VARCHAR2(20) not null,
+  cod_telefone_3            VARCHAR2(20) not null,
+  cod_tip_fluxo_financ      VARCHAR2(12) not null,
+  cod_tip_fornecedor        VARCHAR2(8) not null,
+  cod_unid_feder            VARCHAR2(3) not null,
+  cod_unid_feder_emis_estad VARCHAR2(3) not null,
+  cod_unid_feder_pagto      VARCHAR2(3) not null,
+  dat_envio                 DATE,
+  dat_impl_fornecedor       DATE,
+  dat_nascimento            DATE,
+  dat_processamento         DATE,
+  dest_anot_tabela          VARCHAR2(2000),
+  ind_estado_civil          VARCHAR2(10) not null,
+  ind_ocorrencia            NUMBER(1) not null,
+  ind_tipo_pessoa           VARCHAR2(1) not null,
+  log_fins_lucrat           VARCHAR2(1) not null,
+  nom_abrev                 VARCHAR2(15) not null,
+  nom_bairro                VARCHAR2(20) not null,
+  nom_bairro_pagto          VARCHAR2(20),
+  nom_cidade                VARCHAR2(32) not null,
+  nom_cidade_pagto          VARCHAR2(32),
+  nom_ender_compl           VARCHAR2(10),
+  nom_ender_compl_pagto     VARCHAR2(10),
+  nom_endereco              VARCHAR2(40) not null,
+  nom_endereco_pagto        VARCHAR2(40),
+  nom_fornecedor            VARCHAR2(40) not null,
+  nom_home_page             VARCHAR2(40),
+  nom_mae                   VARCHAR2(40),
+  nom_nacionalidade         VARCHAR2(40),
+  nom_profissao             VARCHAR2(40),
+  nrpessoa                  NUMBER(10)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_ANALIS_FORNECEDOR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_ANALISE_TITULOS
@@ -2330,18 +3178,27 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.TEMP_ANALISE_TITULOS
 (
-  PTPINTEGRACAO                  CHAR(2),
-  PCDACAO                        CHAR(1),
-  PCDIDENTIFICADOR               VARCHAR2(12),
-  PNRSEQUENCIAL_ORIGEM           NUMBER(10),
-  PCDMODULO                      CHAR(1),
-  CDEMPRESA                      VARCHAR2(5),
-  PNRSEQ_CONTROLE_INTEGRACAO_ORG CHAR(1),
-  VLTITULO                       NUMBER(12,2),
-  SALDO                          NUMBER
+  ptpintegracao                  CHAR(2),
+  pcdacao                        CHAR(1),
+  pcdidentificador               VARCHAR2(12),
+  pnrsequencial_origem           NUMBER(10),
+  pcdmodulo                      CHAR(1),
+  cdempresa                      VARCHAR2(5),
+  pnrseq_controle_integracao_org CHAR(1),
+  vltitulo                       NUMBER(12,2),
+  saldo                          NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_ANALISE_TITULOS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_CEP_ERRADO
@@ -2349,12 +3206,21 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TEMP_CEP_ERRADO
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  NRSEQUENCIAL_ORIGEM       NUMBER(10),
-  CDIDENTIFICADOR           VARCHAR2(40)
+  nrseq_controle_integracao NUMBER(9) not null,
+  nrsequencial_origem       NUMBER(10),
+  cdidentificador           VARCHAR2(40)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_CEP_ERRADO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_EMS_MOV_TITULO_ACR
@@ -2362,114 +3228,123 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.TEMP_EMS_MOV_TITULO_ACR
 (
-  COD_EMPRESA              VARCHAR2(12) not null,
-  U##COD_ESTAB             VARCHAR2(12) not null,
-  COD_ESTAB                VARCHAR2(12) not null,
-  U##COD_REFER             VARCHAR2(20) not null,
-  COD_REFER                VARCHAR2(20) not null,
-  U##COD_ESPEC_DOCTO       VARCHAR2(12) not null,
-  COD_ESPEC_DOCTO          VARCHAR2(12) not null,
-  U##COD_ESTAB_TIT_ACR_PAI VARCHAR2(12),
-  COD_ESTAB_TIT_ACR_PAI    VARCHAR2(12),
-  COD_PORTADOR             VARCHAR2(12) not null,
-  COD_CART_BCIA            VARCHAR2(12) not null,
-  U##CODMOTIVMOVTOTITACR   VARCHAR2(16),
-  CODMOTIVMOVTOTITACR      VARCHAR2(16),
-  COD_FINALID_ECON_MOTIV   VARCHAR2(20),
-  COD_USUARIO              VARCHAR2(24) not null,
-  COD_USUAR_GERAC_CTBZ     VARCHAR2(24),
-  COD_AUTORIZ_BCO          VARCHAR2(16),
-  CODINSTRUCBCIA1MOVTO     VARCHAR2(12),
-  CODINSTRUCBCIA2MOVTO     VARCHAR2(12),
-  COD_ESTAB_ENCTRO_CTA     VARCHAR2(12),
-  DAT_TRANSACAO            DATE not null,
-  DAT_CR_MOVTO_TIT_ACR     DATE,
-  DAT_VENCTO_TIT_ACR       DATE,
-  DAT_VENCTO_ANT_TIT_ACR   DATE,
-  DATAPURACVARIACVALANT    DATE,
-  DAT_GERAC_CTBZ           DATE,
-  DAT_GERAC_MOVTO          DATE not null,
-  DAT_LIQUIDAC_TIT_ACR     DATE,
-  DAT_FLUXO_CX_MOVTO       DATE not null,
-  VAL_MOVTO_TIT_ACR        NUMBER not null,
-  VAL_MOVTO_FLUXO_CX_BCO   NUMBER not null,
-  VAL_DESCONTO             NUMBER not null,
-  VAL_ABAT_TIT_ACR         NUMBER not null,
-  VAL_JUROS                NUMBER not null,
-  VAL_MULTA_TIT_ACR        NUMBER not null,
-  VAL_DESPES_BCIA          NUMBER,
-  VAL_CM_TIT_ACR           NUMBER not null,
-  VALIMPTOOPERACFINANC     NUMBER not null,
-  VAL_MOTIV_MOVTO_ACR      NUMBER,
-  VAL_DESPES_FINANC        NUMBER not null,
-  NUM_ID_MOVTO_TIT_ACR     NUMBER not null,
-  NUMIDMOVTOTITACRPAI      NUMBER,
-  NUMIDMOVTOCTACORREN      NUMBER not null,
-  NUM_ID_TIT_ACR           NUMBER not null,
-  NUM_ID_MOVTO_BXA         NUMBER,
-  NUM_FATUR_ACR            NUMBER,
-  NUM_RENEGOC_COBR_ACR     NUMBER not null,
-  NUM_ID_ENCTRO_CTA        NUMBER,
-  LOG_CTBZ_APROP_CTBL      NUMBER not null,
-  LOG_APROP_CTBL_CTBZDA    NUMBER not null,
-  LOG_MOVTO_ESTORDO        NUMBER not null,
-  LOG_NDEBITO_GERAD        NUMBER not null,
-  LOG_ANTECIP_GERAD        NUMBER not null,
-  LOGLIQUIDACCONTRAANTECIP NUMBER not null,
-  LOGMOVTOCOMISESTORDO     NUMBER not null,
-  LOG_MOVTO_ENVDO_BCO      NUMBER not null,
-  CDN_CLIENTE              NUMBER not null,
-  CDN_CLIEN_FATUR          NUMBER,
-  IND_TRANS_ACR            VARCHAR2(58) not null,
-  IND_MOTIV_ACERTO_VAL     VARCHAR2(24),
-  U##IND_TRANS_ACR_ABREV   VARCHAR2(12),
-  IND_TRANS_ACR_ABREV      VARCHAR2(12),
-  U##HRA_GERAC_MOVTO       VARCHAR2(16) not null,
-  HRA_GERAC_MOVTO          VARCHAR2(16) not null,
-  HRA_GERAC_CTBZ           VARCHAR2(16),
-  COD_LIVRE_1              VARCHAR2(500),
-  LOG_INTEGR_CFL_ATLZDO    NUMBER not null,
-  VAL_SDO_TIT_ACR          NUMBER not null,
-  VAL_MULTA_TIT_ACR_CALC   NUMBER not null,
-  VAL_JUROS_CALC           NUMBER not null,
-  LOG_RECUPER_PERDA        NUMBER,
-  IND_ORIG_ALTER_PORTAD    VARCHAR2(30),
-  COD_CONTRAT_CAMBIO       VARCHAR2(30),
-  DATCONTRATCAMBIOEXPORT   DATE,
-  NUM_CONTRAT_ID_CAMBIO    NUMBER,
-  CODESTABCONTRATCAMBIO    VARCHAR2(12),
-  CODREFERCONTRATCAMBIO    VARCHAR2(20),
-  DATREFERCONTRATCAMBIO    DATE,
-  COD_ESTAB_REEMBOL        VARCHAR2(12),
-  COD_ESTAB_PROCES_BXA     VARCHAR2(12),
-  DATVINCULCONTRATCAMBIO   DATE,
-  LOG_RETENC_IMPTO_LIQ     NUMBER not null,
-  VAL_RETENC_PIS           NUMBER not null,
-  VAL_RETENC_COFINS        NUMBER not null,
-  VAL_RETENC_CSLL          NUMBER not null,
-  COD_LIVRE_2              VARCHAR2(500),
-  DAT_LIVRE_1              DATE,
-  DAT_LIVRE_2              DATE,
-  LOG_LIVRE_1              NUMBER,
-  LOG_LIVRE_2              NUMBER,
-  NUM_LIVRE_1              NUMBER,
-  NUM_LIVRE_2              NUMBER,
-  VAL_LIVRE_1              NUMBER,
-  VAL_LIVRE_2              NUMBER,
-  VAL_IVA_RETID            NUMBER not null,
-  LOG_IMPORT_TIT_SDO       NUMBER,
-  PROGRESS_RECID           NUMBER,
-  COD_SER_DOCTO            VARCHAR2(12) not null,
-  COD_TIT_ACR              VARCHAR2(20) not null,
-  COD_PARCELA              VARCHAR2(12) not null,
-  VAL_LIQ_TIT_ACR          NUMBER not null,
-  VAL_AJUST_VAL_TIT_ACR    NUMBER not null,
-  IND_TIP_ESPEC_DOCTO      VARCHAR2(34) not null,
-  VRDOC                    VARCHAR2(40),
-  COD_TIT_ACR_BCO          VARCHAR2(40)
+  cod_empresa              VARCHAR2(12) not null,
+  u##cod_estab             VARCHAR2(12) not null,
+  cod_estab                VARCHAR2(12) not null,
+  u##cod_refer             VARCHAR2(20) not null,
+  cod_refer                VARCHAR2(20) not null,
+  u##cod_espec_docto       VARCHAR2(12) not null,
+  cod_espec_docto          VARCHAR2(12) not null,
+  u##cod_estab_tit_acr_pai VARCHAR2(12),
+  cod_estab_tit_acr_pai    VARCHAR2(12),
+  cod_portador             VARCHAR2(12) not null,
+  cod_cart_bcia            VARCHAR2(12) not null,
+  u##codmotivmovtotitacr   VARCHAR2(16),
+  codmotivmovtotitacr      VARCHAR2(16),
+  cod_finalid_econ_motiv   VARCHAR2(20),
+  cod_usuario              VARCHAR2(24) not null,
+  cod_usuar_gerac_ctbz     VARCHAR2(24),
+  cod_autoriz_bco          VARCHAR2(16),
+  codinstrucbcia1movto     VARCHAR2(12),
+  codinstrucbcia2movto     VARCHAR2(12),
+  cod_estab_enctro_cta     VARCHAR2(12),
+  dat_transacao            DATE not null,
+  dat_cr_movto_tit_acr     DATE,
+  dat_vencto_tit_acr       DATE,
+  dat_vencto_ant_tit_acr   DATE,
+  datapuracvariacvalant    DATE,
+  dat_gerac_ctbz           DATE,
+  dat_gerac_movto          DATE not null,
+  dat_liquidac_tit_acr     DATE,
+  dat_fluxo_cx_movto       DATE not null,
+  val_movto_tit_acr        NUMBER not null,
+  val_movto_fluxo_cx_bco   NUMBER not null,
+  val_desconto             NUMBER not null,
+  val_abat_tit_acr         NUMBER not null,
+  val_juros                NUMBER not null,
+  val_multa_tit_acr        NUMBER not null,
+  val_despes_bcia          NUMBER,
+  val_cm_tit_acr           NUMBER not null,
+  valimptooperacfinanc     NUMBER not null,
+  val_motiv_movto_acr      NUMBER,
+  val_despes_financ        NUMBER not null,
+  num_id_movto_tit_acr     NUMBER not null,
+  numidmovtotitacrpai      NUMBER,
+  numidmovtoctacorren      NUMBER not null,
+  num_id_tit_acr           NUMBER not null,
+  num_id_movto_bxa         NUMBER,
+  num_fatur_acr            NUMBER,
+  num_renegoc_cobr_acr     NUMBER not null,
+  num_id_enctro_cta        NUMBER,
+  log_ctbz_aprop_ctbl      NUMBER not null,
+  log_aprop_ctbl_ctbzda    NUMBER not null,
+  log_movto_estordo        NUMBER not null,
+  log_ndebito_gerad        NUMBER not null,
+  log_antecip_gerad        NUMBER not null,
+  logliquidaccontraantecip NUMBER not null,
+  logmovtocomisestordo     NUMBER not null,
+  log_movto_envdo_bco      NUMBER not null,
+  cdn_cliente              NUMBER not null,
+  cdn_clien_fatur          NUMBER,
+  ind_trans_acr            VARCHAR2(58) not null,
+  ind_motiv_acerto_val     VARCHAR2(24),
+  u##ind_trans_acr_abrev   VARCHAR2(12),
+  ind_trans_acr_abrev      VARCHAR2(12),
+  u##hra_gerac_movto       VARCHAR2(16) not null,
+  hra_gerac_movto          VARCHAR2(16) not null,
+  hra_gerac_ctbz           VARCHAR2(16),
+  cod_livre_1              VARCHAR2(500),
+  log_integr_cfl_atlzdo    NUMBER not null,
+  val_sdo_tit_acr          NUMBER not null,
+  val_multa_tit_acr_calc   NUMBER not null,
+  val_juros_calc           NUMBER not null,
+  log_recuper_perda        NUMBER,
+  ind_orig_alter_portad    VARCHAR2(30),
+  cod_contrat_cambio       VARCHAR2(30),
+  datcontratcambioexport   DATE,
+  num_contrat_id_cambio    NUMBER,
+  codestabcontratcambio    VARCHAR2(12),
+  codrefercontratcambio    VARCHAR2(20),
+  datrefercontratcambio    DATE,
+  cod_estab_reembol        VARCHAR2(12),
+  cod_estab_proces_bxa     VARCHAR2(12),
+  datvinculcontratcambio   DATE,
+  log_retenc_impto_liq     NUMBER not null,
+  val_retenc_pis           NUMBER not null,
+  val_retenc_cofins        NUMBER not null,
+  val_retenc_csll          NUMBER not null,
+  cod_livre_2              VARCHAR2(500),
+  dat_livre_1              DATE,
+  dat_livre_2              DATE,
+  log_livre_1              NUMBER,
+  log_livre_2              NUMBER,
+  num_livre_1              NUMBER,
+  num_livre_2              NUMBER,
+  val_livre_1              NUMBER,
+  val_livre_2              NUMBER,
+  val_iva_retid            NUMBER not null,
+  log_import_tit_sdo       NUMBER,
+  progress_recid           NUMBER,
+  cod_ser_docto            VARCHAR2(12) not null,
+  cod_tit_acr              VARCHAR2(20) not null,
+  cod_parcela              VARCHAR2(12) not null,
+  val_liq_tit_acr          NUMBER not null,
+  val_ajust_val_tit_acr    NUMBER not null,
+  ind_tip_espec_docto      VARCHAR2(34) not null,
+  vrdoc                    VARCHAR2(40),
+  cod_tit_acr_bco          VARCHAR2(40)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_EMS_MOV_TITULO_ACR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_ERROS_INTGR
@@ -2477,14 +3352,23 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.TEMP_ERROS_INTGR
 (
-  CDN_FORNECEDOR NUMBER not null,
-  CDN_CLIENTE    NUMBER not null,
-  U##NOM_PESSOA  VARCHAR2(80) not null,
-  NOM_PESSOA     VARCHAR2(80) not null,
-  COD_ID_FEDER   VARCHAR2(40) not null
+  cdn_fornecedor NUMBER not null,
+  cdn_cliente    NUMBER not null,
+  u##nom_pessoa  VARCHAR2(80) not null,
+  nom_pessoa     VARCHAR2(80) not null,
+  cod_id_feder   VARCHAR2(40) not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_ERROS_INTGR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_IT_PESSOA
@@ -2492,21 +3376,30 @@ prompt =============================
 prompt
 create table EMS506UNICOO.TEMP_IT_PESSOA
 (
-  NRREGISTRO             NUMBER(10) not null,
-  NOABREVIADO_CLIENTE    VARCHAR2(15),
-  NOABREVIADO_FORNECEDOR VARCHAR2(15),
-  CDN_FORNECEDOR         NUMBER(10),
-  CDN_CLIENTE            NUMBER(10),
-  NRREGISTRO_PAI         NUMBER(10),
-  TXREGRA_AGRUPAMENTO    VARCHAR2(20),
-  NOPESSOA               VARCHAR2(60),
-  DTNASCIMENTO           DATE,
-  NRCGC_CPF              VARCHAR2(15),
-  DTGERACAO              DATE,
-  DTULTIMA_ATUALIZACAO   DATE
+  nrregistro             NUMBER(10) not null,
+  noabreviado_cliente    VARCHAR2(15),
+  noabreviado_fornecedor VARCHAR2(15),
+  cdn_fornecedor         NUMBER(10),
+  cdn_cliente            NUMBER(10),
+  nrregistro_pai         NUMBER(10),
+  txregra_agrupamento    VARCHAR2(20),
+  nopessoa               VARCHAR2(60),
+  dtnascimento           DATE,
+  nrcgc_cpf              VARCHAR2(15),
+  dtgeracao              DATE,
+  dtultima_atualizacao   DATE
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_IT_PESSOA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_NOMEABREV
@@ -2514,20 +3407,51 @@ prompt =============================
 prompt
 create table EMS506UNICOO.TEMP_NOMEABREV
 (
-  NRREGISTRO   NUMBER,
-  NOPESSOA     VARCHAR2(999),
-  NOMAE        VARCHAR2(999),
-  DTNASCIMENTO DATE,
-  TPPESSOA     CHAR(1),
-  NOABREV_EMS  VARCHAR2(12),
-  NRCGC_CPG    NUMBER
+  nrregistro   NUMBER,
+  nopessoa     VARCHAR2(999),
+  nomae        VARCHAR2(999),
+  dtnascimento DATE,
+  tppessoa     CHAR(1),
+  noabrev_ems  VARCHAR2(12),
+  nrcgc_cpg    NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 create index EMS506UNICOO.IX_TEMP_1 on EMS506UNICOO.TEMP_NOMEABREV (NOPESSOA, NOMAE, DTNASCIMENTO, NRCGC_CPG)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  )
   reverse;
 create index EMS506UNICOO.IX_TEMP_2 on EMS506UNICOO.TEMP_NOMEABREV (NOABREV_EMS)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  )
   reverse;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_NOMEABREV to UNICOOGPS;
 
 prompt
 prompt Creating table TEMP_TIPO_MOV_APB
@@ -2535,27 +3459,36 @@ prompt ================================
 prompt
 create table EMS506UNICOO.TEMP_TIPO_MOV_APB
 (
-  NRSEQUENCIAL         NUMBER(4) not null,
-  CDEMPRESA            VARCHAR2(5) not null,
-  CDMOVIMENTO          VARCHAR2(4) not null,
-  CDMODULO             VARCHAR2(4) not null,
-  NOMOVIMENTO          VARCHAR2(40),
-  CDDIVISAO            VARCHAR2(4),
-  COD_ESTAB            VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC VARCHAR2(12),
-  COD_CTA_CTBL         VARCHAR2(20),
-  COD_CCUSTO           VARCHAR2(11),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  COD_CART_BCIA        VARCHAR2(3),
-  COD_EMPRESA          VARCHAR2(3),
-  COD_PORTADOR         VARCHAR2(5),
-  COD_SER_DOCTO        VARCHAR2(2),
-  COD_FORMA_PAGTO      VARCHAR2(4),
-  COD_GRP_FORNECEDOR   VARCHAR2(4) not null,
-  CDCENTRO_CUSTO       VARCHAR2(4)
+  nrsequencial         NUMBER(4) not null,
+  cdempresa            VARCHAR2(5) not null,
+  cdmovimento          VARCHAR2(4) not null,
+  cdmodulo             VARCHAR2(4) not null,
+  nomovimento          VARCHAR2(40),
+  cddivisao            VARCHAR2(4),
+  cod_estab            VARCHAR2(3),
+  cod_tip_fluxo_financ VARCHAR2(12),
+  cod_cta_ctbl         VARCHAR2(20),
+  cod_ccusto           VARCHAR2(11),
+  cod_espec_docto      VARCHAR2(3),
+  cod_cart_bcia        VARCHAR2(3),
+  cod_empresa          VARCHAR2(3),
+  cod_portador         VARCHAR2(5),
+  cod_ser_docto        VARCHAR2(2),
+  cod_forma_pagto      VARCHAR2(4),
+  cod_grp_fornecedor   VARCHAR2(4) not null,
+  cdcentro_custo       VARCHAR2(4)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_TIPO_MOV_APB to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_TIT_FECHADO
@@ -2563,11 +3496,20 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.TEMP_TIT_FECHADO
 (
-  REGISTRO    VARCHAR2(4000),
-  NRSEQUENCIA NUMBER
+  registro    VARCHAR2(4000),
+  nrsequencia NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_TIT_FECHADO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TEMP_TITULOS_APB_NAO_MIGRAR
@@ -2575,85 +3517,106 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.TEMP_TITULOS_APB_NAO_MIGRAR
 (
-  CDFORNECEDOR              VARCHAR2(6),
-  NRREGISTRO_TITULO         NUMBER(10) not null,
-  CDEMPRESA                 VARCHAR2(5),
-  NRREGISTRO_FORNECEDOR     NUMBER(8),
-  CDSITUACAO                VARCHAR2(1),
-  IDCONTRATO                VARCHAR2(12),
-  CDHISTORICO               NUMBER(4),
-  NRDOCUMENTO               VARCHAR2(12),
-  TPDOCUMENTO               VARCHAR2(3),
-  CDPORTADOR                VARCHAR2(3),
-  CDOPERACAO                VARCHAR2(3),
-  NRNOSSONUMERO             VARCHAR2(20),
-  NRVENDEDOR                VARCHAR2(3),
-  DTTITULO                  DATE,
-  DTVENCIMENTO              DATE,
-  DTEXCLUSAO                DATE,
-  DTREFERENCIA              DATE,
-  VLTITULO                  NUMBER(12,2),
-  VLABATIMENTO              NUMBER(12,2),
-  VLABATIMENTO_2            NUMBER(12,2),
-  DTULTIMO_RECEBIMENTO      DATE,
-  VLPAGO                    NUMBER(12,2),
-  VLMULTA                   NUMBER(12,2),
-  VLJUROS                   NUMBER(12,2),
-  VLDESCONTO                NUMBER(12,2),
-  DTENVIO_BANCO             DATE,
-  DTCONFIRMA_BANCO          DATE,
-  TXREFERENCIA_BANCO        VARCHAR2(100),
-  TXHISTORICO               VARCHAR2(255),
-  DTPROTESTO                DATE,
-  NOCARTORIO_PROTESTO       VARCHAR2(50),
-  TXOBSERVACOES             VARCHAR2(255),
-  CDCENTRO_CUSTO            NUMBER(6),
-  NRREGISTRO_TIT_AGRUP      NUMBER(10),
-  NRREGISTRO_TIT_DESM       NUMBER(10),
-  NRBANCO                   NUMBER(4),
-  NRAGENCIA                 VARCHAR2(8),
-  NRCONTA_BANCARIA          VARCHAR2(12),
-  DTCONTABILIZADO           DATE,
-  AOLIBERADO                VARCHAR2(1),
-  CDFUNCIONARIO             VARCHAR2(12),
-  DTLIBERACAO               DATE,
-  AOENVIA                   VARCHAR2(3),
-  NRSEQUENCIANOTAFISCALENT  NUMBER default 0,
-  NRNOTA_FISCAL_DEV         VARCHAR2(12),
-  VLTITULO_VENDOR           NUMBER(14,2),
-  NRREGISTRO_DESPESA        NUMBER(12),
-  NRMOTIVO_EXCLUSAO         NUMBER(4),
-  DTDIGITACAO               DATE,
-  NRREGISTRO_AGRUP          NUMBER(10),
-  DTULTIMO_RETORNO          DATE,
-  NRULTIMO_RETORNO          NUMBER,
-  CDCOMANDO_ENVIO           VARCHAR2(2),
-  CDCOMANDO_RETORNO         VARCHAR2(3),
-  CDCOMANDO_ATUAL           VARCHAR2(2),
-  CDBARRA                   VARCHAR2(44),
-  LINHA_DIGITAVEL_CB        VARCHAR2(47),
-  VLTAXA_BANCARIA           NUMBER(12,2),
-  CDTAXA                    VARCHAR2(6),
-  NRULTIMO_ENVIO            NUMBER,
-  NRDOCUMENTO_BANCO         VARCHAR2(30),
-  VLIR_FONTE                NUMBER(12,2),
-  CDORIGEM                  VARCHAR2(2),
-  NRORIGEM                  NUMBER(10),
-  DTENCERRAMENTO            DATE,
-  CDDIVISAO                 NUMBER(6),
-  VLBRUTO                   NUMBER(12,2),
-  DTEMISSAO_NF              DATE,
-  DTREFERENCIA_BAIXA        DATE,
-  CDMOVIMENTO_INCLUSAO      NUMBER(2),
-  TPIMPOSTOS_DESMEMBRAMENTO VARCHAR2(1),
-  TPIMPOSTOS_AGRUPAMENTO    VARCHAR2(1),
-  CDCENTRO_RESPONSABILIDADE NUMBER(6),
-  NRDOC_INTERCAMBIO         VARCHAR2(20)
+  cdfornecedor              VARCHAR2(6),
+  nrregistro_titulo         NUMBER(10) not null,
+  cdempresa                 VARCHAR2(5),
+  nrregistro_fornecedor     NUMBER(8),
+  cdsituacao                VARCHAR2(1),
+  idcontrato                VARCHAR2(12),
+  cdhistorico               NUMBER(4),
+  nrdocumento               VARCHAR2(12),
+  tpdocumento               VARCHAR2(3),
+  cdportador                VARCHAR2(3),
+  cdoperacao                VARCHAR2(3),
+  nrnossonumero             VARCHAR2(20),
+  nrvendedor                VARCHAR2(3),
+  dttitulo                  DATE,
+  dtvencimento              DATE,
+  dtexclusao                DATE,
+  dtreferencia              DATE,
+  vltitulo                  NUMBER(12,2),
+  vlabatimento              NUMBER(12,2),
+  vlabatimento_2            NUMBER(12,2),
+  dtultimo_recebimento      DATE,
+  vlpago                    NUMBER(12,2),
+  vlmulta                   NUMBER(12,2),
+  vljuros                   NUMBER(12,2),
+  vldesconto                NUMBER(12,2),
+  dtenvio_banco             DATE,
+  dtconfirma_banco          DATE,
+  txreferencia_banco        VARCHAR2(100),
+  txhistorico               VARCHAR2(255),
+  dtprotesto                DATE,
+  nocartorio_protesto       VARCHAR2(50),
+  txobservacoes             VARCHAR2(255),
+  cdcentro_custo            NUMBER(6),
+  nrregistro_tit_agrup      NUMBER(10),
+  nrregistro_tit_desm       NUMBER(10),
+  nrbanco                   NUMBER(4),
+  nragencia                 VARCHAR2(8),
+  nrconta_bancaria          VARCHAR2(12),
+  dtcontabilizado           DATE,
+  aoliberado                VARCHAR2(1),
+  cdfuncionario             VARCHAR2(12),
+  dtliberacao               DATE,
+  aoenvia                   VARCHAR2(3),
+  nrsequencianotafiscalent  NUMBER default 0,
+  nrnota_fiscal_dev         VARCHAR2(12),
+  vltitulo_vendor           NUMBER(14,2),
+  nrregistro_despesa        NUMBER(12),
+  nrmotivo_exclusao         NUMBER(4),
+  dtdigitacao               DATE,
+  nrregistro_agrup          NUMBER(10),
+  dtultimo_retorno          DATE,
+  nrultimo_retorno          NUMBER,
+  cdcomando_envio           VARCHAR2(2),
+  cdcomando_retorno         VARCHAR2(3),
+  cdcomando_atual           VARCHAR2(2),
+  cdbarra                   VARCHAR2(44),
+  linha_digitavel_cb        VARCHAR2(47),
+  vltaxa_bancaria           NUMBER(12,2),
+  cdtaxa                    VARCHAR2(6),
+  nrultimo_envio            NUMBER,
+  nrdocumento_banco         VARCHAR2(30),
+  vlir_fonte                NUMBER(12,2),
+  cdorigem                  VARCHAR2(2),
+  nrorigem                  NUMBER(10),
+  dtencerramento            DATE,
+  cddivisao                 NUMBER(6),
+  vlbruto                   NUMBER(12,2),
+  dtemissao_nf              DATE,
+  dtreferencia_baixa        DATE,
+  cdmovimento_inclusao      NUMBER(2),
+  tpimpostos_desmembramento VARCHAR2(1),
+  tpimpostos_agrupamento    VARCHAR2(1),
+  cdcentro_responsabilidade NUMBER(6),
+  nrdoc_intercambio         VARCHAR2(20)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 30
+  maxtrans 255
+  storage
+  (
+    initial 18M
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TEMP_TITULOS_APB_NAO_MIGRAR
-  add constraint PK_TITULO_A_PAGAR primary key (NRREGISTRO_TITULO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TEMP_TITULOS_APB_NAO_MIGRAR to UNICOOGPS;
+  add constraint PK_TITULO_A_PAGAR primary key (NRREGISTRO_TITULO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 2M
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_ABERTO_CONTABIL_EMS
@@ -2661,36 +3624,45 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_ABERTO_CONTABIL_EMS
 (
-  NRREGISTRO_TITULO      NUMBER(12),
-  COD_ESTAB              VARCHAR2(6),
-  COD_ESPEC_DOCTO        VARCHAR2(6),
-  COD_SER_DOCTO          VARCHAR2(6),
-  COD_TIT_ACR            VARCHAR2(10),
-  COD_PARCELA            VARCHAR2(6),
-  COD_UNID_NEGOCIO       CHAR(3),
-  CDN_CLIENTE            NUMBER,
-  NOM_ABREV              VARCHAR2(40),
-  NOM_CLIENTE            VARCHAR2(60),
-  COD_GRP_CLIENTE        VARCHAR2(3),
-  COD_CLIENTE_MATRIZ     NUMBER,
-  COD_PORTADOR           VARCHAR2(6),
-  COD_CART_BCIA          VARCHAR2(6),
-  COD_REPRESENTANTE      NUMBER,
-  DAT_EMIS_DOCTO         DATE,
-  DAT_VENCTO_TIT_ACR     DATE,
-  DAT_LIQUIDAC_TIT_ACR   DATE,
-  COD_REFER              VARCHAR2(10),
-  COD_TIT_ACR_BCO        VARCHAR2(20),
-  COD_MOEDA              VARCHAR2(20),
-  VAL_ORIGIN_TIT_ACR     NUMBER,
-  VAL_SDO_TIT_ACR        NUMBER,
-  VAL_SALDO_APRESENTACAO NUMBER,
-  NUM_DIAS               NUMBER,
-  NUM_PEDIDO             NUMBER,
-  COD_CONDICAO_PAGTO     VARCHAR2(20)
+  nrregistro_titulo      NUMBER(12),
+  cod_estab              VARCHAR2(6),
+  cod_espec_docto        VARCHAR2(6),
+  cod_ser_docto          VARCHAR2(6),
+  cod_tit_acr            VARCHAR2(10),
+  cod_parcela            VARCHAR2(6),
+  cod_unid_negocio       CHAR(3),
+  cdn_cliente            NUMBER,
+  nom_abrev              VARCHAR2(40),
+  nom_cliente            VARCHAR2(60),
+  cod_grp_cliente        VARCHAR2(3),
+  cod_cliente_matriz     NUMBER,
+  cod_portador           VARCHAR2(6),
+  cod_cart_bcia          VARCHAR2(6),
+  cod_representante      NUMBER,
+  dat_emis_docto         DATE,
+  dat_vencto_tit_acr     DATE,
+  dat_liquidac_tit_acr   DATE,
+  cod_refer              VARCHAR2(10),
+  cod_tit_acr_bco        VARCHAR2(20),
+  cod_moeda              VARCHAR2(20),
+  val_origin_tit_acr     NUMBER,
+  val_sdo_tit_acr        NUMBER,
+  val_saldo_apresentacao NUMBER,
+  num_dias               NUMBER,
+  num_pedido             NUMBER,
+  cod_condicao_pagto     VARCHAR2(20)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_ABERTO_CONTABIL_EMS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_ABERTO_CONTABIL_UNICOO
@@ -2698,27 +3670,36 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.TI_ABERTO_CONTABIL_UNICOO
 (
-  NRREGISTRO_TITULO NUMBER(10),
-  CDCLIENTE         VARCHAR2(10),
-  CLIENTE           CHAR(50),
-  NRDOCUMENTO       VARCHAR2(12),
-  TPDOCUMENTO       VARCHAR2(3),
-  DTTITULO          DATE,
-  DTVENCIMENTO      DATE,
-  DTEXCLUSAO        DATE,
-  VLTITULO          NUMBER(12,2),
-  VLDESCONTO        NUMBER(12,2),
-  VLGLOSAAP         NUMBER(12,2),
-  VLGLOSA           NUMBER(12,2),
-  VLJUROS           NUMBER(12,2),
-  VLMULTA           NUMBER(12,2),
-  VLRECEBIDO        NUMBER(12,2),
-  VLARECEBER        NUMBER(12,2),
-  COD_SER_DOCTO     VARCHAR2(10),
-  COD_TIT_ACR       VARCHAR2(12)
+  nrregistro_titulo NUMBER(10),
+  cdcliente         VARCHAR2(10),
+  cliente           CHAR(50),
+  nrdocumento       VARCHAR2(12),
+  tpdocumento       VARCHAR2(3),
+  dttitulo          DATE,
+  dtvencimento      DATE,
+  dtexclusao        DATE,
+  vltitulo          NUMBER(12,2),
+  vldesconto        NUMBER(12,2),
+  vlglosaap         NUMBER(12,2),
+  vlglosa           NUMBER(12,2),
+  vljuros           NUMBER(12,2),
+  vlmulta           NUMBER(12,2),
+  vlrecebido        NUMBER(12,2),
+  vlareceber        NUMBER(12,2),
+  cod_ser_docto     VARCHAR2(10),
+  cod_tit_acr       VARCHAR2(12)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_ABERTO_CONTABIL_UNICOO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_BANCO
@@ -2726,18 +3707,39 @@ prompt =======================
 prompt
 create table EMS506UNICOO.TI_BANCO
 (
-  NRSEQUENCIAL     NUMBER,
-  NOBANCO          VARCHAR2(30),
-  COD_BANCO_TOTVS  VARCHAR2(10),
-  COD_BANCO_UNICOO VARCHAR2(10),
-  COD_PORTADOR_APB VARCHAR2(10),
-  COD_PORTADOR_ACR VARCHAR2(10),
-  TAM_NOSSONUMERO  NUMBER
+  nrsequencial     NUMBER,
+  nobanco          VARCHAR2(30),
+  cod_banco_totvs  VARCHAR2(10),
+  cod_banco_unicoo VARCHAR2(10),
+  cod_portador_apb VARCHAR2(10),
+  cod_portador_acr VARCHAR2(10),
+  tam_nossonumero  NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_BANCO
-  add constraint UK_TI_BANCO_01 unique (COD_BANCO_TOTVS, COD_BANCO_UNICOO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_BANCO to UNICOOGPS;
+  add constraint UK_TI_BANCO_01 unique (COD_BANCO_TOTVS, COD_BANCO_UNICOO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_BX_78_NPROC
@@ -2745,10 +3747,19 @@ prompt =============================
 prompt
 create table EMS506UNICOO.TI_BX_78_NPROC
 (
-  CDIDENTIFICADOR VARCHAR2(40)
+  cdidentificador VARCHAR2(40)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_BX_78_NPROC to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_BX_PERDA
@@ -2756,18 +3767,38 @@ prompt ==========================
 prompt
 create table EMS506UNICOO.TI_BX_PERDA
 (
-  NRDOCUMENTO       VARCHAR2(12),
-  NRREGISTRO_TITULO NUMBER(10) not null,
-  DTMOVIMENTO       DATE,
-  VLRECEBIDO        NUMBER(12,2),
-  COD_SER           VARCHAR2(2),
-  COD_TIT           VARCHAR2(10),
-  STATUS            VARCHAR2(2),
-  COD_ESPE          VARCHAR2(5)
+  nrdocumento       VARCHAR2(12),
+  nrregistro_titulo NUMBER(10) not null,
+  dtmovimento       DATE,
+  vlrecebido        NUMBER(12,2),
+  cod_ser           VARCHAR2(2),
+  cod_tit           VARCHAR2(10),
+  status            VARCHAR2(2),
+  cod_espe          VARCHAR2(5)
 )
-;
-create index EMS506UNICOO.IX_TX_BX_BAIXA_PERDA on EMS506UNICOO.TI_BX_PERDA (NRDOCUMENTO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_BX_PERDA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IX_TX_BX_BAIXA_PERDA on EMS506UNICOO.TI_BX_PERDA (NRDOCUMENTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CENTRO_CUSTO_CTBL
@@ -2775,24 +3806,45 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.TI_CENTRO_CUSTO_CTBL
 (
-  COD_CTA_CTBL     VARCHAR2(20) not null,
-  COD_CCUSTO       VARCHAR2(11),
-  COD_ESTAB        VARCHAR2(6) not null,
-  COD_PLANO_CCUSTO VARCHAR2(8),
-  CDHISTORICO      NUMBER(4) default '0' not null
+  cod_cta_ctbl     VARCHAR2(20) not null,
+  cod_ccusto       VARCHAR2(11),
+  cod_estab        VARCHAR2(6) not null,
+  cod_plano_ccusto VARCHAR2(8),
+  cdhistorico      NUMBER(4) default '0' not null
 )
-;
-comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.COD_CTA_CTBL
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.cod_cta_ctbl
   is 'Conta contabil no EMS';
-comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.COD_CCUSTO
+comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.cod_ccusto
   is 'Centro de Custo no EMS';
-comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.COD_ESTAB
+comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.cod_estab
   is 'Codigo do Estabelecimento no EMS';
-comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.COD_PLANO_CCUSTO
+comment on column EMS506UNICOO.TI_CENTRO_CUSTO_CTBL.cod_plano_ccusto
   is 'Plano de Centro de Custo no EMS';
 alter table EMS506UNICOO.TI_CENTRO_CUSTO_CTBL
-  add constraint PK_TI_CENTRO_CUSTO_CTBL primary key (COD_ESTAB, COD_CTA_CTBL, CDHISTORICO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CENTRO_CUSTO_CTBL to UNICOOGPS;
+  add constraint PK_TI_CENTRO_CUSTO_CTBL primary key (COD_ESTAB, COD_CTA_CTBL, CDHISTORICO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CENTRO_CUSTO_CTBL_DEPARA
@@ -2800,11 +3852,20 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.TI_CENTRO_CUSTO_CTBL_DEPARA
 (
-  CDCONTA         NUMBER,
-  CD_CCUSTO_TOTVS NUMBER
+  cdconta         NUMBER,
+  cd_ccusto_totvs NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CENTRO_CUSTO_CTBL_DEPARA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CLIENTE
@@ -2812,78 +3873,121 @@ prompt =========================
 prompt
 create table EMS506UNICOO.TI_CLIENTE
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  NRSEQ_FAVORECIDO          NUMBER(8),
-  CDSITUACAO                VARCHAR2(2) not null,
-  COD_ACAO                  VARCHAR2(1) not null,
-  COD_AGENC_BCIA            VARCHAR2(10) not null,
-  COD_BANCO                 VARCHAR2(8) not null,
-  COD_CART_BCIA_PREFER      VARCHAR2(3) not null,
-  COD_CEP                   VARCHAR2(20) not null,
-  COD_CEP_COBR              VARCHAR2(20) not null,
-  COD_CLIENTE               NUMBER(9) default 0 not null,
-  COD_CTA_CORREN_BCO        VARCHAR2(20) not null,
-  COD_CX_POST               VARCHAR2(20) not null,
-  COD_CX_POST_COBR          VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA     VARCHAR2(2) not null,
-  COD_DIGITO_CTA_CORREN     VARCHAR2(2) not null,
-  COD_E_MAIL                VARCHAR2(40) not null,
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_FAX                   VARCHAR2(20) not null,
-  COD_GRP_CLIEN             VARCHAR2(4) not null,
-  COD_ID_ESTAD_FISIC        VARCHAR2(20) not null,
-  COD_ID_FEDER              VARCHAR2(20) not null,
-  COD_ID_FEDER_EMIS_ESTAD   VARCHAR2(3) not null,
-  COD_ID_FEDER_ESTAD_JURID  VARCHAR2(20) not null,
-  COD_ID_FEDER_JURID        VARCHAR2(20) not null,
-  COD_ID_FEDER_MATRIZ       VARCHAR2(20) not null,
-  COD_ID_FEDER_NASC         VARCHAR2(3) not null,
-  COD_ID_MUNIC_JURID        VARCHAR2(20),
-  COD_ID_PREVID_SOCIAL      VARCHAR2(20) not null,
-  COD_ORG_EMIS_ID_ESTAD     VARCHAR2(10) not null,
-  COD_PAIS_NASC             VARCHAR2(3) not null,
-  COD_PORTAD_PREFER         VARCHAR2(5) not null,
-  COD_RAMAL_FAX             VARCHAR2(20) not null,
-  COD_TELEFONE_1            VARCHAR2(20) not null,
-  COD_TELEFONE_2            VARCHAR2(20) not null,
-  COD_TELEFONE_3            VARCHAR2(20) not null,
-  COD_TIP_CLIEN             VARCHAR2(8) not null,
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12) not null,
-  COD_UNID_FEDER            VARCHAR2(3) not null,
-  COD_UNID_FEDER_COBR       VARCHAR2(3) not null,
-  DAT_ENVIO                 DATE,
-  DAT_IMPL_CLIEN            DATE not null,
-  DAT_NASCIMENTO            DATE,
-  DAT_PROCESSAMENTO         DATE not null,
-  DEST_ANOT_TABELA          VARCHAR2(2000) not null,
-  IND_ESTADO_CIVIL          VARCHAR2(10) not null,
-  IND_OCORRENCIA            NUMBER(1) not null,
-  IND_TIPO_PESSOA           VARCHAR2(8) not null,
-  LOG_CALC_MULTA            VARCHAR2(1) not null,
-  LOG_FINS_LUCRAT           VARCHAR2(1) not null,
-  NOM_ABREV                 VARCHAR2(15),
-  NOM_BAIRRO                VARCHAR2(20) not null,
-  NOM_BAIRRO_COBR           VARCHAR2(20) not null,
-  NOM_CIDADE                VARCHAR2(32) not null,
-  NOM_CIDADE_COBR           VARCHAR2(32) not null,
-  NOM_CLIENTE               VARCHAR2(80) not null,
-  NOM_ENDER_COMPL           VARCHAR2(10) not null,
-  NOM_ENDER_COMPL_COBR      VARCHAR2(10) not null,
-  NOM_ENDERECO              VARCHAR2(40) not null,
-  NOM_ENDERECO_COBR         VARCHAR2(40) not null,
-  NOM_HOME_PAGE             VARCHAR2(40) not null,
-  NOM_MAE                   VARCHAR2(40) not null,
-  NOM_NACIONALIDADE         VARCHAR2(40) not null,
-  NOM_PROFISSAO             VARCHAR2(40) not null,
-  NUM_DIAS_ATRASO_AVDEB     NUMBER(3) not null,
-  NRPESSOA                  NUMBER(10)
+  nrseq_controle_integracao NUMBER(9) not null,
+  nrseq_favorecido          NUMBER(8),
+  cdsituacao                VARCHAR2(2) not null,
+  cod_acao                  VARCHAR2(1) not null,
+  cod_agenc_bcia            VARCHAR2(10) not null,
+  cod_banco                 VARCHAR2(8) not null,
+  cod_cart_bcia_prefer      VARCHAR2(3) not null,
+  cod_cep                   VARCHAR2(20) not null,
+  cod_cep_cobr              VARCHAR2(20) not null,
+  cod_cliente               NUMBER(9) default 0 not null,
+  cod_cta_corren_bco        VARCHAR2(20) not null,
+  cod_cx_post               VARCHAR2(20) not null,
+  cod_cx_post_cobr          VARCHAR2(20) not null,
+  cod_digito_agenc_bcia     VARCHAR2(2) not null,
+  cod_digito_cta_corren     VARCHAR2(2) not null,
+  cod_e_mail                VARCHAR2(40) not null,
+  cod_empresa               VARCHAR2(3) not null,
+  cod_fax                   VARCHAR2(20) not null,
+  cod_grp_clien             VARCHAR2(4) not null,
+  cod_id_estad_fisic        VARCHAR2(20) not null,
+  cod_id_feder              VARCHAR2(20) not null,
+  cod_id_feder_emis_estad   VARCHAR2(3) not null,
+  cod_id_feder_estad_jurid  VARCHAR2(20) not null,
+  cod_id_feder_jurid        VARCHAR2(20) not null,
+  cod_id_feder_matriz       VARCHAR2(20) not null,
+  cod_id_feder_nasc         VARCHAR2(3) not null,
+  cod_id_munic_jurid        VARCHAR2(20),
+  cod_id_previd_social      VARCHAR2(20) not null,
+  cod_org_emis_id_estad     VARCHAR2(10) not null,
+  cod_pais_nasc             VARCHAR2(3) not null,
+  cod_portad_prefer         VARCHAR2(5) not null,
+  cod_ramal_fax             VARCHAR2(20) not null,
+  cod_telefone_1            VARCHAR2(20) not null,
+  cod_telefone_2            VARCHAR2(20) not null,
+  cod_telefone_3            VARCHAR2(20) not null,
+  cod_tip_clien             VARCHAR2(8) not null,
+  cod_tip_fluxo_financ      VARCHAR2(12) not null,
+  cod_unid_feder            VARCHAR2(3) not null,
+  cod_unid_feder_cobr       VARCHAR2(3) not null,
+  dat_envio                 DATE,
+  dat_impl_clien            DATE not null,
+  dat_nascimento            DATE,
+  dat_processamento         DATE not null,
+  dest_anot_tabela          VARCHAR2(2000) not null,
+  ind_estado_civil          VARCHAR2(10) not null,
+  ind_ocorrencia            NUMBER(1) not null,
+  ind_tipo_pessoa           VARCHAR2(8) not null,
+  log_calc_multa            VARCHAR2(1) not null,
+  log_fins_lucrat           VARCHAR2(1) not null,
+  nom_abrev                 VARCHAR2(15),
+  nom_bairro                VARCHAR2(20) not null,
+  nom_bairro_cobr           VARCHAR2(20) not null,
+  nom_cidade                VARCHAR2(32) not null,
+  nom_cidade_cobr           VARCHAR2(32) not null,
+  nom_cliente               VARCHAR2(80) not null,
+  nom_ender_compl           VARCHAR2(10) not null,
+  nom_ender_compl_cobr      VARCHAR2(10) not null,
+  nom_endereco              VARCHAR2(40) not null,
+  nom_endereco_cobr         VARCHAR2(40) not null,
+  nom_home_page             VARCHAR2(40) not null,
+  nom_mae                   VARCHAR2(40) not null,
+  nom_nacionalidade         VARCHAR2(40) not null,
+  nom_profissao             VARCHAR2(40) not null,
+  num_dias_atraso_avdeb     NUMBER(3) not null,
+  nrpessoa                  NUMBER(10)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_COD_CLIENTE on EMS506UNICOO.TI_CLIENTE (COD_CLIENTE)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CLIENTE_CDSITUACAO on EMS506UNICOO.TI_CLIENTE (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_CLIENTE
-  add constraint PK_TI_CLIENTE primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_COD_CLIENTE on EMS506UNICOO.TI_CLIENTE (COD_CLIENTE);
-create index EMS506UNICOO.IDX_TI_CLIENTE_CDSITUACAO on EMS506UNICOO.TI_CLIENTE (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CLIENTE to UNICOOGPS;
+  add constraint PK_TI_CLIENTE primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CONTABILIZACAO
@@ -2891,34 +3995,55 @@ prompt ================================
 prompt
 create table EMS506UNICOO.TI_CONTABILIZACAO
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_PLANO_CTA_CTBL        VARCHAR2(8),
-  COD_PLANO_CCUSTO          VARCHAR2(8),
-  COD_CTA_CTBL              VARCHAR2(20),
-  IND_NATUR_LANCTO_CTBL     VARCHAR2(2) not null,
-  COD_HISTOR_PADR           VARCHAR2(8),
-  DES_HISTOR_LANCTO_CTBL    VARCHAR2(2000),
-  DAT_LANCTO                DATE,
-  VAL_LANCTO_CTBL           NUMBER(12,2),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_PROJ_FINANC           VARCHAR2(20),
-  IND_OCORRENCIA            VARCHAR2(1),
-  DAT_PROCESSAMENTO         DATE,
-  DAT_GERACAO               DATE,
-  COD_ESTAB                 VARCHAR2(6),
-  DES_DOCTO                 VARCHAR2(20),
-  NRPERIODO                 NUMBER(6),
-  DES_LOTE_CTBL             VARCHAR2(40),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_UNID_NEGOC            VARCHAR2(3),
-  NRLANCAMENTO              NUMBER(6) not null,
-  NRSEQ_LANCTO              NUMBER(6) not null
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_plano_cta_ctbl        VARCHAR2(8),
+  cod_plano_ccusto          VARCHAR2(8),
+  cod_cta_ctbl              VARCHAR2(20),
+  ind_natur_lancto_ctbl     VARCHAR2(2) not null,
+  cod_histor_padr           VARCHAR2(8),
+  des_histor_lancto_ctbl    VARCHAR2(2000),
+  dat_lancto                DATE,
+  val_lancto_ctbl           NUMBER(12,2),
+  cod_ccusto                VARCHAR2(11),
+  cod_proj_financ           VARCHAR2(20),
+  ind_ocorrencia            VARCHAR2(1),
+  dat_processamento         DATE,
+  dat_geracao               DATE,
+  cod_estab                 VARCHAR2(6),
+  des_docto                 VARCHAR2(20),
+  nrperiodo                 NUMBER(6),
+  des_lote_ctbl             VARCHAR2(40),
+  cod_empresa               VARCHAR2(3),
+  cod_unid_negoc            VARCHAR2(3),
+  nrlancamento              NUMBER(6) not null,
+  nrseq_lancto              NUMBER(6) not null
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_CONTABILIZACAO
-  add constraint UK_TI_CONTABILIZACAO_LANCTO primary key (NRSEQ_CONTROLE_INTEGRACAO, NRLANCAMENTO, NRSEQ_LANCTO, IND_NATUR_LANCTO_CTBL);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CONTABILIZACAO to UNICOOGPS;
+  add constraint UK_TI_CONTABILIZACAO_LANCTO primary key (NRSEQ_CONTROLE_INTEGRACAO, NRLANCAMENTO, NRSEQ_LANCTO, IND_NATUR_LANCTO_CTBL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CONTROLE_INTEGRACAO
@@ -2926,43 +4051,151 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_CONTROLE_INTEGRACAO
 (
-  NRSEQUENCIAL                  NUMBER(10) not null,
-  TPINTEGRACAO                  VARCHAR2(2),
-  DTGERACAO                     DATE,
-  NRSEQUENCIAL_ORIGEM           NUMBER(10),
-  DTPROCESSAMENTO               DATE,
-  DTINTEGRACAO                  DATE,
-  CDACAO                        VARCHAR2(1),
-  CDIDENTIFICADOR               VARCHAR2(40),
-  TXOBSERVACAO                  VARCHAR2(500),
-  CDSITUACAO                    VARCHAR2(2),
-  NRSEQ_CONTROLE_INTEGRACAO_ORG NUMBER(10),
-  CDEMPRESA                     VARCHAR2(5),
-  CDMODULO                      VARCHAR2(4),
-  CDMOVIMENTO                   VARCHAR2(4),
-  NRSESSAO                      NUMBER(10),
-  CDDIVISAO                     VARCHAR2(4),
-  CDCENTRO_CUSTO                VARCHAR2(4),
-  TPDOCUMENTO                   VARCHAR2(5)
+  nrsequencial                  NUMBER(10) not null,
+  tpintegracao                  VARCHAR2(2),
+  dtgeracao                     DATE,
+  nrsequencial_origem           NUMBER(10),
+  dtprocessamento               DATE,
+  dtintegracao                  DATE,
+  cdacao                        VARCHAR2(1),
+  cdidentificador               VARCHAR2(40),
+  txobservacao                  VARCHAR2(500),
+  cdsituacao                    VARCHAR2(2),
+  nrseq_controle_integracao_org NUMBER(10),
+  cdempresa                     VARCHAR2(5),
+  cdmodulo                      VARCHAR2(4),
+  cdmovimento                   VARCHAR2(4),
+  nrsessao                      NUMBER(10),
+  cddivisao                     VARCHAR2(4),
+  cdcentro_custo                VARCHAR2(4),
+  tpdocumento                   VARCHAR2(5)
 )
-;
-comment on column EMS506UNICOO.TI_CONTROLE_INTEGRACAO.CDACAO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_CONTROLE_INTEGRACAO.cdacao
   is 'A-INCLUSAO, I-INCLUSAO, R-Reprocesso';
-comment on column EMS506UNICOO.TI_CONTROLE_INTEGRACAO.CDSITUACAO
+comment on column EMS506UNICOO.TI_CONTROLE_INTEGRACAO.cdsituacao
   is 'OK - Processado com sucesso, GE - Gerado, ER -Processo com erro; RE - Reprocessar; CA - CANCELADO';
+create index EMS506UNICOO.IDX_INT_TCI_DTGERA_1 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TRUNC(DTGERACAO), CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_01 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSEQUENCIAL, CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_02 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSEQUENCIAL_ORIGEM, TPINTEGRACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_03 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSESSAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_04 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TPINTEGRACAO, NRSEQUENCIAL_ORIGEM, CDIDENTIFICADOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_06 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (CDIDENTIFICADOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_07 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSESSAO, TPINTEGRACAO, CDSITUACAO, NRSEQUENCIAL)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  )
+  reverse;
+create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_08 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TPINTEGRACAO, CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IX_TI_CONTROLE_INTEGRACAO_05 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_CONTROLE_INTEGRACAO
   add constraint PK_TI_CONTROLE_INTEGRACAO primary key (NRSEQUENCIAL);
-create index EMS506UNICOO.IDX_INT_TCI_DTGERA_1 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TRUNC(DTGERACAO), CDSITUACAO);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_01 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSEQUENCIAL, CDSITUACAO);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_02 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSEQUENCIAL_ORIGEM, TPINTEGRACAO);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_03 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSESSAO);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_04 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TPINTEGRACAO, NRSEQUENCIAL_ORIGEM, CDIDENTIFICADOR);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_06 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (CDIDENTIFICADOR);
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_07 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (NRSESSAO, TPINTEGRACAO, CDSITUACAO, NRSEQUENCIAL)
-  reverse;
-create index EMS506UNICOO.IDX_TI_CONTROLE_INTEGRACAO_08 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (TPINTEGRACAO, CDSITUACAO);
-create index EMS506UNICOO.IX_TI_CONTROLE_INTEGRACAO_05 on EMS506UNICOO.TI_CONTROLE_INTEGRACAO (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CONTROLE_INTEGRACAO to UNICOOGPS;
 
 prompt
 prompt Creating table TI_CONTROLE_INTEGRACAO_BKP
@@ -2970,27 +4203,36 @@ prompt =========================================
 prompt
 create table EMS506UNICOO.TI_CONTROLE_INTEGRACAO_BKP
 (
-  NRSEQUENCIAL                  NUMBER(10) not null,
-  TPINTEGRACAO                  VARCHAR2(2),
-  DTGERACAO                     DATE,
-  NRSEQUENCIAL_ORIGEM           NUMBER(10),
-  DTPROCESSAMENTO               DATE,
-  DTINTEGRACAO                  DATE,
-  CDACAO                        VARCHAR2(1),
-  CDIDENTIFICADOR               VARCHAR2(40),
-  TXOBSERVACAO                  VARCHAR2(500),
-  CDSITUACAO                    VARCHAR2(2),
-  NRSEQ_CONTROLE_INTEGRACAO_ORG NUMBER(10),
-  CDEMPRESA                     VARCHAR2(5),
-  CDMODULO                      VARCHAR2(4),
-  CDMOVIMENTO                   VARCHAR2(4),
-  NRSESSAO                      NUMBER(10),
-  CDDIVISAO                     VARCHAR2(4),
-  CDCENTRO_CUSTO                VARCHAR2(4),
-  TPDOCUMENTO                   VARCHAR2(5)
+  nrsequencial                  NUMBER(10) not null,
+  tpintegracao                  VARCHAR2(2),
+  dtgeracao                     DATE,
+  nrsequencial_origem           NUMBER(10),
+  dtprocessamento               DATE,
+  dtintegracao                  DATE,
+  cdacao                        VARCHAR2(1),
+  cdidentificador               VARCHAR2(40),
+  txobservacao                  VARCHAR2(500),
+  cdsituacao                    VARCHAR2(2),
+  nrseq_controle_integracao_org NUMBER(10),
+  cdempresa                     VARCHAR2(5),
+  cdmodulo                      VARCHAR2(4),
+  cdmovimento                   VARCHAR2(4),
+  nrsessao                      NUMBER(10),
+  cddivisao                     VARCHAR2(4),
+  cdcentro_custo                VARCHAR2(4),
+  tpdocumento                   VARCHAR2(5)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CONTROLE_INTEGRACAO_BKP to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CX_BX_ACR
@@ -2998,46 +4240,100 @@ prompt ===========================
 prompt
 create table EMS506UNICOO.TI_CX_BX_ACR
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2) not null,
-  COD_CART_BCIA             VARCHAR2(3) not null,
-  COD_CLIENTE               NUMBER(9),
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_ESPEC_DOCTO           VARCHAR2(3) not null,
-  COD_ESTAB                 VARCHAR2(3) not null,
-  COD_PARCELA               VARCHAR2(6) not null,
-  COD_PORTADOR              VARCHAR2(5) not null,
-  COD_SER_DOCTO             VARCHAR2(3) not null,
-  COD_TIT_ACR_BCO           VARCHAR2(20) not null,
-  COD_TITULO_ACR            VARCHAR2(10) not null,
-  DAT_BAIXA                 DATE,
-  DAT_ENVIO                 DATE,
-  DAT_PROCESSAMENTO         DATE not null,
-  DES_TEXT_HISTOR           VARCHAR2(200) not null,
-  VAL_DESCONTO              NUMBER(9,2) not null,
-  VAL_ABATIMENTO            NUMBER(9,2) not null,
-  VAL_IR                    NUMBER(9,2) not null,
-  VAL_JUROS                 NUMBER(9,2),
-  VAL_MULTA                 NUMBER(9,2),
-  VAL_LIQ_TITULO            NUMBER(9,2) not null,
-  VAL_TITULO                NUMBER(9,2) not null,
-  NRPESSOA                  NUMBER(10) not null,
-  NRREGISTRO_TITULO         NUMBER(10),
-  NRMOVIMENTO_BAIXA         NUMBER(12),
-  NRDOCUMENTO               VARCHAR2(12) not null,
-  NRNOSSONUMERO             VARCHAR2(20) not null,
-  TXHISTORICO               VARCHAR2(1000),
-  NRBANCO                   VARCHAR2(4) not null,
-  NRAGENCIA                 VARCHAR2(8) not null,
-  NRCONTA_CORRENTE          VARCHAR2(12) not null
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2) not null,
+  cod_cart_bcia             VARCHAR2(3) not null,
+  cod_cliente               NUMBER(9),
+  cod_empresa               VARCHAR2(3) not null,
+  cod_espec_docto           VARCHAR2(3) not null,
+  cod_estab                 VARCHAR2(3) not null,
+  cod_parcela               VARCHAR2(6) not null,
+  cod_portador              VARCHAR2(5) not null,
+  cod_ser_docto             VARCHAR2(3) not null,
+  cod_tit_acr_bco           VARCHAR2(20) not null,
+  cod_titulo_acr            VARCHAR2(10) not null,
+  dat_baixa                 DATE,
+  dat_envio                 DATE,
+  dat_processamento         DATE not null,
+  des_text_histor           VARCHAR2(200) not null,
+  val_desconto              NUMBER(9,2) not null,
+  val_abatimento            NUMBER(9,2) not null,
+  val_ir                    NUMBER(9,2) not null,
+  val_juros                 NUMBER(9,2),
+  val_multa                 NUMBER(9,2),
+  val_liq_titulo            NUMBER(9,2) not null,
+  val_titulo                NUMBER(9,2) not null,
+  nrpessoa                  NUMBER(10) not null,
+  nrregistro_titulo         NUMBER(10),
+  nrmovimento_baixa         NUMBER(12),
+  nrdocumento               VARCHAR2(12) not null,
+  nrnossonumero             VARCHAR2(20) not null,
+  txhistorico               VARCHAR2(1000),
+  nrbanco                   VARCHAR2(4) not null,
+  nragencia                 VARCHAR2(8) not null,
+  nrconta_corrente          VARCHAR2(12) not null
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CX_BX_ACR on EMS506UNICOO.TI_CX_BX_ACR (COD_ESPEC_DOCTO, COD_TITULO_ACR, COD_ESTAB, COD_SER_DOCTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CX_BX_ACR_01 on EMS506UNICOO.TI_CX_BX_ACR (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_CX_BX_ACR_02 on EMS506UNICOO.TI_CX_BX_ACR (NRMOVIMENTO_BAIXA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_CX_BX_ACR
-  add constraint PK_TI_CX_BX_ACR primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_TI_CX_BX_ACR on EMS506UNICOO.TI_CX_BX_ACR (COD_ESPEC_DOCTO, COD_TITULO_ACR, COD_ESTAB, COD_SER_DOCTO);
-create index EMS506UNICOO.IDX_TI_CX_BX_ACR_01 on EMS506UNICOO.TI_CX_BX_ACR (CDSITUACAO);
-create index EMS506UNICOO.IDX_TI_CX_BX_ACR_02 on EMS506UNICOO.TI_CX_BX_ACR (NRMOVIMENTO_BAIXA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CX_BX_ACR to UNICOOGPS;
+  add constraint PK_TI_CX_BX_ACR primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_CX_BX_APB
@@ -3045,41 +4341,50 @@ prompt ===========================
 prompt
 create table EMS506UNICOO.TI_CX_BX_APB
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2) not null,
-  COD_CART_BCIA             VARCHAR2(3) not null,
-  COD_CLIENTE               NUMBER(9),
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_ESPEC_DOCTO           VARCHAR2(3) not null,
-  COD_ESTAB                 VARCHAR2(3) not null,
-  COD_PARCELA               VARCHAR2(6) not null,
-  COD_PORTADOR              VARCHAR2(5) not null,
-  COD_SER_DOCTO             VARCHAR2(3) not null,
-  COD_TIT_APB_BCO           VARCHAR2(20) not null,
-  COD_TITULO_APB            VARCHAR2(10) not null,
-  DAT_BAIXA                 DATE,
-  DAT_ENVIO                 DATE,
-  DAT_PROCESSAMENTO         DATE not null,
-  DES_TEXT_HISTOR           VARCHAR2(200) not null,
-  VAL_DESCONTO              NUMBER(9,2) not null,
-  VAL_ABATIMENTO            NUMBER(9,2) not null,
-  VAL_IR                    NUMBER(9,2) not null,
-  VAL_JUROS                 NUMBER(9,2),
-  VAL_MULTA                 NUMBER(9,2),
-  VAL_LIQ_TITULO            NUMBER(9,2) not null,
-  VAL_TITULO                NUMBER(9,2) not null,
-  NRPESSOA                  NUMBER(10) not null,
-  NRREGISTRO_TITULO         NUMBER(10),
-  NRMOVIMENTO_BAIXA         NUMBER(12),
-  NRDOCUMENTO               VARCHAR2(12) not null,
-  NRNOSSONUMERO             VARCHAR2(20) not null,
-  TXHISTORICO               VARCHAR2(1000),
-  NRBANCO                   VARCHAR2(4) not null,
-  NRAGENCIA                 VARCHAR2(8) not null,
-  NRCONTA_CORRENTE          VARCHAR2(12) not null
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2) not null,
+  cod_cart_bcia             VARCHAR2(3) not null,
+  cod_cliente               NUMBER(9),
+  cod_empresa               VARCHAR2(3) not null,
+  cod_espec_docto           VARCHAR2(3) not null,
+  cod_estab                 VARCHAR2(3) not null,
+  cod_parcela               VARCHAR2(6) not null,
+  cod_portador              VARCHAR2(5) not null,
+  cod_ser_docto             VARCHAR2(3) not null,
+  cod_tit_apb_bco           VARCHAR2(20) not null,
+  cod_titulo_apb            VARCHAR2(10) not null,
+  dat_baixa                 DATE,
+  dat_envio                 DATE,
+  dat_processamento         DATE not null,
+  des_text_histor           VARCHAR2(200) not null,
+  val_desconto              NUMBER(9,2) not null,
+  val_abatimento            NUMBER(9,2) not null,
+  val_ir                    NUMBER(9,2) not null,
+  val_juros                 NUMBER(9,2),
+  val_multa                 NUMBER(9,2),
+  val_liq_titulo            NUMBER(9,2) not null,
+  val_titulo                NUMBER(9,2) not null,
+  nrpessoa                  NUMBER(10) not null,
+  nrregistro_titulo         NUMBER(10),
+  nrmovimento_baixa         NUMBER(12),
+  nrdocumento               VARCHAR2(12) not null,
+  nrnossonumero             VARCHAR2(20) not null,
+  txhistorico               VARCHAR2(1000),
+  nrbanco                   VARCHAR2(4) not null,
+  nragencia                 VARCHAR2(8) not null,
+  nrconta_corrente          VARCHAR2(12) not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_CX_BX_APB to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_DEMONSTRATIVO_FATURAMENTO
@@ -3087,34 +4392,43 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.TI_DEMONSTRATIVO_FATURAMENTO
 (
-  NUM_ID_TIT_ACR        NUMBER not null,
-  NUM_ID_MOVTO_TIT_ACR  NUMBER not null,
-  COD_SER_DOCTO         VARCHAR2(6) not null,
-  COD_TIT_ACR           VARCHAR2(10) not null,
-  COD_PARCELA           VARCHAR2(6) not null,
-  VAL_MOVTO_TIT_ACR     NUMBER not null,
-  DAT_VENCTO_TIT_ACR    DATE,
-  VAL_AJUST_VAL_TIT_ACR NUMBER not null,
-  VAL_MULTA_TIT_ACR     NUMBER not null,
-  VAL_JUROS             NUMBER not null,
-  VAL_DESCONTO          NUMBER not null,
-  VAL_ABAT_TIT_ACR      NUMBER not null,
-  VAL_DESPES_BCIA       NUMBER,
-  DAT_CR_MOVTO_TIT_ACR  DATE,
-  DAT_TRANSACAO         DATE not null,
-  IND_TRANS_ACR_ABREV   VARCHAR2(6),
-  COD_TIT_ACR_BCO       VARCHAR2(20),
-  COD_REFER             VARCHAR2(10) not null,
-  COD_ESTAB             VARCHAR2(6) not null,
-  COD_ESPEC_DOCTO       VARCHAR2(6) not null,
-  IND_TIP_ESPEC_DOCTO   VARCHAR2(17) not null,
-  CDN_CLIENTE           NUMBER not null,
-  LOG_CTBZ_APROP_CTBL   NUMBER not null,
-  LOG_TIT_ACR_ESTORDO   NUMBER not null,
-  DAT_EMIS_DOCTO        DATE not null
+  num_id_tit_acr        NUMBER not null,
+  num_id_movto_tit_acr  NUMBER not null,
+  cod_ser_docto         VARCHAR2(6) not null,
+  cod_tit_acr           VARCHAR2(10) not null,
+  cod_parcela           VARCHAR2(6) not null,
+  val_movto_tit_acr     NUMBER not null,
+  dat_vencto_tit_acr    DATE,
+  val_ajust_val_tit_acr NUMBER not null,
+  val_multa_tit_acr     NUMBER not null,
+  val_juros             NUMBER not null,
+  val_desconto          NUMBER not null,
+  val_abat_tit_acr      NUMBER not null,
+  val_despes_bcia       NUMBER,
+  dat_cr_movto_tit_acr  DATE,
+  dat_transacao         DATE not null,
+  ind_trans_acr_abrev   VARCHAR2(6),
+  cod_tit_acr_bco       VARCHAR2(20),
+  cod_refer             VARCHAR2(10) not null,
+  cod_estab             VARCHAR2(6) not null,
+  cod_espec_docto       VARCHAR2(6) not null,
+  ind_tip_espec_docto   VARCHAR2(17) not null,
+  cdn_cliente           NUMBER not null,
+  log_ctbz_aprop_ctbl   NUMBER not null,
+  log_tit_acr_estordo   NUMBER not null,
+  dat_emis_docto        DATE not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_DEMONSTRATIVO_FATURAMENTO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_DEPARA_CONTA_DEPOSITO
@@ -3122,12 +4436,21 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.TI_DEPARA_CONTA_DEPOSITO
 (
-  COD_ESTOQUE_MV         NUMBER,
-  COD_CTACONTABIL_UNICOO VARCHAR2(20),
-  COD_HISTORICO_UNICOO   VARCHAR2(30)
+  cod_estoque_mv         NUMBER,
+  cod_ctacontabil_unicoo VARCHAR2(20),
+  cod_historico_unicoo   VARCHAR2(30)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_DEPARA_CONTA_DEPOSITO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_DEPARA_CONTABIL
@@ -3135,15 +4458,24 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_DEPARA_CONTABIL
 (
-  COD_ESPECIE        NUMBER(2),
-  COD_CLASSE         NUMBER(2),
-  COD_SUBCLASSE      NUMBER(2),
-  COD_CTA_CONTABIL   VARCHAR2(60),
-  VLR_LIMITE_INICIAL NUMBER(10,2),
-  VLR_LIMITE_FINAL   NUMBER(10,2)
+  cod_especie        NUMBER(2),
+  cod_classe         NUMBER(2),
+  cod_subclasse      NUMBER(2),
+  cod_cta_contabil   VARCHAR2(60),
+  vlr_limite_inicial NUMBER(10,2),
+  vlr_limite_final   NUMBER(10,2)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_DEPARA_CONTABIL to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_DEPARA_TIPO_MOVIMENTO
@@ -3151,17 +4483,26 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.TI_DEPARA_TIPO_MOVIMENTO
 (
-  CDEMPRESA            VARCHAR2(5),
-  CDMODULO             VARCHAR2(2),
-  CDMOVIMENTO          NUMBER,
-  COD_GRP_CLIEN        VARCHAR2(3),
-  COD_ESTAB            NUMBER,
-  COD_TIP_FLUXO_FINANC NUMBER,
-  COD_CTA_CTBL         NUMBER,
-  COD_ESPECIE          VARCHAR2(3)
+  cdempresa            VARCHAR2(5),
+  cdmodulo             VARCHAR2(2),
+  cdmovimento          NUMBER,
+  cod_grp_clien        VARCHAR2(3),
+  cod_estab            NUMBER,
+  cod_tip_fluxo_financ NUMBER,
+  cod_cta_ctbl         NUMBER,
+  cod_especie          VARCHAR2(3)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_DEPARA_TIPO_MOVIMENTO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_EMPRESA
@@ -3169,23 +4510,44 @@ prompt =========================
 prompt
 create table EMS506UNICOO.TI_EMPRESA
 (
-  CDEMPRESA   VARCHAR2(5) not null,
-  NOEMPRESA   VARCHAR2(40),
-  COD_EMPRESA VARCHAR2(5),
-  COD_ESTAB   VARCHAR2(3)
+  cdempresa   VARCHAR2(5) not null,
+  noempresa   VARCHAR2(40),
+  cod_empresa VARCHAR2(5),
+  cod_estab   VARCHAR2(3)
 )
-;
-comment on column EMS506UNICOO.TI_EMPRESA.CDEMPRESA
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_EMPRESA.cdempresa
   is 'Código da empresa no UNICOO';
-comment on column EMS506UNICOO.TI_EMPRESA.NOEMPRESA
+comment on column EMS506UNICOO.TI_EMPRESA.noempresa
   is 'Nome da Empresa no UNICOO';
-comment on column EMS506UNICOO.TI_EMPRESA.COD_EMPRESA
+comment on column EMS506UNICOO.TI_EMPRESA.cod_empresa
   is 'Codigo da empresa no EMS';
-comment on column EMS506UNICOO.TI_EMPRESA.COD_ESTAB
+comment on column EMS506UNICOO.TI_EMPRESA.cod_estab
   is 'Codigo do Estabelecimento no TOTVS11';
 alter table EMS506UNICOO.TI_EMPRESA
-  add constraint PK_EMPRESA primary key (CDEMPRESA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_EMPRESA to UNICOOGPS;
+  add constraint PK_EMPRESA primary key (CDEMPRESA)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_ESPECIE_PRODUTO
@@ -3193,15 +4555,35 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_ESPECIE_PRODUTO
 (
-  CD_ESPECIE      NUMBER(2),
-  CD_CLASSE       NUMBER(2),
-  CD_SUB_CLASSE   NUMBER(4),
-  COD_ESPC_BEM    VARCHAR2(12),
-  COD_EMPRESA_EMS VARCHAR2(2)
+  cd_especie      NUMBER(2),
+  cd_classe       NUMBER(2),
+  cd_sub_classe   NUMBER(4),
+  cod_espc_bem    VARCHAR2(12),
+  cod_empresa_ems VARCHAR2(2)
 )
-;
-create unique index EMS506UNICOO.IX_TI_ESPECIE_PRODUTO on EMS506UNICOO.TI_ESPECIE_PRODUTO (CD_ESPECIE, CD_CLASSE, CD_SUB_CLASSE, COD_EMPRESA_EMS);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_ESPECIE_PRODUTO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.IX_TI_ESPECIE_PRODUTO on EMS506UNICOO.TI_ESPECIE_PRODUTO (CD_ESPECIE, CD_CLASSE, CD_SUB_CLASSE, COD_EMPRESA_EMS)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_ESTABELECIMENTO
@@ -3209,23 +4591,44 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_ESTABELECIMENTO
 (
-  CDDIVISAO VARCHAR2(4) not null,
-  NODIVISAO VARCHAR2(40),
-  COD_ESTAB VARCHAR2(4),
-  NOM_ESTAB VARCHAR2(40)
+  cddivisao VARCHAR2(4) not null,
+  nodivisao VARCHAR2(40),
+  cod_estab VARCHAR2(4),
+  nom_estab VARCHAR2(40)
 )
-;
-comment on column EMS506UNICOO.TI_ESTABELECIMENTO.CDDIVISAO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_ESTABELECIMENTO.cddivisao
   is '???';
-comment on column EMS506UNICOO.TI_ESTABELECIMENTO.NODIVISAO
+comment on column EMS506UNICOO.TI_ESTABELECIMENTO.nodivisao
   is '??????';
-comment on column EMS506UNICOO.TI_ESTABELECIMENTO.COD_ESTAB
+comment on column EMS506UNICOO.TI_ESTABELECIMENTO.cod_estab
   is 'Cod Estabelecimento no EMS';
-comment on column EMS506UNICOO.TI_ESTABELECIMENTO.NOM_ESTAB
+comment on column EMS506UNICOO.TI_ESTABELECIMENTO.nom_estab
   is 'Descricao do Estabelecimento no EMS';
 alter table EMS506UNICOO.TI_ESTABELECIMENTO
-  add constraint PK_ESTABELECIMENTO primary key (CDDIVISAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_ESTABELECIMENTO to UNICOOGPS;
+  add constraint PK_ESTABELECIMENTO primary key (CDDIVISAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_EXCLUIR_EMS
@@ -3233,20 +4636,29 @@ prompt =============================
 prompt
 create table EMS506UNICOO.TI_EXCLUIR_EMS
 (
-  CDN_FORNECEDOR      NUMBER,
-  CDN_ESTABELECIMENTO NUMBER,
-  CDN_ESPECIE         VARCHAR2(3),
-  CDN_SERIE           VARCHAR2(3),
-  COD_TIT_ACR         VARCHAR2(99),
-  COD_PARCELA         VARCHAR2(99),
-  DAT_EMISSAO         DATE,
-  VAL_TITULO          NUMBER(10,2),
-  VAL_SALDO           NUMBER(10,2),
-  COD_REFER           VARCHAR2(10),
-  NRREGISTRO_TITULO   NUMBER
+  cdn_fornecedor      NUMBER,
+  cdn_estabelecimento NUMBER,
+  cdn_especie         VARCHAR2(3),
+  cdn_serie           VARCHAR2(3),
+  cod_tit_acr         VARCHAR2(99),
+  cod_parcela         VARCHAR2(99),
+  dat_emissao         DATE,
+  val_titulo          NUMBER(10,2),
+  val_saldo           NUMBER(10,2),
+  cod_refer           VARCHAR2(10),
+  nrregistro_titulo   NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_EXCLUIR_EMS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_FALHA_DE_PROCESSO
@@ -3254,31 +4666,51 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.TI_FALHA_DE_PROCESSO
 (
-  NRSEQUENCIAL              NUMBER,
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER,
-  CDINTEGRACAO              VARCHAR2(30),
-  TXFALHA                   VARCHAR2(2000),
-  DTFALHA                   DATE,
-  TXAJUDA                   VARCHAR2(2000),
-  NRMENSAGEM                NUMBER(12)
+  nrsequencial              NUMBER,
+  nrseq_controle_integracao NUMBER,
+  cdintegracao              VARCHAR2(30),
+  txfalha                   VARCHAR2(2000),
+  dtfalha                   DATE,
+  txajuda                   VARCHAR2(2000),
+  nrmensagem                NUMBER(12)
 )
-;
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.NRSEQUENCIAL
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.nrsequencial
   is 'SQ_TI_FALHA_DE_PROCESSO';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.NRSEQ_CONTROLE_INTEGRACAO
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.nrseq_controle_integracao
   is 'Sequencia da ti_controle_integracao';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.CDINTEGRACAO
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.cdintegracao
   is 'tabela que originou a falha';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.TXFALHA
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.txfalha
   is 'descricao da falha';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.DTFALHA
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.dtfalha
   is 'data da geracao da falha';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.TXAJUDA
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.txajuda
   is 'descricao da falha';
-comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.NRMENSAGEM
+comment on column EMS506UNICOO.TI_FALHA_DE_PROCESSO.nrmensagem
   is 'numero da mensagem de erro do EMS';
-create index EMS506UNICOO.IDX_TI_FALHA_DE_PROCESSO_01 on EMS506UNICOO.TI_FALHA_DE_PROCESSO (NRSEQ_CONTROLE_INTEGRACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_FALHA_DE_PROCESSO to UNICOOGPS;
+create index EMS506UNICOO.IDX_TI_FALHA_DE_PROCESSO_01 on EMS506UNICOO.TI_FALHA_DE_PROCESSO (NRSEQ_CONTROLE_INTEGRACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_FALHA_DE_PROCESSO_JOS
@@ -3286,16 +4718,25 @@ prompt =======================================
 prompt
 create table EMS506UNICOO.TI_FALHA_DE_PROCESSO_JOS
 (
-  NRSEQUENCIAL              NUMBER,
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER,
-  CDINTEGRACAO              VARCHAR2(30),
-  TXFALHA                   VARCHAR2(2000),
-  DTFALHA                   DATE,
-  TXAJUDA                   VARCHAR2(2000),
-  NRMENSAGEM                NUMBER(12)
+  nrsequencial              NUMBER,
+  nrseq_controle_integracao NUMBER,
+  cdintegracao              VARCHAR2(30),
+  txfalha                   VARCHAR2(2000),
+  dtfalha                   DATE,
+  txajuda                   VARCHAR2(2000),
+  nrmensagem                NUMBER(12)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_FALHA_DE_PROCESSO_JOS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_FAVORECIDO_MOVIMENTO
@@ -3303,23 +4744,32 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.TI_FAVORECIDO_MOVIMENTO
 (
-  NRSEQUENCIAL                   NUMBER(8),
-  NRSEQ_FAVORECIDO               NUMBER(8),
-  NRSEQ_CONTROLE_INTEGRACAO      NUMBER(8),
-  CDORIGEM                       VARCHAR2(10),
-  CDIDENTIFICADOR                VARCHAR2(10),
-  TXREGRA_REGRA_AGRUP_FAVORECIDO VARCHAR2(100),
-  DTNASCIMENTO                   DATE,
-  NRCGC_CPF                      VARCHAR2(15),
-  NOPESSOA                       VARCHAR2(60),
-  DTMOVIMENTO                    DATE,
-  DTPROCESSAMENTO                DATE,
-  CDACAO                         VARCHAR2(1),
-  NRREGISTRO                     NUMBER(9) not null,
-  TPPESSOA                       VARCHAR2(1) not null
+  nrsequencial                   NUMBER(8),
+  nrseq_favorecido               NUMBER(8),
+  nrseq_controle_integracao      NUMBER(8),
+  cdorigem                       VARCHAR2(10),
+  cdidentificador                VARCHAR2(10),
+  txregra_regra_agrup_favorecido VARCHAR2(100),
+  dtnascimento                   DATE,
+  nrcgc_cpf                      VARCHAR2(15),
+  nopessoa                       VARCHAR2(60),
+  dtmovimento                    DATE,
+  dtprocessamento                DATE,
+  cdacao                         VARCHAR2(1),
+  nrregistro                     NUMBER(9) not null,
+  tppessoa                       VARCHAR2(1) not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_FAVORECIDO_MOVIMENTO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_FORNECEDOR
@@ -3327,75 +4777,107 @@ prompt ============================
 prompt
 create table EMS506UNICOO.TI_FORNECEDOR
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  NRSEQ_FAVORECIDO          NUMBER(8),
-  CDSITUACAO                VARCHAR2(2),
-  COD_ACAO                  VARCHAR2(1),
-  COD_AGENC_BCIA            VARCHAR2(10),
-  COD_BANCO                 VARCHAR2(8) not null,
-  COD_CEP                   VARCHAR2(20) not null,
-  COD_CEP_PAGTO             VARCHAR2(20) not null,
-  COD_CTA_CORREN_BCO        VARCHAR2(20) not null,
-  COD_CX_POST               VARCHAR2(20) not null,
-  COD_CX_POST_PAGTO         VARCHAR2(20) not null,
-  COD_DIGITO_AGENC_BCIA     VARCHAR2(2) not null,
-  COD_DIGITO_CTA_CORREN     VARCHAR2(2) not null,
-  COD_E_MAIL                VARCHAR2(40) not null,
-  COD_EMPRESA               VARCHAR2(3) not null,
-  COD_FAX                   VARCHAR2(20) not null,
-  COD_FORMA_PAGTO           VARCHAR2(6) not null,
-  COD_FORNECEDOR            NUMBER(9),
-  COD_GRP_FORNECEDOR        VARCHAR2(4) not null,
-  COD_ID_ESTAD_FISIC        VARCHAR2(20) not null,
-  COD_ID_FEDER              VARCHAR2(20) not null,
-  COD_ID_FEDER_ESTAD_JURID  VARCHAR2(20) not null,
-  COD_ID_FEDER_JURID        VARCHAR2(20) not null,
-  COD_ID_FEDER_MATRIZ       VARCHAR2(20) not null,
-  COD_ID_FEDER_NASC         VARCHAR2(3) not null,
-  COD_ID_MUNIC_JURID        VARCHAR2(20) not null,
-  COD_ID_PREVID_SOCIAL      VARCHAR2(20) not null,
-  COD_ORG_EMIS_ID_ESTAD     VARCHAR2(10) not null,
-  COD_PAIS_NASC             VARCHAR2(3) not null,
-  COD_PORTAD_PREFER         VARCHAR2(5) not null,
-  COD_RAMAL_FAX             VARCHAR2(20) not null,
-  COD_TELEFONE_1            VARCHAR2(20) not null,
-  COD_TELEFONE_2            VARCHAR2(20) not null,
-  COD_TELEFONE_3            VARCHAR2(20) not null,
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12) not null,
-  COD_TIP_FORNECEDOR        VARCHAR2(8) not null,
-  COD_UNID_FEDER            VARCHAR2(3) not null,
-  COD_UNID_FEDER_EMIS_ESTAD VARCHAR2(3) not null,
-  COD_UNID_FEDER_PAGTO      VARCHAR2(3) not null,
-  DAT_ENVIO                 DATE,
-  DAT_IMPL_FORNECEDOR       DATE,
-  DAT_NASCIMENTO            DATE,
-  DAT_PROCESSAMENTO         DATE,
-  DEST_ANOT_TABELA          VARCHAR2(2000),
-  IND_ESTADO_CIVIL          VARCHAR2(10) not null,
-  IND_OCORRENCIA            NUMBER(1) not null,
-  IND_TIPO_PESSOA           VARCHAR2(1) not null,
-  LOG_FINS_LUCRAT           VARCHAR2(1) not null,
-  NOM_ABREV                 VARCHAR2(15) not null,
-  NOM_BAIRRO                VARCHAR2(20) not null,
-  NOM_BAIRRO_PAGTO          VARCHAR2(20),
-  NOM_CIDADE                VARCHAR2(32) not null,
-  NOM_CIDADE_PAGTO          VARCHAR2(32),
-  NOM_ENDER_COMPL           VARCHAR2(10),
-  NOM_ENDER_COMPL_PAGTO     VARCHAR2(10),
-  NOM_ENDERECO              VARCHAR2(40) not null,
-  NOM_ENDERECO_PAGTO        VARCHAR2(40),
-  NOM_FORNECEDOR            VARCHAR2(80) not null,
-  NOM_HOME_PAGE             VARCHAR2(40),
-  NOM_MAE                   VARCHAR2(40),
-  NOM_NACIONALIDADE         VARCHAR2(40),
-  NOM_PROFISSAO             VARCHAR2(40),
-  NRPESSOA                  NUMBER(10)
+  nrseq_controle_integracao NUMBER(9) not null,
+  nrseq_favorecido          NUMBER(8),
+  cdsituacao                VARCHAR2(2),
+  cod_acao                  VARCHAR2(1),
+  cod_agenc_bcia            VARCHAR2(10),
+  cod_banco                 VARCHAR2(8) not null,
+  cod_cep                   VARCHAR2(20) not null,
+  cod_cep_pagto             VARCHAR2(20) not null,
+  cod_cta_corren_bco        VARCHAR2(20) not null,
+  cod_cx_post               VARCHAR2(20) not null,
+  cod_cx_post_pagto         VARCHAR2(20) not null,
+  cod_digito_agenc_bcia     VARCHAR2(2) not null,
+  cod_digito_cta_corren     VARCHAR2(2) not null,
+  cod_e_mail                VARCHAR2(40) not null,
+  cod_empresa               VARCHAR2(3) not null,
+  cod_fax                   VARCHAR2(20) not null,
+  cod_forma_pagto           VARCHAR2(6) not null,
+  cod_fornecedor            NUMBER(9),
+  cod_grp_fornecedor        VARCHAR2(4) not null,
+  cod_id_estad_fisic        VARCHAR2(20) not null,
+  cod_id_feder              VARCHAR2(20) not null,
+  cod_id_feder_estad_jurid  VARCHAR2(20) not null,
+  cod_id_feder_jurid        VARCHAR2(20) not null,
+  cod_id_feder_matriz       VARCHAR2(20) not null,
+  cod_id_feder_nasc         VARCHAR2(3) not null,
+  cod_id_munic_jurid        VARCHAR2(20) not null,
+  cod_id_previd_social      VARCHAR2(20) not null,
+  cod_org_emis_id_estad     VARCHAR2(10) not null,
+  cod_pais_nasc             VARCHAR2(3) not null,
+  cod_portad_prefer         VARCHAR2(5) not null,
+  cod_ramal_fax             VARCHAR2(20) not null,
+  cod_telefone_1            VARCHAR2(20) not null,
+  cod_telefone_2            VARCHAR2(20) not null,
+  cod_telefone_3            VARCHAR2(20) not null,
+  cod_tip_fluxo_financ      VARCHAR2(12) not null,
+  cod_tip_fornecedor        VARCHAR2(8) not null,
+  cod_unid_feder            VARCHAR2(3) not null,
+  cod_unid_feder_emis_estad VARCHAR2(3) not null,
+  cod_unid_feder_pagto      VARCHAR2(3) not null,
+  dat_envio                 DATE,
+  dat_impl_fornecedor       DATE,
+  dat_nascimento            DATE,
+  dat_processamento         DATE,
+  dest_anot_tabela          VARCHAR2(2000),
+  ind_estado_civil          VARCHAR2(10) not null,
+  ind_ocorrencia            NUMBER(1) not null,
+  ind_tipo_pessoa           VARCHAR2(1) not null,
+  log_fins_lucrat           VARCHAR2(1) not null,
+  nom_abrev                 VARCHAR2(15) not null,
+  nom_bairro                VARCHAR2(20) not null,
+  nom_bairro_pagto          VARCHAR2(20),
+  nom_cidade                VARCHAR2(32) not null,
+  nom_cidade_pagto          VARCHAR2(32),
+  nom_ender_compl           VARCHAR2(10),
+  nom_ender_compl_pagto     VARCHAR2(10),
+  nom_endereco              VARCHAR2(40) not null,
+  nom_endereco_pagto        VARCHAR2(40),
+  nom_fornecedor            VARCHAR2(80) not null,
+  nom_home_page             VARCHAR2(40),
+  nom_mae                   VARCHAR2(40),
+  nom_nacionalidade         VARCHAR2(40),
+  nom_profissao             VARCHAR2(40),
+  nrpessoa                  NUMBER(10)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_FORNECEDOR_CDSITUACAO on EMS506UNICOO.TI_FORNECEDOR (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_FORNECEDOR
-  add constraint PK_TI_FORNECEDOR primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_FORNECEDOR_CDSITUACAO on EMS506UNICOO.TI_FORNECEDOR (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_FORNECEDOR to UNICOOGPS;
+  add constraint PK_TI_FORNECEDOR primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_GRUPO_DE_CLIENTE
@@ -3403,23 +4885,44 @@ prompt ==================================
 prompt
 create table EMS506UNICOO.TI_GRUPO_DE_CLIENTE
 (
-  CDGRUPO_CLIENTE        NUMBER(4) not null,
-  NOGRUPO_CLIENTE        VARCHAR2(30),
-  CDGRUPO_CLIENTE_EMS_PJ VARCHAR2(4),
-  CDGRUPO_CLIENTE_EMS_PF VARCHAR2(4)
+  cdgrupo_cliente        NUMBER(4) not null,
+  nogrupo_cliente        VARCHAR2(30),
+  cdgrupo_cliente_ems_pj VARCHAR2(4),
+  cdgrupo_cliente_ems_pf VARCHAR2(4)
 )
-;
-comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.CDGRUPO_CLIENTE
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.cdgrupo_cliente
   is 'Codigo do grupo de cliente no unicoo';
-comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.NOGRUPO_CLIENTE
+comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.nogrupo_cliente
   is 'Descricao do grupo de cliente no unicoo';
-comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.CDGRUPO_CLIENTE_EMS_PJ
+comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.cdgrupo_cliente_ems_pj
   is 'Cod no EMS para PJ';
-comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.CDGRUPO_CLIENTE_EMS_PF
+comment on column EMS506UNICOO.TI_GRUPO_DE_CLIENTE.cdgrupo_cliente_ems_pf
   is 'Cod no EMS para PF';
 alter table EMS506UNICOO.TI_GRUPO_DE_CLIENTE
-  add constraint PK_TI_GRUPO_DE_CLIENTE primary key (CDGRUPO_CLIENTE);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_GRUPO_DE_CLIENTE to UNICOOGPS;
+  add constraint PK_TI_GRUPO_DE_CLIENTE primary key (CDGRUPO_CLIENTE)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_GRUPO_DE_FORNECEDOR
@@ -3427,21 +4930,125 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR
 (
-  CDGRUPO_FORNECEDOR  NUMBER(4) not null,
-  NOGRUPO_FORNECEDOR  VARCHAR2(30),
-  COD_GRP_FORNECEDOR  VARCHAR2(4),
-  CD_HISTORICO_PADRAO VARCHAR2(10)
+  cdgrupo_fornecedor  NUMBER(4) not null,
+  nogrupo_fornecedor  VARCHAR2(30),
+  cod_grp_fornecedor  VARCHAR2(4),
+  cd_historico_padrao VARCHAR2(10)
 )
-;
-comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.CDGRUPO_FORNECEDOR
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.cdgrupo_fornecedor
   is 'Cod grupo fornecedor';
-comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.NOGRUPO_FORNECEDOR
+comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.nogrupo_fornecedor
   is 'Descricao do grupo de fornecedor';
-comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.COD_GRP_FORNECEDOR
+comment on column EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR.cod_grp_fornecedor
   is 'Codigo grupo fornecedor no EMS';
 alter table EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR
-  add constraint PK_GRUPO_FORNECEDOR_EMS primary key (CDGRUPO_FORNECEDOR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_GRUPO_DE_FORNECEDOR to UNICOOGPS;
+  add constraint PK_GRUPO_FORNECEDOR_EMS primary key (CDGRUPO_FORNECEDOR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+
+prompt
+prompt Creating table TI_HASH
+prompt ======================
+prompt
+create table EMS506UNICOO.TI_HASH
+(
+  nrsequencial        NUMBER(10) not null,
+  tpintegracao        VARCHAR2(2),
+  dtgeracao           DATE,
+  nrsequencial_origem NUMBER(10),
+  cdidentificador     VARCHAR2(40),
+  txhash              VARCHAR2(100)
+)
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_HASH.nrsequencial
+  is 'TI_HASH_SEQ';
+comment on column EMS506UNICOO.TI_HASH.tpintegracao
+  is 'FN, CL, TP, TR';
+comment on column EMS506UNICOO.TI_HASH.dtgeracao
+  is 'SYSDATE';
+comment on column EMS506UNICOO.TI_HASH.nrsequencial_origem
+  is 'FN: NRREGISTRO_FORNECEDOR; CL: NRREGISTRO_CLIENTE; TP, TR: NRREGISTRO_TITULO';
+comment on column EMS506UNICOO.TI_HASH.cdidentificador
+  is 'FN: CDFORNECEDOR; CL: CDCLIENTE; TP, TR: NRDOCUMENTO';
+create index EMS506UNICOO.IDX_TI_HASH_02 on EMS506UNICOO.TI_HASH (NRSEQUENCIAL_ORIGEM, TPINTEGRACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_HASH_03 on EMS506UNICOO.TI_HASH (TPINTEGRACAO, NRSEQUENCIAL_ORIGEM, CDIDENTIFICADOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_HASH_04 on EMS506UNICOO.TI_HASH (CDIDENTIFICADOR)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create unique index EMS506UNICOO.IDX_TI_HASH_PK on EMS506UNICOO.TI_HASH (NRSEQUENCIAL)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_INCLUIR_EMS_APB
@@ -3449,16 +5056,25 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_INCLUIR_EMS_APB
 (
-  CDEMPRESA         VARCHAR2(5),
-  NRDOCUMENTO       VARCHAR2(99),
-  TPDOCUMENTO       VARCHAR2(3),
-  CDSITUACAO        CHAR(1),
-  DTTIULO           DATE,
-  VLTITULO          NUMBER(10,2),
-  NRREGISTRO_TITULO NUMBER
+  cdempresa         VARCHAR2(5),
+  nrdocumento       VARCHAR2(99),
+  tpdocumento       VARCHAR2(3),
+  cdsituacao        CHAR(1),
+  dttiulo           DATE,
+  vltitulo          NUMBER(10,2),
+  nrregistro_titulo NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_INCLUIR_EMS_APB to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_ITEM_LANCAMENTO_CTBL
@@ -3466,32 +5082,52 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.TI_ITEM_LANCAMENTO_CTBL
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_CTA_CTBL              VARCHAR2(20),
-  IND_NATUR_LANCTO_CTBL     VARCHAR2(2) not null,
-  COD_HISTOR_PADR           VARCHAR2(8),
-  DES_HISTOR_LANCTO_CTBL    VARCHAR2(2000),
-  DAT_LANCTO                DATE,
-  VAL_LANCTO_CTBL           NUMBER(12,2),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_PROJ_FINANC           VARCHAR2(20),
-  IND_OCORRENCIA            VARCHAR2(1),
-  DAT_PROCESSAMENTO         DATE,
-  DAT_GERACAO               DATE,
-  COD_ESTAB                 VARCHAR2(6),
-  DES_DOCTO                 VARCHAR2(20),
-  NRPERIODO                 NUMBER(6),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_UNID_NEGOC            VARCHAR2(3),
-  NRLANCAMENTO              NUMBER(6) not null,
-  NRSEQ_LANCTO              NUMBER(6) not null,
-  NUM_ITEM_LANCTO_CTBL      NUMBER(10),
-  CDHISTORICO               NUMBER(4)
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_cta_ctbl              VARCHAR2(20),
+  ind_natur_lancto_ctbl     VARCHAR2(2) not null,
+  cod_histor_padr           VARCHAR2(8),
+  des_histor_lancto_ctbl    VARCHAR2(2000),
+  dat_lancto                DATE,
+  val_lancto_ctbl           NUMBER(12,2),
+  cod_ccusto                VARCHAR2(11),
+  cod_proj_financ           VARCHAR2(20),
+  ind_ocorrencia            VARCHAR2(1),
+  dat_processamento         DATE,
+  dat_geracao               DATE,
+  cod_estab                 VARCHAR2(6),
+  des_docto                 VARCHAR2(20),
+  nrperiodo                 NUMBER(6),
+  cod_empresa               VARCHAR2(3),
+  cod_unid_negoc            VARCHAR2(3),
+  nrlancamento              NUMBER(6) not null,
+  nrseq_lancto              NUMBER(6) not null,
+  num_item_lancto_ctbl      NUMBER(10),
+  cdhistorico               NUMBER(4)
 )
-;
-create index EMS506UNICOO.IDX_INT_TI_ILC_1 on EMS506UNICOO.TI_ITEM_LANCAMENTO_CTBL (NRSEQ_CONTROLE_INTEGRACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_ITEM_LANCAMENTO_CTBL to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_INT_TI_ILC_1 on EMS506UNICOO.TI_ITEM_LANCAMENTO_CTBL (NRSEQ_CONTROLE_INTEGRACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_LANCAMENTO_CTBL
@@ -3499,32 +5135,53 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_LANCAMENTO_CTBL
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_CTA_CTBL              VARCHAR2(20),
-  IND_NATUR_LANCTO_CTBL     VARCHAR2(2) not null,
-  COD_HISTOR_PADR           VARCHAR2(8),
-  DES_HISTOR_LANCTO_CTBL    VARCHAR2(2000),
-  DAT_LANCTO                DATE,
-  VAL_LANCTO_CTBL           NUMBER(12,2),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_PROJ_FINANC           VARCHAR2(20),
-  IND_OCORRENCIA            VARCHAR2(1),
-  DAT_PROCESSAMENTO         DATE,
-  DAT_GERACAO               DATE,
-  COD_ESTAB                 VARCHAR2(6),
-  DES_DOCTO                 VARCHAR2(20),
-  NRPERIODO                 NUMBER(6),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_UNID_NEGOC            VARCHAR2(3),
-  NRLANCAMENTO              NUMBER(6) not null,
-  NRSEQ_LANCTO              NUMBER(6) not null,
-  NUM_ITEM_LANCTO_CTBL      NUMBER(10)
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_cta_ctbl              VARCHAR2(20),
+  ind_natur_lancto_ctbl     VARCHAR2(2) not null,
+  cod_histor_padr           VARCHAR2(8),
+  des_histor_lancto_ctbl    VARCHAR2(2000),
+  dat_lancto                DATE,
+  val_lancto_ctbl           NUMBER(12,2),
+  cod_ccusto                VARCHAR2(11),
+  cod_proj_financ           VARCHAR2(20),
+  ind_ocorrencia            VARCHAR2(1),
+  dat_processamento         DATE,
+  dat_geracao               DATE,
+  cod_estab                 VARCHAR2(6),
+  des_docto                 VARCHAR2(20),
+  nrperiodo                 NUMBER(6),
+  cod_empresa               VARCHAR2(3),
+  cod_unid_negoc            VARCHAR2(3),
+  nrlancamento              NUMBER(6) not null,
+  nrseq_lancto              NUMBER(6) not null,
+  num_item_lancto_ctbl      NUMBER(10)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_LANCAMENTO_CTBL
-  add constraint UK_TI_LANCAMENTO_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO, NRLANCAMENTO, NRSEQ_LANCTO, IND_NATUR_LANCTO_CTBL);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_LANCAMENTO_CTBL to UNICOOGPS;
+  add constraint UK_TI_LANCAMENTO_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO, NRLANCAMENTO, NRSEQ_LANCTO, IND_NATUR_LANCTO_CTBL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_LOTE_CTBL
@@ -3532,21 +5189,42 @@ prompt ===========================
 prompt
 create table EMS506UNICOO.TI_LOTE_CTBL
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2),
-  NRPERIODO                 NUMBER(6),
-  COD_PLANO_CTA_CTBL        VARCHAR2(8),
-  COD_PLANO_CCUSTO          VARCHAR2(8),
-  DAT_LOTE_CTBL             DATE,
-  DAT_PROCESSAMENTO         DATE,
-  DAT_GERACAO               DATE,
-  DES_LOTE_CTBL             VARCHAR2(40),
-  AOLOTE_INTEGRACAO         VARCHAR2(1)
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2),
+  nrperiodo                 NUMBER(6),
+  cod_plano_cta_ctbl        VARCHAR2(8),
+  cod_plano_ccusto          VARCHAR2(8),
+  dat_lote_ctbl             DATE,
+  dat_processamento         DATE,
+  dat_geracao               DATE,
+  des_lote_ctbl             VARCHAR2(40),
+  aolote_integracao         VARCHAR2(1)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_LOTE_CTBL
-  add constraint PK_TI_LOTE_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_LOTE_CTBL to UNICOOGPS;
+  add constraint PK_TI_LOTE_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_LOTE_CTBL_MATRIZ_TRADUCAO
@@ -3554,20 +5232,41 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.TI_LOTE_CTBL_MATRIZ_TRADUCAO
 (
-  COD_CTA_CTBL             VARCHAR2(20) not null,
-  COD_CCUSTO               VARCHAR2(11) not null,
-  COD_ESTAB                VARCHAR2(6) not null,
-  COD_PLANO_CCUSTO         VARCHAR2(8) not null,
-  DES_HISTOR_LANCTO_CTBL   VARCHAR2(100) not null,
-  DESTINO_COD_CCUSTO       VARCHAR2(11),
-  DESTINO_COD_ESTAB        VARCHAR2(6),
-  DESTINO_COD_PLANO_CCUSTO VARCHAR2(8),
-  CDHISTORICO              NUMBER(4)
+  cod_cta_ctbl             VARCHAR2(20) not null,
+  cod_ccusto               VARCHAR2(11) not null,
+  cod_estab                VARCHAR2(6) not null,
+  cod_plano_ccusto         VARCHAR2(8) not null,
+  des_histor_lancto_ctbl   VARCHAR2(100) not null,
+  destino_cod_ccusto       VARCHAR2(11),
+  destino_cod_estab        VARCHAR2(6),
+  destino_cod_plano_ccusto VARCHAR2(8),
+  cdhistorico              NUMBER(4)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_LOTE_CTBL_MATRIZ_TRADUCAO
-  add constraint PK_TI_LOTE_CTBL_MATRIZ_TRAD primary key (COD_CTA_CTBL, COD_CCUSTO, COD_ESTAB, COD_PLANO_CCUSTO, DES_HISTOR_LANCTO_CTBL);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_LOTE_CTBL_MATRIZ_TRADUCAO to UNICOOGPS;
+  add constraint PK_TI_LOTE_CTBL_MATRIZ_TRAD primary key (COD_CTA_CTBL, COD_CCUSTO, COD_ESTAB, COD_PLANO_CCUSTO, DES_HISTOR_LANCTO_CTBL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MATRIZ_PAGAR
@@ -3575,36 +5274,68 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_MATRIZ_PAGAR
 (
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  NRREGISTRO           NUMBER(8) not null,
-  CDEMPRESA            VARCHAR2(5) not null,
-  NRDOCUMENTO          VARCHAR2(12),
-  CDPORTADOR           VARCHAR2(3),
-  TPDOCUMENTO          VARCHAR2(3),
-  CDSITUACAO           VARCHAR2(1),
-  DESCSITUACAO         VARCHAR2(21),
-  DTVENCIMENTO         DATE,
-  DTTITULO             DATE,
-  CDFORNECEDOR         VARCHAR2(6) not null,
-  CDGRUPO_FORNECEDOR   NUMBER(4) not null,
-  NOGRUPO_FORNECEDOR   VARCHAR2(30),
-  NRCGC_CPF            VARCHAR2(15),
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLPAGO               NUMBER,
-  VLDEVIDO             NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLJUROS              NUMBER,
-  VLMULTA              NUMBER,
-  VLTAXA_BANCARIA      NUMBER
+  nrregistro_titulo    NUMBER(10) not null,
+  nrregistro           NUMBER(8) not null,
+  cdempresa            VARCHAR2(5) not null,
+  nrdocumento          VARCHAR2(12),
+  cdportador           VARCHAR2(3),
+  tpdocumento          VARCHAR2(3),
+  cdsituacao           VARCHAR2(1),
+  descsituacao         VARCHAR2(21),
+  dtvencimento         DATE,
+  dttitulo             DATE,
+  cdfornecedor         VARCHAR2(6) not null,
+  cdgrupo_fornecedor   NUMBER(4) not null,
+  nogrupo_fornecedor   VARCHAR2(30),
+  nrcgc_cpf            VARCHAR2(15),
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlpago               NUMBER,
+  vldevido             NUMBER,
+  vldesconto           NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vljuros              NUMBER,
+  vlmulta              NUMBER,
+  vltaxa_bancaria      NUMBER
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IX_TI_MATRIZ_NRREGISTRO on EMS506UNICOO.TI_MATRIZ_PAGAR (NRREGISTRO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_MATRIZ_PAGAR
-  add constraint IX_TI_MATRIZ_PAGAR primary key (NRREGISTRO_TITULO);
-create index EMS506UNICOO.IX_TI_MATRIZ_NRREGISTRO on EMS506UNICOO.TI_MATRIZ_PAGAR (NRREGISTRO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MATRIZ_PAGAR to UNICOOGPS;
+  add constraint IX_TI_MATRIZ_PAGAR primary key (NRREGISTRO_TITULO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MATRIZ_PAGAR_2018_02_20
@@ -3612,33 +5343,42 @@ prompt =========================================
 prompt
 create table EMS506UNICOO.TI_MATRIZ_PAGAR_2018_02_20
 (
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  NRREGISTRO           NUMBER(8) not null,
-  CDEMPRESA            VARCHAR2(5) not null,
-  NRDOCUMENTO          VARCHAR2(12),
-  CDPORTADOR           VARCHAR2(3),
-  TPDOCUMENTO          VARCHAR2(3),
-  CDSITUACAO           VARCHAR2(1),
-  DESCSITUACAO         VARCHAR2(21),
-  DTVENCIMENTO         DATE,
-  DTTITULO             DATE,
-  CDFORNECEDOR         VARCHAR2(6) not null,
-  CDGRUPO_FORNECEDOR   NUMBER(4) not null,
-  NOGRUPO_FORNECEDOR   VARCHAR2(30),
-  NRCGC_CPF            VARCHAR2(15),
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLPAGO               NUMBER,
-  VLDEVIDO             NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLJUROS              NUMBER,
-  VLMULTA              NUMBER,
-  VLTAXA_BANCARIA      NUMBER
+  nrregistro_titulo    NUMBER(10) not null,
+  nrregistro           NUMBER(8) not null,
+  cdempresa            VARCHAR2(5) not null,
+  nrdocumento          VARCHAR2(12),
+  cdportador           VARCHAR2(3),
+  tpdocumento          VARCHAR2(3),
+  cdsituacao           VARCHAR2(1),
+  descsituacao         VARCHAR2(21),
+  dtvencimento         DATE,
+  dttitulo             DATE,
+  cdfornecedor         VARCHAR2(6) not null,
+  cdgrupo_fornecedor   NUMBER(4) not null,
+  nogrupo_fornecedor   VARCHAR2(30),
+  nrcgc_cpf            VARCHAR2(15),
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlpago               NUMBER,
+  vldevido             NUMBER,
+  vldesconto           NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vljuros              NUMBER,
+  vlmulta              NUMBER,
+  vltaxa_bancaria      NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MATRIZ_PAGAR_2018_02_20 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MATRIZ_RECEBER
@@ -3646,27 +5386,36 @@ prompt ================================
 prompt
 create table EMS506UNICOO.TI_MATRIZ_RECEBER
 (
-  CDCLIENTE            VARCHAR2(10),
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  NRREGISTRO           NUMBER(8) not null,
-  NRDOCUMENTO          VARCHAR2(12),
-  CDSITUACAO           VARCHAR2(1),
-  DESCSITUACAO         VARCHAR2(21),
-  DTTITULO             DATE,
-  DTVENCIMENTO         DATE,
-  VLFATURADO           NUMBER,
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLMULTA              NUMBER,
-  VLJUROS              NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLRECEBIDO           NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABERTO             NUMBER
+  cdcliente            VARCHAR2(10),
+  nrregistro_titulo    NUMBER(10) not null,
+  nrregistro           NUMBER(8) not null,
+  nrdocumento          VARCHAR2(12),
+  cdsituacao           VARCHAR2(1),
+  descsituacao         VARCHAR2(21),
+  dttitulo             DATE,
+  dtvencimento         DATE,
+  vlfaturado           NUMBER,
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlmulta              NUMBER,
+  vljuros              NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vlrecebido           NUMBER,
+  vldesconto           NUMBER,
+  vlaberto             NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MATRIZ_RECEBER to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MATRIZ_RECEBER_2018_02_20
@@ -3674,27 +5423,36 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.TI_MATRIZ_RECEBER_2018_02_20
 (
-  CDCLIENTE            VARCHAR2(10),
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  NRREGISTRO           NUMBER(8) not null,
-  NRDOCUMENTO          VARCHAR2(12),
-  CDSITUACAO           VARCHAR2(1),
-  DESCSITUACAO         VARCHAR2(21),
-  DTTITULO             DATE,
-  DTVENCIMENTO         DATE,
-  VLFATURADO           NUMBER,
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLMULTA              NUMBER,
-  VLJUROS              NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLRECEBIDO           NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABERTO             NUMBER
+  cdcliente            VARCHAR2(10),
+  nrregistro_titulo    NUMBER(10) not null,
+  nrregistro           NUMBER(8) not null,
+  nrdocumento          VARCHAR2(12),
+  cdsituacao           VARCHAR2(1),
+  descsituacao         VARCHAR2(21),
+  dttitulo             DATE,
+  dtvencimento         DATE,
+  vlfaturado           NUMBER,
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlmulta              NUMBER,
+  vljuros              NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vlrecebido           NUMBER,
+  vldesconto           NUMBER,
+  vlaberto             NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MATRIZ_RECEBER_2018_02_20 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MATRIZ_RECEBER_2018_02_28
@@ -3702,27 +5460,36 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.TI_MATRIZ_RECEBER_2018_02_28
 (
-  CDCLIENTE            VARCHAR2(10),
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  NRREGISTRO           NUMBER(8) not null,
-  NRDOCUMENTO          VARCHAR2(12),
-  CDSITUACAO           VARCHAR2(1),
-  DESCSITUACAO         VARCHAR2(21),
-  DTTITULO             DATE,
-  DTVENCIMENTO         DATE,
-  VLFATURADO           NUMBER,
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLMULTA              NUMBER,
-  VLJUROS              NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLRECEBIDO           NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABERTO             NUMBER
+  cdcliente            VARCHAR2(10),
+  nrregistro_titulo    NUMBER(10) not null,
+  nrregistro           NUMBER(8) not null,
+  nrdocumento          VARCHAR2(12),
+  cdsituacao           VARCHAR2(1),
+  descsituacao         VARCHAR2(21),
+  dttitulo             DATE,
+  dtvencimento         DATE,
+  vlfaturado           NUMBER,
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlmulta              NUMBER,
+  vljuros              NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vlrecebido           NUMBER,
+  vldesconto           NUMBER,
+  vlaberto             NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MATRIZ_RECEBER_2018_02_28 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MENSAGEM_PROCESSO
@@ -3730,23 +5497,44 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.TI_MENSAGEM_PROCESSO
 (
-  NRMENSAGEM   NUMBER(5) not null,
-  CDINTEGRACAO VARCHAR2(30) not null,
-  TXFALHA      VARCHAR2(100),
-  CDACAO       VARCHAR2(2)
+  nrmensagem   NUMBER(5) not null,
+  cdintegracao VARCHAR2(30) not null,
+  txfalha      VARCHAR2(100),
+  cdacao       VARCHAR2(2)
 )
-;
-comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.NRMENSAGEM
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.nrmensagem
   is 'Nr mensagem da falha do EMS';
-comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.CDINTEGRACAO
+comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.cdintegracao
   is 'Tabela de Origem do Erro';
-comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.TXFALHA
+comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.txfalha
   is 'Descricao da FAlha';
-comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.CDACAO
+comment on column EMS506UNICOO.TI_MENSAGEM_PROCESSO.cdacao
   is 'CA - Cancela, AT- Atualiza, RE - Reprocessa';
 alter table EMS506UNICOO.TI_MENSAGEM_PROCESSO
-  add constraint PK_TI_MENSAGEM_PROCESSO primary key (NRMENSAGEM, CDINTEGRACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MENSAGEM_PROCESSO to UNICOOGPS;
+  add constraint PK_TI_MENSAGEM_PROCESSO primary key (NRMENSAGEM, CDINTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_MOVIMENTO_CTA_CORRENTE
@@ -3754,62 +5542,71 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE
 (
-  NRSEQ_CONTROLE_INTEGRACAO  NUMBER(9),
-  CDSITUACAO                 VARCHAR2(2),
-  COD_CTA_CORREN             VARCHAR2(10),
-  DAT_MOVTO_CTA_CORREN       DATE,
-  IND_TIP_MOVTO_CTA_CORREN   VARCHAR2(2),
-  COD_TIP_TRANS_CX           VARCHAR2(8),
-  IND_FLUXO_MOVTO_CTA_CORREN VARCHAR2(3),
-  COD_CENAR_CTBL             VARCHAR2(8),
-  COD_HISTOR_PADR            VARCHAR2(8),
-  VAL_MOVTO_CTA_CORREN       NUMBER(9,2),
-  COD_DOCTO_MOVTO_CTA_BCO    VARCHAR2(25),
-  COD_MODUL_DTSUL            VARCHAR2(3),
-  IND_ERRO_VALID             VARCHAR2(8),
-  DES_HISTOR_PADR            VARCHAR2(2000),
-  NUM_ID_MOVTO_CTA_CORREN    INTEGER,
-  DAT_ENVIO                  DATE,
-  DAT_PROCESSAMENTO          DATE,
-  COD_PLANO_CCUSTO           VARCHAR2(8),
-  COD_CCUSTO                 VARCHAR2(11)
+  nrseq_controle_integracao  NUMBER(9),
+  cdsituacao                 VARCHAR2(2),
+  cod_cta_corren             VARCHAR2(10),
+  dat_movto_cta_corren       DATE,
+  ind_tip_movto_cta_corren   VARCHAR2(2),
+  cod_tip_trans_cx           VARCHAR2(8),
+  ind_fluxo_movto_cta_corren VARCHAR2(3),
+  cod_cenar_ctbl             VARCHAR2(8),
+  cod_histor_padr            VARCHAR2(8),
+  val_movto_cta_corren       NUMBER(9,2),
+  cod_docto_movto_cta_bco    VARCHAR2(25),
+  cod_modul_dtsul            VARCHAR2(3),
+  ind_erro_valid             VARCHAR2(8),
+  des_histor_padr            VARCHAR2(2000),
+  num_id_movto_cta_corren    INTEGER,
+  dat_envio                  DATE,
+  dat_processamento          DATE,
+  cod_plano_ccusto           VARCHAR2(8),
+  cod_ccusto                 VARCHAR2(11)
 )
-;
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_CTA_CORREN
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_cta_corren
   is 'CODIGO DA CONTA CORRENTE';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.DAT_MOVTO_CTA_CORREN
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.dat_movto_cta_corren
   is 'DATA MOVIMENTO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.IND_TIP_MOVTO_CTA_CORREN
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.ind_tip_movto_cta_corren
   is 'INDICADOR DO TIPO DE MOVIMENTO (RE - REALIZADO | NR NAO REALIZADO)';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_TIP_TRANS_CX
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_tip_trans_cx
   is 'CODIGO DO TIPO DE TRANSACAO DE CAIXA';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.IND_FLUXO_MOVTO_CTA_CORREN
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.ind_fluxo_movto_cta_corren
   is 'INDICADOR DO FLUXO DO MOVIMENTO (ENT - ENTRADA | SAI - SAIDA)';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_CENAR_CTBL
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_cenar_ctbl
   is 'CODIGO DO CENARIO CONTABIL';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_HISTOR_PADR
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_histor_padr
   is 'CODIGO DO HISTORICO PADRAO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.VAL_MOVTO_CTA_CORREN
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.val_movto_cta_corren
   is 'VALOR DO MOVIMENTO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_DOCTO_MOVTO_CTA_BCO
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_docto_movto_cta_bco
   is 'DOCUMENTO DO BANCO QUE POSSA SER UTILIZADO COMO REFERENCIA PARA O MOVIMENTO A SER CRIADO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_MODUL_DTSUL
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_modul_dtsul
   is 'CODIGO DO MODULO. NORMALMENTE UTILIZADO COMO "CMG" PARA MOVIMENTO DO CAIXA E BANCOS';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.IND_ERRO_VALID
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.ind_erro_valid
   is 'INICIALMENTE ESTE ATRIBUTO DEVERA RECEBER O VALOR "NAO". APOS EXECUCAO DA API, CASO OCORRA ALGUM ERRO DE IMPORTACAO, ESTE TERA O VALOR "SIM"';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.DES_HISTOR_PADR
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.des_histor_padr
   is 'DESCRICAO DO HISTORICO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.NUM_ID_MOVTO_CTA_CORREN
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.num_id_movto_cta_corren
   is 'NO RETORNO DA API ESTE ATRIBUTO CONTERA O NUMERO DO MOVIMENTO DE CONTA CORRENTE QUE FOI CRIADO. SE ESTE NUMERO FOR IGUAL A "0" E PORQUE OCORREU ALGUM ERRO DURANTE O PROCESSO DE IMPOERTACAO E O MOVIMENTO NAO FOI IMPORTADO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.DAT_ENVIO
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.dat_envio
   is 'DATA DE ENVIO DO REGISTRO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.DAT_PROCESSAMENTO
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.dat_processamento
   is 'DATA DE PROCESSAMENTO';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_PLANO_CCUSTO
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_plano_ccusto
   is 'CODIGO DO PLANO DE CENTRO DE CUSTO DO EMS5';
-comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.COD_CCUSTO
+comment on column EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE.cod_ccusto
   is 'CODIGO DO CENTRO DE CUSTO DO EMS5';
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE to UNICOOGPS;
 
 prompt
 prompt Creating table TI_MOVTO_TIT_AP
@@ -3817,41 +5614,106 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_MOVTO_TIT_AP
 (
-  DTMOVIMENTO_EMS     DATE,
-  DTMOVIMENTO_UNICOO  DATE,
-  TXULTIMA_FALHA      VARCHAR2(4000),
-  NUM_ID_TIT_AP       NUMBER,
-  NUM_ID_MOVTO_TIT_AP NUMBER not null,
-  COD_SER_DOCTO       VARCHAR2(6),
-  COD_TIT_AP          VARCHAR2(10),
-  COD_PARCELA         VARCHAR2(6),
-  VAL_LIQ_TIT_AP      NUMBER(12,2),
-  DAT_VENCTO_TIT_AP   DATE,
-  VAL_MOVTO_TIT_AP    NUMBER(12,2),
-  VAL_MULTA_TIT_AP    NUMBER(12,2),
-  VAL_JUROS           NUMBER(12,2),
-  VAL_DESCONTO        NUMBER(12,2),
-  VAL_ABAT_TIT_AP     NUMBER(12,2),
-  VAL_DESPES_BCIA     NUMBER(12,2),
-  DAT_CR_MOVTO_TIT_AP DATE,
-  DAT_TRANSACAO       DATE,
-  IND_TRANS_AP_ABREV  VARCHAR2(6),
-  COD_TIT_ACR_BCO     VARCHAR2(20),
-  COD_REFER           VARCHAR2(10),
-  COD_ESTAB           VARCHAR2(6),
-  COD_ESPEC_DOCTO     VARCHAR2(6),
-  IND_TIP_ESPEC_DOCTO VARCHAR2(17),
-  NRREGISTRO_TITULO   NUMBER(8),
-  NRDOCUMENTO         VARCHAR2(12)
+  dtmovimento_ems     DATE,
+  dtmovimento_unicoo  DATE,
+  txultima_falha      VARCHAR2(4000),
+  num_id_tit_ap       NUMBER,
+  num_id_movto_tit_ap NUMBER not null,
+  cod_ser_docto       VARCHAR2(6),
+  cod_tit_ap          VARCHAR2(10),
+  cod_parcela         VARCHAR2(6),
+  val_liq_tit_ap      NUMBER(12,2),
+  dat_vencto_tit_ap   DATE,
+  val_movto_tit_ap    NUMBER(12,2),
+  val_multa_tit_ap    NUMBER(12,2),
+  val_juros           NUMBER(12,2),
+  val_desconto        NUMBER(12,2),
+  val_abat_tit_ap     NUMBER(12,2),
+  val_despes_bcia     NUMBER(12,2),
+  dat_cr_movto_tit_ap DATE,
+  dat_transacao       DATE,
+  ind_trans_ap_abrev  VARCHAR2(6),
+  cod_tit_acr_bco     VARCHAR2(20),
+  cod_refer           VARCHAR2(10),
+  cod_estab           VARCHAR2(6),
+  cod_espec_docto     VARCHAR2(6),
+  ind_tip_espec_docto VARCHAR2(17),
+  nrregistro_titulo   NUMBER(8),
+  nrdocumento         VARCHAR2(12)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_AP_02 on EMS506UNICOO.TI_MOVTO_TIT_AP (NRREGISTRO_TITULO, NRDOCUMENTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_AP_04 on EMS506UNICOO.TI_MOVTO_TIT_AP (NRDOCUMENTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_MOVTO_TIT_AP on EMS506UNICOO.TI_MOVTO_TIT_AP (NUM_ID_TIT_AP, NRREGISTRO_TITULO, IND_TRANS_AP_ABREV)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_MOVTO_TIT_AP_03 on EMS506UNICOO.TI_MOVTO_TIT_AP (COD_ESTAB, COD_ESPEC_DOCTO, COD_SER_DOCTO, COD_TIT_AP, COD_PARCELA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_MOVTO_TIT_AP
-  add constraint PK_EMS_MOVTO_TITULO_AP primary key (NUM_ID_MOVTO_TIT_AP);
-create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_AP_02 on EMS506UNICOO.TI_MOVTO_TIT_AP (NRREGISTRO_TITULO, NRDOCUMENTO);
-create index EMS506UNICOO.IDX_EMS_MOVTO_TIT_AP_04 on EMS506UNICOO.TI_MOVTO_TIT_AP (NRDOCUMENTO);
-create index EMS506UNICOO.IDX_MOVTO_TIT_AP on EMS506UNICOO.TI_MOVTO_TIT_AP (NUM_ID_TIT_AP, NRREGISTRO_TITULO, IND_TRANS_AP_ABREV);
-create index EMS506UNICOO.IDX_TI_MOVTO_TIT_AP_03 on EMS506UNICOO.TI_MOVTO_TIT_AP (COD_ESTAB, COD_ESPEC_DOCTO, COD_SER_DOCTO, COD_TIT_AP, COD_PARCELA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_MOVTO_TIT_AP to UNICOOGPS;
+  add constraint PK_EMS_MOVTO_TITULO_AP primary key (NUM_ID_MOVTO_TIT_AP)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_OUTROS_PROCESSOS
@@ -3859,14 +5721,35 @@ prompt ==================================
 prompt
 create table EMS506UNICOO.TI_OUTROS_PROCESSOS
 (
-  CDPROCESSO VARCHAR2(40) not null,
-  TXCAPTION  VARCHAR2(20) not null,
-  TXPROCESSO VARCHAR2(4000)
+  cdprocesso VARCHAR2(40) not null,
+  txcaption  VARCHAR2(20) not null,
+  txprocesso VARCHAR2(4000)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_OUTROS_PROCESSOS
-  add constraint PK_TI_OUTROS_PROCESSOS primary key (CDPROCESSO, TXCAPTION);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_OUTROS_PROCESSOS to UNICOOGPS;
+  add constraint PK_TI_OUTROS_PROCESSOS primary key (CDPROCESSO, TXCAPTION)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_PARAMETRO_INTEGRAC_BKP_2018
@@ -3874,14 +5757,23 @@ prompt =============================================
 prompt
 create table EMS506UNICOO.TI_PARAMETRO_INTEGRAC_BKP_2018
 (
-  CDPARAMETRO   VARCHAR2(40) not null,
-  NOPARAMETRO   VARCHAR2(200) not null,
-  VLPARAMETRO   VARCHAR2(100) not null,
-  AOPARAMETRO   VARCHAR2(1),
-  TXOBSERVACOES VARCHAR2(2500)
+  cdparametro   VARCHAR2(40) not null,
+  noparametro   VARCHAR2(200) not null,
+  vlparametro   VARCHAR2(100) not null,
+  aoparametro   VARCHAR2(1),
+  txobservacoes VARCHAR2(2500)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_PARAMETRO_INTEGRAC_BKP_2018 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_PARAMETRO_INTEGRACAO
@@ -3889,26 +5781,47 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.TI_PARAMETRO_INTEGRACAO
 (
-  CDPARAMETRO   VARCHAR2(40) not null,
-  NOPARAMETRO   VARCHAR2(200) not null,
-  VLPARAMETRO   VARCHAR2(100) not null,
-  AOPARAMETRO   VARCHAR2(1),
-  TXOBSERVACOES VARCHAR2(2500)
+  cdparametro   VARCHAR2(40) not null,
+  noparametro   VARCHAR2(200) not null,
+  vlparametro   VARCHAR2(100) not null,
+  aoparametro   VARCHAR2(1),
+  txobservacoes VARCHAR2(2500)
 )
-;
-comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.CDPARAMETRO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.cdparametro
   is 'Codigo do parametro';
-comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.NOPARAMETRO
+comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.noparametro
   is 'Descricao do parametro';
-comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.VLPARAMETRO
+comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.vlparametro
   is 'Valor do parametro';
-comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.AOPARAMETRO
+comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.aoparametro
   is 'sem uso';
-comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.TXOBSERVACOES
+comment on column EMS506UNICOO.TI_PARAMETRO_INTEGRACAO.txobservacoes
   is 'observacoes';
 alter table EMS506UNICOO.TI_PARAMETRO_INTEGRACAO
-  add constraint PK_PARAMETRO_INTEGRACAO_EMS primary key (CDPARAMETRO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_PARAMETRO_INTEGRACAO to UNICOOGPS;
+  add constraint PK_PARAMETRO_INTEGRACAO_EMS primary key (CDPARAMETRO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_PESSOA
@@ -3916,54 +5829,86 @@ prompt ========================
 prompt
 create table EMS506UNICOO.TI_PESSOA
 (
-  NRREGISTRO             NUMBER(10) not null,
-  NOABREVIADO_CLIENTE    VARCHAR2(15),
-  NOABREVIADO_FORNECEDOR VARCHAR2(15),
-  CDN_FORNECEDOR         NUMBER(10),
-  CDN_CLIENTE            NUMBER(10),
-  NRREGISTRO_PAI         NUMBER(10),
-  TXREGRA_AGRUPAMENTO    VARCHAR2(20),
-  NOPESSOA               VARCHAR2(60),
-  DTNASCIMENTO           DATE,
-  NRCGC_CPF              VARCHAR2(15),
-  DTGERACAO              DATE,
-  DTULTIMA_ATUALIZACAO   DATE
+  nrregistro             NUMBER(10) not null,
+  noabreviado_cliente    VARCHAR2(15),
+  noabreviado_fornecedor VARCHAR2(15),
+  cdn_fornecedor         NUMBER(10),
+  cdn_cliente            NUMBER(10),
+  nrregistro_pai         NUMBER(10),
+  txregra_agrupamento    VARCHAR2(20),
+  nopessoa               VARCHAR2(60),
+  dtnascimento           DATE,
+  nrcgc_cpf              VARCHAR2(15),
+  dtgeracao              DATE,
+  dtultima_atualizacao   DATE
 )
-;
-comment on column EMS506UNICOO.TI_PESSOA.NRREGISTRO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_PESSOA.nrregistro
   is 'Registro da pessoa no sistema de origem';
-comment on column EMS506UNICOO.TI_PESSOA.NOABREVIADO_CLIENTE
+comment on column EMS506UNICOO.TI_PESSOA.noabreviado_cliente
   is 'Nome abreviado do cliente';
-comment on column EMS506UNICOO.TI_PESSOA.NOABREVIADO_FORNECEDOR
+comment on column EMS506UNICOO.TI_PESSOA.noabreviado_fornecedor
   is 'Nome abreviado do Fornecedor';
-comment on column EMS506UNICOO.TI_PESSOA.CDN_FORNECEDOR
+comment on column EMS506UNICOO.TI_PESSOA.cdn_fornecedor
   is 'Codigo do Fornecedor no EMS';
-comment on column EMS506UNICOO.TI_PESSOA.CDN_CLIENTE
+comment on column EMS506UNICOO.TI_PESSOA.cdn_cliente
   is 'Codigo do Cliente no EMS';
-comment on column EMS506UNICOO.TI_PESSOA.NRREGISTRO_PAI
+comment on column EMS506UNICOO.TI_PESSOA.nrregistro_pai
   is '????';
-comment on column EMS506UNICOO.TI_PESSOA.TXREGRA_AGRUPAMENTO
+comment on column EMS506UNICOO.TI_PESSOA.txregra_agrupamento
   is '????';
-comment on column EMS506UNICOO.TI_PESSOA.NOPESSOA
+comment on column EMS506UNICOO.TI_PESSOA.nopessoa
   is 'Nome da pessoa';
-comment on column EMS506UNICOO.TI_PESSOA.DTNASCIMENTO
+comment on column EMS506UNICOO.TI_PESSOA.dtnascimento
   is 'Data de nascimento';
-comment on column EMS506UNICOO.TI_PESSOA.NRCGC_CPF
+comment on column EMS506UNICOO.TI_PESSOA.nrcgc_cpf
   is 'CPF ( pessoa fisica ) ou CNPJ ( pessoa juridica )';
-comment on column EMS506UNICOO.TI_PESSOA.DTGERACAO
+comment on column EMS506UNICOO.TI_PESSOA.dtgeracao
   is 'data que foi gerado o registro';
-comment on column EMS506UNICOO.TI_PESSOA.DTULTIMA_ATUALIZACAO
+comment on column EMS506UNICOO.TI_PESSOA.dtultima_atualizacao
   is 'data da ultima atualizacao';
+create index EMS506UNICOO.IDX_TI_PESSOA_01 on EMS506UNICOO.TI_PESSOA (NOABREVIADO_CLIENTE)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_PESSOA
-  add constraint PK_TI_PESSOA primary key (NRREGISTRO);
+  add constraint PK_TI_PESSOA primary key (NRREGISTRO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_PESSOA
   add constraint UK_TI_PESSOA_CLIENTE unique (NOABREVIADO_CLIENTE, NRREGISTRO_PAI)
   disable;
 alter table EMS506UNICOO.TI_PESSOA
   add constraint UK_TI_PESSOA_FORNECEDOR unique (NOABREVIADO_FORNECEDOR, NRREGISTRO_PAI)
   disable;
-create index EMS506UNICOO.IDX_TI_PESSOA_01 on EMS506UNICOO.TI_PESSOA (NOABREVIADO_CLIENTE);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_PESSOA to UNICOOGPS;
 
 prompt
 prompt Creating table TI_PESSOA_BKP_20181005
@@ -3971,20 +5916,30 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_PESSOA_BKP_20181005
 (
-  NRREGISTRO             NUMBER(10) not null,
-  NOABREVIADO_CLIENTE    VARCHAR2(15),
-  NOABREVIADO_FORNECEDOR VARCHAR2(15),
-  CDN_FORNECEDOR         NUMBER(10),
-  CDN_CLIENTE            NUMBER(10),
-  NRREGISTRO_PAI         NUMBER(10),
-  TXREGRA_AGRUPAMENTO    VARCHAR2(20),
-  NOPESSOA               VARCHAR2(60),
-  DTNASCIMENTO           DATE,
-  NRCGC_CPF              VARCHAR2(15),
-  DTGERACAO              DATE,
-  DTULTIMA_ATUALIZACAO   DATE
+  nrregistro             NUMBER(10) not null,
+  noabreviado_cliente    VARCHAR2(15),
+  noabreviado_fornecedor VARCHAR2(15),
+  cdn_fornecedor         NUMBER(10),
+  cdn_cliente            NUMBER(10),
+  nrregistro_pai         NUMBER(10),
+  txregra_agrupamento    VARCHAR2(20),
+  nopessoa               VARCHAR2(60),
+  dtnascimento           DATE,
+  nrcgc_cpf              VARCHAR2(15),
+  dtgeracao              DATE,
+  dtultima_atualizacao   DATE
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_REGISTRO_PAI
@@ -3992,11 +5947,20 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_REGISTRO_PAI
 (
-  NRREGISTRO_FILHO NUMBER,
-  NRREGISTRO_PAI   NUMBER
+  nrregistro_filho NUMBER,
+  nrregistro_pai   NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_REGISTRO_PAI to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TAXA_A_PAGAR
@@ -4004,49 +5968,69 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_TAXA_A_PAGAR
 (
-  COD_TAXA             VARCHAR2(6),
-  NOM_TAXA             VARCHAR2(40),
-  IND_CLAS_IMPTO       VARCHAR2(14),
-  COD_UNID_FEDERAC     VARCHAR2(3),
-  COD_IMPOSTO          VARCHAR2(5),
-  COD_CLASSIF_IMPTO    VARCHAR2(5),
-  COD_CTA_CTBL         VARCHAR2(20),
-  COD_PLANO_CTB_CBTL   VARCHAR2(8),
-  COD_TIP_FLUXO_FINANC VARCHAR2(12),
-  COD_TAXA_AGRUPAMENTO VARCHAR2(4),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  CDN_FORNECEDOR       VARCHAR2(10),
-  AOINTEGRAIMPOSTO     VARCHAR2(2) default 'S'
+  cod_taxa             VARCHAR2(6),
+  nom_taxa             VARCHAR2(40),
+  ind_clas_impto       VARCHAR2(14),
+  cod_unid_federac     VARCHAR2(3),
+  cod_imposto          VARCHAR2(5),
+  cod_classif_impto    VARCHAR2(5),
+  cod_cta_ctbl         VARCHAR2(20),
+  cod_plano_ctb_cbtl   VARCHAR2(8),
+  cod_tip_fluxo_financ VARCHAR2(12),
+  cod_taxa_agrupamento VARCHAR2(4),
+  cod_espec_docto      VARCHAR2(3),
+  cdn_fornecedor       VARCHAR2(10),
+  aointegraimposto     VARCHAR2(2) default 'S'
 )
-;
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_TAXA
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_taxa
   is 'Codigo do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.NOM_TAXA
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.nom_taxa
   is 'Descric?o do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.IND_CLAS_IMPTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.ind_clas_impto
   is '???';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_UNID_FEDERAC
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_unid_federac
   is 'Unid Federacao quando o imposto e estadual';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_IMPOSTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_imposto
   is 'Codigo do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_CLASSIF_IMPTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_classif_impto
   is 'Codigo do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_CTA_CTBL
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_cta_ctbl
   is 'Conta Contabil no EMS';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_PLANO_CTB_CBTL
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_plano_ctb_cbtl
   is '????';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_TIP_FLUXO_FINANC
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_tip_fluxo_financ
   is 'Codigo do Fluxo no EMS';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_TAXA_AGRUPAMENTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_taxa_agrupamento
   is 'Quando este imposto  agrega a outro, informar aki o imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.COD_ESPEC_DOCTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cod_espec_docto
   is 'Especie de documento no EMS';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.CDN_FORNECEDOR
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.cdn_fornecedor
   is 'Codigo do fornecedor no EMS';
-comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.AOINTEGRAIMPOSTO
+comment on column EMS506UNICOO.TI_TAXA_A_PAGAR.aointegraimposto
   is 'Devera integra o imposto ? Aqui define se o imposto sera integrado com o EMS ou não.';
-create index EMS506UNICOO.PK_TAXA_A_PAGAR_EMS on EMS506UNICOO.TI_TAXA_A_PAGAR (COD_TAXA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TAXA_A_PAGAR to UNICOOGPS;
+create index EMS506UNICOO.PK_TAXA_A_PAGAR_EMS on EMS506UNICOO.TI_TAXA_A_PAGAR (COD_TAXA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TAXA_A_RECEBER
@@ -4054,25 +6038,45 @@ prompt ================================
 prompt
 create table EMS506UNICOO.TI_TAXA_A_RECEBER
 (
-  COD_TAXA_UNICOO       VARCHAR2(6),
-  NOM_TAXA              VARCHAR2(40),
-  IND_CLAS_IMPTO_UNICOO VARCHAR2(14),
-  COD_IMPOSTO_T11       VARCHAR2(5),
-  COD_CLASSIF_IMPTO_T11 VARCHAR2(5)
+  cod_taxa_unicoo       VARCHAR2(6),
+  nom_taxa              VARCHAR2(40),
+  ind_clas_impto_unicoo VARCHAR2(14),
+  cod_imposto_t11       VARCHAR2(5),
+  cod_classif_impto_t11 VARCHAR2(5)
 )
-;
-comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.COD_TAXA_UNICOO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.cod_taxa_unicoo
   is 'Codigo do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.NOM_TAXA
+comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.nom_taxa
   is 'Descric?o do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.IND_CLAS_IMPTO_UNICOO
+comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.ind_clas_impto_unicoo
   is '???';
-comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.COD_IMPOSTO_T11
+comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.cod_imposto_t11
   is 'Codigo do imposto';
-comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.COD_CLASSIF_IMPTO_T11
+comment on column EMS506UNICOO.TI_TAXA_A_RECEBER.cod_classif_impto_t11
   is 'Codigo do imposto';
-create index EMS506UNICOO.PK_TAXA_A_RECEBER_EMS on EMS506UNICOO.TI_TAXA_A_RECEBER (COD_TAXA_UNICOO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TAXA_A_RECEBER to UNICOOGPS;
+create index EMS506UNICOO.PK_TAXA_A_RECEBER_EMS on EMS506UNICOO.TI_TAXA_A_RECEBER (COD_TAXA_UNICOO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_DE_ENDERECO
@@ -4080,20 +6084,41 @@ prompt ==================================
 prompt
 create table EMS506UNICOO.TI_TIPO_DE_ENDERECO
 (
-  TPENDERECO    VARCHAR2(4) not null,
-  NOTIPENDERECO VARCHAR2(20),
-  NRPRIORIDADE  NUMBER(2)
+  tpendereco    VARCHAR2(4) not null,
+  notipendereco VARCHAR2(20),
+  nrprioridade  NUMBER(2)
 )
-;
-comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.TPENDERECO
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.tpendereco
   is 'Tipo de endereco';
-comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.NOTIPENDERECO
+comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.notipendereco
   is 'descricao do tipo de endereco';
-comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.NRPRIORIDADE
+comment on column EMS506UNICOO.TI_TIPO_DE_ENDERECO.nrprioridade
   is '??????????';
 alter table EMS506UNICOO.TI_TIPO_DE_ENDERECO
-  add constraint PK_TI_TIPO_DE_ENDERECO primary key (TPENDERECO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_DE_ENDERECO to UNICOOGPS;
+  add constraint PK_TI_TIPO_DE_ENDERECO primary key (TPENDERECO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_DE_FORNECEDOR
@@ -4101,28 +6126,61 @@ prompt ====================================
 prompt
 create table EMS506UNICOO.TI_TIPO_DE_FORNECEDOR
 (
-  TPFORNECEDOR         VARCHAR2(1) not null,
-  CDGRUPO_FORNECEDOR   VARCHAR2(2),
-  NOTIPO_FORNECEDOR    VARCHAR2(20),
-  COD_ESTAB            VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC VARCHAR2(12),
-  COD_CTA_CTBL         VARCHAR2(20),
-  COD_CCUSTO           VARCHAR2(11),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  COD_CART_BCIA        VARCHAR2(3),
-  COD_EMPRESA          VARCHAR2(3),
-  COD_PORTADOR         VARCHAR2(5),
-  COD_SER_DOCTO        VARCHAR2(2),
-  COD_FORMA_PAGTO      VARCHAR2(4),
-  COD_GRP_FORNECEDOR   VARCHAR2(4),
-  COD_TIP_FORNECEDOR   VARCHAR2(3) not null
+  tpfornecedor         VARCHAR2(1) not null,
+  cdgrupo_fornecedor   VARCHAR2(2),
+  notipo_fornecedor    VARCHAR2(20),
+  cod_estab            VARCHAR2(3),
+  cod_tip_fluxo_financ VARCHAR2(12),
+  cod_cta_ctbl         VARCHAR2(20),
+  cod_ccusto           VARCHAR2(11),
+  cod_espec_docto      VARCHAR2(3),
+  cod_cart_bcia        VARCHAR2(3),
+  cod_empresa          VARCHAR2(3),
+  cod_portador         VARCHAR2(5),
+  cod_ser_docto        VARCHAR2(2),
+  cod_forma_pagto      VARCHAR2(4),
+  cod_grp_fornecedor   VARCHAR2(4),
+  cod_tip_fornecedor   VARCHAR2(3) not null
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_DE_FORNECEDOR
-  add constraint PK_TI_TIPO_DE_FORNECEDOR primary key (COD_TIP_FORNECEDOR);
+  add constraint PK_TI_TIPO_DE_FORNECEDOR primary key (COD_TIP_FORNECEDOR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_DE_FORNECEDOR
-  add constraint UK_TI_TIPO_DE_FORNECEDOR unique (TPFORNECEDOR, CDGRUPO_FORNECEDOR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_DE_FORNECEDOR to UNICOOGPS;
+  add constraint UK_TI_TIPO_DE_FORNECEDOR unique (TPFORNECEDOR, CDGRUPO_FORNECEDOR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOV_TIT_ACR_2018_04_18
@@ -4130,24 +6188,33 @@ prompt =============================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOV_TIT_ACR_2018_04_18
 (
-  NRSEQUENCIAL              NUMBER(4) not null,
-  CDEMPRESA                 VARCHAR2(5) not null,
-  CDMOVIMENTO               VARCHAR2(4) not null,
-  CDMODULO                  VARCHAR2(4) not null,
-  NOMOVIMENTO               VARCHAR2(40),
-  COD_GRP_CLIEN             VARCHAR2(4) not null,
-  COD_ESTAB                 VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  COD_CART_BCIA             VARCHAR2(3),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_PORTADOR              VARCHAR2(6),
-  COD_TIP_FLUXO_FINANC_EMS2 VARCHAR2(12)
+  nrsequencial              NUMBER(4) not null,
+  cdempresa                 VARCHAR2(5) not null,
+  cdmovimento               VARCHAR2(4) not null,
+  cdmodulo                  VARCHAR2(4) not null,
+  nomovimento               VARCHAR2(40),
+  cod_grp_clien             VARCHAR2(4) not null,
+  cod_estab                 VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_ccusto                VARCHAR2(11),
+  cod_espec_docto           VARCHAR2(3),
+  cod_cart_bcia             VARCHAR2(3),
+  cod_empresa               VARCHAR2(3),
+  cod_portador              VARCHAR2(6),
+  cod_tip_fluxo_financ_ems2 VARCHAR2(12)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOV_TIT_ACR_2018_04_18 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOV_TIT_APB_2018_04_18
@@ -4155,27 +6222,36 @@ prompt =============================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOV_TIT_APB_2018_04_18
 (
-  NRSEQUENCIAL         NUMBER(4) not null,
-  CDEMPRESA            VARCHAR2(5) not null,
-  CDMOVIMENTO          VARCHAR2(4) not null,
-  CDMODULO             VARCHAR2(4) not null,
-  NOMOVIMENTO          VARCHAR2(40),
-  COD_ESTAB            VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC VARCHAR2(12),
-  COD_CTA_CTBL         VARCHAR2(20),
-  COD_CCUSTO           VARCHAR2(11),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  COD_CART_BCIA        VARCHAR2(3),
-  COD_EMPRESA          VARCHAR2(3),
-  COD_PORTADOR         VARCHAR2(5),
-  COD_SER_DOCTO        VARCHAR2(2),
-  COD_FORMA_PAGTO      VARCHAR2(4),
-  COD_GRP_FORNECEDOR   VARCHAR2(4) not null,
-  CDDIVISAO            VARCHAR2(4),
-  CDCENTRO_CUSTO       VARCHAR2(4)
+  nrsequencial         NUMBER(4) not null,
+  cdempresa            VARCHAR2(5) not null,
+  cdmovimento          VARCHAR2(4) not null,
+  cdmodulo             VARCHAR2(4) not null,
+  nomovimento          VARCHAR2(40),
+  cod_estab            VARCHAR2(3),
+  cod_tip_fluxo_financ VARCHAR2(12),
+  cod_cta_ctbl         VARCHAR2(20),
+  cod_ccusto           VARCHAR2(11),
+  cod_espec_docto      VARCHAR2(3),
+  cod_cart_bcia        VARCHAR2(3),
+  cod_empresa          VARCHAR2(3),
+  cod_portador         VARCHAR2(5),
+  cod_ser_docto        VARCHAR2(2),
+  cod_forma_pagto      VARCHAR2(4),
+  cod_grp_fornecedor   VARCHAR2(4) not null,
+  cddivisao            VARCHAR2(4),
+  cdcentro_custo       VARCHAR2(4)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOV_TIT_APB_2018_04_18 to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOVIMENTO_CMG
@@ -4183,20 +6259,29 @@ prompt ====================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOVIMENTO_CMG
 (
-  NRSEQUENCIAL     NUMBER(4) not null,
-  CDEMPRESA        VARCHAR2(5) not null,
-  CDMODULO         VARCHAR2(4) not null,
-  CDHISTORICO      VARCHAR2(4) not null,
-  NOHISTORICO      VARCHAR2(60),
-  COD_UNID_NEGOC   VARCHAR2(3),
-  COD_TIP_TRANS_CX VARCHAR2(8),
-  COD_CENAR_CTBL   VARCHAR2(8),
-  COD_HISTOR_PADR  VARCHAR2(8),
-  DES_HISTOR_PADR  VARCHAR2(40),
-  CAIXA            VARCHAR2(11) not null
+  nrsequencial     NUMBER(4) not null,
+  cdempresa        VARCHAR2(5) not null,
+  cdmodulo         VARCHAR2(4) not null,
+  cdhistorico      VARCHAR2(4) not null,
+  nohistorico      VARCHAR2(60),
+  cod_unid_negoc   VARCHAR2(3),
+  cod_tip_trans_cx VARCHAR2(8),
+  cod_cenar_ctbl   VARCHAR2(8),
+  cod_histor_padr  VARCHAR2(8),
+  des_histor_padr  VARCHAR2(40),
+  caixa            VARCHAR2(11) not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOVIMENTO_CMG to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOVIMENTO_CMG_CAIXA
@@ -4204,14 +6289,23 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOVIMENTO_CMG_CAIXA
 (
-  NRCONTA_CORRENTE VARCHAR2(12) not null,
-  COD_CTA_CORREN   VARCHAR2(10),
-  COD_ESTAB        VARCHAR2(3),
-  COD_PORTADOR     VARCHAR2(5),
-  AOINTEGRAMOVTO   VARCHAR2(1) default 'N'
+  nrconta_corrente VARCHAR2(12) not null,
+  cod_cta_corren   VARCHAR2(10),
+  cod_estab        VARCHAR2(3),
+  cod_portador     VARCHAR2(5),
+  aointegramovto   VARCHAR2(1) default 'N'
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOVIMENTO_CMG_CAIXA to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOVIMENTO_TIT_ACR
@@ -4219,56 +6313,89 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR
 (
-  NRSEQUENCIAL              NUMBER(4) not null,
-  CDEMPRESA                 VARCHAR2(5) not null,
-  CDMOVIMENTO               VARCHAR2(4) not null,
-  CDMODULO                  VARCHAR2(4) not null,
-  NOMOVIMENTO               VARCHAR2(40),
-  COD_GRP_CLIEN             VARCHAR2(4) not null,
-  COD_ESTAB                 VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  COD_CART_BCIA             VARCHAR2(3),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_PORTADOR              VARCHAR2(6),
-  COD_TIP_FLUXO_FINANC_EMS2 VARCHAR2(12)
+  nrsequencial              NUMBER(4) not null,
+  cdempresa                 VARCHAR2(5) not null,
+  cdmovimento               VARCHAR2(4) not null,
+  cdmodulo                  VARCHAR2(4) not null,
+  nomovimento               VARCHAR2(40),
+  cod_grp_clien             VARCHAR2(4) not null,
+  cod_estab                 VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_ccusto                VARCHAR2(11),
+  cod_espec_docto           VARCHAR2(3),
+  cod_cart_bcia             VARCHAR2(3),
+  cod_empresa               VARCHAR2(3),
+  cod_portador              VARCHAR2(6),
+  cod_tip_fluxo_financ_ems2 VARCHAR2(12)
 )
-;
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.NRSEQUENCIAL
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.nrsequencial
   is 'SQ_TI_TIPO_MOVIMENTO_TIT_APB';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.CDEMPRESA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cdempresa
   is 'Codigo da empresa no sistema de origem';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.CDMOVIMENTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cdmovimento
   is 'Codigo da movimentac?o na origem. No unicoo, para faturamento preencher com codigo do faturamento, e Receber preencher com historico';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.CDMODULO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cdmodulo
   is 'Identificacao do modulo da origem';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.NOMOVIMENTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.nomovimento
   is 'Descric?o do movimento';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_GRP_CLIEN
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_grp_clien
   is 'Codigo do grupo de cliente do sistema origem. * para todos';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_ESTAB
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_estab
   is 'Codigo do estabelecimento que sera integrado o titulo';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_TIP_FLUXO_FINANC
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_tip_fluxo_financ
   is 'Fluxo financeiro do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_CTA_CTBL
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_cta_ctbl
   is 'Conta Contabil do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_CCUSTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_ccusto
   is 'Centro de Custo do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_ESPEC_DOCTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_espec_docto
   is 'Codigo da Especie do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_CART_BCIA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_cart_bcia
   is '?????????????';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_EMPRESA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_empresa
   is 'Codigo da empresa no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.COD_PORTADOR
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR.cod_portador
   is 'Codigo do portador no EMS';
 alter table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR
-  add constraint PK_TI_TIPO_MOVIMENTO_TIT_ACR primary key (CDMOVIMENTO, CDMODULO, COD_GRP_CLIEN, CDEMPRESA);
+  add constraint PK_TI_TIPO_MOVIMENTO_TIT_ACR primary key (CDMOVIMENTO, CDMODULO, COD_GRP_CLIEN, CDEMPRESA)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR
-  add constraint UK_TI_TIPO_MOVIMENTO_TIT_ACR unique (NRSEQUENCIAL);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_ACR to UNICOOGPS;
+  add constraint UK_TI_TIPO_MOVIMENTO_TIT_ACR unique (NRSEQUENCIAL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOVIMENTO_TIT_APB
@@ -4276,69 +6403,114 @@ prompt ========================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB
 (
-  NRSEQUENCIAL         NUMBER(4) not null,
-  CDEMPRESA            VARCHAR2(5) not null,
-  CDMOVIMENTO          VARCHAR2(4) not null,
-  CDMODULO             VARCHAR2(4) not null,
-  NOMOVIMENTO          VARCHAR2(40),
-  COD_ESTAB            VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC VARCHAR2(12),
-  COD_CTA_CTBL         VARCHAR2(20),
-  COD_CCUSTO           VARCHAR2(11),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  COD_CART_BCIA        VARCHAR2(3),
-  COD_EMPRESA          VARCHAR2(3),
-  COD_PORTADOR         VARCHAR2(5),
-  COD_SER_DOCTO        VARCHAR2(2),
-  COD_FORMA_PAGTO      VARCHAR2(4),
-  COD_GRP_FORNECEDOR   VARCHAR2(4) not null,
-  CDDIVISAO            VARCHAR2(4),
-  CDCENTRO_CUSTO       VARCHAR2(4)
+  nrsequencial         NUMBER(4) not null,
+  cdempresa            VARCHAR2(5) not null,
+  cdmovimento          VARCHAR2(4) not null,
+  cdmodulo             VARCHAR2(4) not null,
+  nomovimento          VARCHAR2(40),
+  cod_estab            VARCHAR2(3),
+  cod_tip_fluxo_financ VARCHAR2(12),
+  cod_cta_ctbl         VARCHAR2(20),
+  cod_ccusto           VARCHAR2(11),
+  cod_espec_docto      VARCHAR2(3),
+  cod_cart_bcia        VARCHAR2(3),
+  cod_empresa          VARCHAR2(3),
+  cod_portador         VARCHAR2(5),
+  cod_ser_docto        VARCHAR2(2),
+  cod_forma_pagto      VARCHAR2(4),
+  cod_grp_fornecedor   VARCHAR2(4) not null,
+  cddivisao            VARCHAR2(4),
+  cdcentro_custo       VARCHAR2(4)
 )
-;
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.NRSEQUENCIAL
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.nrsequencial
   is 'SQ_TI_TIPO_MOVIMENTO_TIT_APB';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.CDEMPRESA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cdempresa
   is 'Codigo da empresa na origem';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.CDMOVIMENTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cdmovimento
   is 'Codigo do Movimento Origem. Prestador: Tipo Prestador, Cts Pagar: Codigo do historico';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.CDMODULO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cdmodulo
   is 'Identificador do Modulo de origem';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.NOMOVIMENTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.nomovimento
   is 'Descricao da origem do movimento';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_ESTAB
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_estab
   is 'Codigo do estabelecimento do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_TIP_FLUXO_FINANC
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_tip_fluxo_financ
   is 'Codigo do fluxo financeiro do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_CTA_CTBL
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_cta_ctbl
   is 'Codigo da Conta Contabil do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_CCUSTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_ccusto
   is 'Codigo do Centro de Custo do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_ESPEC_DOCTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_espec_docto
   is 'Codigo da Especie do documento do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_CART_BCIA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_cart_bcia
   is 'Codigo da Carteira Bancaria do EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_EMPRESA
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_empresa
   is 'Codigo da Empresa no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_PORTADOR
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_portador
   is 'Codigo do Portador no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_SER_DOCTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_ser_docto
   is 'Codigo da Serie do documento no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_FORMA_PAGTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_forma_pagto
   is 'Codigo da forma de pagamento no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.COD_GRP_FORNECEDOR
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cod_grp_fornecedor
   is 'Codigo do grupo de fornecedor no EMS';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.CDDIVISAO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cddivisao
   is '????';
-comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.CDCENTRO_CUSTO
+comment on column EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB.cdcentro_custo
   is '????';
 alter table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB
-  add constraint PK_TIPO_MOVIMENTO_TIT_APB primary key (NRSEQUENCIAL, CDEMPRESA, CDMOVIMENTO, CDMODULO, COD_GRP_FORNECEDOR);
+  add constraint PK_TIPO_MOVIMENTO_TIT_APB primary key (NRSEQUENCIAL, CDEMPRESA, CDMOVIMENTO, CDMODULO, COD_GRP_FORNECEDOR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB
-  add constraint UK_TIPO_MOVIMENTO_TIT_APB unique (NRSEQUENCIAL);
+  add constraint UK_TIPO_MOVIMENTO_TIT_APB unique (NRSEQUENCIAL)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB
-  add constraint UK_TIPO_MOVIMENTO_TIT_APB_2 unique (CDEMPRESA, CDMOVIMENTO, CDMODULO, COD_ESTAB);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOVIMENTO_TIT_APB to UNICOOGPS;
+  add constraint UK_TIPO_MOVIMENTO_TIT_APB_2 unique (CDEMPRESA, CDMOVIMENTO, CDMODULO, COD_ESTAB)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_MOVTO_TIT_ACR_FECHADO
@@ -4346,13 +6518,33 @@ prompt ============================================
 prompt
 create table EMS506UNICOO.TI_TIPO_MOVTO_TIT_ACR_FECHADO
 (
-  CDTRANSACAO   VARCHAR2(10),
-  NOTRANSACAO   VARCHAR2(999),
-  COD_TRANSACAO NUMBER
+  cdtransacao   VARCHAR2(10),
+  notransacao   VARCHAR2(999),
+  cod_transacao NUMBER
 )
-;
-create index EMS506UNICOO.IX_CDTRANS on EMS506UNICOO.TI_TIPO_MOVTO_TIT_ACR_FECHADO (CDTRANSACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_MOVTO_TIT_ACR_FECHADO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index UNICOOGPS.IX_CDTRANS on EMS506UNICOO.TI_TIPO_MOVTO_TIT_ACR_FECHADO (CDTRANSACAO)
+  tablespace TS_GP
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_PROCESSO_INTEGRACAO
@@ -4360,15 +6552,36 @@ prompt ==========================================
 prompt
 create table EMS506UNICOO.TI_TIPO_PROCESSO_INTEGRACAO
 (
-  CDPROCESSO VARCHAR2(25),
-  AOCHECADO  CHAR(1),
-  CDORDEM    NUMBER(2),
-  CDVALOR    VARCHAR2(30) not null
+  cdprocesso VARCHAR2(25),
+  aochecado  CHAR(1),
+  cdordem    NUMBER(2),
+  cdvalor    VARCHAR2(30) not null
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_PROCESSO_INTEGRACAO
-  add constraint PK_TI_TIPO_PROCESSO_INTEGRACAO primary key (CDVALOR);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_PROCESSO_INTEGRACAO to UNICOOGPS;
+  add constraint PK_TI_TIPO_PROCESSO_INTEGRACAO primary key (CDVALOR)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIPO_PROCESSO_TABELA
@@ -4376,14 +6589,35 @@ prompt ======================================
 prompt
 create table EMS506UNICOO.TI_TIPO_PROCESSO_TABELA
 (
-  CDPROCESSO VARCHAR2(2) not null,
-  CDTABELA   VARCHAR2(30) not null,
-  CDORDEM    NUMBER(2)
+  cdprocesso VARCHAR2(2) not null,
+  cdtabela   VARCHAR2(30) not null,
+  cdordem    NUMBER(2)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIPO_PROCESSO_TABELA
-  add constraint PK_TI_TIPO_PROCESSO_TABELA primary key (CDPROCESSO, CDTABELA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIPO_PROCESSO_TABELA to UNICOOGPS;
+  add constraint PK_TI_TIPO_PROCESSO_TABELA primary key (CDPROCESSO, CDTABELA)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR
@@ -4391,50 +6625,93 @@ prompt =========================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(4) not null,
-  COD_CART_BCIA             VARCHAR2(3),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_CLIENTE               NUMBER(9),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  COD_ESTAB                 VARCHAR2(3),
-  COD_ID_FEDER              VARCHAR2(20),
-  COD_ID_FEDER_JURID        VARCHAR2(20),
-  COD_PAIS                  VARCHAR2(3),
-  COD_PARCELA               VARCHAR2(6),
-  COD_PORTADOR              VARCHAR2(5),
-  COD_SER_DOCTO             VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  COD_TIT_ACR_BCO           VARCHAR2(20),
-  COD_TITULO_ACR            VARCHAR2(10),
-  DAT_DESCONTO              DATE,
-  DAT_EMISSAO               DATE,
-  DAT_ENVIO                 DATE,
-  DAT_PREVISAO_LIQUIDAC     DATE,
-  DAT_PROCESSAMENTO         DATE,
-  DAT_VENCTO                DATE,
-  DES_TEXT_HISTOR           VARCHAR2(200),
-  IND_OCORRENCIA            NUMBER(1),
-  IND_TIP_ESPEC_DOCTO       VARCHAR2(3),
-  IND_TIPO_PESSOA           VARCHAR2(1),
-  VAL_DESCONTO              NUMBER(9,2),
-  VAL_IR                    NUMBER(9,2),
-  VAL_LIQ_TITULO            NUMBER(9,2),
-  VAL_TITULO                NUMBER(9,2),
-  NRPESSOA                  NUMBER(10),
-  COD_PLANO_CTA_CTBL        VARCHAR2(8),
-  COD_PLANO_CCUSTO          VARCHAR2(8),
-  VAL_PERC_JUROS_DIA_ATRASO NUMBER(8,4),
-  VAL_PERC_MULTA_ATRASO     NUMBER(8,4)
+  nrseq_controle_integracao NUMBER(10) not null,
+  cdsituacao                VARCHAR2(4) not null,
+  cod_cart_bcia             VARCHAR2(3),
+  cod_ccusto                VARCHAR2(11),
+  cod_cliente               NUMBER(9),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_empresa               VARCHAR2(3),
+  cod_espec_docto           VARCHAR2(3),
+  cod_estab                 VARCHAR2(3),
+  cod_id_feder              VARCHAR2(20),
+  cod_id_feder_jurid        VARCHAR2(20),
+  cod_pais                  VARCHAR2(3),
+  cod_parcela               VARCHAR2(6),
+  cod_portador              VARCHAR2(5),
+  cod_ser_docto             VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  cod_tit_acr_bco           VARCHAR2(20),
+  cod_titulo_acr            VARCHAR2(10),
+  dat_desconto              DATE,
+  dat_emissao               DATE,
+  dat_envio                 DATE,
+  dat_previsao_liquidac     DATE,
+  dat_processamento         DATE,
+  dat_vencto                DATE,
+  des_text_histor           VARCHAR2(200),
+  ind_ocorrencia            NUMBER(1),
+  ind_tip_espec_docto       VARCHAR2(3),
+  ind_tipo_pessoa           VARCHAR2(1),
+  val_desconto              NUMBER(9,2),
+  val_ir                    NUMBER(9,2),
+  val_liq_titulo            NUMBER(9,2),
+  val_titulo                NUMBER(9,2),
+  nrpessoa                  NUMBER(10),
+  cod_plano_cta_ctbl        VARCHAR2(8),
+  cod_plano_ccusto          VARCHAR2(8),
+  val_perc_juros_dia_atraso NUMBER(8,4),
+  val_perc_multa_atraso     NUMBER(8,4)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_ACR_01 on EMS506UNICOO.TI_TIT_ACR (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_ACR_TIT on EMS506UNICOO.TI_TIT_ACR (COD_ESPEC_DOCTO, COD_TITULO_ACR, COD_ESTAB, COD_SER_DOCTO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_ACR
-  add constraint PK_TI_TIT_ACR primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_TI_TIT_ACR_01 on EMS506UNICOO.TI_TIT_ACR (CDSITUACAO);
-create index EMS506UNICOO.IDX_TI_TIT_ACR_TIT on EMS506UNICOO.TI_TIT_ACR (COD_ESPEC_DOCTO, COD_TITULO_ACR, COD_ESTAB, COD_SER_DOCTO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR to UNICOOGPS;
+  add constraint PK_TI_TIT_ACR primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR_COMPARATIVO
@@ -4442,18 +6719,27 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR_COMPARATIVO
 (
-  COD_REFER           VARCHAR2(20),
-  NRSEQUENCIAL        NUMBER,
-  NRSEQUENCIAL_ORIGEM NUMBER(10),
-  TPINTEGRACAO        VARCHAR2(2),
-  VAL_TITULO          NUMBER,
-  SIT_TI_CONTROLE     VARCHAR2(2),
-  SIT_TI_TIT_APB      VARCHAR2(2),
-  VLORIGINAL          NUMBER,
-  VAL_SDO_TIT_AP      NUMBER
+  cod_refer           VARCHAR2(20),
+  nrsequencial        NUMBER,
+  nrsequencial_origem NUMBER(10),
+  tpintegracao        VARCHAR2(2),
+  val_titulo          NUMBER,
+  sit_ti_controle     VARCHAR2(2),
+  sit_ti_tit_apb      VARCHAR2(2),
+  vloriginal          NUMBER,
+  val_sdo_tit_ap      NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR_COMPARATIVO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR_CONCILIACAO
@@ -4461,33 +6747,53 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR_CONCILIACAO
 (
-  CDTIPO_FALHA         VARCHAR2(30),
-  DTGERACAO            DATE,
-  NRDOCUMENTO          VARCHAR2(12),
-  NRREGISTRO_CLIENTE   NUMBER(8),
-  DTTITULO             DATE,
-  DTULTIMO_RECEBIMENTO DATE,
-  NRREGISTRO_TITULO    NUMBER(8) not null,
-  VLTITULO             NUMBER(12,2),
-  VLRECEBIDO           NUMBER(12,2),
-  COD_ESTAB            VARCHAR2(3),
-  COD_ESPEC_DOCTO      VARCHAR2(3),
-  COD_SER_DOCTO        VARCHAR2(3),
-  COD_TITULO_ACR       VARCHAR2(10),
-  COD_PARCELA          VARCHAR2(6),
-  DAT_LIQUIDAC_TIT_ACR DATE,
-  NUM_ID_TIT_ACR       NUMBER,
-  CDN_CLIENTE          NUMBER,
-  VAL_SDO_TIT_ACR      NUMBER,
-  VAL_ORIGIN_TIT_ACR   NUMBER,
-  COD_TIT_ACR_BCO      VARCHAR2(20),
-  CDHISTORICO          VARCHAR2(4),
-  CDCLIENTE            VARCHAR2(10),
-  DTCANCELAMENTO       DATE
+  cdtipo_falha         VARCHAR2(30),
+  dtgeracao            DATE,
+  nrdocumento          VARCHAR2(12),
+  nrregistro_cliente   NUMBER(8),
+  dttitulo             DATE,
+  dtultimo_recebimento DATE,
+  nrregistro_titulo    NUMBER(8) not null,
+  vltitulo             NUMBER(12,2),
+  vlrecebido           NUMBER(12,2),
+  cod_estab            VARCHAR2(3),
+  cod_espec_docto      VARCHAR2(3),
+  cod_ser_docto        VARCHAR2(3),
+  cod_titulo_acr       VARCHAR2(10),
+  cod_parcela          VARCHAR2(6),
+  dat_liquidac_tit_acr DATE,
+  num_id_tit_acr       NUMBER,
+  cdn_cliente          NUMBER,
+  val_sdo_tit_acr      NUMBER,
+  val_origin_tit_acr   NUMBER,
+  cod_tit_acr_bco      VARCHAR2(20),
+  cdhistorico          VARCHAR2(4),
+  cdcliente            VARCHAR2(10),
+  dtcancelamento       DATE
 )
-;
-create index EMS506UNICOO.IDX_TI_TIT_ACR_CONCILIACAO on EMS506UNICOO.TI_TIT_ACR_CONCILIACAO (CDTIPO_FALHA);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR_CONCILIACAO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_ACR_CONCILIACAO on EMS506UNICOO.TI_TIT_ACR_CONCILIACAO (CDTIPO_FALHA)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR_CTBL
@@ -4495,22 +6801,54 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR_CTBL
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(8) not null,
-  CDSITUACAO                VARCHAR2(2),
-  VAL_APROP_CTBL            NUMBER(10,2),
-  COD_ESTAB                 VARCHAR2(3),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_UNID_FEDERAC          VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  DS_STATUS                 VARCHAR2(10),
-  COD_CCUSTO                VARCHAR2(11),
-  DAT_PROCESSAMENTO         DATE
+  nrseq_controle_integracao NUMBER(8) not null,
+  cdsituacao                VARCHAR2(2),
+  val_aprop_ctbl            NUMBER(10,2),
+  cod_estab                 VARCHAR2(3),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_unid_federac          VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  ds_status                 VARCHAR2(10),
+  cod_ccusto                VARCHAR2(11),
+  dat_processamento         DATE
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_ACR_CTBL_01 on EMS506UNICOO.TI_TIT_ACR_CTBL (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_ACR_CTBL
-  add constraint PK_TI_TIT_ACR_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_TI_TIT_ACR_CTBL_01 on EMS506UNICOO.TI_TIT_ACR_CTBL (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR_CTBL to UNICOOGPS;
+  add constraint PK_TI_TIT_ACR_CTBL primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR_ESTORNO
@@ -4518,30 +6856,51 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR_ESTORNO
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  CDSITUACAO                VARCHAR2(2) not null,
-  NRDOCUMENTO               VARCHAR2(12) not null,
-  COD_ESTAB                 VARCHAR2(6) not null,
-  COD_ESPEC_DOCTO           VARCHAR2(6) not null,
-  COD_SER_DOCTO             VARCHAR2(6) not null,
-  COD_TIT_ACR               VARCHAR2(10) not null,
-  COD_PARCELA               VARCHAR2(2) not null,
-  COD_TIT_ACR_BCO           VARCHAR2(20),
-  COD_REFER                 VARCHAR2(10) not null,
-  NUM_ID_MOVTO_TIT_ACR      NUMBER not null,
-  NUM_ID_TIT_ACR            NUMBER not null,
-  COD_PORTADOR              VARCHAR2(6) not null,
-  DAT_TRANSACAO             DATE not null,
-  DAT_ENVIO                 DATE,
-  CDN_CLIENTE               NUMBER(9),
-  DAT_PROCESSAMENTO         DATE,
-  IND_NIV_OPERAC_ACR        VARCHAR2(12),
-  IND_TIP_OPERAC_ACR        VARCHAR2(15)
+  nrseq_controle_integracao NUMBER(9) not null,
+  cdsituacao                VARCHAR2(2) not null,
+  nrdocumento               VARCHAR2(12) not null,
+  cod_estab                 VARCHAR2(6) not null,
+  cod_espec_docto           VARCHAR2(6) not null,
+  cod_ser_docto             VARCHAR2(6) not null,
+  cod_tit_acr               VARCHAR2(10) not null,
+  cod_parcela               VARCHAR2(2) not null,
+  cod_tit_acr_bco           VARCHAR2(20),
+  cod_refer                 VARCHAR2(10) not null,
+  num_id_movto_tit_acr      NUMBER not null,
+  num_id_tit_acr            NUMBER not null,
+  cod_portador              VARCHAR2(6) not null,
+  dat_transacao             DATE not null,
+  dat_envio                 DATE,
+  cdn_cliente               NUMBER(9),
+  dat_processamento         DATE,
+  ind_niv_operac_acr        VARCHAR2(12),
+  ind_tip_operac_acr        VARCHAR2(15)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_ACR_ESTORNO
-  add constraint PK_TI_TIT_ACR_ESTORNO primary key (NRSEQ_CONTROLE_INTEGRACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR_ESTORNO to UNICOOGPS;
+  add constraint PK_TI_TIT_ACR_ESTORNO primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_ACR_IMPOSTO
@@ -4549,28 +6908,60 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_TIT_ACR_IMPOSTO
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(9) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_PARCELA               VARCHAR2(2),
-  IND_CLAS_IMPTO            VARCHAR2(14),
-  COD_TITULO_ACR            VARCHAR2(10),
-  COD_UNID_FEDERAC          VARCHAR2(3),
-  COD_CLASSIF_IMPTO         VARCHAR2(5),
-  VAL_ALIQ_IMPTO            NUMBER(5,2),
-  VAL_RENDTO_TRIBUT         NUMBER(10,2),
-  COD_SER_DOCTO             VARCHAR2(3),
-  COD_IMPOSTO               VARCHAR2(5) not null,
-  IND_OCORRENCIA            NUMBER(1),
-  COD_ESTAB                 VARCHAR2(3),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  DAT_PROCESSAMENTO         DATE,
-  VAL_IMPOSTO               NUMBER(10,2)
+  nrseq_controle_integracao NUMBER(9) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_parcela               VARCHAR2(2),
+  ind_clas_impto            VARCHAR2(14),
+  cod_titulo_acr            VARCHAR2(10),
+  cod_unid_federac          VARCHAR2(3),
+  cod_classif_impto         VARCHAR2(5),
+  val_aliq_impto            NUMBER(5,2),
+  val_rendto_tribut         NUMBER(10,2),
+  cod_ser_docto             VARCHAR2(3),
+  cod_imposto               VARCHAR2(5) not null,
+  ind_ocorrencia            NUMBER(1),
+  cod_estab                 VARCHAR2(3),
+  cod_espec_docto           VARCHAR2(3),
+  dat_processamento         DATE,
+  val_imposto               NUMBER(10,2)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_ACR_IMPOSTO on EMS506UNICOO.TI_TIT_ACR_IMPOSTO (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_ACR_IMPOSTO
-  add constraint PK_TI_TIT_ACR_IMPOSTO_1 primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_IMPOSTO);
-create index EMS506UNICOO.IDX_TI_TIT_ACR_IMPOSTO on EMS506UNICOO.TI_TIT_ACR_IMPOSTO (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_ACR_IMPOSTO to UNICOOGPS;
+  add constraint PK_TI_TIT_ACR_IMPOSTO_1 primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_IMPOSTO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_APB
@@ -4578,49 +6969,81 @@ prompt =========================
 prompt
 create table EMS506UNICOO.TI_TIT_APB
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(10) not null,
-  NRPESSOA                  NUMBER(10) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_TITULO_AP             VARCHAR2(10),
-  VAL_PER_DESC              NUMBER(2,4),
-  COD_CART_BCIA             VARCHAR2(3),
-  DAT_PROCESSAMENTO         DATE,
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12),
-  CDN_FORNECEDOR            NUMBER(12,2),
-  QTD_PARCELA               NUMBER(3),
-  IND_TIPO_PESSOA           VARCHAR2(1),
-  COD_SER_DOCTO             VARCHAR2(3),
-  COD_PARCELA               VARCHAR2(2),
-  VAL_DESCONTO              NUMBER(9,2),
-  DES_TEXT_HISTOR           VARCHAR2(2000),
-  COD_CCUSTO                VARCHAR2(11),
-  COD_ID_FEDER_JURID        VARCHAR2(20),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  DAT_EMISSAO               DATE,
-  DAT_VENCTO                DATE,
-  DAT_PREVISAO_PAGTO        DATE,
-  DAT_DESCONTO              DATE,
-  VAL_TITULO                NUMBER(9,2),
-  NUM_DIAS_ATRASO           NUMBER(2),
-  VAL_JUROS                 NUMBER(9,2),
-  VAL_PERC_JUROS_DIA_ATRASO NUMBER(9,6),
-  VAL_PERC_MULTA_ATRASO     NUMBER(2,2),
-  COD_PORTADOR              VARCHAR2(5),
-  COD_FORMA_PAGTO           VARCHAR2(3),
-  COD_EMPRESA               VARCHAR2(3),
-  COD_ESTAB                 VARCHAR2(3),
-  COD_ID_FEDER              VARCHAR2(20),
-  IND_OCORRENCIA            NUMBER(1),
-  NRREGISTRO_TITULO         NUMBER(12),
-  DAT_ENVIO                 DATE,
-  COD_PLANO_CTA_CTBL        VARCHAR2(8) not null,
-  COD_PLANO_CCUSTO          VARCHAR2(8) not null
+  nrseq_controle_integracao NUMBER(10) not null,
+  nrpessoa                  NUMBER(10) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_titulo_ap             VARCHAR2(10),
+  val_per_desc              NUMBER(2,4),
+  cod_cart_bcia             VARCHAR2(3),
+  dat_processamento         DATE,
+  cod_tip_fluxo_financ      VARCHAR2(12),
+  cdn_fornecedor            NUMBER(12,2),
+  qtd_parcela               NUMBER(3),
+  ind_tipo_pessoa           VARCHAR2(1),
+  cod_ser_docto             VARCHAR2(3),
+  cod_parcela               VARCHAR2(2),
+  val_desconto              NUMBER(9,2),
+  des_text_histor           VARCHAR2(2000),
+  cod_ccusto                VARCHAR2(11),
+  cod_id_feder_jurid        VARCHAR2(20),
+  cod_espec_docto           VARCHAR2(3),
+  dat_emissao               DATE,
+  dat_vencto                DATE,
+  dat_previsao_pagto        DATE,
+  dat_desconto              DATE,
+  val_titulo                NUMBER(9,2),
+  num_dias_atraso           NUMBER(2),
+  val_juros                 NUMBER(9,2),
+  val_perc_juros_dia_atraso NUMBER(9,6),
+  val_perc_multa_atraso     NUMBER(2,2),
+  cod_portador              VARCHAR2(5),
+  cod_forma_pagto           VARCHAR2(3),
+  cod_empresa               VARCHAR2(3),
+  cod_estab                 VARCHAR2(3),
+  cod_id_feder              VARCHAR2(20),
+  ind_ocorrencia            NUMBER(1),
+  nrregistro_titulo         NUMBER(12),
+  dat_envio                 DATE,
+  cod_plano_cta_ctbl        VARCHAR2(8) not null,
+  cod_plano_ccusto          VARCHAR2(8) not null
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_APB_SITUACAO on EMS506UNICOO.TI_TIT_APB (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_APB
-  add constraint PK_TI_TIT_APB primary key (NRSEQ_CONTROLE_INTEGRACAO);
-create index EMS506UNICOO.IDX_TI_TIT_APB_SITUACAO on EMS506UNICOO.TI_TIT_APB (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_APB to UNICOOGPS;
+  add constraint PK_TI_TIT_APB primary key (NRSEQ_CONTROLE_INTEGRACAO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_APB_COMPARATIVO
@@ -4628,19 +7051,28 @@ prompt =====================================
 prompt
 create table EMS506UNICOO.TI_TIT_APB_COMPARATIVO
 (
-  COD_REFER           VARCHAR2(20),
-  NRSEQUENCIAL        NUMBER,
-  NRSEQUENCIAL_ORIGEM NUMBER(10),
-  TPINTEGRACAO        VARCHAR2(2),
-  VAL_TITULO          NUMBER,
-  VAL_IMPOSTO         NUMBER,
-  SIT_TI_CONTROLE     VARCHAR2(2),
-  SIT_TI_TIT_APB      VARCHAR2(2),
-  VLORIGINAL          NUMBER,
-  VAL_SDO_TIT_AP      NUMBER
+  cod_refer           VARCHAR2(20),
+  nrsequencial        NUMBER,
+  nrsequencial_origem NUMBER(10),
+  tpintegracao        VARCHAR2(2),
+  val_titulo          NUMBER,
+  val_imposto         NUMBER,
+  sit_ti_controle     VARCHAR2(2),
+  sit_ti_tit_apb      VARCHAR2(2),
+  vloriginal          NUMBER,
+  val_sdo_tit_ap      NUMBER
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_APB_COMPARATIVO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_APB_CTBL
@@ -4648,20 +7080,41 @@ prompt ==============================
 prompt
 create table EMS506UNICOO.TI_TIT_APB_CTBL
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(8) not null,
-  COD_CTA_CTBL              VARCHAR2(20),
-  DAT_PROCESSAMENTO         DATE,
-  COD_ESTAB                 VARCHAR2(3),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12) not null,
-  COD_UNID_FEDERAC          VARCHAR2(3),
-  VAL_APROP_CTBL            NUMBER(10,2),
-  COD_CCUSTO                VARCHAR2(11) not null,
-  CDSITUACAO                VARCHAR2(2)
+  nrseq_controle_integracao NUMBER(8) not null,
+  cod_cta_ctbl              VARCHAR2(20),
+  dat_processamento         DATE,
+  cod_estab                 VARCHAR2(3),
+  cod_tip_fluxo_financ      VARCHAR2(12) not null,
+  cod_unid_federac          VARCHAR2(3),
+  val_aprop_ctbl            NUMBER(10,2),
+  cod_ccusto                VARCHAR2(11) not null,
+  cdsituacao                VARCHAR2(2)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_APB_CTBL
-  add constraint PK_TI_TIT_APB_CTBL_JPA primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_CCUSTO, COD_TIP_FLUXO_FINANC);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_APB_CTBL to UNICOOGPS;
+  add constraint PK_TI_TIT_APB_CTBL_JPA primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_CCUSTO, COD_TIP_FLUXO_FINANC)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TI_TIT_APB_IMPOSTO
@@ -4669,42 +7122,74 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TI_TIT_APB_IMPOSTO
 (
-  NRSEQ_CONTROLE_INTEGRACAO NUMBER(8) not null,
-  CDSITUACAO                VARCHAR2(2),
-  COD_SER_DOCTO             VARCHAR2(3),
-  IND_CLAS_IMPTO            VARCHAR2(14),
-  VAL_IMPTO_JA_RECOLHID     NUMBER(10,2),
-  VAL_OUTRAS_DEDUC_IMPTO    NUMBER(12,2),
-  COD_TITULO_AP             VARCHAR2(10),
-  VAL_RENDTO_TRIBUT         NUMBER(10,2),
-  VAL_ALIQ_IMPTO            NUMBER(2,2),
-  VAL_DEDUC_FAIXA_IMTO      NUMBER(10,2),
-  COD_ESTAB                 VARCHAR2(3),
-  COD_ESPEC_DOCTO           VARCHAR2(3),
-  COD_PARCELA               VARCHAR2(2),
-  COD_UNID_FEDERAC          VARCHAR2(3),
-  COD_IMPOSTO               VARCHAR2(5) not null,
-  COD_CLASSIF_IMPTO         VARCHAR2(5),
-  VAL_DEDUC_INSS            NUMBER(10,2),
-  VAL_DEDUC_DEPEND          NUMBER(10,2),
-  VAL_DEDUC_PENSAO          NUMBER(10,2),
-  VAL_DEDUC_OUTRAS_DEDUC    NUMBER(10,2),
-  VAL_BASE_LIQ_IMPTO        NUMBER(10,2),
-  VAL_IMPOSTO               NUMBER(10,2),
-  DAT_VENCTO                DATE,
-  DES_TEXT_HISTOR           VARCHAR2(200),
-  DAT_PROCESSAMENTO         DATE,
-  VAL_DEDUC_FAIXA_IMPTO     NUMBER(12,2),
-  COD_CTA_CTBL              VARCHAR2(20),
-  COD_PLANO_CTB_CBTL        VARCHAR2(8),
-  IND_OCORRENCIA            NUMBER(1),
-  COD_TIP_FLUXO_FINANC      VARCHAR2(12)
+  nrseq_controle_integracao NUMBER(8) not null,
+  cdsituacao                VARCHAR2(2),
+  cod_ser_docto             VARCHAR2(3),
+  ind_clas_impto            VARCHAR2(14),
+  val_impto_ja_recolhid     NUMBER(10,2),
+  val_outras_deduc_impto    NUMBER(12,2),
+  cod_titulo_ap             VARCHAR2(10),
+  val_rendto_tribut         NUMBER(10,2),
+  val_aliq_impto            NUMBER(2,2),
+  val_deduc_faixa_imto      NUMBER(10,2),
+  cod_estab                 VARCHAR2(3),
+  cod_espec_docto           VARCHAR2(3),
+  cod_parcela               VARCHAR2(2),
+  cod_unid_federac          VARCHAR2(3),
+  cod_imposto               VARCHAR2(5) not null,
+  cod_classif_impto         VARCHAR2(5),
+  val_deduc_inss            NUMBER(10,2),
+  val_deduc_depend          NUMBER(10,2),
+  val_deduc_pensao          NUMBER(10,2),
+  val_deduc_outras_deduc    NUMBER(10,2),
+  val_base_liq_impto        NUMBER(10,2),
+  val_imposto               NUMBER(10,2),
+  dat_vencto                DATE,
+  des_text_histor           VARCHAR2(200),
+  dat_processamento         DATE,
+  val_deduc_faixa_impto     NUMBER(12,2),
+  cod_cta_ctbl              VARCHAR2(20),
+  cod_plano_ctb_cbtl        VARCHAR2(8),
+  ind_ocorrencia            NUMBER(1),
+  cod_tip_fluxo_financ      VARCHAR2(12)
 )
-;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+create index EMS506UNICOO.IDX_TI_TIT_APB_IMPOSTO_01 on EMS506UNICOO.TI_TIT_APB_IMPOSTO (CDSITUACAO)
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 alter table EMS506UNICOO.TI_TIT_APB_IMPOSTO
-  add constraint PK_TI_TIT_APB_IMPOSTO primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_IMPOSTO);
-create index EMS506UNICOO.IDX_TI_TIT_APB_IMPOSTO_01 on EMS506UNICOO.TI_TIT_APB_IMPOSTO (CDSITUACAO);
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TI_TIT_APB_IMPOSTO to UNICOOGPS;
+  add constraint PK_TI_TIT_APB_IMPOSTO primary key (NRSEQ_CONTROLE_INTEGRACAO, COD_IMPOSTO)
+  using index 
+  tablespace TS_EMS5
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TIT_BX_PB_UNICOO
@@ -4712,11 +7197,20 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.TIT_BX_PB_UNICOO
 (
-  NRREGISTRO_TITULO NUMBER,
-  DTITULO           DATE
+  nrregistro_titulo NUMBER,
+  dtitulo           DATE
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TIT_BX_PB_UNICOO to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TIT_CONTABIL_PAGAR
@@ -4724,45 +7218,54 @@ prompt =================================
 prompt
 create table EMS506UNICOO.TIT_CONTABIL_PAGAR
 (
-  NRREGISTRO_FORNECEDOR NUMBER(8),
-  CDEMPRESA             VARCHAR2(5),
-  IDCONTRATO            VARCHAR2(12),
-  CDHISTORICO           NUMBER,
-  NRDOCUMENTO           VARCHAR2(12),
-  CDPORTADOR            VARCHAR2(3),
-  TPDOCUMENTO           VARCHAR2(3),
-  CDSITUACAO            VARCHAR2(1),
-  CDOPERACAO            VARCHAR2(3),
-  DTVENCIMENTO          DATE,
-  DTTITULO              DATE,
-  CDDIVISAO             NUMBER(6),
-  TXHISTORICO           VARCHAR2(255),
-  CDFORNECEDOR          VARCHAR2(6),
-  CDGRUPO_FORNECEDOR    NUMBER(4),
-  NOGRUPO_FORNECEDOR    VARCHAR2(30),
-  NOPESSOA              VARCHAR2(60),
-  NRCGC_CPF             VARCHAR2(15),
-  TPPESSOA              VARCHAR2(1),
-  NOEMPRESA             VARCHAR2(45),
-  NODOCUMENTO           VARCHAR2(30),
-  NOPORTADOR            VARCHAR2(30),
-  VLTITULO              NUMBER,
-  DTULTIMO_RECEBIMENTO  DATE,
-  VLPAGO                NUMBER,
-  VLDEVIDO              NUMBER,
-  VLDESCONTO            NUMBER,
-  VLABATIMENTO          NUMBER,
-  VLABATIMENTO_2        NUMBER,
-  VLJUROS               NUMBER,
-  VLMULTA               NUMBER,
-  VLTAXA_BANCARIA       NUMBER,
-  CDCONTA_CONTABIL      VARCHAR2(20),
-  NRREGISTRO_TITULO     NUMBER(10) not null,
-  COD_TIT_T11           VARCHAR2(10),
-  COD_PAR_T11           VARCHAR2(2)
+  nrregistro_fornecedor NUMBER(8),
+  cdempresa             VARCHAR2(5),
+  idcontrato            VARCHAR2(12),
+  cdhistorico           NUMBER,
+  nrdocumento           VARCHAR2(12),
+  cdportador            VARCHAR2(3),
+  tpdocumento           VARCHAR2(3),
+  cdsituacao            VARCHAR2(1),
+  cdoperacao            VARCHAR2(3),
+  dtvencimento          DATE,
+  dttitulo              DATE,
+  cddivisao             NUMBER(6),
+  txhistorico           VARCHAR2(255),
+  cdfornecedor          VARCHAR2(6),
+  cdgrupo_fornecedor    NUMBER(4),
+  nogrupo_fornecedor    VARCHAR2(30),
+  nopessoa              VARCHAR2(60),
+  nrcgc_cpf             VARCHAR2(15),
+  tppessoa              VARCHAR2(1),
+  noempresa             VARCHAR2(45),
+  nodocumento           VARCHAR2(30),
+  noportador            VARCHAR2(30),
+  vltitulo              NUMBER,
+  dtultimo_recebimento  DATE,
+  vlpago                NUMBER,
+  vldevido              NUMBER,
+  vldesconto            NUMBER,
+  vlabatimento          NUMBER,
+  vlabatimento_2        NUMBER,
+  vljuros               NUMBER,
+  vlmulta               NUMBER,
+  vltaxa_bancaria       NUMBER,
+  cdconta_contabil      VARCHAR2(20),
+  nrregistro_titulo     NUMBER(10) not null,
+  cod_tit_t11           VARCHAR2(10),
+  cod_par_t11           VARCHAR2(2)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TIT_CONTABIL_PAGAR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TIT_CONTABIL_RECEBER
@@ -4770,35 +7273,44 @@ prompt ===================================
 prompt
 create table EMS506UNICOO.TIT_CONTABIL_RECEBER
 (
-  CDEMPRESA            VARCHAR2(5),
-  NRREGISTRO_TITULO    NUMBER(10) not null,
-  CDCLIENTE            VARCHAR2(10),
-  NRDOCUMENTO          VARCHAR2(12),
-  TPDOCUMENTO          VARCHAR2(3),
-  CDPORTADOR           VARCHAR2(3),
-  DTTITULO             DATE,
-  DTVENCIMENTO         DATE,
-  NOPESSOA             VARCHAR2(60),
-  NOCIDADE             VARCHAR2(30),
-  NRTELEFONE           VARCHAR2(24),
-  NRFAX                VARCHAR2(24),
-  CDHISTORICO          NUMBER(4) not null,
-  NOHISTORICO          VARCHAR2(45),
-  CDCONTA_CONTABIL     VARCHAR2(20),
-  VLFATURADO           NUMBER,
-  VLTITULO             NUMBER,
-  DTULTIMO_RECEBIMENTO DATE,
-  VLMULTA              NUMBER,
-  VLJUROS              NUMBER,
-  VLABATIMENTO         NUMBER,
-  VLABATIMENTO_2       NUMBER,
-  VLRECEBIDO           NUMBER,
-  VLDESCONTO           NUMBER,
-  VLABERTO             NUMBER,
-  CDORIGEM             VARCHAR2(2)
+  cdempresa            VARCHAR2(5),
+  nrregistro_titulo    NUMBER(10) not null,
+  cdcliente            VARCHAR2(10),
+  nrdocumento          VARCHAR2(12),
+  tpdocumento          VARCHAR2(3),
+  cdportador           VARCHAR2(3),
+  dttitulo             DATE,
+  dtvencimento         DATE,
+  nopessoa             VARCHAR2(60),
+  nocidade             VARCHAR2(30),
+  nrtelefone           VARCHAR2(24),
+  nrfax                VARCHAR2(24),
+  cdhistorico          NUMBER(4) not null,
+  nohistorico          VARCHAR2(45),
+  cdconta_contabil     VARCHAR2(20),
+  vlfaturado           NUMBER,
+  vltitulo             NUMBER,
+  dtultimo_recebimento DATE,
+  vlmulta              NUMBER,
+  vljuros              NUMBER,
+  vlabatimento         NUMBER,
+  vlabatimento_2       NUMBER,
+  vlrecebido           NUMBER,
+  vldesconto           NUMBER,
+  vlaberto             NUMBER,
+  cdorigem             VARCHAR2(2)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TIT_CONTABIL_RECEBER to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TITULO_ABERTOS_CR
@@ -4806,123 +7318,132 @@ prompt ================================
 prompt
 create table EMS506UNICOO.TITULO_ABERTOS_CR
 (
-  CDEMPRESA                    VARCHAR2(5),
-  NRREGISTRO_CLIENTE           NUMBER(8),
-  NRCONTRATO                   VARCHAR2(8),
-  NRREGISTRO_TITULO            NUMBER(10) not null,
-  CDSITUACAO                   VARCHAR2(1),
-  NRDOCUMENTO                  VARCHAR2(12),
-  TPDOCUMENTO                  VARCHAR2(3),
-  CDPORTADOR                   VARCHAR2(3),
-  CDOPERACAO                   VARCHAR2(3),
-  NRNOSSONUMERO                VARCHAR2(20),
-  NRVENDEDOR                   VARCHAR2(3),
-  DTTITULO                     DATE,
-  DTVENCIMENTO                 DATE not null,
-  DTEXCLUSAO                   DATE,
-  DTREFERENCIA                 DATE,
-  VLTITULO                     NUMBER(12,2),
-  VLABATIMENTO                 NUMBER(12,2),
-  VLABATIMENTO_2               NUMBER(12,2),
-  DTULTIMO_RECEBIMENTO         DATE,
-  VLRECEBIDO                   NUMBER(12,2),
-  VLMULTA                      NUMBER(12,2),
-  VLJUROS                      NUMBER(12,2),
-  VLDESCONTO                   NUMBER(12,2),
-  DTENVIO_BANCO                DATE,
-  DTCONFIRMA_BANCO             DATE,
-  TXREFERENCIA_BANCO           VARCHAR2(100),
-  TXHISTORICO                  VARCHAR2(100),
-  DTPROTESTO                   DATE,
-  NOCARTORIO_PROTESTO          VARCHAR2(50),
-  TXOBSERVACOES                VARCHAR2(400),
-  CDCENTRO_CUSTO               NUMBER(6),
-  NRREGISTRO_TIT_AGRUP         NUMBER(10),
-  NRREGISTRO_TIT_DESM          NUMBER(10),
-  CDHISTORICO                  NUMBER(4) not null,
-  VLFATURADO                   NUMBER(12,2),
-  VLIR_FONTE                   NUMBER(12,2),
-  VL_IR_FONTE_FAT              NUMBER(12,2),
-  DTINTEGRACAO                 DATE,
-  NRPARCELA                    NUMBER(5),
-  CDFUNCIONARIO                VARCHAR2(20),
-  CDVENDEDOR                   VARCHAR2(4),
-  TPTITULO                     VARCHAR2(1),
-  NRULTIMOENVIO                NUMBER,
-  DTULTIMOENVIO                DATE,
-  CDULTIMOENVIO                VARCHAR2(2),
-  NRULTIMORETORNO              NUMBER,
-  DTULTIMORETORNO              DATE,
-  CDULTIMORETORNO              VARCHAR2(2),
-  CDCOMANDO_ENVIO              VARCHAR2(2),
-  CDCOMANDO_RETORNO            VARCHAR2(3),
-  CDMOVIMENTO_ENVIO            VARCHAR2(2),
-  CDMOVIMENTO_RETORNO          VARCHAR2(2),
-  CDCLIENTE                    VARCHAR2(10),
-  CDCOMANDO_ATUAL              VARCHAR2(2),
-  VLTAXA_BANCARIA              NUMBER(12,2),
-  DTULTIMO_ENVIO               DATE,
-  DTULTIMO_RETORNO             DATE,
-  NRULTIMO_ENVIO               NUMBER,
-  NRULTIMO_RETORNO             NUMBER,
-  PEJUROS                      NUMBER(7,4),
-  PEMULTA                      NUMBER(12,2),
-  NRBANCO                      NUMBER(4),
-  NRAGENCIA                    VARCHAR2(8),
-  NRSEQUENCIANOTAFISCALVEN     NUMBER,
-  TPTAXAFORMAMULTA             VARCHAR2(3),
-  TPTAXAFORMAJUROS             VARCHAR2(3),
-  VLTAXAMULTA                  NUMBER(14,6),
-  VLTAXAJUROS                  NUMBER(14,6),
-  NRTAXADIACARENCIA            NUMBER(3),
-  AODESCONTOANTECIPADO         VARCHAR2(1),
-  NRDIADESCONTOANTECIPADO      NUMBER(3),
-  PEDESCONTOANTECIPADO         NUMBER(9,6),
-  PETAXABANCARIA               NUMBER(9,6),
-  NRDIAPROTESTO                NUMBER(3),
-  NRDIASPROTESTO               NUMBER(3),
-  NRDIASDESCONTOANTECIPADO     NUMBER(3),
-  VLDESCONTOANTECIPADO         NUMBER(12,2),
-  NRREPRESENTANTE              NUMBER,
-  NRNOTA_FISCAL_DEVOLUCAO      VARCHAR2(25),
-  CDPORTADORAGENCIA            VARCHAR2(8),
-  CDPORTADORCONTACORRENTE      VARCHAR2(12),
-  NRCONTACORRENTE              VARCHAR2(12),
-  NRDIACARENCIA                NUMBER(3),
-  VLLUCRO_VENDOR               NUMBER(12,2),
-  VLDESPESA_CARTORIO           NUMBER(12,2),
-  AOEMITE_COBRANCA             VARCHAR2(1),
-  NRCONTA_CORRENTE             VARCHAR2(12),
-  NRMOTIVO_EXCLUSAO            NUMBER(4),
-  NRPERIODO_COMPET             NUMBER(6),
-  VLRECEBIDO_SERVICO_OFERECIDO NUMBER(9,2),
-  RREGISTRO_CLIENTE            NUMBER(6),
-  VLDESPESA_CARTORIA           NUMBER(12,2),
-  VLDIFERENCA_RECEBIMENTO      NUMBER(9,2),
-  VLDIFERENCA_JUROS            NUMBER(9,2),
-  AOTRATA_TAXA                 VARCHAR2(1),
-  NRINSTRUCAO                  NUMBER(2),
-  NRCOMPOSICAO_CREDITO_IR      NUMBER(10),
-  DTENCERRAMENTO               DATE not null,
-  CDORIGEM                     VARCHAR2(2),
-  VLABATIMENTO_IMPOSTO         NUMBER(12,2),
-  NRLOTE_FATURAMENTO           NUMBER(10),
-  CDIDENTIFICADOR_DEPOSITO     VARCHAR2(30),
-  CDCOMANDO_DEBAUT             VARCHAR2(2),
-  CDCARTEIRA_COBRANCA          NUMBER(5),
-  NRPERIODOCOBERTURA           NUMBER(8),
-  VLANTECIPADOPERIODOCOBERTURA NUMBER(12,2),
-  NRPERIODORATEIO1             NUMBER(8),
-  VLANTECIPADOPERIODORATEIO1   NUMBER(12,2),
-  NRPERIODORATEIO2             NUMBER(8),
-  VLANTECIPADOPERIODORATEIO2   NUMBER(12,2),
-  VLUTILIZADOPERIODOCOBERTURA  NUMBER(12,2),
-  VLUTILIZADOPERIODORATEIO1    NUMBER(12,2),
-  VLUTILIZADOPERIODORATEIO2    NUMBER(12,2),
-  DTVENCIMENTO_ORIGINAL        DATE
+  cdempresa                    VARCHAR2(5),
+  nrregistro_cliente           NUMBER(8),
+  nrcontrato                   VARCHAR2(8),
+  nrregistro_titulo            NUMBER(10) not null,
+  cdsituacao                   VARCHAR2(1),
+  nrdocumento                  VARCHAR2(12),
+  tpdocumento                  VARCHAR2(3),
+  cdportador                   VARCHAR2(3),
+  cdoperacao                   VARCHAR2(3),
+  nrnossonumero                VARCHAR2(20),
+  nrvendedor                   VARCHAR2(3),
+  dttitulo                     DATE,
+  dtvencimento                 DATE not null,
+  dtexclusao                   DATE,
+  dtreferencia                 DATE,
+  vltitulo                     NUMBER(12,2),
+  vlabatimento                 NUMBER(12,2),
+  vlabatimento_2               NUMBER(12,2),
+  dtultimo_recebimento         DATE,
+  vlrecebido                   NUMBER(12,2),
+  vlmulta                      NUMBER(12,2),
+  vljuros                      NUMBER(12,2),
+  vldesconto                   NUMBER(12,2),
+  dtenvio_banco                DATE,
+  dtconfirma_banco             DATE,
+  txreferencia_banco           VARCHAR2(100),
+  txhistorico                  VARCHAR2(100),
+  dtprotesto                   DATE,
+  nocartorio_protesto          VARCHAR2(50),
+  txobservacoes                VARCHAR2(400),
+  cdcentro_custo               NUMBER(6),
+  nrregistro_tit_agrup         NUMBER(10),
+  nrregistro_tit_desm          NUMBER(10),
+  cdhistorico                  NUMBER(4) not null,
+  vlfaturado                   NUMBER(12,2),
+  vlir_fonte                   NUMBER(12,2),
+  vl_ir_fonte_fat              NUMBER(12,2),
+  dtintegracao                 DATE,
+  nrparcela                    NUMBER(5),
+  cdfuncionario                VARCHAR2(20),
+  cdvendedor                   VARCHAR2(4),
+  tptitulo                     VARCHAR2(1),
+  nrultimoenvio                NUMBER,
+  dtultimoenvio                DATE,
+  cdultimoenvio                VARCHAR2(2),
+  nrultimoretorno              NUMBER,
+  dtultimoretorno              DATE,
+  cdultimoretorno              VARCHAR2(2),
+  cdcomando_envio              VARCHAR2(2),
+  cdcomando_retorno            VARCHAR2(3),
+  cdmovimento_envio            VARCHAR2(2),
+  cdmovimento_retorno          VARCHAR2(2),
+  cdcliente                    VARCHAR2(10),
+  cdcomando_atual              VARCHAR2(2),
+  vltaxa_bancaria              NUMBER(12,2),
+  dtultimo_envio               DATE,
+  dtultimo_retorno             DATE,
+  nrultimo_envio               NUMBER,
+  nrultimo_retorno             NUMBER,
+  pejuros                      NUMBER(7,4),
+  pemulta                      NUMBER(12,2),
+  nrbanco                      NUMBER(4),
+  nragencia                    VARCHAR2(8),
+  nrsequencianotafiscalven     NUMBER,
+  tptaxaformamulta             VARCHAR2(3),
+  tptaxaformajuros             VARCHAR2(3),
+  vltaxamulta                  NUMBER(14,6),
+  vltaxajuros                  NUMBER(14,6),
+  nrtaxadiacarencia            NUMBER(3),
+  aodescontoantecipado         VARCHAR2(1),
+  nrdiadescontoantecipado      NUMBER(3),
+  pedescontoantecipado         NUMBER(9,6),
+  petaxabancaria               NUMBER(9,6),
+  nrdiaprotesto                NUMBER(3),
+  nrdiasprotesto               NUMBER(3),
+  nrdiasdescontoantecipado     NUMBER(3),
+  vldescontoantecipado         NUMBER(12,2),
+  nrrepresentante              NUMBER,
+  nrnota_fiscal_devolucao      VARCHAR2(25),
+  cdportadoragencia            VARCHAR2(8),
+  cdportadorcontacorrente      VARCHAR2(12),
+  nrcontacorrente              VARCHAR2(12),
+  nrdiacarencia                NUMBER(3),
+  vllucro_vendor               NUMBER(12,2),
+  vldespesa_cartorio           NUMBER(12,2),
+  aoemite_cobranca             VARCHAR2(1),
+  nrconta_corrente             VARCHAR2(12),
+  nrmotivo_exclusao            NUMBER(4),
+  nrperiodo_compet             NUMBER(6),
+  vlrecebido_servico_oferecido NUMBER(9,2),
+  rregistro_cliente            NUMBER(6),
+  vldespesa_cartoria           NUMBER(12,2),
+  vldiferenca_recebimento      NUMBER(9,2),
+  vldiferenca_juros            NUMBER(9,2),
+  aotrata_taxa                 VARCHAR2(1),
+  nrinstrucao                  NUMBER(2),
+  nrcomposicao_credito_ir      NUMBER(10),
+  dtencerramento               DATE not null,
+  cdorigem                     VARCHAR2(2),
+  vlabatimento_imposto         NUMBER(12,2),
+  nrlote_faturamento           NUMBER(10),
+  cdidentificador_deposito     VARCHAR2(30),
+  cdcomando_debaut             VARCHAR2(2),
+  cdcarteira_cobranca          NUMBER(5),
+  nrperiodocobertura           NUMBER(8),
+  vlantecipadoperiodocobertura NUMBER(12,2),
+  nrperiodorateio1             NUMBER(8),
+  vlantecipadoperiodorateio1   NUMBER(12,2),
+  nrperiodorateio2             NUMBER(8),
+  vlantecipadoperiodorateio2   NUMBER(12,2),
+  vlutilizadoperiodocobertura  NUMBER(12,2),
+  vlutilizadoperiodorateio1    NUMBER(12,2),
+  vlutilizadoperiodorateio2    NUMBER(12,2),
+  dtvencimento_original        DATE
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TITULO_ABERTOS_CR to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TITULOS_BAIXADOS
@@ -4930,16 +7451,25 @@ prompt ===============================
 prompt
 create table EMS506UNICOO.TITULOS_BAIXADOS
 (
-  NRDOCUMENTO       VARCHAR2(12),
-  VLTITULO          NUMBER(12,2),
-  SALDO_UNICOO      NUMBER,
-  SALDO_TOTVS11     NUMBER not null,
-  NUM_ID_TIT_ACR    NUMBER not null,
-  NRREGISTRO_TITULO NUMBER(10) not null,
-  CDSITUACAO        VARCHAR2(1)
+  nrdocumento       VARCHAR2(12),
+  vltitulo          NUMBER(12,2),
+  saldo_unicoo      NUMBER,
+  saldo_totvs11     NUMBER not null,
+  num_id_tit_acr    NUMBER not null,
+  nrregistro_titulo NUMBER(10) not null,
+  cdsituacao        VARCHAR2(1)
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TITULOS_BAIXADOS to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating table TMP_FORNEC_MIGRAR_MATRIZ_APB
@@ -4947,10 +7477,19 @@ prompt ===========================================
 prompt
 create table EMS506UNICOO.TMP_FORNEC_MIGRAR_MATRIZ_APB
 (
-  CDFORNECEDOR VARCHAR2(6) not null
+  cdfornecedor VARCHAR2(6) not null
 )
-;
-grant select, insert, update, delete, references, alter, index on EMS506UNICOO.TMP_FORNEC_MIGRAR_MATRIZ_APB to UNICOOGPS;
+tablespace TS_EMS5
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
 
 prompt
 prompt Creating sequence CAD_GER_ENCON_SEQ
@@ -5146,7 +7685,7 @@ prompt
 create sequence EMS506UNICOO.SQ_TI_CONTROLE_INTEGRACAO
 minvalue 1
 maxvalue 9999999999999999999999999999
-start with 19273328
+start with 22495908
 increment by 1
 cache 20;
 
@@ -5168,7 +7707,7 @@ prompt
 create sequence EMS506UNICOO.SQ_TI_FALHA_DE_PROCESSO
 minvalue 1
 maxvalue 9999999999999999999999999999
-start with 9792357
+start with 12734717
 increment by 1
 cache 20;
 
@@ -5212,7 +7751,7 @@ prompt
 create sequence EMS506UNICOO.SQ_TI_SESSAO
 minvalue 1
 maxvalue 9999999999999999999999999999
-start with 111149
+start with 122309
 increment by 1
 cache 20;
 
@@ -5223,7 +7762,7 @@ prompt
 create sequence EMS506UNICOO.SQ_TI_TIPO_MOVIMENTO_TIT_APB
 minvalue 1
 maxvalue 9999999999999999999999999999
-start with 5788
+start with 6388
 increment by 1
 cache 20;
 
@@ -5389,6 +7928,17 @@ create sequence EMS506UNICOO.TI_FORNECEDOR_SEQ
 minvalue 1
 maxvalue 9999999999999999999999999999
 start with 1
+increment by 1
+cache 20;
+
+prompt
+prompt Creating sequence TI_HASH_SEQ
+prompt =============================
+prompt
+create sequence EMS506UNICOO.TI_HASH_SEQ
+minvalue 1
+maxvalue 9999999999999999999999999999
+start with 1252481
 increment by 1
 cache 20;
 
@@ -31097,7 +33647,7 @@ prompt
 prompt Creating view V_CLIENTES_DUPLOS
 prompt ===============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_CLIENTES_DUPLOS AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_CLIENTES_DUPLOS AS
 SELECT C.CDCLIENTE,
        C.CDGRUPO_CLIENTE GRUPO_UNICOO,
        TG.CDGRUPO_CLIENTE_EMS_PF GRUPO_TOTVS,
@@ -31117,14 +33667,13 @@ SELECT C.CDCLIENTE,
            AND P1.NRREGISTRO = P.NRREGISTRO
            AND TG1.CDGRUPO_CLIENTE_EMS_PF <> TG.CDGRUPO_CLIENTE_EMS_PF
            AND TG1.CDGRUPO_CLIENTE_EMS_PJ <> 'NAOM')
-           ORDER BY P.NRREGISTRO
-/
+           ORDER BY P.NRREGISTRO;
 
 prompt
 prompt Creating view V_CODIGO_DE_HISTORICO_REC
 prompt =======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_CODIGO_DE_HISTORICO_REC AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_CODIGO_DE_HISTORICO_REC AS
 SELECT
 /*
 **********************************************************************************************
@@ -31153,13 +33702,13 @@ WHERE  H.CDMODULO = 'CR'
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Fim da view v_codigo_de_historico_rec
 --------------------------------------------------------------------------------------------------------------------------------------------
-/
+;
 
 prompt
 prompt Creating view V_COMPARATIVO_TIT_ACR
 prompt ===================================
 prompt
-create or replace view ems506unicoo.v_comparativo_tit_acr as
+create or replace force view ems506unicoo.v_comparativo_tit_acr as
 select b.nrregistro_titulo,
        b.nrdocumento,
        b.cdcliente,
@@ -31187,14 +33736,13 @@ group by  b.cdsituacao,
          b.nrregistro_titulo,
          b.nrdocumento,
          b.cdcliente
-order by 1,3
-/
+order by 1,3;
 
 prompt
 prompt Creating view V_COMPARATIVO_TIT_APB
 prompt ===================================
 prompt
-create or replace view ems506unicoo.v_comparativo_tit_apb as
+create or replace force view ems506unicoo.v_comparativo_tit_apb as
 select b.nrregistro_titulo,
        b.nrdocumento,
        b.cdfornecedor,
@@ -31221,14 +33769,13 @@ group by b.cdsituacao,
          b.nrdocumento,
          b.cdgrupo_fornecedor,
          b.cdfornecedor
-order by 1,2
-/
+order by 1,2;
 
 prompt
 prompt Creating view V_CONTA_CCUSTO
 prompt ============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_CONTA_CCUSTO AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_CONTA_CCUSTO AS
 SELECT -- Josias - 01-07-2014 - Ajustes Necessários
        U.COD_PLANO_CTA_CTBL,
        U.COD_ESTAB,
@@ -31255,13 +33802,13 @@ select U.COD_PLANO_CTA_CTBL,
        NULL COD_CCUSTO,
        U.INDCRITERDISTRIBCCUSTO
 from criterdistribctactbl U WHERE U.INDCRITERDISTRIBCCUSTO <> 'Definidos'
-/
+;
 
 prompt
 prompt Creating view V_CONTA_FORNECEDOR_ANALISE
 prompt ========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_CONTA_FORNECEDOR_ANALISE AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_CONTA_FORNECEDOR_ANALISE AS
 select "CDFORNECEDOR","NRBANCO","NRAGENCIA","NRCONTA_BANCARIA","TPCONTA","AOENVIO_BANCO","AOCONTA_PRESTADOR","CDMODULO_ULTIMA_ALTERACAO"
   from (SELECT distinct t.*
           FROM FORNECEDOR_AGENCIA_BANCARIA         T,
@@ -31284,39 +33831,37 @@ select "CDFORNECEDOR","NRBANCO","NRAGENCIA","NRCONTA_BANCARIA","TPCONTA","AOENVI
          where FG.CDGRUPO_FORNECEDOR = ff.cdgrupo_fornecedor
            and fg.cod_grp_fornecedor = 'NAOM'
            and f.cdfornecedor = ff.cdfornecedor)
-/
+;
 
 prompt
 prompt Creating view V_ERROS_TIT_ACR
 prompt =============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_ERROS_TIT_ACR AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_ERROS_TIT_ACR AS
 SELECT txfalha, txajuda, COUNT(*) qtde FROM ti_falha_de_processo tf
 WHERE EXISTS (SELECT 1 FROM ti_tit_acr tr
 WHERE tf.nrseq_controle_integracao = tr.nrseq_controle_integracao)
 GROUP BY txfalha, txajuda
-ORDER BY 3 DESC
-/
+ORDER BY 3 DESC;
 
 prompt
 prompt Creating view V_ERROS_TIT_APB
 prompt =============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_ERROS_TIT_APB AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_ERROS_TIT_APB AS
 SELECT TXFALHA, TXAJUDA, COUNT(*) QTDE_ERROS
   FROM TI_FALHA_DE_PROCESSO TF, TI_TIT_APB TP
  WHERE TF.NRSEQ_CONTROLE_INTEGRACAO = TP.NRSEQ_CONTROLE_INTEGRACAO
  AND TF.TXFALHA NOT LIKE 'Rateio contábil não permitido em uma conta de Saldo !'
  AND TF.TXFALHA NOT LIKE 'Imposto%ao foi vinculado ao fornecedor%'
  GROUP BY TF.TXFALHA, TXAJUDA
- ORDER BY 3 DESC
-/
+ ORDER BY 3 DESC;
 
 prompt
 prompt Creating view V_FALHAS_TIT_ACR
 prompt ==============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_FALHAS_TIT_ACR AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_FALHAS_TIT_ACR AS
 SELECT TXFALHA, TXAJUDA, COUNT(*) qtde_erros
   FROM TI_FALHA_DE_PROCESSO TF
  WHERE EXISTS
@@ -31326,14 +33871,13 @@ SELECT TXFALHA, TXAJUDA, COUNT(*) qtde_erros
    AND TXFALHA NOT LIKE '%liente Financeiro %'
    and txfalha not like 'Título já existente no Contas a Receber !%'
  GROUP BY TXFALHA, TXAJUDA
- ORDER BY 3 DESC
-/
+ ORDER BY 3 DESC;
 
 prompt
 prompt Creating view V_FORNECEDORES_DUPLOS
 prompt ===================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_FORNECEDORES_DUPLOS AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_FORNECEDORES_DUPLOS AS
 SELECT F.CDFORNECEDOR, F.CDGRUPO_FORNECEDOR GRUPO_UNICOO, T.COD_GRP_FORNECEDOR GRUPO_TOTVS, PE.NOPESSOA
   FROM TI_GRUPO_DE_FORNECEDOR T, PRODUCAO.FORNECEDOR@UNICOO_HOMOLOGA F, PESSOA PE
  WHERE F.CDGRUPO_FORNECEDOR = T.CDGRUPO_FORNECEDOR
@@ -31347,21 +33891,19 @@ SELECT F.CDFORNECEDOR, F.CDGRUPO_FORNECEDOR GRUPO_UNICOO, T.COD_GRP_FORNECEDOR G
            AND F2.NRREGISTRO_FORNECEDOR = F.NRREGISTRO_FORNECEDOR
            AND T2.COD_GRP_FORNECEDOR <> T.COD_GRP_FORNECEDOR
            AND T2.COD_GRP_FORNECEDOR <> 'NAOM')
-         ORDER BY PE.NRREGISTRO
-/
+         ORDER BY PE.NRREGISTRO;
 
 prompt
 prompt Creating view V_PESSOA_JURIDICA
 prompt ===============================
 prompt
-create or replace view ems506unicoo.v_pessoa_juridica as
+create or replace force view ems506unicoo.v_pessoa_juridica as
 select "NUM_PESSOA_JURID"
   from (select num_pessoa_jurid
           from ESTABELECIMENTO t
         union
         select num_pessoa
-          from REPRESENTANTE t) a
-/
+          from REPRESENTANTE t) a;
 
 prompt
 prompt Creating function F_TI_PARAMETRO_INTEGRACAO
@@ -31392,14 +33934,12 @@ END;
   return(Result);
 end ;
 /
-grant execute on EMS506UNICOO.F_TI_PARAMETRO_INTEGRACAO to UNICOOGPS;
-
 
 prompt
 prompt Creating view V_TI_CLIENTE
 prompt ==========================
 prompt
-create or replace view ems506unicoo.v_ti_cliente as
+create or replace force view ems506unicoo.v_ti_cliente as
 select
         /*
         ***************************************************************************************************************
@@ -31607,13 +34147,13 @@ where
   and pais.CDPAIS_EMISSOR_ID(+)        = P.CDPAIS_EMISSOR_ID
   and cn.cdcidade(+)                   = p.cdcidade_naturalidade
 --  and ci.nrsequencial=1363871
-/
+;
 
 prompt
 prompt Creating view V_TI_CONTROLE_INTEGRACAO
 prompt ======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_CONTROLE_INTEGRACAO AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_CONTROLE_INTEGRACAO AS
 SELECT -- Josias - 01-07-2014 - Ajustes Necessários
        (SELECT '[' || CDVALOR || '] ' || UPPER(T.CDPROCESSO)
           FROM TI_TIPO_PROCESSO_INTEGRACAO T
@@ -31665,24 +34205,23 @@ SELECT -- Josias - 01-07-2014 - Ajustes Necessários
 
   FROM TI_CONTROLE_INTEGRACAO I
  ORDER BY NRSEQUENCIAL DESC
-/
+;
 
 prompt
 prompt Creating view V_TI_CONTROLE_INTEGRACAO_DP
 prompt =========================================
 prompt
-create or replace view ems506unicoo.v_ti_controle_integracao_dp as
+create or replace force view ems506unicoo.v_ti_controle_integracao_dp as
 select ci.tpintegracao,ci.cdsituacao,count(*) qtt
 from ti_controle_integracao ci
 group by ci.tpintegracao,ci.cdsituacao
-order by ci.tpintegracao,ci.cdsituacao
-/
+order by ci.tpintegracao,ci.cdsituacao;
 
 prompt
 prompt Creating view V_TI_CONTROLE_INTEGRACAO_HOJE
 prompt ===========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_CONTROLE_INTEGRACAO_HOJE AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_CONTROLE_INTEGRACAO_HOJE AS
 SELECT -- Josias - 01-07-2014 - Ajustes Necessários
        TPINTEGRACAO,
        CASE
@@ -31714,13 +34253,13 @@ WHERE
        TRUNC(DTPROCESSAMENTO)=TRUNC(SYSDATE)
 GROUP BY
 TPINTEGRACAO,CDSITUACAO
-/
+;
 
 prompt
 prompt Creating view V_TI_CX_BX78
 prompt ==========================
 prompt
-create or replace view ems506unicoo.v_ti_cx_bx78 as
+create or replace force view ems506unicoo.v_ti_cx_bx78 as
 select distinct
        xx.nrsequencial nrseq_controle_integracao,
        'RC' cdsituacao,
@@ -31780,14 +34319,13 @@ select distinct
    and c.nrregistro_cliente = p.nrregistro
    and tr.cdempresa = e.cdempresa
    and aa.nrsequencial_origem=tr.nrregistro_titulo
-   AND XX.TPINTEGRACAO='BC'
-/
+   AND XX.TPINTEGRACAO='BC';
 
 prompt
 prompt Creating view V_TI_CX_BX_ACR
 prompt ============================
 prompt
-create or replace view ems506unicoo.v_ti_cx_bx_acr as
+create or replace force view ems506unicoo.v_ti_cx_bx_acr as
 select distinct
        xx.nrsequencial nrseq_controle_integracao,
        'RC' cdsituacao,
@@ -31849,14 +34387,13 @@ select distinct
    and c.nrregistro_cliente = p.nrregistro
    and tr.cdempresa = e.cdempresa
    and aa.nrsequencial_origem=tr.nrregistro_titulo
-   AND XX.TPINTEGRACAO='BR'
-/
+   AND XX.TPINTEGRACAO='BR';
 
 prompt
 prompt Creating view V_TI_CX_BX_APB
 prompt ============================
 prompt
-create or replace view ems506unicoo.v_ti_cx_bx_apb as
+create or replace force view ems506unicoo.v_ti_cx_bx_apb as
 select distinct
        xx.nrsequencial nrseq_controle_integracao,
        'RC' cdsituacao,
@@ -31902,14 +34439,13 @@ select distinct
    and htp.nrmovimento = xx.nrsequencial_origem
    and htp.nrconta_bancaria = tc.nrconta_corrente
    and f.nrregistro_fornecedor = p.nrregistro
-   and tp.cdempresa = e.cdempresa
-/
+   and tp.cdempresa = e.cdempresa;
 
 prompt
 prompt Creating view V_TI_FORNECEDOR_UNICOO
 prompt ====================================
 prompt
-create or replace view ems506unicoo.v_ti_fornecedor_unicoo as
+create or replace force view ems506unicoo.v_ti_fornecedor_unicoo as
 select  distinct
         vi.cdfornecedor,
         vi.nrregistro_fornecedor,
@@ -31930,14 +34466,13 @@ select  distinct
            and fo.nrregistro_fornecedor = x.nrregistro_fornecedor
            and tp.dttitulo              = x.dttitulo) vi
 where fo.cdfornecedor          = tap.cdfornecedor
-  and fo.nrregistro_fornecedor = vi.nrregistro_fornecedor
-/
+  and fo.nrregistro_fornecedor = vi.nrregistro_fornecedor;
 
 prompt
 prompt Creating view V_TI_ITEM_LANCAMENTO_CTBL
 prompt =======================================
 prompt
-create or replace view ems506unicoo.v_ti_item_lancamento_ctbl as
+create or replace force view ems506unicoo.v_ti_item_lancamento_ctbl as
 select  -- Josias 01-07-2014 - ajustes necessários
         V.NRPERIODO,
         V.NRLANCAMENTO LANCTO,
@@ -31975,13 +34510,13 @@ select  -- Josias 01-07-2014 - ajustes necessários
         NUM_ITEM_LANCTO_CTBL,
         NRSEQ_CONTROLE_INTEGRACAO
 from TI_ITEM_LANCAMENTO_CTBL V
-/
+;
 
 prompt
 prompt Creating view V_TI_LANCAMENTO_CTBL
 prompt ==================================
 prompt
-create or replace view ems506unicoo.v_ti_lancamento_ctbl as
+create or replace force view ems506unicoo.v_ti_lancamento_ctbl as
 select
       /*
       ***************************************************************************************************************
@@ -32006,13 +34541,13 @@ from
       ems506unicoo.ti_item_lancamento_ctbl lc
 group by
       nrseq_CONTROLE_INTEGRACAO,trunc(dat_lancto)
-/
+;
 
 prompt
 prompt Creating view V_TI_LOTE_CTBL
 prompt ============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_LOTE_CTBL AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_LOTE_CTBL AS
 SELECT -- Josias 01-07-2014 - Ajustes necessários
        T.NRPERIODO,
        T.DES_LOTE_CTBL DESCRICAO,
@@ -32024,13 +34559,13 @@ SELECT -- Josias 01-07-2014 - Ajustes necessários
        T.AOLOTE_INTEGRACAO,
        T.NRSEQ_CONTROLE_INTEGRACAO
 FROM   TI_LOTE_CTBL T
-/
+;
 
 prompt
 prompt Creating view V_TI_MONITOR_INTEGRACAO
 prompt =====================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_MONITOR_INTEGRACAO AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_MONITOR_INTEGRACAO AS
 SELECT -- Josias 01-07-2014 - Ajustes necessários
 DECODE(CDSITUACAO,'CA','CANCELADO',
                   'GE','GERADO',
@@ -32059,13 +34594,13 @@ WHERE
        CI.CDSITUACAO NOT IN ('RE','CA')
 GROUP BY
       CDSITUACAO ,TPINTEGRACAO
-/
+;
 
 prompt
 prompt Creating view V_TI_MOVIMENTO_CTA_COR_MON
 prompt ========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_MOVIMENTO_CTA_COR_MON AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_MOVIMENTO_CTA_COR_MON AS
 SELECT -- Josias 01-07-2014 - Ajustes necessários
        V.COD_DOCTO_MOVTO_CTA_BCO  MOVIMENTO,
        TRUNC(V.DAT_MOVTO_CTA_CORREN)     DATA,
@@ -32099,13 +34634,13 @@ SELECT -- Josias 01-07-2014 - Ajustes necessários
        IND_ERRO_VALID             POSSUIERRO,
        NRSEQ_CONTROLE_INTEGRACAO
   FROM TI_MOVIMENTO_CTA_CORRENTE V
-/
+;
 
 prompt
 prompt Creating view V_TI_MOVIMENTO_CTA_CORRENTE
 prompt =========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_MOVIMENTO_CTA_CORRENTE AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_MOVIMENTO_CTA_CORRENTE AS
 SELECT -- Josias 01-07-2014 - Ajustes necessários
         TC.CDACAO                   COD_ACAO,
         TC.NRSEQUENCIAL NRSEQ_CONTROLE_INTEGRACAO,
@@ -32145,13 +34680,13 @@ AND     TC.TPINTEGRACAO='CX'
 AND     MC.CDHISTORICO = TM.CDHISTORICO
 AND     DECODE(MC.NRCONTA_CORRENTE,'Movim. H.U.','Movim. H.U.','*') = TM.CAIXA
 AND     MC.NRCONTA_CORRENTE = TMC.NRCONTA_CORRENTE
-/
+;
 
 prompt
 prompt Creating view V_TI_MOVTO_CTA_CORRENTE_CUSTOM
 prompt ============================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_MOVTO_CTA_CORRENTE_CUSTOM AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_MOVTO_CTA_CORRENTE_CUSTOM AS
 SELECT  -- Josias 01-07-2014 - Ajustes necessários
         TC.CDACAO                   COD_ACAO,
         TC.NRSEQUENCIAL NRSEQ_CONTROLE_INTEGRACAO,
@@ -32191,13 +34726,13 @@ AND     TC.TPINTEGRACAO='CX'
 AND     MC.CDHISTORICO = TM.CDHISTORICO
 AND     DECODE(MC.NRCONTA_CORRENTE,'Movim. H.U.','Movim. H.U.','*') = TM.CAIXA
 AND     MC.NRCONTA_CORRENTE = TMC.NRCONTA_CORRENTE
-/
+;
 
 prompt
 prompt Creating view V_TI_RATEIO_CONTABIL
 prompt ==================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_RATEIO_CONTABIL AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_RATEIO_CONTABIL AS
 SELECT
        CDEMPRESA,
        NRPERIODO,
@@ -32226,17 +34761,16 @@ SELECT
 FROM
        RATEIO
 WHERE
-       CDCONTA_CRED IS NOT NULL
-/
+       CDCONTA_CRED IS NOT NULL;
 
 prompt
 prompt Creating view V_TI_TIPO_INTEGRACAO
 prompt ==================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_TIPO_INTEGRACAO AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_TIPO_INTEGRACAO AS
 SELECT -- Josias 01-07-2014 - Ajustes necessários
        'INT_TI_CLIENTE' CDTABELA FROM DUAL
-/
+;
 
 prompt
 prompt Creating function F_TI_IR_ACR
@@ -32331,7 +34865,7 @@ prompt
 prompt Creating view V_TI_TIT_ACR
 prompt ==========================
 prompt
-create or replace view ems506unicoo.v_ti_tit_acr as
+create or replace force view ems506unicoo.v_ti_tit_acr as
 select distinct
         /*
         ***************************************************************************************************************
@@ -32476,13 +35010,13 @@ select distinct
   and  ci.cdsituacao          <> 'RE'
 
   and  ci.tpintegracao        = 'TR'
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_ACR_CTBL
 prompt ===============================
 prompt
-create or replace view ems506unicoo.v_ti_tit_acr_ctbl as
+create or replace force view ems506unicoo.v_ti_tit_acr_ctbl as
 select -- Josias 01-07-2014 - ajustes necessários
        distinct
         tmt.cod_estab,
@@ -32526,13 +35060,13 @@ where   tip.cdn_cliente = ecl.cdn_cliente
                                                )
    and  ci.nrsequencial_origem=tr.nrregistro_titulo
    and  ci.tpintegracao='TR'
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_ACR_ESTORNO
 prompt ==================================
 prompt
-create or replace view ems506unicoo.v_ti_tit_acr_estorno as
+create or replace force view ems506unicoo.v_ti_tit_acr_estorno as
 select -- Josias 01-07-2014 - ajustes necessários
     'RC' cdsituacao,
     TA.COD_EMPRESA,
@@ -32562,13 +35096,13 @@ WHERE
        MT.NUM_ID_TIT_ACR=TA.NUM_ID_TIT_ACR
        AND
        MT.IND_TRANS_ACR_ABREV='IMPL'
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_ACR_IMPOSTO
 prompt ==================================
 prompt
-create or replace view ems506unicoo.v_ti_tit_acr_imposto as
+create or replace force view ems506unicoo.v_ti_tit_acr_imposto as
 select -- Josias 01-07-2014 - ajustes necessários
        -- Alessandro 17/01/2015 - novo tratamento dos impostos
       distinct
@@ -32642,7 +35176,7 @@ where ecl.cdn_cliente  = tip.cdn_cliente
   and dd.nrfatura = tr.nrdocumento
   and tef.cdevento=dd.cdevento
   and tef.cdtaxa_contribuicao=ttr.cdtaxa
-/
+;
 
 prompt
 prompt Creating function F_TI_TIP_MOVTO_TIT_APB
@@ -32729,7 +35263,7 @@ prompt
 prompt Creating view V_TI_TIT_APB
 prompt ==========================
 prompt
-create or replace view ems506unicoo.v_ti_tit_apb as
+create or replace force view ems506unicoo.v_ti_tit_apb as
 select distinct -- josias - 28-05-2014 colocado o distinct pois estava retornando mais de um registro na query
                 ufn.nrregistro_fornecedor nrpessoa,
                 tp.cdfornecedor,
@@ -32768,7 +35302,7 @@ select distinct -- josias - 28-05-2014 colocado o distinct pois estava retornand
                 end cod_ccusto,
                 (select distinct fe.cod_id_feder
                    from fornecedor fe
-                  where fe.cdn_fornecedor = ufn.cdfornecedor_ems5) cod_id_feder,
+                  where fe.cdn_fornecedor = tip.cdn_fornecedor) cod_id_feder,
                 tmt.cod_espec_docto cod_espec_docto,
                 --tp.dttitulo                                        dat_emissao,
                 tp.Dtemissao_Nf dat_emissao,
@@ -32875,13 +35409,13 @@ select distinct -- josias - 28-05-2014 colocado o distinct pois estava retornand
    and nvl(efn.cod_empresa, f_ti_parametro_integracao('COD_EMPRESA')) =
        emp.cod_empresa
  -- AND TP.NRDOCUMENTO  = '033717'
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_APB_CTBL
 prompt ===============================
 prompt
-create or replace view ems506unicoo.v_ti_tit_apb_ctbl as
+create or replace force view ems506unicoo.v_ti_tit_apb_ctbl as
 select -- Josias 01-07-2014 - ajustes necessários
        distinct
        cod_cta_ctbl,
@@ -32947,7 +35481,7 @@ select -- Josias 01-07-2014 - ajustes necessários
   and ci.cdsituacao <> 'RE'
   and tip.cdn_fornecedor is not null
   --and not exists (select 1 from ti_titulo_apb_nao_migra xx where xx.nrregistro_titulo = tp.nrregistro_titulo)
-/
+;
 
 prompt
 prompt Creating function F_TI_IMPOSTO_AGRUPADO
@@ -33006,7 +35540,7 @@ prompt
 prompt Creating view V_TI_TIT_APB_IMPOSTO
 prompt ==================================
 prompt
-create or replace view ems506unicoo.v_ti_tit_apb_imposto as
+create or replace force view ems506unicoo.v_ti_tit_apb_imposto as
 select   vi.cod_ser_docto,
          vi.ind_clas_impto,
          vi.val_impto_ja_recolhid,
@@ -33144,13 +35678,13 @@ select   vi.cod_ser_docto,
           vi.cod_plano_ctb_cbtl,
           vi.ind_ocorrencia,
           vi.cod_tip_fluxo_financ
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_APB_IMPOSTO_MONITOR
 prompt ==========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_TIT_APB_IMPOSTO_MONITOR AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_TIT_APB_IMPOSTO_MONITOR AS
 SELECT  -- Josias 01-07-2014 - ajustes necessários
                COD_ESTAB ESTABELECIMENTO,
                DECODE(V.CDSITUACAO,
@@ -33197,13 +35731,13 @@ SELECT  -- Josias 01-07-2014 - ajustes necessários
         COD_TIP_FLUXO_FINANC FLUXO_FINANCEIRO,
         NRSEQ_CONTROLE_INTEGRACAO
 FROM TI_TIT_APB_IMPOSTO V
-/
+;
 
 prompt
 prompt Creating view V_TI_TIT_APB_MONITOR
 prompt ==================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TI_TIT_APB_MONITOR AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TI_TIT_APB_MONITOR AS
 SELECT -- Josias 01-07-2014 - ajustes necessários
        A.NRPESSOA REGISTRO,
        NVL((SELECT '[' || T.CDFORNECEDOR || '] ' || V.NOPESSOA
@@ -33249,13 +35783,13 @@ SELECT -- Josias 01-07-2014 - ajustes necessários
 
   FROM TI_TIT_APB A, TITULO_A_PAGAR B
  WHERE A.NRREGISTRO_TITULO = B.NRREGISTRO_TITULO(+)
-/
+;
 
 prompt
 prompt Creating view V_TIT_APB_DESM
 prompt ============================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TIT_APB_DESM AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TIT_APB_DESM AS
 SELECT tci."NRSEQUENCIAL",tci."TPINTEGRACAO",tci."DTGERACAO",tci."NRSEQUENCIAL_ORIGEM",tci."DTPROCESSAMENTO",tci."DTINTEGRACAO",tci."CDACAO",tci."CDIDENTIFICADOR",tci."TXOBSERVACAO",tci."CDSITUACAO",tci."NRSEQ_CONTROLE_INTEGRACAO_ORG",tci."CDEMPRESA",tci."CDMODULO",tci."CDMOVIMENTO",tci."NRSESSAO",tci."CDDIVISAO",tci."CDCENTRO_CUSTO",tci."TPDOCUMENTO"
   FROM TI_CONTROLE_INTEGRACAO TCI, TI_TIT_APB TP, TIT_AP TAP
  WHERE TP.COD_ESTAB = TAP.COD_ESTAB
@@ -33276,14 +35810,13 @@ SELECT tci."NRSEQUENCIAL",tci."TPINTEGRACAO",tci."DTGERACAO",tci."NRSEQUENCIAL_O
           FROM MOVTO_TIT_AP M
          WHERE M.NUM_ID_TIT_AP = TAP.NUM_ID_TIT_AP
            HAVING COUNT(*) = 1)
- ORDER BY TCI.CDEMPRESA, TP.COD_TITULO_AP
-/
+ ORDER BY TCI.CDEMPRESA, TP.COD_TITULO_AP;
 
 prompt
 prompt Creating view V_TIT_APB_DESM_MOV
 prompt ================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TIT_APB_DESM_MOV AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TIT_APB_DESM_MOV AS
 SELECT tci."NRSEQUENCIAL",tci."TPINTEGRACAO",tci."DTGERACAO",tci."NRSEQUENCIAL_ORIGEM",tci."DTPROCESSAMENTO",tci."DTINTEGRACAO",tci."CDACAO",tci."CDIDENTIFICADOR",tci."TXOBSERVACAO",tci."CDSITUACAO",tci."NRSEQ_CONTROLE_INTEGRACAO_ORG",tci."CDEMPRESA",tci."CDMODULO",tci."CDMOVIMENTO",tci."NRSESSAO",tci."CDDIVISAO",tci."CDCENTRO_CUSTO",tci."TPDOCUMENTO"
   FROM TI_CONTROLE_INTEGRACAO TCI, TI_TIT_APB TP, TIT_AP TAP
  WHERE TP.COD_ESTAB = TAP.COD_ESTAB
@@ -33304,14 +35837,13 @@ SELECT tci."NRSEQUENCIAL",tci."TPINTEGRACAO",tci."DTGERACAO",tci."NRSEQUENCIAL_O
           FROM MOVTO_TIT_AP M
          WHERE M.NUM_ID_TIT_AP = TAP.NUM_ID_TIT_AP
            HAVING COUNT(*) > 1)
- ORDER BY TCI.CDEMPRESA, TP.COD_TITULO_AP
-/
+ ORDER BY TCI.CDEMPRESA, TP.COD_TITULO_AP;
 
 prompt
 prompt Creating view V_TITULO_FECHADO_ACR_INF
 prompt ======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULO_FECHADO_ACR_INF AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULO_FECHADO_ACR_INF AS
 SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_ORIG, 10
                 '"'||TMT.COD_ESTAB||'"'||' '||--COD_ESTAB_ORIG, 20
                 '"'|| TMT.COD_ESPEC_DOCTO||'"'|| ' ' -- COD_ESPEC_DOCTO_ORIG, 30
@@ -33524,13 +36056,13 @@ SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_
    AND EMP.CDEMPRESA = TR.CDEMPRESA
    AND NVL(ECL.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view V_TITULO_FECHADO_ACR_MOV
 prompt ======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULO_FECHADO_ACR_MOV AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULO_FECHADO_ACR_MOV AS
 SELECT DISTINCT
                '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--cod_empres_orig
                '"'||TMT.COD_ESTAB||'"'||' '||-- cod_estab_orig
@@ -33807,13 +36339,13 @@ SELECT DISTINCT
    AND EMP.CDEMPRESA = TR.CDEMPRESA
    AND NVL(ECL.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view V_TITULO_FECHADO_INF_APB
 prompt ======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULO_FECHADO_INF_APB AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULO_FECHADO_INF_APB AS
 SELECT DISTINCT TMT.COD_EMPRESA COD_EMPRESA_ORIG,
                 TMT.COD_ESTAB COD_ESTAB_ORIG,
                 TMT.COD_ESPEC_DOCTO COD_ESPEC_DOCTO_ORIG,
@@ -34039,13 +36571,13 @@ UFN.NRREGISTRO_FORNECEDOR NRPESSOA,
    AND EMP.CDEMPRESA = TP.CDEMPRESA
    AND NVL(EFN.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view V_TITULO_FECHADOS_ACR_INF
 prompt =======================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULO_FECHADOS_ACR_INF AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULO_FECHADOS_ACR_INF AS
 SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_ORIG, 10
                 '"'||TMT.COD_ESTAB||'"'||' '||--COD_ESTAB_ORIG, 20
                 '"'|| TMT.COD_ESPEC_DOCTO||'"'|| ' ' -- COD_ESPEC_DOCTO_ORIG, 30
@@ -34258,13 +36790,13 @@ SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_
    AND EMP.CDEMPRESA = TR.CDEMPRESA
    AND NVL(ECL.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view V_TITULOS_FECHADOS_INFORMACOES
 prompt ============================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULOS_FECHADOS_INFORMACOES AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULOS_FECHADOS_INFORMACOES AS
 SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_ORIG, 10
                 '"'||TMT.COD_ESTAB||'"'||' '||--COD_ESTAB_ORIG, 20
                 '"'|| TMT.COD_ESPEC_DOCTO||'"'|| ' ' -- COD_ESPEC_DOCTO_ORIG, 30
@@ -34477,13 +37009,13 @@ SELECT DISTINCT '"'|| TMT.COD_EMPRESA ||'"'||' ' ||--TMT.COD_EMPRESA COD_EMPRES_
    AND EMP.CDEMPRESA = TR.CDEMPRESA
    AND NVL(ECL.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view V_TITULOS_FECHADOS_MOVIMENTOS
 prompt ===========================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.V_TITULOS_FECHADOS_MOVIMENTOS AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.V_TITULOS_FECHADOS_MOVIMENTOS AS
 SELECT DISTINCT
                ''''|| TMT.COD_EMPRESA ||''''||' ' ||--cod_empres_orig
                ''''||TMT.COD_ESTAB||''''||' '||-- cod_estab_orig
@@ -34760,13 +37292,13 @@ SELECT DISTINCT
    AND EMP.CDEMPRESA = TR.CDEMPRESA
    AND NVL(ECL.COD_EMPRESA, F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA')) =
        EMP.COD_EMPRESA
-/
+;
 
 prompt
 prompt Creating view VI_DESCONTO_DUPLICADO
 prompt ===================================
 prompt
-CREATE OR REPLACE VIEW EMS506UNICOO.VI_DESCONTO_DUPLICADO AS
+CREATE OR REPLACE FORCE VIEW EMS506UNICOO.VI_DESCONTO_DUPLICADO AS
 SELECT TR.VLTITULO,
         F_SALDO_TITULO_RECEBER(TR.NRREGISTRO_TITULO) VLSALDO,
         TR.VLRECEBIDO,
@@ -34785,7 +37317,7 @@ SELECT TR.VLTITULO,
     AND (F_SALDO_TITULO_RECEBER(TR.NRREGISTRO_TITULO) * -1) =
         (TR.VLDESCONTO / 2)
  --AND ABS(F_SALDO_TITULO_RECEBER(TR.NRREGISTRO_TITULO)) =(TR.VLDESCONTO/2)
-/
+;
 
 prompt
 prompt Creating package INF$_LOG
@@ -35323,14 +37855,14 @@ CREATE OR REPLACE PACKAGE EMS506UNICOO."PCK_EMS506UNICOO" IS
 
   -- Public type declarations
   /*  type <TypeName> is <Datatype>;
-  
+
   -- Public constant declarations
   <ConstantName> constant <Datatype> := <Value>;
-  
+
   -- Public variable declarations
   <VariableName> <Datatype>;
-  
-  
+
+
   -- Public function and procedure declarations
   function <FunctionName>(<Parameter> <Datatype>) return <Datatype>;*/
 
@@ -35347,6 +37879,8 @@ CREATE OR REPLACE PACKAGE EMS506UNICOO."PCK_EMS506UNICOO" IS
                                          PCDMODULO                      VARCHAR2,
                                          PCDEMPRESA                     VARCHAR2,
                                          PNRSEQ_CONTROLE_INTEGRACAO_ORG NUMBER);
+
+--  FUNCTION F_MIGRA_VENDEDORES RETURN VARCHAR2;
   procedure P_MIGRA_VENDEDORES;
 
   PROCEDURE P_DEFINE_TI_PESSOA(PNRCGC_CPF              VARCHAR2,
@@ -35441,7 +37975,7 @@ CREATE OR REPLACE PACKAGE EMS506UNICOO."PCK_EMS506UNICOO" IS
                           PCDSITUACAO                IN OUT VARCHAR2,
                           PNRMENSAGEM                NUMBER DEFAULT NULL);
 
-  PROCEDURE P_GERAR_DADOS_BANC_FORNEC(VP_COD_EMPRESA IN NUMBER);
+  PROCEDURE P_GERAR_DADOS_BANC_FORNEC;
 
   FUNCTION F_RET_MASC_BANCO(VPCOD_BANCO IN VARCHAR2, VPTIPO IN VARCHAR2)
     RETURN NUMBER;
@@ -35485,29 +38019,31 @@ CREATE OR REPLACE PACKAGE EMS506UNICOO."PCK_EMS506UNICOO" IS
   PROCEDURE p_carga_tit_apb;
 
   procedure p_atualiza_status_cliente(p_qtsessoes number);
+  procedure p_atualiza_status_cliente_JK(p_qtsessoes number);
 
   procedure p_atualiza_status_baixa_acr(p_qtsessoes number);
-  
+
   procedure p_atualiza_status_fornecedor(p_qtsessoes number);
+  procedure p_atualiza_status_fornec_JK(p_qtsessoes number);
 
   procedure p_atualiza_status_tit_apb(p_qtsessoes number);
+
+  procedure p_atualiza_status_tit_apb_JK(p_qtsessoes number);
 
 --  procedure p_atualiza_status_tit_acr(p_qtsessoes number);
 
   procedure p_atualiza_status_tit_acr_fech(p_qtsessoes number);
   procedure p_atualiza_status_tit_acr_aber(p_qtsessoes number);
-  
-  procedure p_gera_carga_matriz_acr(vpcdempresa  varchar2,
-                                    vpdtcontabil date,
-                                    vpdtvenc_ini date,
-                                    vpdtvenc_fin date);
 
-  procedure p_gera_carga_matriz_apb(vpcdempresa  varchar2,
-                                    vpdtcontabil date,
-                                    vpdtvenc_ini date,
-                                    vpdtvenc_fin date);
+  procedure p_atualiza_status_tit_acr_JK(p_qtsessoes number);
 
-  procedure p_carga_tit_acr_fechado(vpdt_ini date);
+  procedure p_gera_carga_matriz_acr;
+  procedure p_gera_carga_matriz_apb;
+
+  procedure p_apagar_matriz_acr(papagar boolean);
+  procedure p_apagar_matriz_apb(papagar boolean);
+
+  procedure p_carga_tit_acr_fechado;
 
   procedure p_gera_dados_comparativo_acr;
 
@@ -35519,14 +38055,16 @@ CREATE OR REPLACE PACKAGE EMS506UNICOO."PCK_EMS506UNICOO" IS
                                    ptpintegracao              ti_controle_integracao.tpintegracao%type);
 
   procedure p_carga_baixa_tit_acr;
-  procedure P_GERA_SERIE_NOTA;  
+  procedure P_GERA_SERIE_NOTA;
   procedure p_atualiza_fluxo_financ_fornec;
   procedure P_ATUALIZA_BLOQUEIO_CLIENTE;
 
+procedure insere_hash(ptpintegracao varchar2,
+                      pnrsequencial_origem number,
+                      pcdidentificador varchar2);
+
 end pck_ems506unicoo;
 /
-grant execute on EMS506UNICOO.PCK_EMS506UNICOO to UNICOOGPS;
-
 
 prompt
 prompt Creating package PCK_EMS506UNICOO_A
@@ -36840,8 +39378,6 @@ begin
    Return V_BAIRRO_REDUZ ;
 end F_REDUZ_BAIRRO;
 /
-grant execute on EMS506UNICOO.F_REDUZ_BAIRRO to UNICOOGPS;
-
 
 prompt
 prompt Creating function F_REDUZ_COMPL
@@ -36995,8 +39531,6 @@ begin
    Return V_COMPL_REDUZ ;
 end F_REDUZ_COMPL;
 /
-grant execute on EMS506UNICOO.F_REDUZ_COMPL to UNICOOGPS;
-
 
 prompt
 prompt Creating function F_REDUZ_END
@@ -37108,8 +39642,6 @@ begin
    Return V_ENDER_REDUZ ;
 end F_REDUZ_END;
 /
-grant execute on EMS506UNICOO.F_REDUZ_END to UNICOOGPS;
-
 
 prompt
 prompt Creating function F_REDUZ_END_ABREV
@@ -37192,8 +39724,6 @@ begin
    Return V_ENDER_REDUZ ;
 end F_REDUZ_END_ABREV;
 /
-grant execute on EMS506UNICOO.F_REDUZ_END_ABREV to UNICOOGPS;
-
 
 prompt
 prompt Creating function F_TI_ACENTO
@@ -40068,9 +42598,176 @@ CREATE OR REPLACE PACKAGE BODY EMS506UNICOO."PCK_EMS506UNICOO" IS
   -- parametros genericos
   VVERSAOFINANCEIRO VARCHAR2(10);
 
-  PCPF_DTNASCIMENTO TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  PCPF_DTNASCIMENTO  TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pcdempresa_tit_acr TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pdtini_tit_acr     TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pdtfim_tit_acr     TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pcdempresa_tit_apb TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pdtini_tit_apb     TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pdtfim_tit_apb     TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pcod_empresa_unicoo TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  pcod_empresa       TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+
+  PMIGRAR_TITULOS_ACR_FECHADOS TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  PDT_INI_TITULOS_ACR_FECHADOS TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  PDT_CONTABIL_APB TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
+  PDT_CONTABIL_ACR TI_PARAMETRO_INTEGRACAO.CDPARAMETRO%TYPE;
 
   TTIT_AP TIT_AP%ROWTYPE;
+
+  FUNCTION md5 (valor VARCHAR) RETURN VARCHAR2 IS
+     v_input VARCHAR2(32000) := valor;
+     hexkey VARCHAR2(32) := NULL;
+  BEGIN
+     hexkey := RAWTOHEX(DBMS_OBFUSCATION_TOOLKIT.md5(input => UTL_RAW.cast_to_raw(v_input)));
+     RETURN NVL(hexkey,'');
+  END;
+
+  function gerar_hash_fornecedor_unicoo(pcdidentificador varchar2, pnrsequencial_origem number)
+    return varchar2 is
+    v_linha       varchar2(32000) := ' ';
+    v_linha_final varchar2(32000) := ' ';
+    v_retorno     varchar2(100);
+  begin
+    begin
+      select f.cdfornecedor || f.cdgrupo_fornecedor ||
+             f.cdsituacao_fornecedor || f.nrregistro_fornecedor ||
+             f.dtexclusao || f.cdconta_contabil || f.cdforma_pagamento ||
+             f.nrbanco || f.nragencia || f.nrconta_corrente ||
+             f.dtultima_movimentacao || f.nrprevidencia ||
+             f.cdcondicaopagamento || f.nrdiaentrega || f.txnegociacao ||
+             f.txobservacao || f.vllimitecredito ||
+             f.dtalteracaolimitecredito || f.cdusuariolimitecredito ||
+             f.vllimitecreditogasto || f.vllimitecreditodisponivel ||
+             f.dtinclusao || f.cdusuarioinclusao || f.dtfundacao ||
+             f.vltotalcompras || f.nrmediaatraso || f.vlprimeiracompras ||
+             f.dtprimeiracompras || f.vlultimacompras || f.dtultimacompras ||
+             f.vlmaiorcompras || f.dtmaiorcompras || f.vlultimacotacao ||
+             f.dtultimacotacao || f.dtalteracao || f.cdusuarioalteracao ||
+             f.cdusuarioexclusao || f.nofantasia || f.aocamara ||
+             f.txadmin_camara || f.aoparticipa_encontro || f.cdemail ||
+             f.nrlayout || f.aosempre_participa_dirf ||
+             f.dtvalidadeconsultanvisa || f.cdtipo_enquadramento_empresa ||
+             f.aoopcao_simples_nacional || f.cdcodigofornimp
+        into v_linha
+        from producao.fornecedor@unicoo_homologa f
+       where f.cdfornecedor = pcdidentificador;
+    exception
+      when others then
+        v_linha := pcdidentificador;
+    end;
+
+    v_linha_final := v_linha;
+
+    begin
+      select p.nrregistro || p.nopessoa || p.cdsitpessoa || p.tppessoa ||
+             p.nrcgc_cpf || p.nrinscest_rg || p.cdramoativ ||
+             p.dtnascimento || p.cdsexo || p.cdestadocivil || p.nomae ||
+             p.nrreg_nascto || p.nocartorio_reg || p.txobservacoes ||
+             p.nooperador || p.nonaturalidade || p.cdnacionalidade ||
+             p.noorgao_emissor_rg || p.nrpis || p.cdgrau_de_instrucao ||
+             p.cdreligiao || p.nopai || p.noesposo || p.cdetnia ||
+             p.nrinscmun || p.nrcei || p.nrcartao_convenio || p.noabreviado ||
+             p.cdpais_emissor_id || p.nrcns || p.dtexpedicao_rg ||
+             p.cdestado_emissor_rg || p.nrdeclaracao_nasc_vivo ||
+             p.cdcidade_naturalidade || p.aoestrangeiro || p.nosocial ||
+             p.norazao_social || p.tpgenero_social
+        into v_linha
+        from pessoa p
+       where p.nrregistro = pnrsequencial_origem;
+    exception
+      when others then
+        v_linha := pnrsequencial_origem;
+    end;
+
+    v_linha_final := v_linha_final || v_linha;
+
+    v_retorno := md5(v_linha_final);
+
+    return v_retorno;
+
+  end gerar_hash_fornecedor_unicoo;
+
+  function gerar_hash_cliente_unicoo(pcdidentificador varchar2, pnrsequencial_origem number)
+    return varchar2 is
+    v_linha       varchar2(32000) := ' ';
+    v_linha_final varchar2(32000) := ' ';
+    v_retorno     varchar2(100);
+  begin
+    begin
+      select c.nrregistro_cliente || c.nrcontrato || c.cdgrupo_cliente ||
+             c.cdsituacao_cliente || c.cdconta_contabil || c.dtexclusao ||
+             c.dtultima_movimentacao || c.aoemite_titulo ||
+             c.txmensagem_boleto || c.cdcliente || c.cdcategoria ||
+             c.cdclassificacao || c.cdbloqueio || c.vllimitecredito ||
+             c.nrprazomaximo || c.dtalteracaolimitecredito ||
+             c.cdusuariolimitecredito || c.vltotaldebito ||
+             c.vllimite_credito || c.nrprazo_maximo ||
+             c.dtalteracao_limite_credito || c.cdusuario_limite_credito ||
+             c.vltotal_debito || c.vltotal_credito ||
+             c.dtinicio_libera_bloqueio || c.dtfim_libera_bloqueio ||
+             c.aodebito_automatico || c.nrbanco || c.nragencia ||
+             c.nrconta_corrente || c.cdgrupo_economico ||
+             c.dtinicio_deb_automatico || c.dtfim_deb_automatico ||
+             c.nrretorno || c.cdformapagamentopadrao || c.cdplanopagamento ||
+             c.aogera_dmed
+        into v_linha
+        from producao.cliente@unicoo_homologa c
+       where c.cdcliente = pcdidentificador;
+    exception
+      when others then
+        v_linha := pcdidentificador;
+    end;
+
+    v_linha_final := v_linha;
+
+    begin
+      select p.nrregistro || p.nopessoa || p.cdsitpessoa || p.tppessoa ||
+             p.nrcgc_cpf || p.nrinscest_rg || p.cdramoativ ||
+             p.dtnascimento || p.cdsexo || p.cdestadocivil || p.nomae ||
+             p.nrreg_nascto || p.nocartorio_reg || p.txobservacoes ||
+             p.nooperador || p.nonaturalidade || p.cdnacionalidade ||
+             p.noorgao_emissor_rg || p.nrpis || p.cdgrau_de_instrucao ||
+             p.cdreligiao || p.nopai || p.noesposo || p.cdetnia ||
+             p.nrinscmun || p.nrcei || p.nrcartao_convenio || p.noabreviado ||
+             p.cdpais_emissor_id || p.nrcns || p.dtexpedicao_rg ||
+             p.cdestado_emissor_rg || p.nrdeclaracao_nasc_vivo ||
+             p.cdcidade_naturalidade || p.aoestrangeiro || p.nosocial ||
+             p.norazao_social || p.tpgenero_social
+        into v_linha
+        from pessoa p
+       where p.nrregistro = pnrsequencial_origem;
+    exception
+      when others then
+        v_linha := pnrsequencial_origem;
+    end;
+
+    v_linha_final := v_linha_final || v_linha;
+
+    v_retorno := md5(v_linha_final);
+
+    return v_retorno;
+
+  end gerar_hash_cliente_unicoo;
+
+function get_hash(ptpintegracao varchar2,
+                  pcdidentificador varchar2,
+                  pnrsequencial_origem number) return varchar2 is
+  hash_anterior varchar2(100);
+begin
+  begin
+    select h.txhash into hash_anterior
+      from ti_hash h
+     where h.tpintegracao = ptpintegracao
+       and h.nrsequencial_origem = pnrsequencial_origem
+       and h.cdidentificador = pcdidentificador;
+  exception
+    when NO_DATA_FOUND then
+      hash_anterior := ' ';
+  end;
+
+  return hash_anterior;
+end get_hash;
 
   PROCEDURE VALIDA_TIT_APB(PNRSEQ_CONTROLE_INTEGRACAO IN NUMBER,
                            PCDFORNECEDOR_EMS5         IN NUMBER) IS
@@ -40589,7 +43286,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
           VTI_PESSOA.CDN_CLIENTE    := NULL;
         ELSE
           --SE A ORIGEM NAO FOR FOR "UNIMED" PREENCHE O CODIGO CLIENTE / FORNECEDOR
-        
+
           --BUSCAR MAIOR CDN_CLIENTE x CDN_FORNECEDOR no EMS5 E GRAVAR EM VCOD_EMS
           BEGIN
             SELECT MAX(CDN_CLIENTE) + 1 INTO VCOD_EMS_AUX FROM ems5.cliente;
@@ -40610,7 +43307,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
           if vcod_ems_aux > vcod_ems then
             vcod_ems := vcod_ems_aux;
           end if;
-          
+
           if VCOD_EMS < 1000 then
             VCOD_EMS := 1000;
           end if;
@@ -40769,7 +43466,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
             if vcod_ems_aux > vcod_ems then
               vcod_ems := vcod_ems_aux;
             end if;
-  
+
             BEGIN
               SELECT MAX(CDN_fornecedor) + 1 INTO VCOD_EMS_AUX FROM ems5.fornecedor;
             exception
@@ -40779,7 +43476,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
             if vcod_ems_aux > vcod_ems then
               vcod_ems := vcod_ems_aux;
             end if;
-            
+
             if VCOD_EMS < 1000 then
               VCOD_EMS := 1000;
             end if;
@@ -41953,9 +44650,9 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
     TCDN_FORNECEDOR         TI_PESSOA.CDN_FORNECEDOR%TYPE;
     pSEPARADOR_ENDERECO_NUMERO VARCHAR2(5);
   BEGIN
-  
+
     pSEPARADOR_ENDERECO_NUMERO := f_ti_parametro_integracao('SEPARADOR_ENDERECO_NUMERO');
-  
+
     FOR L_INTEGRA_CLIFOR IN C_INTEGRA_CLIFOR LOOP
       BEGIN
         PCDSITUACAO := 'RC';
@@ -42282,7 +44979,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
               --concatena numero no inicio pois a parte final do logradouro sera truncada
               VLOGRADOURO := substr(TENDERECO.nrimovel || ' ' || VLOGRA_REDUZ_ABREV,1,40);
             end if;
-            
+
             VCOMPLEMENTO := substr(VCOMPL_REDUZ,1,10);
 
           /*   -- ERRO - NAO ENTROU EM NENHUM DOS IFS ACIMA
@@ -42559,6 +45256,10 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
              TFORNECEDOR.NRREGISTRO_FORNECEDOR --nrpessoa
              );
 
+          insere_hash('FN',
+                      L_INTEGRA_CLIFOR.NRSEQUENCIAL_ORIGEM,
+                      L_INTEGRA_CLIFOR.CDIDENTIFICADOR);
+
           IF SQL%ROWCOUNT = 0 THEN
             P_TI_VALIDA_ENDERECO(L_INTEGRA_CLIFOR.NRSEQUENCIAL_ORIGEM,
                                  L_INTEGRA_CLIFOR.NRSEQ_CONTROLE_INTEGRACAO,
@@ -42790,14 +45491,14 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
   PROCEDURE P_TI_TIT_ACR(PNRSEQ_CONTROLE_INTEGRACAO NUMBER,
                          PNRSESSAO                  NUMBER,
                          PCDSITUACAO                IN OUT VARCHAR2) IS
-                         
+
   t1 NUMBER;
   t2 VARCHAR2(100);
   t3 VARCHAR2(100);
   t4 VARCHAR2(100);
   t5 VARCHAR2(100);
-                         
-                         
+
+
 
     CURSOR C_TRATA_FALHA IS
       SELECT DISTINCT UCL.CDCLIENTE,
@@ -42830,7 +45531,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
          AND TR.CDCLIENTE = UCL.CDCLIENTE
          AND CI.CDEMPRESA = EMP.CDEMPRESA
          AND NVL(ECL.COD_EMPRESA, EMP.COD_EMPRESA) = EMP.COD_EMPRESA;
-         
+
     CURSOR C_TITULOS IS
       SELECT *
         FROM TI_CONTROLE_INTEGRACAO CI
@@ -42842,15 +45543,15 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
     VCDINTEGRACAO  VARCHAR2(100);
     VAO_ACHOU_ERRO BOOLEAN;
   BEGIN
-  
+
     dbms_output.enable(null);
-  
+
     FOR L_TITULOS IN C_TITULOS LOOP
         PCDSITUACAO   := 'RC';
         VCDINTEGRACAO := 'TI_TIT_ACR';
-        
+
         dbms_output.put_line('P1. L_TITULOS.NRSEQUENCIAL: ' || L_TITULOS.NRSEQUENCIAL);
-        begin  
+        begin
           INSERT INTO TI_TIT_ACR
             (COD_ESTAB,
              COD_TITULO_ACR,
@@ -42944,15 +45645,15 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                             null,
                             pcdsituacao,
                             null);
-  
+
             P_COMMIT;
-  
+
         END;
         IF SQL%ROWCOUNT = 0 THEN
           VAO_ACHOU_ERRO := FALSE;
-          
+
 --          dbms_output.put_line('L_TITULOS.NRSEQUENCIAL: ' || L_TITULOS.NRSEQUENCIAL);
-          
+
           /* p_grava_falha(l_titulos.nrsequencial,
           vCDIntegracao,
           'A view V_TI_TIT_ACR nao encontrou registro para o processo ==>' ||
@@ -42963,17 +45664,17 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
           FOR L_TRATA_FALHA IN C_TRATA_FALHA LOOP
 
             dbms_output.put_line('P2. L_TITULOS.NRSEQUENCIAL: ' || L_TITULOS.NRSEQUENCIAL);
-          
-            dbms_output.put_line('L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR: ' || L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR || 
-                                 ' NRDOCUMENTO: ' || L_TRATA_FALHA.NRDOCUMENTO || 
+
+            dbms_output.put_line('L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR: ' || L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR ||
+                                 ' NRDOCUMENTO: ' || L_TRATA_FALHA.NRDOCUMENTO ||
                                  ' NRREGISTRO_TITULO: ' || L_TRATA_FALHA.NRREGISTRO_TITULO ||
                                  ' CDN_CLIENTE: ' || L_TRATA_FALHA.CDN_CLIENTE ||
                                  ' QTENDERECO: ' || L_TRATA_FALHA.QTENDERECO ||
-                                 ' NUM_TIP_MOVTO_TIT_ACR: ' || L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR 
-                                 
-                                 
+                                 ' NUM_TIP_MOVTO_TIT_ACR: ' || L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR
+
+
                                  );
-          
+
             VAO_ACHOU_ERRO := TRUE;
             IF L_TRATA_FALHA.CDN_CLIENTE IS NULL or L_TRATA_FALHA.CDN_CLIENTE = 0 THEN
               -- Fazer a geração do Cliente para poder reprocessar o titulo depois
@@ -42991,16 +45692,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
               t1 := L_TITULOS.NRSEQUENCIAL;
               t2 := VCDINTEGRACAO;
               t3 := '(1)A view V_TI_TIT_ACR nao encontrou registro para o processo ==>' || L_TITULOS.NRSEQUENCIAL;
-              t4 := 'Falta integrar o cliente ' || nvl(to_char(L_TRATA_FALHA.CDCLIENTE),'nulo') || ' do UNICOO no EMS5(' || 
+              t4 := 'Falta integrar o cliente ' || nvl(to_char(L_TRATA_FALHA.CDCLIENTE),'nulo') || ' do UNICOO no EMS5(' ||
                             nvl(to_char(l_trata_falha.tipcdn_cliente),'nulo') || ')';
               t5 := PCDSITUACAO;
-              
+
               P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
                             VCDINTEGRACAO,
                             '(1)A view V_TI_TIT_ACR nao encontrou registro para o processo ==>' ||
                             L_TITULOS.NRSEQUENCIAL,
                             'Falta integrar o cliente ' ||
-                            nvl(to_char(L_TRATA_FALHA.CDCLIENTE),'nulo') || ' do UNICOO no EMS5(' || 
+                            nvl(to_char(L_TRATA_FALHA.CDCLIENTE),'nulo') || ' do UNICOO no EMS5(' ||
                             nvl(to_char(l_trata_falha.tipcdn_cliente),'nulo') || ')',
                             PCDSITUACAO,
                             NULL);
@@ -43038,16 +45739,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                             VCDINTEGRACAO,
                             '(4)A view V_TI_TIT_ACR nao encontrou registro para o processo ==>' ||
                             L_TITULOS.NRSEQUENCIAL,
-                            
+
                             --null,--'Codigo da falha: ' || nvl(L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_ACR,'NULO'),
-                            
+
                             ' HISTORICO: ' || L_TRATA_FALHA.CDMOVIMENTO,
 --                      F_TI_TIP_MOVTO_TIT_ACR(CI.CDEMPRESA,
 --                                             CI.CDMODULO,
 --                                             CI.CDMOVIMENTO,
 --                                             ECL.COD_GRP_CLIEN) NUM_TIP_MOVTO_TIT_ACR
-                            
-                            
+
+
                             PCDSITUACAO,
                             NULL);
             END IF;
@@ -43105,10 +45806,10 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                               null,
                               pcdsituacao,
                               null);
-    
+
               P_COMMIT;
           END;
-              
+
           IF SQL%ROWCOUNT = 0 THEN
             P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
                           VCDINTEGRACAO,
@@ -43172,12 +45873,12 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                 null,
                                 pcdsituacao,
                                 null);
-      
+
                 P_COMMIT;
             END;
           END IF;
         END IF;
-        
+
       P_COMMIT;
 
       --====================================--
@@ -43244,7 +45945,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
          AND EFN.COD_EMPRESA = EMP.COD_EMPRESA
          AND EMP.CDEMPRESA =
              F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA_UNICOO');
-             
+
     CURSOR C_TITULOS IS
       SELECT CI.*
         FROM TI_CONTROLE_INTEGRACAO CI
@@ -43263,10 +45964,10 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
     aonaom                  varchar2(1);
     cd_grupo_aux            number;
   BEGIN
-  
+
     DBMS_OUTPUT.ENABLE(9999999999);
     DBMS_OUTPUT.PUT_LINE( 'P1. SITUACAO: ' || PCDSITUACAO);
-  
+
     FOR L_TITULOS IN C_TITULOS LOOP
       BEGIN
         HAFALHA       := FALSE;
@@ -43356,11 +46057,11 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
         EXCEPTION
           WHEN NO_DATA_FOUND THEN
             HAFALHA := TRUE;
-            
+
             --CHECAR SE O MOTIVO DE NAO ENCONTRAR O FORNECEDOR DO EMS5 EH DEVIDO A DEPARA DE GRUPO DE FORNECEDOR NAOM
             aonaom := 'N';
             begin
-            
+
               SELECT a.cdgrupo_fornecedor
                 INTO cd_grupo_aux
                 FROM PRODUCAO.FORNECEDOR@UNICOO_HOMOLOGA A
@@ -43371,14 +46072,14 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                        WHERE FO.CDFORNECEDOR = TP.CDFORNECEDOR
                          AND TP.NRREGISTRO_TITULO =
                              RTI_CONTROLE_INTEGRACAO.NRSEQUENCIAL_ORIGEM);
-            
+
               select 'S' into aonaom from ti_grupo_de_fornecedor tgf
                    where tgf.cdgrupo_fornecedor = cd_grupo_aux
                      and tgf.cod_grp_fornecedor = 'NAOM';
             exception
               when others then aonaom := 'N';
             end;
-            
+
             if aonaom = 'S' then
               P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
                             VCDINTEGRACAO,
@@ -43387,7 +46088,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                             RFORNECEDOR.NRREGISTRO,
                             PCDSITUACAO,
                             NULL);
-            else            
+            else
               P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
                             VCDINTEGRACAO,
                             'Fornecedor do EMS5 não encontrado.',
@@ -43397,7 +46098,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                             NULL);
             end if;
         END;
-        
+
         /* se titulo ja existir no EMS5, sair sem apresentar erro */
         /*
                  and not exists(SELECT 1
@@ -43410,15 +46111,15 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                    AND A.COD_PARCELA = tit.COD_PARCELA
                                    AND EMP.CDEMPRESA =
                                        F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA_UNICOO'))
-        */                               
-                                               
+        */
+
     DBMS_OUTPUT.PUT_LINE( 'P2. SITUACAO: ' || PCDSITUACAO);
-        
+
         IF NOT HAFALHA THEN
           PCDSITUACAO   := 'RC';
-          
+
     DBMS_OUTPUT.PUT_LINE( 'P21. SITUACAO: ' || PCDSITUACAO);
-          
+
           VCDINTEGRACAO := 'TI_TIT_APB';
           BEGIN
             INSERT INTO TI_TIT_APB
@@ -43506,16 +46207,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
               RAISE_APPLICATION_ERROR(-20199, 'Erro -> ' || SQLERRM);
           END;
     DBMS_OUTPUT.PUT_LINE( 'P24. SITUACAO: ' || PCDSITUACAO);
-          
+
           IF SQL%ROWCOUNT = 0 THEN
-          
+
     DBMS_OUTPUT.PUT_LINE( 'P25. SITUACAO: ' || PCDSITUACAO);
-          
+
             VAO_ACHOU_ERRO := FALSE;
             FOR L_TRATA_FALHA IN C_TRATA_FALHA LOOP
-              
+
     DBMS_OUTPUT.PUT_LINE( 'P26. SITUACAO: ' || PCDSITUACAO);
-            
+
               VAO_ACHOU_ERRO := TRUE;
               IF L_TRATA_FALHA.CDFORNECEDOR_EMS5 IS NULL THEN
                 P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
@@ -43549,7 +46250,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                               PCDSITUACAO,
                               NULL);
               ELSIF L_TRATA_FALHA.NUM_TIP_MOVTO_TIT_APB = -1 THEN
-              
+
                 P_GRAVA_FALHA(L_TITULOS.NRSEQUENCIAL,
                               VCDINTEGRACAO,
                               'Verifique o De-Para do unicoo para o ems5 para o processo [' ||
@@ -43594,16 +46295,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                             NULL);
             END IF;
     DBMS_OUTPUT.PUT_LINE( 'P27. SITUACAO: ' || PCDSITUACAO);
-            
+
           ELSE
     DBMS_OUTPUT.PUT_LINE( 'P3. SITUACAO: ' || PCDSITUACAO);
-          
+
             VALIDA_TIT_APB(PNRSEQ_CONTROLE_INTEGRACAO,
                            RFORNECEDOR.CDN_FORNECEDOR);
             VCDINTEGRACAO := 'TI_TIT_APB_CTBL';
-            
+
     DBMS_OUTPUT.PUT_LINE( 'P4. SITUACAO: ' || PCDSITUACAO);
-            
+
             -------------------------------------------------------------
             --- implementação Josias em 28-05-2014 em João Pessoa
             --- Processo para pegar a distribuição do titulo no unicoo.
@@ -43622,7 +46323,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
               -- josias 30-06-2014
               -- falta tratar o problema do centro de custo nao esta
               -- cadastrado no plano de contas informado
-                (SELECT --distinct 
+                (SELECT --distinct
                         Y.COD_CTA_CTBL,
                         Y.DAT_PROCESSAMENTO,
                         Y.COD_ESTAB,
@@ -43670,7 +46371,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                                  --sum(nvl(decode(b.tipo_distrib,'V',b.vldistribuicao,(-1 * b.vldistribuicao)),ctb.val_aprop_ctbl)) vldistribuicao,     -- Alessandro 22/10/2014
                                                  --sum(b.vldistribuicao) vldistribuicao,      -- Alessandro 22/10/2014
                                                  -- alterado vinicius 31/12/2014
-                                                 case 
+                                                 case
                                                    when f_ti_parametro_integracao('INTEGRA_VALOR_LIQUIDO_TIT_APB') = 'S' then
                                                      sum(ctb.val_aprop_ctbl)
                                                    else
@@ -43831,9 +46532,9 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
         END IF;
       EXCEPTION
         WHEN DUP_VAL_ON_INDEX THEN
-        
+
     DBMS_OUTPUT.PUT_LINE( 'P5. SITUACAO: ' || PCDSITUACAO);
-        
+
           P_GRAVA_FALHA(PNRSEQ_CONTROLE_INTEGRACAO,
                         VCDINTEGRACAO,
                         SQLERRM,
@@ -43848,9 +46549,9 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                         PCDSITUACAO,
                         NULL);
       END;
-      
+
     DBMS_OUTPUT.PUT_LINE( 'P6. SITUACAO: ' || PCDSITUACAO);
-      
+
       --====================================--
       -- Atualizar o situao da integrao --
       ----------------------------------------
@@ -43864,21 +46565,69 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
         when others then
           null;
       end;
-                                   
+
     DBMS_OUTPUT.PUT_LINE( 'P7. SITUACAO: ' || PCDSITUACAO);
-                                   
+
     END LOOP;
-    
+
     DBMS_OUTPUT.PUT_LINE( 'P8. SITUACAO: ' || PCDSITUACAO);
-    
+
   END P_TI_TIT_APB;
 
   --===================================================================--
   -- P_MIGRA_VENDEDORES -> Migracao dos Vendedores como Representantes --
   -----------------------------------------------------------------------
+  /*FUNCTION F_MIGRA_VENDEDORES RETURN VARCHAR2 IS
+    vretorno varchar2(10);
+  begin
+    p_migra_vendedores(vretorno);
+    return 'OK';
+  END F_MIGRA_VENDEDORES;
+  */
+  procedure resetar_sequence( p_seq_name in varchar2 )
+  is
+      l_val number;
+  begin
+      execute immediate
+      'select ' || p_seq_name || '.nextval from dual' INTO l_val;
+
+      execute immediate
+      'alter sequence ' || p_seq_name || ' increment by -' || l_val ||
+                                                            ' minvalue 0';
+
+      execute immediate
+      'select ' || p_seq_name || '.nextval from dual' INTO l_val;
+
+      execute immediate
+      'alter sequence ' || p_seq_name || ' increment by 1 minvalue 0';
+  end resetar_sequence;
+
   procedure P_MIGRA_VENDEDORES is
     vnum_pessoa number := 0;
   begin
+
+--    pretorno := 'OK';
+    /*limpar registros pre-existentes no TOTVS antes do processamento*/
+    for x in (select r.u##cod_empresa, r.cdn_repres, r.num_pessoa from ems5.representante r) loop
+      /* manter pessoas para nao gerar nova sequencia em NUM_PESSOA
+      delete from ems5.pessoa_fisic pf where pf.num_pessoa_fisic = x.num_pessoa
+                                         and not exists(select 1 from ems5.cliente c where c.num_pessoa = x.num_pessoa)
+                                         and not exists(select 1 from ems5.fornecedor f where f.num_pessoa = x.num_pessoa);
+
+      delete from ems5.pessoa_jurid pj where pj.num_pessoa_jurid = x.num_pessoa
+                                         and not exists(select 1 from ems5.cliente c where c.num_pessoa = x.num_pessoa)
+                                         and not exists(select 1 from ems5.fornecedor f where f.num_pessoa = x.num_pessoa)
+                                         and not exists(select 1 from ems5.estabelecimento e where e.num_pessoa_jurid = x.num_pessoa);
+      */
+      delete from ems5.repres_financ rf where rf.u##cod_empresa = x.u##cod_empresa and rf.cdn_repres = x.cdn_repres;
+
+      delete from ems5.representante r where r.u##cod_empresa = x.u##cod_empresa and r.cdn_repres = x.cdn_repres;
+
+    end loop;
+
+    resetar_sequence('ems5.representante_seq');
+    resetar_sequence('ems5.repres_financ_seq');
+
     for vend in (select p.NRREGISTRO,
                         p.NOPESSOA,
                         p.TPPESSOA,
@@ -43929,233 +46678,38 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                   order by 1) loop
       if vend.tppessoa = 'F' then
 
-        select ems5.seq_pessoa_fisica.nextval into vnum_pessoa from dual;
-
+        /* verificar se a pessoa ja existe */
+        vnum_pessoa := 0;
         begin
-          insert into pessoa_fisic
-            (NUM_PESSOA_FISIC,
-             U##NOM_PESSOA,
-             NOM_PESSOA,
-             U##COD_ID_FEDER,
-             COD_ID_FEDER,
-             U##COD_ID_ESTAD_FISIC,
-             COD_ID_ESTAD_FISIC,
-             CODORGAOEMISIDESTAD,
-             U##CODUNIDFEDERACEMISESTAD,
-             CODUNIDFEDERACEMISESTAD,
-             NOM_ENDERECO,
-             NOM_ENDER_COMPL,
-             NOM_BAIRRO,
-             NOM_CIDADE,
-             NOM_CONDADO,
-             U##COD_PAIS,
-             COD_PAIS,
-             U##COD_UNID_FEDERAC,
-             COD_UNID_FEDERAC,
-             COD_CEP,
-             COD_CX_POST,
-             COD_TELEFONE,
-             COD_RAMAL,
-             COD_FAX,
-             COD_RAMAL_FAX,
-             COD_TELEX,
-             COD_MODEM,
-             COD_RAMAL_MODEM,
-             COD_E_MAIL,
-             DAT_NASC_PESSOA_FISIC,
-             COD_PAIS_NASC,
-             COD_UNID_FEDERAC_NASC,
-             DES_ANOT_TAB,
-             COD_USUAR_ULT_ATUALIZ,
-             DAT_ULT_ATUALIZ,
-             HRA_ULT_ATUALIZ,
-             U##NOM_MAE_PESSOA,
-             NOM_MAE_PESSOA,
-             COD_IMAGEM,
-             LOG_EMS_20_ATLZDO,
-             COD_LIVRE_1,
-             LOG_LIVRE_1,
-             NUM_LIVRE_1,
-             VAL_LIVRE_1,
-             DAT_LIVRE_1,
-             IND_TIP_PESSOA_FISIC,
-             NOMNACIONPESSOAFISIC,
-             NOMPROFISPESSOAFISIC,
-             INDESTADOCIVILPESSOA,
-             NOM_HOME_PAGE,
-             NOM_ENDER_TEXT,
-             LOG_ENVIO_BCO_HISTOR,
-             COD_LIVRE_2,
-             DAT_LIVRE_2,
-             LOG_LIVRE_2,
-             NUM_LIVRE_2,
-             VAL_LIVRE_2,
-             COD_E_MAIL_COBR,
-             NUM_PESSOA_FISIC_COBR,
-             NOM_ENDER_COBR,
-             NOM_ENDER_COMPL_COBR,
-             NOM_BAIRRO_COBR,
-             COD_UNID_FEDERAC_COBR,
-             NOM_CIDAD_COBR,
-             NOM_CONDAD_COBR,
-             COD_PAIS_COBR,
-             COD_CEP_COBR,
-             COD_CX_POST_COBR,
-             NOM_ENDER_COBR_TEXT,
-             COD_SUB_REGIAO_VENDAS,
-             CDD_VERSION,
-             LOG_REPLIC_PESSOA_HCM,
-             LOG_REPLIC_PESSOA_CRM,
-             LOG_REPLIC_PESSOA_GPS,
-             NUMPESSOAFISICMATRIZ,
-             COD_FAX_2,
-             COD_RAMAL_FAX_2,
-             COD_TELEF_2,
-             COD_RAMAL_2,
-             IND_TIP_ID_ESTAD,
-             IND_TIP_MATRIZ,
-             PROGRESS_RECID)
-          values
-            (vnum_pessoa,
-             upper(vend.nopessoa), --U##NOM_PESSOA,
-             vend.nopessoa, --NOM_PESSOA,
-             vend.nrcgc_cpf, --U##COD_ID_FEDER,
-             vend.nrcgc_cpf, --COD_ID_FEDER,
-             ' ', --U##COD_ID_ESTAD_FISIC,
-             ' ', --COD_ID_ESTAD_FISIC,
-             ' ', --CODORGAOEMISIDESTAD,
-             ' ', --U##CODUNIDFEDERACEMISESTAD,
-             ' ', --CODUNIDFEDERACEMISESTAD,
-             nvl(trim(vend.nologradouro) ||
-                 decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
-                 'NAO INFORMADO'), --NOM_ENDERECO,
-             nvl(case when length(vend.txcomplemento) <= 10 then
-                 vend.txcomplemento when
-                 length(vend.txcomplemento) > 10 and
-                 length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
-                 f_reduz_compl(vend.txcomplemento, 0) else
-                 substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
-                 ' '), --NOM_ENDER_COMPL,
-             nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
-                 length(vend.nobairro) > 20 and
-                 length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
-                 f_reduz_bairro(vend.nobairro, 0) else
-                 substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
-                 'NAO INFORMADO'), --NOM_BAIRRO,
-             nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE,
-             ' ', --NOM_CONDADO,
-             'BRA', --U##COD_PAIS,
-             'BRA', --COD_PAIS,
-             nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC,
-             nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC,
-             nvl(vend.nrcep,
-                 f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP,
-             ' ', --COD_CX_POST,
-             nvl(vend.nrtelefone, ' '), --COD_TELEFONE,
-             ' ', --COD_RAMAL,
-             vend.nrfax, --COD_FAX,
-             ' ', --COD_RAMAL_FAX,
-             ' ', --COD_TELEX,
-             ' ', --COD_MODEM,
-             ' ', --COD_RAMAL_MODEM,
-             nvl(vend.cdemail, vend.cdemail_adicional), --COD_E_MAIL,
-             vend.dtnascimento, --DAT_NASC_PESSOA_FISIC,
-             ' ', --COD_PAIS_NASC,
-             ' ', --COD_UNID_FEDERAC_NASC,
-             ' ', --DES_ANOT_TAB,
-             'migracao', --COD_USUAR_ULT_ATUALIZ,
-             sysdate, --DAT_ULT_ATUALIZ,
-             ' ', --HRA_ULT_ATUALIZ,
-             upper(vend.nomae), --U##NOM_MAE_PESSOA,
-             vend.nomae, --NOM_MAE_PESSOA,
-             ' ', --COD_IMAGEM,
-             0, --LOG_EMS_20_ATLZDO,
-             ' ', --COD_LIVRE_1,
-             0, --LOG_LIVRE_1,
-             0, --NUM_LIVRE_1,
-             0, --VAL_LIVRE_1,
-             sysdate, --DAT_LIVRE_1,
-             ' ', --IND_TIP_PESSOA_FISIC,
-             ' ', --NOMNACIONPESSOAFISIC,
-             ' ', --NOMPROFISPESSOAFISIC,
-             decode(vend.cdestadocivil,
-                    'C',
-                    'CASADO',
-                    'S',
-                    'SOLTEIRO',
-                    'V',
-                    'VIUVO',
-                    'D',
-                    'DIVORCIADO',
-                    'Q',
-                    'DIVORCIADO',
-                    'OUTROS'), --INDESTADOCIVILPESSOA,
-             ' ', --NOM_HOME_PAGE,
-             ' ', --NOM_ENDER_TEXT,
-             0, --LOG_ENVIO_BCO_HISTOR,
-             ' ', --COD_LIVRE_2,
-             null, --DAT_LIVRE_2,
-             0, --LOG_LIVRE_2,
-             0, --NUM_LIVRE_2,
-             0, --VAL_LIVRE_2,
-             ' ', --COD_E_MAIL_COBR,
-             0, --NUM_PESSOA_FISIC_COBR,
-             trim(vend.nologradouro) ||
-             decode(vend.nrimovel, null, '', ' ' || vend.nrimovel), --NOM_ENDER_COBR,
-             case when length(vend.txcomplemento) <= 10 then
-             vend.txcomplemento when
-             length(vend.txcomplemento) > 10 and
-             length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
-             f_reduz_compl(vend.txcomplemento, 0) else
-             substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end, --NOM_ENDER_COMPL_COBR,
-             case when length(vend.nobairro) <= 20 then vend.nobairro when
-             length(vend.nobairro) > 20 and
-             length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
-             f_reduz_bairro(vend.nobairro, 0) else
-             substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end, --NOM_BAIRRO_COBR,
-             nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC_COBR,
-             nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDAD_COBR,
-             ' ', --NOM_CONDADO_COBR,
-             'BRA', --COD_PAIS_COBR,
-             nvl(vend.nrcep,
-                 f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP_COBR,
-             ' ', --COD_CX_POST_COBR,
-             ' ', --NOM_ENDER_COBR_TEXT,
-             ' ', --COD_SUB_REGIAO_VENDAS,
-             0, --CDD_VERSION,
-             '1', --LOG_REPLIC_PESSOA_HCM,
-             '1', --LOG_REPLIC_PESSOA_CRM,
-             '1', --LOG_REPLIC_PESSOA_GPS,
-             vnum_pessoa, --NUMPESSOAFISICMATRIZ,
-             ' ', --COD_FAX_2,
-             ' ', --COD_RAMAL_FAX_2,
-             ' ', --COD_TELEF_2,
-             ' ', --COD_RAMAL_2,
-             'Inscrição Estadual', --IND_TIP_ID_ESTAD,
-             'Física', --IND_TIP_MATRIZ,
-             ems5.pessoa_fisic_seq.nextval --PROGRESS_RECID
-             );
-             
+          select nvl(pf.num_pessoa_fisic,'0') into vnum_pessoa
+            from ems5.pessoa_fisic pf
+           where pf.u##nom_pessoa = upper(vend.nopessoa)
+             and pf.U##COD_ID_ESTAD_FISIC = ' '
+             and pf.U##CODUNIDFEDERACEMISESTAD = ' '
+             and pf.DAT_NASC_PESSOA_FISIC = vend.dtnascimento
+             and pf.U##NOM_MAE_PESSOA = upper(vend.nomae)
+             and pf.u##cod_id_feder = vend.nrcgc_cpf
+             and rownum = 1;
         exception
-          when DUP_VAL_ON_INDEX then null;
-        end;              
-      else
+          when others then
+            vnum_pessoa := 0;
+        end;
 
-        select ems5.seq_pessoa_juridica.nextval into vnum_pessoa from dual;
+        if vnum_pessoa = 0 then
+          select ems5.seq_pessoa_fisica.nextval into vnum_pessoa from dual;
 
-        begin
-            insert into pessoa_jurid
-              (NUM_PESSOA_JURID,
+          begin
+            insert into pessoa_fisic
+              (NUM_PESSOA_FISIC,
                U##NOM_PESSOA,
                NOM_PESSOA,
                U##COD_ID_FEDER,
                COD_ID_FEDER,
-               COD_ID_ESTAD_JURID,
-               COD_ID_MUNIC_JURID,
-               U##COD_ID_PREVID_SOCIAL,
-               COD_ID_PREVID_SOCIAL,
-               LOG_FINS_LUCRAT,
-               NUMPESSOAJURIDMATRIZ,
+               U##COD_ID_ESTAD_FISIC,
+               COD_ID_ESTAD_FISIC,
+               CODORGAOEMISIDESTAD,
+               U##CODUNIDFEDERACEMISESTAD,
+               CODUNIDFEDERACEMISESTAD,
                NOM_ENDERECO,
                NOM_ENDER_COMPL,
                NOM_BAIRRO,
@@ -44168,43 +46722,22 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                COD_CEP,
                COD_CX_POST,
                COD_TELEFONE,
+               COD_RAMAL,
                COD_FAX,
                COD_RAMAL_FAX,
                COD_TELEX,
                COD_MODEM,
                COD_RAMAL_MODEM,
                COD_E_MAIL,
-               COD_E_MAIL_COBR,
-               NUM_PESSOA_JURID_COBR,
-               NOM_ENDER_COBR,
-               NOM_ENDER_COMPL_COBR,
-               NOM_BAIRRO_COBR,
-               NOM_CIDAD_COBR,
-               NOM_CONDAD_COBR,
-               U##COD_UNID_FEDERAC_COBR,
-               COD_UNID_FEDERAC_COBR,
-               U##COD_PAIS_COBR,
-               COD_PAIS_COBR,
-               COD_CEP_COBR,
-               COD_CX_POST_COBR,
-               NUM_PESSOA_JURID_PAGTO,
-               NOM_ENDER_PAGTO,
-               NOM_ENDER_COMPL_PAGTO,
-               NOM_BAIRRO_PAGTO,
-               NOM_CIDAD_PAGTO,
-               NOM_CONDAD_PAGTO,
-               U##COD_PAIS_PAGTO,
-               COD_PAIS_PAGTO,
-               U##COD_UNID_FEDERAC_PAGTO,
-               COD_UNID_FEDERAC_PAGTO,
-               COD_CEP_PAGTO,
-               COD_CX_POST_PAGTO,
+               DAT_NASC_PESSOA_FISIC,
+               COD_PAIS_NASC,
+               COD_UNID_FEDERAC_NASC,
                DES_ANOT_TAB,
-               IND_TIP_PESSOA_JURID,
-               INDTIPCAPITPESSOAJURID,
                COD_USUAR_ULT_ATUALIZ,
                DAT_ULT_ATUALIZ,
                HRA_ULT_ATUALIZ,
+               U##NOM_MAE_PESSOA,
+               NOM_MAE_PESSOA,
                COD_IMAGEM,
                LOG_EMS_20_ATLZDO,
                COD_LIVRE_1,
@@ -44212,41 +46745,54 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                NUM_LIVRE_1,
                VAL_LIVRE_1,
                DAT_LIVRE_1,
+               IND_TIP_PESSOA_FISIC,
+               NOMNACIONPESSOAFISIC,
+               NOMPROFISPESSOAFISIC,
+               INDESTADOCIVILPESSOA,
                NOM_HOME_PAGE,
                NOM_ENDER_TEXT,
-               NOM_ENDER_COBR_TEXT,
-               NOM_ENDER_PAGTO_TEXT,
                LOG_ENVIO_BCO_HISTOR,
                COD_LIVRE_2,
                DAT_LIVRE_2,
                LOG_LIVRE_2,
                NUM_LIVRE_2,
                VAL_LIVRE_2,
-               IND_NATUR_PESSOA_JURID,
-               NOM_FANTASIA,
+               COD_E_MAIL_COBR,
+               NUM_PESSOA_FISIC_COBR,
+               NOM_ENDER_COBR,
+               NOM_ENDER_COMPL_COBR,
+               NOM_BAIRRO_COBR,
+               COD_UNID_FEDERAC_COBR,
+               NOM_CIDAD_COBR,
+               NOM_CONDAD_COBR,
+               COD_PAIS_COBR,
+               COD_CEP_COBR,
+               COD_CX_POST_COBR,
+               NOM_ENDER_COBR_TEXT,
                COD_SUB_REGIAO_VENDAS,
                CDD_VERSION,
                LOG_REPLIC_PESSOA_HCM,
                LOG_REPLIC_PESSOA_CRM,
                LOG_REPLIC_PESSOA_GPS,
+               NUMPESSOAFISICMATRIZ,
                COD_FAX_2,
                COD_RAMAL_FAX_2,
                COD_TELEF_2,
                COD_RAMAL_2,
+               IND_TIP_ID_ESTAD,
                IND_TIP_MATRIZ,
                PROGRESS_RECID)
             values
-              (vnum_pessoa, --NUM_PESSOA_JURID
+              (vnum_pessoa,
                upper(vend.nopessoa), --U##NOM_PESSOA,
                vend.nopessoa, --NOM_PESSOA,
                vend.nrcgc_cpf, --U##COD_ID_FEDER,
                vend.nrcgc_cpf, --COD_ID_FEDER,
                ' ', --U##COD_ID_ESTAD_FISIC,
                ' ', --COD_ID_ESTAD_FISIC,
-               ' ', --U##COD_ID_PREVID_SOCIAL,
-               ' ', --COD_ID_PREVID_SOCIAL,
-               0, --LOG_FINS_LUCRAT,
-               0, --NUMPESSOAJURIDMATRIZ
+               ' ', --CODORGAOEMISIDESTAD,
+               ' ', --U##CODUNIDFEDERACEMISESTAD,
+               ' ', --CODUNIDFEDERACEMISESTAD,
                nvl(trim(vend.nologradouro) ||
                    decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
                    'NAO INFORMADO'), --NOM_ENDERECO,
@@ -44273,109 +46819,344 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                    f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP,
                ' ', --COD_CX_POST,
                nvl(vend.nrtelefone, ' '), --COD_TELEFONE,
-               nvl(vend.nrfax, 0), --COD_FAX,
+               ' ', --COD_RAMAL,
+               vend.nrfax, --COD_FAX,
                ' ', --COD_RAMAL_FAX,
                ' ', --COD_TELEX,
                ' ', --COD_MODEM,
                ' ', --COD_RAMAL_MODEM,
-               nvl(nvl(vend.cdemail, vend.cdemail_adicional), ' '), --COD_E_MAIL,
+               nvl(vend.cdemail, vend.cdemail_adicional), --COD_E_MAIL,
+               vend.dtnascimento, --DAT_NASC_PESSOA_FISIC,
+               ' ', --COD_PAIS_NASC,
+               ' ', --COD_UNID_FEDERAC_NASC,
+               ' ', --DES_ANOT_TAB,
+               'migracao', --COD_USUAR_ULT_ATUALIZ,
+               sysdate, --DAT_ULT_ATUALIZ,
+               ' ', --HRA_ULT_ATUALIZ,
+               upper(vend.nomae), --U##NOM_MAE_PESSOA,
+               vend.nomae, --NOM_MAE_PESSOA,
+               ' ', --COD_IMAGEM,
+               0, --LOG_EMS_20_ATLZDO,
+               ' ', --COD_LIVRE_1,
+               0, --LOG_LIVRE_1,
+               0, --NUM_LIVRE_1,
+               0, --VAL_LIVRE_1,
+               sysdate, --DAT_LIVRE_1,
+               ' ', --IND_TIP_PESSOA_FISIC,
+               ' ', --NOMNACIONPESSOAFISIC,
+               ' ', --NOMPROFISPESSOAFISIC,
+               decode(vend.cdestadocivil,
+                      'C',
+                      'CASADO',
+                      'S',
+                      'SOLTEIRO',
+                      'V',
+                      'VIUVO',
+                      'D',
+                      'DIVORCIADO',
+                      'Q',
+                      'DIVORCIADO',
+                      'OUTROS'), --INDESTADOCIVILPESSOA,
+               ' ', --NOM_HOME_PAGE,
+               ' ', --NOM_ENDER_TEXT,
+               0, --LOG_ENVIO_BCO_HISTOR,
+               ' ', --COD_LIVRE_2,
+               null, --DAT_LIVRE_2,
+               0, --LOG_LIVRE_2,
+               0, --NUM_LIVRE_2,
+               0, --VAL_LIVRE_2,
                ' ', --COD_E_MAIL_COBR,
-               0, --NUMPESSOA_COBR
-               nvl(trim(vend.nologradouro) ||
-                   decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
-                   'NAO INFORMADO'), --NOM_ENDERECO_COBR,
-               nvl(case when length(vend.txcomplemento) <= 10 then
-                   vend.txcomplemento when
-                   length(vend.txcomplemento) > 10 and
-                   length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
-                   f_reduz_compl(vend.txcomplemento, 0) else
-                   substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
-                   ' '), --NOM_ENDER_COMPL_COBR,
-               nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
-                   length(vend.nobairro) > 20 and
-                   length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
-                   f_reduz_bairro(vend.nobairro, 0) else
-                   substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
-                   'NAO INFORMADO'), --NOM_BAIRRO_COBR,
-               nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE_COBR,
-               ' ', --NOM_CONDADO_COBR,
-               nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC_COBR,
+               0, --NUM_PESSOA_FISIC_COBR,
+               trim(vend.nologradouro) ||
+               decode(vend.nrimovel, null, '', ' ' || vend.nrimovel), --NOM_ENDER_COBR,
+               case when length(vend.txcomplemento) <= 10 then
+               vend.txcomplemento when
+               length(vend.txcomplemento) > 10 and
+               length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
+               f_reduz_compl(vend.txcomplemento, 0) else
+               substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end, --NOM_ENDER_COMPL_COBR,
+               case when length(vend.nobairro) <= 20 then vend.nobairro when
+               length(vend.nobairro) > 20 and
+               length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
+               f_reduz_bairro(vend.nobairro, 0) else
+               substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end, --NOM_BAIRRO_COBR,
                nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC_COBR,
-               'BRA', --U##COD_PAIS_COBR,
+               nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDAD_COBR,
+               ' ', --NOM_CONDADO_COBR,
                'BRA', --COD_PAIS_COBR,
                nvl(vend.nrcep,
                    f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP_COBR,
                ' ', --COD_CX_POST_COBR,
-               0, --NUMPESSOA_PAGTO
-               nvl(trim(vend.nologradouro) ||
-                   decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
-                   'NAO INFORMADO'), --NOM_ENDERECO_PAGTO,
-               nvl(case when length(vend.txcomplemento) <= 10 then
-                   vend.txcomplemento when
-                   length(vend.txcomplemento) > 10 and
-                   length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
-                   f_reduz_compl(vend.txcomplemento, 0) else
-                   substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
-                   ' '), --NOM_ENDER_COMPL_PAGTO,
-               nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
-                   length(vend.nobairro) > 20 and
-                   length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
-                   f_reduz_bairro(vend.nobairro, 0) else
-                   substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
-                   'NAO INFORMADO'), --NOM_BAIRRO_PAGTO,
-               nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE_PAGTO,
-               ' ', --NOM_CONDADO_PAGTO,
-               'BRA', --U##COD_PAIS_PAGTO,
-               'BRA', --COD_PAIS_PAGTO,
-               nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC_PAGTO,
-               nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC_PAGTO,
-               nvl(vend.nrcep,
-                   f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP_PAGTO,
-               ' ', --COD_CX_POST_PAGTO,
-               ' ', --DES_ANOT_TAB,
-               ' ', --IND_TIP_PESSOA_FISIC,
-               0, --INDTIPCAPITPESSOAJURID
-               'migracao', --COD_USUAR_ULT_ATUALIZ,
-               sysdate, --DAT_ULT_ATUALIZ,
-               ' ', --HRA_ULT_ATUALIZ,
-               ' ', --COD_IMAGEM
-               0, --LOG_EMS_20_ATLZDO
-               NULL, --COD_LIVRE_1
-               0, --LOG_LIVRE_1
-               0, --NUM_LIVRE_1
-               0, --VAL_LIVRE_1
-               SYSDATE, --DAT_LIVRE_1
-               ' ', --NOM_HOME_PAGE
-               ' ', --NOM_ENDER_TEXT
-               ' ', --NOM_ENDER_COBR_TEXT
-               ' ', --NOM_ENDER_PAGTO_TEXT
-               0, --LOG_ENVIO_BCO_HISTOR
-               ' ', --COD_LIVRE_2
-               NULL, --DAT_LIVRE_2
-               0, --LOG_LIVRE_2
-               0, --NUM_LIVRE_2
-               0, --VAL_LIVRE_2
-               'Nacional', --IND_NATUR_PESSOA_JURID
-               ' ', --NOM_FANTASIA
-               ' ', --COD_SUB_REGIAO_VENDAS
-               0, --CDD_VERSION
-               '1', --LOG_REPLIC_PESSOA_HCM
-               '1', --LOG_REPLIC_PESSOA_CRM
-               '1', --LOG_REPLIC_PESSOA_GPS
-               ' ', --COD_FAX_2
-               ' ', --COD_RAMAL_FAX_2
-               ' ', --COD_TELEF_2
-               ' ', --COD_RAMAL_2
-               'Jurídica', --IND_TIP_MATRIZ
-               ems5.pessoa_jurid_seq.nextval --PROGRESS_RECID
+               ' ', --NOM_ENDER_COBR_TEXT,
+               ' ', --COD_SUB_REGIAO_VENDAS,
+               0, --CDD_VERSION,
+               '1', --LOG_REPLIC_PESSOA_HCM,
+               '1', --LOG_REPLIC_PESSOA_CRM,
+               '1', --LOG_REPLIC_PESSOA_GPS,
+               vnum_pessoa, --NUMPESSOAFISICMATRIZ,
+               ' ', --COD_FAX_2,
+               ' ', --COD_RAMAL_FAX_2,
+               ' ', --COD_TELEF_2,
+               ' ', --COD_RAMAL_2,
+               'Inscrição Estadual', --IND_TIP_ID_ESTAD,
+               'Física', --IND_TIP_MATRIZ,
+               ems5.pessoa_fisic_seq.nextval --PROGRESS_RECID
                );
-        exception
-          when DUP_VAL_ON_INDEX then null;
-        end;              
 
+          exception
+            when DUP_VAL_ON_INDEX then null;
+          end;
+        end if;
+      else
+        /* verificar se a pessoa ja existe */
+        vnum_pessoa := 0;
+        begin
+          select nvl(pj.num_pessoa_jurid,'0') into vnum_pessoa
+            from ems5.pessoa_jurid pj
+           where pj.u##cod_id_feder = vend.nrcgc_cpf
+             and pj.u##nom_pessoa = upper(vend.nopessoa)
+             and rownum = 1;
+        exception
+          when others then
+            vnum_pessoa := 0;
+        end;
+
+        if vnum_pessoa = 0 then
+          select ems5.seq_pessoa_juridica.nextval into vnum_pessoa from dual;
+
+          begin
+              insert into pessoa_jurid
+                (NUM_PESSOA_JURID,
+                 U##NOM_PESSOA,
+                 NOM_PESSOA,
+                 U##COD_ID_FEDER,
+                 COD_ID_FEDER,
+                 COD_ID_ESTAD_JURID,
+                 COD_ID_MUNIC_JURID,
+                 U##COD_ID_PREVID_SOCIAL,
+                 COD_ID_PREVID_SOCIAL,
+                 LOG_FINS_LUCRAT,
+                 NUMPESSOAJURIDMATRIZ,
+                 NOM_ENDERECO,
+                 NOM_ENDER_COMPL,
+                 NOM_BAIRRO,
+                 NOM_CIDADE,
+                 NOM_CONDADO,
+                 U##COD_PAIS,
+                 COD_PAIS,
+                 U##COD_UNID_FEDERAC,
+                 COD_UNID_FEDERAC,
+                 COD_CEP,
+                 COD_CX_POST,
+                 COD_TELEFONE,
+                 COD_FAX,
+                 COD_RAMAL_FAX,
+                 COD_TELEX,
+                 COD_MODEM,
+                 COD_RAMAL_MODEM,
+                 COD_E_MAIL,
+                 COD_E_MAIL_COBR,
+                 NUM_PESSOA_JURID_COBR,
+                 NOM_ENDER_COBR,
+                 NOM_ENDER_COMPL_COBR,
+                 NOM_BAIRRO_COBR,
+                 NOM_CIDAD_COBR,
+                 NOM_CONDAD_COBR,
+                 U##COD_UNID_FEDERAC_COBR,
+                 COD_UNID_FEDERAC_COBR,
+                 U##COD_PAIS_COBR,
+                 COD_PAIS_COBR,
+                 COD_CEP_COBR,
+                 COD_CX_POST_COBR,
+                 NUM_PESSOA_JURID_PAGTO,
+                 NOM_ENDER_PAGTO,
+                 NOM_ENDER_COMPL_PAGTO,
+                 NOM_BAIRRO_PAGTO,
+                 NOM_CIDAD_PAGTO,
+                 NOM_CONDAD_PAGTO,
+                 U##COD_PAIS_PAGTO,
+                 COD_PAIS_PAGTO,
+                 U##COD_UNID_FEDERAC_PAGTO,
+                 COD_UNID_FEDERAC_PAGTO,
+                 COD_CEP_PAGTO,
+                 COD_CX_POST_PAGTO,
+                 DES_ANOT_TAB,
+                 IND_TIP_PESSOA_JURID,
+                 INDTIPCAPITPESSOAJURID,
+                 COD_USUAR_ULT_ATUALIZ,
+                 DAT_ULT_ATUALIZ,
+                 HRA_ULT_ATUALIZ,
+                 COD_IMAGEM,
+                 LOG_EMS_20_ATLZDO,
+                 COD_LIVRE_1,
+                 LOG_LIVRE_1,
+                 NUM_LIVRE_1,
+                 VAL_LIVRE_1,
+                 DAT_LIVRE_1,
+                 NOM_HOME_PAGE,
+                 NOM_ENDER_TEXT,
+                 NOM_ENDER_COBR_TEXT,
+                 NOM_ENDER_PAGTO_TEXT,
+                 LOG_ENVIO_BCO_HISTOR,
+                 COD_LIVRE_2,
+                 DAT_LIVRE_2,
+                 LOG_LIVRE_2,
+                 NUM_LIVRE_2,
+                 VAL_LIVRE_2,
+                 IND_NATUR_PESSOA_JURID,
+                 NOM_FANTASIA,
+                 COD_SUB_REGIAO_VENDAS,
+                 CDD_VERSION,
+                 LOG_REPLIC_PESSOA_HCM,
+                 LOG_REPLIC_PESSOA_CRM,
+                 LOG_REPLIC_PESSOA_GPS,
+                 COD_FAX_2,
+                 COD_RAMAL_FAX_2,
+                 COD_TELEF_2,
+                 COD_RAMAL_2,
+                 IND_TIP_MATRIZ,
+                 PROGRESS_RECID)
+              values
+                (vnum_pessoa, --NUM_PESSOA_JURID
+                 upper(vend.nopessoa), --U##NOM_PESSOA,
+                 vend.nopessoa, --NOM_PESSOA,
+                 vend.nrcgc_cpf, --U##COD_ID_FEDER,
+                 vend.nrcgc_cpf, --COD_ID_FEDER,
+                 ' ', --U##COD_ID_ESTAD_FISIC,
+                 ' ', --COD_ID_ESTAD_FISIC,
+                 ' ', --U##COD_ID_PREVID_SOCIAL,
+                 ' ', --COD_ID_PREVID_SOCIAL,
+                 0, --LOG_FINS_LUCRAT,
+                 0, --NUMPESSOAJURIDMATRIZ
+                 nvl(trim(vend.nologradouro) ||
+                     decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
+                     'NAO INFORMADO'), --NOM_ENDERECO,
+                 nvl(case when length(vend.txcomplemento) <= 10 then
+                     vend.txcomplemento when
+                     length(vend.txcomplemento) > 10 and
+                     length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
+                     f_reduz_compl(vend.txcomplemento, 0) else
+                     substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
+                     ' '), --NOM_ENDER_COMPL,
+                 nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
+                     length(vend.nobairro) > 20 and
+                     length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
+                     f_reduz_bairro(vend.nobairro, 0) else
+                     substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
+                     'NAO INFORMADO'), --NOM_BAIRRO,
+                 nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE,
+                 ' ', --NOM_CONDADO,
+                 'BRA', --U##COD_PAIS,
+                 'BRA', --COD_PAIS,
+                 nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC,
+                 nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC,
+                 nvl(vend.nrcep,
+                     f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP,
+                 ' ', --COD_CX_POST,
+                 nvl(vend.nrtelefone, ' '), --COD_TELEFONE,
+                 nvl(vend.nrfax, 0), --COD_FAX,
+                 ' ', --COD_RAMAL_FAX,
+                 ' ', --COD_TELEX,
+                 ' ', --COD_MODEM,
+                 ' ', --COD_RAMAL_MODEM,
+                 nvl(nvl(vend.cdemail, vend.cdemail_adicional), ' '), --COD_E_MAIL,
+                 ' ', --COD_E_MAIL_COBR,
+                 0, --NUMPESSOA_COBR
+                 nvl(trim(vend.nologradouro) ||
+                     decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
+                     'NAO INFORMADO'), --NOM_ENDERECO_COBR,
+                 nvl(case when length(vend.txcomplemento) <= 10 then
+                     vend.txcomplemento when
+                     length(vend.txcomplemento) > 10 and
+                     length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
+                     f_reduz_compl(vend.txcomplemento, 0) else
+                     substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
+                     ' '), --NOM_ENDER_COMPL_COBR,
+                 nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
+                     length(vend.nobairro) > 20 and
+                     length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
+                     f_reduz_bairro(vend.nobairro, 0) else
+                     substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
+                     'NAO INFORMADO'), --NOM_BAIRRO_COBR,
+                 nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE_COBR,
+                 ' ', --NOM_CONDADO_COBR,
+                 nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC_COBR,
+                 nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC_COBR,
+                 'BRA', --U##COD_PAIS_COBR,
+                 'BRA', --COD_PAIS_COBR,
+                 nvl(vend.nrcep,
+                     f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP_COBR,
+                 ' ', --COD_CX_POST_COBR,
+                 0, --NUMPESSOA_PAGTO
+                 nvl(trim(vend.nologradouro) ||
+                     decode(vend.nrimovel, null, '', ' ' || vend.nrimovel),
+                     'NAO INFORMADO'), --NOM_ENDERECO_PAGTO,
+                 nvl(case when length(vend.txcomplemento) <= 10 then
+                     vend.txcomplemento when
+                     length(vend.txcomplemento) > 10 and
+                     length(f_reduz_compl(vend.txcomplemento, 0)) <= 10 then
+                     f_reduz_compl(vend.txcomplemento, 0) else
+                     substr(f_reduz_compl(vend.txcomplemento, 0), 1, 10) end,
+                     ' '), --NOM_ENDER_COMPL_PAGTO,
+                 nvl(case when length(vend.nobairro) <= 20 then vend.nobairro when
+                     length(vend.nobairro) > 20 and
+                     length(f_reduz_bairro(vend.nobairro, 0)) <= 20 then
+                     f_reduz_bairro(vend.nobairro, 0) else
+                     substr(f_reduz_bairro(vend.nobairro, 0), 1, 20) end,
+                     'NAO INFORMADO'), --NOM_BAIRRO_PAGTO,
+                 nvl(vend.nocidade, 'NAO INFORMADO'), --NOM_CIDADE_PAGTO,
+                 ' ', --NOM_CONDADO_PAGTO,
+                 'BRA', --U##COD_PAIS_PAGTO,
+                 'BRA', --COD_PAIS_PAGTO,
+                 nvl(vend.cdestado, 'RJ'), --U##COD_UNID_FEDERAC_PAGTO,
+                 nvl(vend.cdestado, 'RJ'), --COD_UNID_FEDERAC_PAGTO,
+                 nvl(vend.nrcep,
+                     f_ti_parametro_integracao('NRCEP_DEFAULT_INCLUSAO')), --COD_CEP_PAGTO,
+                 ' ', --COD_CX_POST_PAGTO,
+                 ' ', --DES_ANOT_TAB,
+                 ' ', --IND_TIP_PESSOA_FISIC,
+                 0, --INDTIPCAPITPESSOAJURID
+                 'migracao', --COD_USUAR_ULT_ATUALIZ,
+                 sysdate, --DAT_ULT_ATUALIZ,
+                 ' ', --HRA_ULT_ATUALIZ,
+                 ' ', --COD_IMAGEM
+                 0, --LOG_EMS_20_ATLZDO
+                 NULL, --COD_LIVRE_1
+                 0, --LOG_LIVRE_1
+                 0, --NUM_LIVRE_1
+                 0, --VAL_LIVRE_1
+                 SYSDATE, --DAT_LIVRE_1
+                 ' ', --NOM_HOME_PAGE
+                 ' ', --NOM_ENDER_TEXT
+                 ' ', --NOM_ENDER_COBR_TEXT
+                 ' ', --NOM_ENDER_PAGTO_TEXT
+                 0, --LOG_ENVIO_BCO_HISTOR
+                 ' ', --COD_LIVRE_2
+                 NULL, --DAT_LIVRE_2
+                 0, --LOG_LIVRE_2
+                 0, --NUM_LIVRE_2
+                 0, --VAL_LIVRE_2
+                 'Nacional', --IND_NATUR_PESSOA_JURID
+                 ' ', --NOM_FANTASIA
+                 ' ', --COD_SUB_REGIAO_VENDAS
+                 0, --CDD_VERSION
+                 '1', --LOG_REPLIC_PESSOA_HCM
+                 '1', --LOG_REPLIC_PESSOA_CRM
+                 '1', --LOG_REPLIC_PESSOA_GPS
+                 ' ', --COD_FAX_2
+                 ' ', --COD_RAMAL_FAX_2
+                 ' ', --COD_TELEF_2
+                 ' ', --COD_RAMAL_2
+                 'Jurídica', --IND_TIP_MATRIZ
+                 ems5.pessoa_jurid_seq.nextval --PROGRESS_RECID
+                 );
+          exception
+            when DUP_VAL_ON_INDEX then null;
+          end;
+        end if;
       end if;
 
-      begin
+      begin    
         insert into REPRESENTANTE
         values
           (1,
@@ -44408,9 +47189,9 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
            ems5.representante_seq.nextval);
       exception
         when DUP_VAL_ON_INDEX then null;
-      end;              
+      end;
 
-      begin
+      begin                      
           insert into REPRES_FINANC
           values
             (1,
@@ -44454,9 +47235,11 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
              ems5.repres_financ_seq.nextval);
         exception
           when DUP_VAL_ON_INDEX then null;
-        end;              
+        end;
 
     end loop;
+
+--    open pretorno for select count(*) from ems5.representante;
   end p_migra_vendedores;
 
   -- Rogério - 07/12/2016
@@ -44548,11 +47331,12 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                          PNRSESSAO                  NUMBER,
                          PCDSITUACAO                IN OUT VARCHAR2) IS
     nrregistro_aux number;
-    
+
     CURSOR C_INTEGRA_CLIFOR IS
       SELECT CI.NRSEQUENCIAL        NRSEQ_CONTROLE_INTEGRACAO,
              CI.CDSITUACAO,
-             CI.NRSEQUENCIAL_ORIGEM NRPESSOA
+             CI.NRSEQUENCIAL_ORIGEM NRPESSOA,
+             CI.CDIDENTIFICADOR
         FROM TI_CONTROLE_INTEGRACAO CI
        WHERE CI.NRSESSAO = PNRSESSAO
          AND CI.TPINTEGRACAO = 'CL'
@@ -44586,11 +47370,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
     VQTCOMPLEMENTO NUMBER := 10;
     pSEPARADOR_ENDERECO_NUMERO varchar2(5);
   BEGIN
-  
+
+--  dbms_output.enable(null);
+  dbms_output.disable;
+
     pSEPARADOR_ENDERECO_NUMERO := f_ti_parametro_integracao('SEPARADOR_ENDERECO_NUMERO');
 
+dbms_output.put_line('p1');
 
     FOR L_INTEGRA_CLIFOR IN C_INTEGRA_CLIFOR LOOP
+dbms_output.put_line('p2');
       BEGIN
         PCDSITUACAO := 'RC';
 
@@ -44673,6 +47462,76 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                      FROM V_TI_CLIENTE
                     WHERE NRSEQ_CONTROLE_INTEGRACAO =
                           L_INTEGRA_CLIFOR.NRSEQ_CONTROLE_INTEGRACAO) LOOP
+
+dbms_output.put_line('p3' || ';' || L_INTEGRA_CLIFOR.NRSEQ_CONTROLE_INTEGRACAO);
+dbms_output.put_line(
+tc.COD_ORG_EMIS_ID_ESTAD||
+tc.DAT_NASCIMENTO||
+tc.COD_ID_FEDER_NASC||
+tc.NOM_NACIONALIDADE||
+tc.IND_ESTADO_CIVIL||
+tc.COD_CX_POST||
+tc.NOM_HOME_PAGE||
+tc.DAT_IMPL_CLIEN||
+tc.COD_DIGITO_CTA_CORREN||
+tc.COD_TIP_FLUXO_FINANC||
+tc.NUM_DIAS_ATRASO_AVDEB||
+tc.DAT_PROCESSAMENTO||
+tc.CDSITUACAO||
+tc.COD_EMPRESA||
+tc.COD_ID_FEDER_JURID||
+tc.COD_CEP_COBR||
+--tc.DEST_ANOT_TABELA||
+tc.COD_CART_BCIA_PREFER||
+tc.IND_TIPO_PESSOA||
+tc.COD_ID_FEDER_MATRIZ||
+tc.COD_PAIS_NASC||
+tc.NOM_MAE||
+tc.NOM_PROFISSAO||
+tc.NOM_CIDADE||
+tc.COD_CEP||
+tc.COD_TELEFONE_1||
+tc.COD_TELEFONE_3||
+tc.COD_FAX||
+tc.NOM_BAIRRO_COBR||
+tc.COD_UNID_FEDER_COBR||
+tc.COD_GRP_CLIEN||
+tc.COD_PORTAD_PREFER||
+tc.COD_CTA_CORREN_BCO||
+tc.COD_BANCO||
+tc.LOG_CALC_MULTA||
+tc.IND_OCORRENCIA||
+tc.NRSEQ_CONTROLE_INTEGRACAO||
+tc.COD_CLIENTE||
+tc.NOM_CLIENTE||
+tc.NOM_ABREV||
+tc.COD_ID_FEDER_ESTAD_JURID||
+tc.COD_ID_PREVID_SOCIAL||
+tc.LOG_FINS_LUCRAT||
+tc.COD_ID_ESTAD_FISIC||
+tc.COD_ID_FEDER_EMIS_ESTAD||
+tc.NOM_BAIRRO||
+tc.COD_UNID_FEDER||
+tc.COD_TELEFONE_2||
+tc.COD_RAMAL_FAX||
+tc.NOM_ENDER_COMPL_COBR||
+tc.NOM_CIDADE_COBR||
+tc.COD_CX_POST_COBR||
+tc.COD_TIP_CLIEN||
+tc.COD_ID_FEDER||
+tc.NOM_ENDER_COMPL||
+tc.COD_DIGITO_AGENC_BCIA||
+tc.COD_ACAO||
+tc.NOM_ENDERECO||
+tc.NOM_ENDERECO_COBR||
+tc.NRIMOVEL||
+tc.NRIMOVEL_COBR||
+tc.COD_AGENC_BCIA||
+tc.COD_E_MAIL||
+tc.COD_ID_MUNIC_JURID||
+tc.NRSEQ_FAVORECIDO||
+tc.NRPESSOA
+);
 
           --QTDE E CONTEUDOS DO ENDERECO
           VQTLOGRA             := LENGTH(TRIM(TC.NOM_ENDERECO));
@@ -44873,16 +47732,16 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
             --INSERT INTO END_MIGRA VALUES (TENDERECO.NOLOGRADOURO, TENDERECO.TXCOMPLEMENTO, VLOGRADOURO, VCOMPLEMENTO, '0', TENDERECO.NRIMOVEL, TENDERECO.NRREGISTRO);
 
             --SE NAO CONSEGUIU ABREVIAR, TRUNCA 1AS 40 POSICOES DO LOGRADOURO ABREVIADO E 1AS 10 DO COMPLEMENTO
-            
+
             IF TC.NRIMOVEL IS NULL THEN
               VLOGRADOURO := SUBSTR(VLOGRA_REDUZ_ABREV,1,40);
             else
               --concatena numero no inicio pois a parte final do logradouro sera truncada
               vlogradouro := substr(tc.nrimovel || ' ' || VLOGRA_REDUZ_ABREV,1,40);
             end if;
-            
+
             VCOMPLEMENTO := substr(VCOMPL_REDUZ,1,10);
-            
+
 
             /*   -- ERRO - NAO ENTROU EM NENHUM DOS IFS ACIMA
                 ELSIF ((LENGTH(TENDERECO.TXCOMPLEMENTO) > VQTCOMPLEMENTO AND LENGTH(f_reduz_compl(TENDERECO.TXCOMPLEMENTO,0))> VQTCOMPLEMENTO) AND
@@ -45127,7 +47986,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
               --concatena numero no inicio pois a parte final do logradouro sera truncada
               VLOGRADOURO_COBR := substr(tc.nrimovel_COBR || ' ' || VLOGRA_REDUZ_ABREV,1,40);
             end if;
-            
+
             VCOMPLEMENTO_COBR := substr(VCOMPL_REDUZ,1,10);
 
             /*   -- ERRO - NAO ENTROU EM NENHUM DOS IFS ACIMA
@@ -45166,6 +48025,11 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
           --FINAL DA VERIFICACAO E TRATAMENTO DO ENDERECO
 
           nrregistro_aux := tc.nrpessoa;
+
+dbms_output.put_line(TC.NRSEQ_CONTROLE_INTEGRACAO || ';' ||
+                     TC.COD_CLIENTE || ';' ||
+                     TC.NOM_CLIENTE || ';' ||
+                     tc.nrpessoa);
 
           INSERT INTO TI_CLIENTE
             (COD_ORG_EMIS_ID_ESTAD, --1
@@ -45322,14 +48186,14 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                          '0'),
                     1,
                     F_RET_MASC_BANCO(LPAD(TC.COD_BANCO, 3, '0'), 'A')) END, --61    COD_AGENC_BCIA
-                    
-             CASE WHEN TC.COD_BANCO = ' ' THEN ' ' 
+
+             CASE WHEN TC.COD_BANCO = ' ' THEN ' '
                   WHEN INSTR(TC.COD_AGENC_BCIA, '-') > 0 THEN
                        to_char(F_DEFINIR_NUMERICO(decode(upper(SUBSTR(TC.COD_AGENC_BCIA, INSTR(TC.COD_AGENC_BCIA, '-') + 1, 1)),'X','0',
                        SUBSTR(TC.COD_AGENC_BCIA, INSTR(TC.COD_AGENC_BCIA, '-') + 1, 1))))
-                  ELSE ' ' 
+                  ELSE ' '
              END, --62    COD_DIGITO_AGENC_BCIA
-             
+
              CASE WHEN TC.COD_BANCO = ' ' THEN ' ' WHEN
               INSTR(TC.COD_CTA_CORREN_BCO, '-') > 0 THEN
               SUBSTR(LPAD(F_DEFINIR_NUMERICO(SUBSTR(TC.COD_CTA_CORREN_BCO,
@@ -45346,12 +48210,17 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                           '0'),
                      1,
                      F_RET_MASC_BANCO(LPAD(TC.COD_BANCO, 3, '0'), 'C')) END, -- 63    COD_CTA_CORREN_BCO
-             CASE WHEN TC.COD_BANCO = ' ' THEN ' ' 
-                  WHEN INSTR(TC.COD_CTA_CORREN_BCO, '-') > 0 
+             CASE WHEN TC.COD_BANCO = ' ' THEN ' '
+                  WHEN INSTR(TC.COD_CTA_CORREN_BCO, '-') > 0
                        THEN to_char(F_DEFINIR_NUMERICO(decode(upper(SUBSTR(TC.COD_CTA_CORREN_BCO, INSTR(TC.COD_CTA_CORREN_BCO, '-') + 1,1)),'X','0',
                             SUBSTR(TC.COD_CTA_CORREN_BCO, INSTR(TC.COD_CTA_CORREN_BCO, '-') + 1,1))))
                   ELSE ' ' END --64   COD_DIGITO_CTA_CORREN
              );
+
+          insere_hash('CL',
+                      L_INTEGRA_CLIFOR.NRPESSOA,
+                      L_INTEGRA_CLIFOR.CDIDENTIFICADOR);
+
         END LOOP;
 
         IF SQL%ROWCOUNT = 0 THEN
@@ -45373,12 +48242,15 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
 
       EXCEPTION
         WHEN DUP_VAL_ON_INDEX THEN
+/*
+    14/01/19 - Alex Boeira - comentado pois causava a falha quando um cliente possui mais de um endereco
           P_GRAVA_FALHA(L_INTEGRA_CLIFOR.NRSEQ_CONTROLE_INTEGRACAO,
                         'TI_CLIENTE',
                         'O cliente relacionado à pessoa ' || nrregistro_aux || ' ja foi enviado para a TI_CLIENTE',
-                        NULL,
+                        SQLERRM,
                         PCDSITUACAO,
                         -1);
+*/                        NULL;
         WHEN OTHERS THEN
           BEGIN
             P_GRAVA_FALHA(L_INTEGRA_CLIFOR.NRSEQ_CONTROLE_INTEGRACAO,
@@ -45398,7 +48270,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
     END LOOP;
   END;
 
-  PROCEDURE P_GERAR_DADOS_BANC_FORNEC(VP_COD_EMPRESA IN NUMBER) IS
+  PROCEDURE P_GERAR_DADOS_BANC_FORNEC IS
     /*
     ***************************************************************************************************************
     Criacão          : Josias Rodrigues
@@ -45418,7 +48290,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
       VCDFORNEC_ANTERIOR number := 0;
 
       CURSOR C_ATU IS
-        SELECT VP_COD_EMPRESA COD_EMPRESA,
+        SELECT PCOD_EMPRESA_UNICOO COD_EMPRESA,
                P.CDN_FORNECEDOR,
                LPAD(T.NRBANCO, 3, '0') COD_BANCO,
                /*REGRAS PARA MIGRACAO DE AGENCIA E CONTA BANCARIA:
@@ -45449,8 +48321,8 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                        '0'),
                                   1,
                                   F_RET_MASC_BANCO(LPAD(pr.NRBANCO, 3, '0'), 'A'))
-                   end                          
-                 else    
+                   end
+                 else
                    CASE
                      --SE TIVER '-' (SEPARADOR), utiliza como criterio para separar digito verificador
                      WHEN INSTR(T.NRAGENCIA, '-') > 0 THEN
@@ -45470,7 +48342,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                   F_RET_MASC_BANCO(LPAD(T.NRBANCO, 3, '0'), 'A'))
                    end
                END COD_AGENC_BCIA,
-               
+
                CASE--COD_DIGITO_AGENC_BCIA
                  when pr.nragencia is not null then
                    case
@@ -45488,7 +48360,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                      ELSE ' '
                    end
                END COD_DIGITO_AGENC_BCIA,
-               
+
                CASE--COD_CTA_CORREN_BCO
                  when pr.nrconta is not null then
                       SUBSTR(LPAD(F_DEFINIR_NUMERICO(nvl(pr.NRCONTA,0)),
@@ -45516,7 +48388,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                                F_RET_MASC_BANCO(LPAD(T.NRBANCO, 3, '0'), 'C'))
                    end
                END COD_CTA_CORREN_BCO,
-               
+
                CASE--COD_DIGITO_CTA_CORREN
                  when pr.nrconta is not null then
                    to_char(F_DEFINIR_NUMERICO(nvl(decode(upper(pr.nrdigito),'X','0',pr.nrdigito),0)))
@@ -45529,7 +48401,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                      ELSE ' '
                    end
                END COD_DIGITO_CTA_CORREN,
-               
+
                DECODE(T.TPCONTA,
                       'CC',
                       'CONTA CORRENTE',
@@ -45547,7 +48419,7 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                producao.prestador@unicoo_homologa  PR
          WHERE T.CDFORNECEDOR = F.CDFORNECEDOR
            AND F.NRREGISTRO_FORNECEDOR = P.NRREGISTRO
-           AND FF.U##COD_EMPRESA = VP_COD_EMPRESA
+           AND FF.U##COD_EMPRESA = PCOD_EMPRESA
            AND P.CDN_FORNECEDOR = FF.CDN_FORNECEDOR
            AND P.CDN_FORNECEDOR IS NOT NULL
            and pr.nrregistro_prest(+) = f.nrregistro_fornecedor
@@ -45556,18 +48428,30 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
                   DECODE(T.AOCONTA_PRESTADOR, 'S', 'A', T.AOCONTA_PRESTADOR), --passar antes pelas contas de prestador
                   decode(T.tpconta, 'CC', 'AA', T.TPCONTA); --passar antes por conta corrente
     BEGIN
-    
+
+    dbms_output.enable(null);
+    dbms_output.put_line('ponto 1 BEGIN');
+
+    -- Delete realizado para automatizar o processo do Jenkins
+      DELETE FROM cta_corren_fornec;
+
+          dbms_output.put_line('delete');
+
 --      dbms_output.enable(null);
 
 --      delete from cta_corren_fornec_falha; linha retirada pois estava causando lock
 
       FOR X IN C_ATU LOOP
+        dbms_output.put_line('apos o for');
 
 --      dbms_output.put_line(x.cod_banco || ';' || x.cod_agenc_bcia || ';' || x.cod_digito_agenc_bcia || ';' || X.COD_CTA_CORREN_BCO || ';' || X.COD_DIGITO_CTA_CORREN);
 
+dbms_output.put_line('X.CDN_FORNECEDOR: ' || X.CDN_FORNECEDOR);
+dbms_output.put_line('VCDFORNEC_ANTERIOR: ' || VCDFORNEC_ANTERIOR);
+
         IF X.CDN_FORNECEDOR <> VCDFORNEC_ANTERIOR THEN
-        
-/*          dbms_output.put_line('banco: ' || nvl(X.COD_BANCO, ' '));
+
+/*        dbms_output.put_line('banco: ' || nvl(X.COD_BANCO, ' '));
           dbms_output.put_line('agencia: ' || nvl(X.COD_AGENC_BCIA, ' '));
           dbms_output.put_line('dig.agencia: ' || to_char(F_DEFINIR_NUMERICO(upper(X.COD_DIGITO_AGENC_BCIA))));
           dbms_output.put_line('conta: ' || nvl(X.COD_CTA_CORREN_BCO, ' '));
@@ -45576,7 +48460,6 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
           dbms_output.put_line('fornec: ' || X.CDN_FORNECEDOR);
 */
 
-        
           UPDATE FORNEC_FINANC V
              SET V.COD_BANCO             = nvl(X.COD_BANCO, ' '),
                  V.COD_AGENC_BCIA        = nvl(X.COD_AGENC_BCIA, ' '),
@@ -45742,9 +48625,10 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
         END IF;
 
       END LOOP;
+      dbms_output.put_line('apos end loop');
     END;
     P_COMMIT_NEW;
-    --commit;
+    commit;
   END P_GERAR_DADOS_BANC_FORNEC;
 
   FUNCTION F_RET_MASC_BANCO(VPCOD_BANCO IN VARCHAR2, VPTIPO IN VARCHAR2)
@@ -45783,9 +48667,9 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
   BEGIN
 --    dbms_output.enable(null);
     VAUX := '';
-       
+
 --    dbms_output.put_line('VP_CODIGO RECEBIDO EM F_DEFINIR_NUMERICO: ' || vp_codigo);
-    
+
     FOR X IN 1 .. LENGTH(VP_CODIGO) LOOP
       IF SUBSTR(VP_CODIGO, X, 1) IN
          ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9') THEN
@@ -45815,6 +48699,12 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
          and cl.nrregistro_cliente = tp.nrregistro;
 
   begin
+    delete from ems5.impto_vincul_clien;
+
+    update ems5.clien_financ cf
+    set cf.log_retenc_impto = 0;
+
+
     for ci in c_impto_clien loop
 
       temp_impto_vincul_clien.u##cod_empresa       := F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA');
@@ -45849,7 +48739,8 @@ DBMS_OUTPUT.PUT_LINE( 'P54 ACHOU TITULO NO EMS5? ' || JAEXISTE || ' - ' || pnrse
 
       update ems5.clien_financ cf
          set cf.log_retenc_impto = 1
-       where cf.cdn_cliente = ci.cdn_cliente;
+       where cf.cdn_cliente = ci.cdn_cliente
+         and cf.log_retenc_impto = 0;
 
     end loop;
 
@@ -45863,10 +48754,8 @@ begin
                    ems5.clien_financ                cf,
                    ti_pessoa                        tp
              where tp.nrregistro = c.nrregistro_cliente
-               and tp.cdn_cliente = cf.cdn_cliente
-               and c.cdbloqueio is not null
-               ) loop
-  
+               and tp.cdn_cliente = cf.cdn_cliente) loop
+
     update ems5.clien_financ cf
        set cf.u##cod_classif_msg_cobr = x.cdbloqueio,
            cf.cod_classif_msg_cobr    = x.cdbloqueio
@@ -45891,7 +48780,20 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
     | 01/07/2014 | JOSIAS        |               |           | Atualizações necessárias   |
     |------------|---------------|---------------|---------------------------------------------------------------------------------------------|
     */
+
+
+
+  VIMPTO_VINCULADO CHAR;
+  CDIMPOSTO_UNICOO VARCHAR2(100);
+  CDCLAS_IMPTO_UNICOO VARCHAR2(100);
+
   BEGIN
+
+ -- DBMS_OUTPUT.ENABLE(NULL);
+    DELETE FROM IMPTO_VINCUL_FORNEC;
+    UPDATE FORNEC_FINANC F
+    	SET F.LOG_RETENC_IMPTO = 0;
+
     BEGIN
       INSERT INTO IMPTO_VINCUL_FORNEC
         SELECT F_TI_PARAMETRO_INTEGRACAO('COD_EMPRESA') U##COD_EMPRESA,
@@ -45954,7 +48856,7 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
         raise_application_error(-20100,
                                 ' erro inserindo impostos ' || sqlerrm);
     end;
-    P_COMMIT_NEW;
+   -- P_COMMIT_NEW;
 
     /* Alex Boeira - 20/02/2017 - garantir vinculacao de INSSPF e IRPF para Fornecedores PF.
      *               Motivo: conforme Luiz Henrique (Unimed NI), caso o prestador não recolha
@@ -46020,7 +48922,79 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
                                 ' erro inserindo impostos ' || sqlerrm);
     end;
     */
-    P_COMMIT_NEW;
+
+    CDIMPOSTO_UNICOO    := unicoogps.F_TM_PARAMETRO('CDIMPOSTO_UNICOO');
+    CDCLAS_IMPTO_UNICOO := unicoogps.F_TM_PARAMETRO('CDCLAS_IMPTO_UNICOO');
+
+    FOR X IN (SELECT tp.cdn_fornecedor CDFORNECEDOR, p.tppessoa
+              FROM PRODUCAO.FORNECEDOR@UNICOO_HOMOLOGA F,
+                   PRODUCAO.PRESTADOR@UNICOO_HOMOLOGA  PR,
+                   PRODUCAO.pessoa@UNICOO_HOMOLOGA     P,
+                   ti_pessoa                           tp
+             WHERE F.CDFORNECEDOR = PR.CDPRESTADOR
+               and p.nrregistro  = pr.nrregistro_prest
+               and p.nrregistro = tp.nrregistro) LOOP
+
+
+          --se o prestador possui os 3 impostos abaixo, significa que utiliza IMPOSTO UNICO
+          if unicoogps.pck_migracao_txt_gp.FN_BUSCA_IMPOSTO('COFINS',
+                                                            x.TPPESSOA,
+                                                            x.CDFORNECEDOR) is not null and
+             unicoogps.pck_migracao_txt_gp.FN_BUSCA_IMPOSTO('CSLL',
+                                                            x.TPPESSOA,
+                                                            x.CDFORNECEDOR) is not null and
+             unicoogps.pck_migracao_txt_gp.FN_BUSCA_IMPOSTO('PIS',
+                                                            x.TPPESSOA,
+                                                            x.CDFORNECEDOR) is not null then
+
+            BEGIN
+             --VERIFICA SE IMPOSTO UNICOO E´STA VINCULADO AO FORNECEDOR
+              SELECT 'S'
+                INTO VIMPTO_VINCULADO
+                FROM EMS5.IMPTO_VINCUL_FORNEC IVF
+               WHERE IVF.CDN_FORNECEDOR = X.CDFORNECEDOR
+                 AND IVF.U##COD_IMPOSTO = CDIMPOSTO_UNICOO
+                 AND IVF.U##COD_CLASSIF_IMPTO = CDCLAS_IMPTO_UNICOO;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                  --SE NAO ESTIVER VINCULADO, FAZ O VINCULO
+                  BEGIN
+                    INSERT INTO EMS5.IMPTO_VINCUL_FORNEC
+
+                    VALUES
+                    ('1', --u##cod_empresa,
+                     '1', --cod_empresa,
+                     X.CDFORNECEDOR, --cdn_fornecedor,
+                     'BRA', --u##cod_pais,
+                     'BRA', --cod_pais,
+                     ' ', --u##cod_unid_federac,
+                     ' ', --cod_unid_federac,
+                     CDIMPOSTO_UNICOO, --u##cod_imposto,
+                     CDIMPOSTO_UNICOO, --cod_imposto,
+                     CDCLAS_IMPTO_UNICOO, --u##cod_classif_impto,
+                     CDCLAS_IMPTO_UNICOO, --cod_classif_impto,
+                     0, --log_impto_opcnal,
+                     ' ', --cod_livre_1,
+                     0, --log_livre_1,
+                     0, --num_livre_1,
+                     0, --val_livre_1,
+                     NULL, --dat_livre_1,
+                     0, --numreduzrendtotribut,
+                     ' ', --cod_livre_2,
+                     NULL, --dat_livre_2,
+                     0, --log_livre_2,
+                     0, --num_livre_2,
+                     0, --val_livre_2,
+                     0, --cdd_version,
+                     EMS5.IMPTO_VINCUL_FORNEC_SEQ.NEXTVAL --progress_recid
+                     );
+                  EXCEPTION
+                    WHEN DUP_VAL_ON_INDEX THEN
+                      NULL;
+                  END;
+            END;
+          END IF;
+    END LOOP;
 
     -------------------
     UPDATE FORNEC_FINANC F
@@ -46029,7 +49003,9 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
               FROM IMPTO_VINCUL_FORNEC I
              WHERE I.U##COD_EMPRESA = F.U##COD_EMPRESA
                AND I.CDN_FORNECEDOR = F.CDN_FORNECEDOR);
-    --COMMIT;
+
+    COMMIT;
+
   END P_VINCULA_IMPOSTO_FORNEC;
 
   PROCEDURE P_CONTABILIZACAO(PNRSEQ_CONTROLE_INTEGRACAO IN NUMBER,
@@ -47260,6 +50236,8 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
   end P_COD_UNIMED_FORNECEDOR;
 
   PROCEDURE P_CARGA_INICIAL_FORNECEDOR IS
+    hash_atual varchar2(100);
+    hash_anterior varchar2(100);
     --------------------------------------
     -- gerar carga de pessoa do fornecedor
     --------------------------------------
@@ -47342,7 +50320,7 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
        (select 1
                 from ti_matriz_pagar tm
                where tm.nrregistro = f.nrregistro_fornecedor)
-               
+
          and not exists (select 1
                 from ti_controle_integracao ci
                where ci.cdidentificador = f.cdfornecedor
@@ -47351,8 +50329,46 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
 
     vcommit number;
   begin
-    vcommit := 1;
+    dbms_output.enable(null);
+    --dbms_output.disable;
 
+    --apagar TI_FORNECEDOR com erro para reprocessamento
+    delete from ti_falha_de_processo tf
+     where exists (select 1
+              from ti_controle_integracao tc
+             where tf.nrseq_controle_integracao = tc.nrsequencial
+               and tc.tpintegracao = 'FN'
+               and tc.cdsituacao in ('PE', 'ER'));
+    delete from ti_fornecedor c where c.cdsituacao IN ('PE', 'ER');
+    update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.tpintegracao = 'FN' and tc.cdsituacao in ('PE','ER');
+
+    --apagar TI_FORNECEDOR caso o hash do registro original do Unicoo tenha mudado.
+    --isso fara com que o registro seja atualizado no TOTVS na proxima execucao da api progress.
+    for x in (select c.cdidentificador, c.nrsequencial_origem, f.nrseq_controle_integracao,
+                     f.cod_fornecedor, f.nrpessoa, c.nrsequencial
+                from ti_fornecedor f, ti_controle_integracao c
+               where f.nrseq_controle_integracao = c.nrsequencial
+                 and f.cdsituacao = 'IT') loop
+        hash_atual := gerar_hash_fornecedor_unicoo(x.cdidentificador, x.nrsequencial_origem);
+        hash_anterior := get_hash('FN',x.cdidentificador, x.nrsequencial_origem);
+
+        if hash_atual <> hash_anterior then
+          dbms_output.put_line('DIFERENTE. APAGAR! ' || x.nrseq_controle_integracao || ';' || x.cod_fornecedor || ';' || x.nrpessoa || ';' || hash_atual || ';' || hash_anterior);
+
+          delete from ti_fornecedor tf where tf.nrseq_controle_integracao = x.nrseq_controle_integracao;
+          update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+        else
+          dbms_output.put_line('IGUAL. MANTER. ' || x.nrseq_controle_integracao || ';' || x.cod_fornecedor || ';' || x.nrpessoa || ';' || hash_atual || ';' || hash_anterior);
+        end if;
+    end loop;
+
+    --recriar a matriz de titulos, pois a situacao pode ter mudado no Unicoo
+    p_gera_carga_matriz_apb;
+
+    --atualizar com dados dos fornecedores que sao UNIMED
+    P_CARGA_PESSOA_UNIMED;
+
+    vcommit := 1;
     for x in c_pes loop
       begin
         pck_ems506unicoo.p_define_ti_pessoa(x.pnrcgc_cpf,
@@ -47398,6 +50414,8 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
   end P_CARGA_INICIAL_FORNECEDOR;
 
   PROCEDURE P_CARGA_INICIAL_CLIENTE IS
+    hash_atual varchar2(100);
+    hash_anterior varchar2(100);
     ----------------------------------
     -- Gerar pessoa cliente integração
     ----------------------------------
@@ -47461,7 +50479,7 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
              ti_matriz_receber                tm
        where p.nrregistro = c.nrregistro_cliente
          and p.nrregistro = tm.nrregistro
-         
+
          and tm.cdcliente = c.cdcliente
 
          and not exists (select 1
@@ -47469,7 +50487,7 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
                where ci.cdidentificador = c.cdcliente
                  and ci.tpintegracao = 'CL') /*fim teste alex 27/02/17*/
     ;
-    
+
     cursor c_carga_clientes is
 
     --Selecionar a pessoa do contratante que não é cliente
@@ -47519,6 +50537,30 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
                         from producao.cliente@unicoo_homologa c
                        where c.nrregistro_cliente =
                              nvl(f.nrpessoa_paga, f.nrpessoa_titular))
+
+              union
+
+              --excecao para PLAMEC - eh contrato NORMAL no UNICOO mas tera CONTRATANTE ORIGEM no TOTVS
+              select nvl(f.nrpessoa_paga, f.nrpessoa_titular) nrregistro
+                from contrato_da_pessoa p2, 
+                familia f, 
+                usuario u, 
+                unicoogps.temp_depara_agrupado tda
+               where p2.nrregistro = u.nrregistro
+                 and p2.nrcontrato = u.nrcontrato
+                 and f.nrregistro = u.nrregistro
+                 and f.nrcontrato = u.nrcontrato
+                 and f.nrfamilia = u.nrfamilia
+                 and u.nrfamilia <> 0
+                 and u.tpusuario = 00
+                 and tda.cdcontrato = p2.cdcontrato_padrao
+                 and tda.ao_contr_orig_resp_financ = 'CONTR_ORIG'
+                 and not exists
+               (select 1
+                        from producao.cliente@unicoo_homologa c
+                       where c.nrregistro_cliente =
+                             nvl(f.nrpessoa_paga, f.nrpessoa_titular))
+
               union
 
               --selecionar titulares da empresa do parj para virar clientes
@@ -47559,6 +50601,41 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
     vcommit number;
 
   begin
+    --dbms_output.enable(null);
+    dbms_output.disable;
+
+    --apagar TI_CLIENTE com erro para reprocessamento
+    delete from ti_falha_de_processo tf
+     where exists (select 1
+              from ti_controle_integracao tc
+             where tf.nrseq_controle_integracao = tc.nrsequencial
+               and tc.tpintegracao = 'CL'
+               and tc.cdsituacao in ('PE', 'ER'));
+    delete from ti_cliente c where c.cdsituacao IN ('PE', 'ER');
+    update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.tpintegracao = 'CL' and tc.cdsituacao in ('PE','ER');
+
+    --apagar TI_CLIENTE caso o hash do registro original do Unicoo tenha mudado.
+    --isso fara com que o registro seja atualizado no TOTVS na proxima execucao da api progress.
+    for x in (select i.cdidentificador, i.nrsequencial_origem, c.nrseq_controle_integracao,
+                     c.cod_cliente, c.nrpessoa, i.nrsequencial
+                from ti_cliente c, ti_controle_integracao i
+               where c.nrseq_controle_integracao = i.nrsequencial
+                 and c.cdsituacao = 'IT') loop
+        hash_atual := gerar_hash_cliente_unicoo(x.cdidentificador, x.nrsequencial_origem);
+        hash_anterior := get_hash('CL',x.cdidentificador, x.nrsequencial_origem);
+
+        if hash_atual <> hash_anterior then
+          dbms_output.put_line('DIFERENTE. APAGAR!' || x.nrseq_controle_integracao || ';' || x.cod_cliente || ';' || x.nrpessoa || ';' || hash_atual || ';' || hash_anterior);
+
+          delete from ti_cliente tc where tc.nrseq_controle_integracao = x.nrseq_controle_integracao;
+          update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+        else
+          dbms_output.put_line('IGUAL. MANTER.' || x.nrseq_controle_integracao || ';' || x.cod_cliente || ';' || x.nrpessoa || ';' || hash_atual || ';' || hash_anterior);
+        end if;
+    end loop;
+
+    --recriar a matriz de titulos, pois a situacao pode ter mudado no Unicoo
+    p_gera_carga_matriz_acr;
 
     vcommit := 1;
 
@@ -47629,36 +50706,10 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
 
   end P_CARGA_INICIAL_CLIENTE;
 
-  procedure p_carga_tit_acr_fechado(vpdt_ini date) IS
-    /*Alex Boeira - 06/03/18 - cursor substituido por versao mais abaixo, para otimizar performance.
+  procedure p_carga_tit_acr_fechado IS
     cursor c_tit is
       select 'TR' ptpintegracao,
-             'I' pcdacao,
-             t.nrdocumento pcdidentificador,
-             t.nrregistro_titulo pnrsequencial_origem,
-             '' pcdmodulo,
-             t.cdempresa cdempresa,
-             '' pnrseq_controle_integracao_org
-        from producao.cliente@unicoo_homologa c,
-             titulo_a_receber                 t,
-             pessoa                           p
-       where c.cdcliente = t.cdcliente
-         and p.nrregistro = c.nrregistro_cliente
-        and not exists (select 1
-                from ti_matriz_receber b
-               where b.nrregistro_titulo = t.nrregistro_titulo)
-         and not exists
-       (select 1
-                from ti_controle_integracao x
-               where x.tpintegracao = 'TR'
-                 and x.nrsequencial_origem = t.nrregistro_titulo)
-        and t.cdsituacao not in (6,8) --TIutlos desmembrados/cancelados não serão integrados
-        and t.dttitulo >= vpdt_ini;*/
-
-    --retirados joins de tabelas que nao eram utilizadas e afetavam a performance        
-    cursor c_tit is
-      select 'TR' ptpintegracao,
-             'I' pcdacao,
+             'F' pcdacao, --indentificacao que o titulo eh fechado
              t.nrdocumento pcdidentificador,
              t.nrregistro_titulo pnrsequencial_origem,
              '' pcdmodulo,
@@ -47675,10 +50726,10 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
                  and x.nrsequencial_origem = t.nrregistro_titulo)
         and t.cdsituacao not in (0,6,8) --titulos abertos/desmembrados/cancelados não serão integrados
          --desconsiderar titulos da propria operadora e de 1a mensalidades pois causava duplicidade de codificacao.
-         --ver detalhes na descricao dos parametros        
+         --ver detalhes na descricao dos parametros
         and (   t.cdcliente <> f_ti_parametro_integracao('CDCLIENTE_1A_MENS')
              or t.cdhistorico <> f_ti_parametro_integracao('CDHISTORICO_1A_MENS'))
-        and t.dttitulo >= vpdt_ini;
+        and t.dttitulo >= PDT_INI_TITULOS_ACR_FECHADOS;
 
     vConta number;
   begin
@@ -47709,6 +50760,8 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
 
 
   procedure p_carga_tit_acr IS
+    aojaexiste varchar2(1);
+
     cursor c_tit is
       select 'TR' ptpintegracao,
              'I' pcdacao,
@@ -47732,12 +50785,96 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
                where x.tpintegracao = 'TR'
                  and x.nrsequencial_origem = t.nrregistro_titulo)
          --desconsiderar titulos da propria operadora e de 1a mensalidades pois causava duplicidade de codificacao.
-         --ver detalhes na descricao dos parametros        
+         --ver detalhes na descricao dos parametros
          and (   t.cdcliente <> f_ti_parametro_integracao('CDCLIENTE_1A_MENS')
               or t.cdhistorico <> f_ti_parametro_integracao('CDHISTORICO_1A_MENS'));
 
     vConta number;
   begin
+    --apagar TI_TIT_ACR e TI_CX_BX_ACR com erro para reprocessamento
+    for x in (select ci.nrsequencial from ti_controle_integracao ci
+               where ci.cdsituacao in ('PE','ER')
+                 and ci.tpintegracao = 'TR') loop
+        delete from ti_tit_acr tr where tr.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_acr_ctbl c where c.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_acr_imposto i where i.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_falha_de_processo tf where tf.nrseq_controle_integracao = x.nrsequencial;
+        update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+    end loop;
+    for x in (select ci.nrsequencial from ti_controle_integracao ci
+               where ci.cdsituacao in ('PE','ER')
+                 and ci.tpintegracao = 'BR') loop
+        delete from ti_cx_bx_acr br where br.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_falha_de_processo tf where tf.nrseq_controle_integracao = x.nrsequencial;
+        update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+    end loop;
+
+    --apagar TI_TIT_ACR caso seja titulo em aberto e possua historico de alteracao no unicoo mais
+    --recente que a ultima atualizacao no TOTVS
+    --isso fara com que o registro seja atualizado no TOTVS na proxima execucao da api progress.
+    for x in (select ci.nrsequencial from ti_controle_integracao ci
+               where ci.cdsituacao in ('IT')
+                 and ci.tpintegracao = 'TR'
+                 and exists (select 1
+                        from ti_matriz_receber b
+                       where b.nrregistro_titulo = ci.nrsequencial_origem)
+                 and exists(select 1 from LG$_TITULO_A_receber l
+                                    where l.dtatualizacao$$ > ci.dtintegracao
+                                      and l.NRREGISTRO_TITULO = ci.nrsequencial_origem)) loop
+        delete from ti_tit_acr tr where tr.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_acr_ctbl c where c.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_acr_imposto i where i.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_falha_de_processo tf where tf.nrseq_controle_integracao = x.nrsequencial;
+        update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+    end loop;
+
+    --na primeira vez que um titulo eh criado no EMS5, o processo cria esse registro.
+    --esta sendo antecipado aqui, para evitar falha de chave durante a carga de titulos em varias filas
+    --simultaneas pela api progress utb765zl.
+
+    --PK: U##COD_MODUL_DTSUL, U##COD_PROG_DTSUL, U##COD_VERS_PROG, DAT_GERAC_MOVTO, U##HRA_GERAC_MOVTO
+    begin
+      select 'S' into aojaexiste
+        from ems5.histor_exec_especial h
+       where h.u##cod_modul_dtsul = 'ACR'
+         and h.u##cod_prog_dtsul  = 'SPP_ACERTO_TIT_COMIS_REPRES'
+         and rownum = 1;
+    exception
+      when others then
+        aojaexiste := 'N';
+    end;
+
+    if aojaexiste = 'N' then
+      begin
+        insert into ems5.histor_exec_especial h(U##COD_MODUL_DTSUL,
+                                                COD_MODUL_DTSUL,
+                                                U##COD_PROG_DTSUL,
+                                                COD_PROG_DTSUL,
+                                                U##COD_VERS_PROG,
+                                                COD_VERS_PROG,
+                                                DAT_GERAC_MOVTO,
+                                                U##HRA_GERAC_MOVTO,
+                                                HRA_GERAC_MOVTO,
+                                                COD_USUAR_GERAC_MOVTO,
+                                                PROGRESS_RECID)
+        values('ACR',
+               'ACR',
+               'SPP_ACERTO_TIT_COMIS_REPRES',
+               'SPP_ACERTO_TIT_COMIS_REPRES',
+               ' ',
+               ' ',
+               SYSDATE,
+               ' ',
+               ' ',
+               'MIGRACAO',
+               ems5.histor_exec_especial_seq.nextval);
+
+      exception
+          when others then
+           null;
+      end;
+    end if;
+
     vConta := 0;
     for x in c_tit loop
       pck_ems506unicoo.p_ins_ti_controle_integracao(x.ptpintegracao,
@@ -47761,6 +50898,11 @@ end P_ATUALIZA_BLOQUEIO_CLIENTE;
 
     --COMMIT;
 
+    if PMIGRAR_TITULOS_ACR_FECHADOS = 'S' then
+      p_carga_tit_acr_fechado;
+      P_CARGA_BAIXA_TIT_ACR;
+    end if;
+    commit;
   END p_carga_tit_acr;
 
 
@@ -47948,10 +51090,15 @@ end p_carga_baixa_tit_acr;
                where u.tpintegracao = 'TP'
                  and u.nrsequencial_origem = t.nrregistro_titulo)
          --RELACAO DOS HISTORICOS QUE NAO DEVE MIGRAR POIS SAO DE IMPOSTOS,
-         --QUE SERAO DIGITADOS MANUALMENTE NO EMS5 PELO USUARIO (TX)        
+         --QUE SERAO DIGITADOS MANUALMENTE NO EMS5 PELO USUARIO (TX)
          and not exists(select 1 from DEPARA_HIST_APB_NAO_MIGRAR d
                                where d.cdhistorico = t.cdhistorico);
   begin
+
+    dbms_output.enable(null);
+
+    dbms_output.put_line('inicio do carga_ti_tit_apb');
+
     --DESTACAR EM TEMPORARIA OS TITULOS DE IMPOSTOS QUE NAO VAI MIGRAR
     delete from temp_titulos_apb_nao_migrar;
     for x in (select * from titulo_a_pagar t
@@ -47959,7 +51106,7 @@ end p_carga_baixa_tit_acr;
                                   where b.nrregistro_titulo = t.nrregistro_titulo
                                     and exists(select 1 from depara_hist_APB_nao_migrar d
                                                   where d.cdhistorico = t.cdhistorico))) loop
-    
+
                 insert into TEMP_TITULOS_APB_NAO_MIGRAR
                   (CDFORNECEDOR,
                    NRREGISTRO_TITULO,
@@ -48113,7 +51260,46 @@ end p_carga_baixa_tit_acr;
 
     end loop;
 
+    --apagar TI_TIT_APB com erro para reprocessamento
+    for x in (select ci.nrsequencial from ti_controle_integracao ci
+               where ci.cdsituacao in ('PE','ER')
+                 and ci.tpintegracao = 'TP') loop
+
+    dbms_output.put_line('vai apagar ERROS ti_tit_apb nrsequencial: ' || x.nrsequencial);
+
+        delete from ti_tit_apb tp where tp.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_apb_ctbl p where p.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_apb_imposto i where i.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_falha_de_processo tf where tf.nrseq_controle_integracao = x.nrsequencial;
+        update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+    end loop;
+
+    --apagar TI_TIT_APB caso seja titulo em aberto e possua historico de alteracao no unicoo mais
+    --recente que a ultima atualizacao no TOTVS
+    --isso fara com que o registro seja atualizado no TOTVS na proxima execucao da api progress.
+    for x in (select ci.nrsequencial from ti_controle_integracao ci
+               where ci.cdsituacao in ('IT')
+                 and ci.tpintegracao = 'TP'
+                 and exists (select 1
+                        from ti_matriz_pagar b
+                       where b.nrregistro_titulo = ci.nrsequencial_origem)
+                 and exists(select 1 from LG$_TITULO_A_PAGAR l
+                                    where l.dtatualizacao$$ > ci.dtintegracao
+                                      and l.NRREGISTRO_TITULO = ci.nrsequencial_origem)) loop
+
+    dbms_output.put_line('vai apagar ALTERADOS DO UNICOO ti_tit_apb nrsequencial: ' || x.nrsequencial);
+
+        delete from ti_tit_apb tp where tp.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_apb_ctbl p where p.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_tit_apb_imposto i where i.nrseq_controle_integracao = x.nrsequencial;
+        delete from ti_falha_de_processo tf where tf.nrseq_controle_integracao = x.nrsequencial;
+        update ti_controle_integracao tc set tc.cdsituacao = 'GE' where tc.nrsequencial = x.nrsequencial;
+    end loop;
+
     for x in c_tit loop
+
+      dbms_output.put_line('entrou no loop nrsequencial: ' || x.pnrsequencial_origem);
+
       pck_ems506unicoo.p_ins_ti_controle_integracao(x.ptpintegracao,
                                                     x.pcdacao,
                                                     x.pcdidentificador,
@@ -48130,8 +51316,6 @@ end p_carga_baixa_tit_acr;
 
   end p_carga_tit_apb;
 
-
-
   procedure p_atualiza_status_cliente(p_qtsessoes number) IS
 
     vqtregistros number;
@@ -48142,25 +51326,51 @@ end p_carga_baixa_tit_acr;
     loop
 
         w := 0;
-    
+
         select count(*) / p_qtsessoes
           into vqtregistros
           from ti_cliente
          where cdsituacao = 'RC';
-    
+
         while w <= p_qtsessoes loop
-    
+
           update ti_cliente t
              set cdsituacao = 'R' || w
            where cdsituacao = 'RC'
              and rownum <= vqtregistros;
-    
+
           commit;
           w := w + 1;
-    
+
         end loop;
     end loop;
   end p_atualiza_status_cliente;
+
+  procedure p_atualiza_status_cliente_JK(p_qtsessoes number) IS
+
+    vqtregistros number;
+    w            number := 0;
+
+  begin
+        w := 0;
+
+        select round(count(*) / p_qtsessoes) + 2
+          into vqtregistros
+          from ti_cliente
+         where cdsituacao = 'RC';
+
+        while w < p_qtsessoes loop
+
+          update ti_cliente t
+             set cdsituacao = w
+           where cdsituacao = 'RC'
+             and rownum <= vqtregistros;
+
+          commit;
+          w := w + 1;
+
+        end loop;
+  end p_atualiza_status_cliente_JK;
 
   -- somente coloca a baixa em fila de processamento caso o titulo baixado ja tenha sido
   -- importado corretamente no EMS5
@@ -48174,7 +51384,7 @@ end p_carga_baixa_tit_acr;
     loop
 
         w := 0;
-    
+
         select count(*) / p_qtsessoes
           into vqtregistros
           from ti_cx_bx_acr b, ti_controle_integracao ci
@@ -48186,9 +51396,9 @@ end p_carga_baixa_tit_acr;
                  where t.nrseq_controle_integracao = ci2.nrsequencial
                    and ci2.nrsequencial_origem = ci.nrsequencial_origem
                    and t.cdsituacao = 'IT');
-    
+
         while w <= p_qtsessoes loop
-    
+
           update ti_cx_bx_acr b
              set cdsituacao = w
            where cdsituacao = 'RC'
@@ -48204,12 +51414,12 @@ end p_carga_baixa_tit_acr;
                              and ci2.nrsequencial_origem =
                                  ci.nrsequencial_origem
                              and t.cdsituacao = 'IT'))
-                
+
              and rownum <= vqtregistros;
-    
+
           commit;
           w := w + 1;
-    
+
         end loop;
 
     end loop;
@@ -48225,26 +51435,54 @@ end p_carga_baixa_tit_acr;
     loop
 
         w := 0;
-    
+
         select count(*) / p_qtsessoes
           into vqtregistros
           from ti_fornecedor
          where cdsituacao = 'RC';
-    
+
         while w <= p_qtsessoes loop
-    
+
           update ti_fornecedor t
              set cdsituacao = 'R' || w
            where cdsituacao = 'RC'
              and rownum <= vqtregistros;
-    
+
           commit;
           w := w + 1;
-    
+
         end loop;
 
     end loop;
   end p_atualiza_status_fornecedor;
+
+  procedure p_atualiza_status_fornec_JK(p_qtsessoes number) IS
+
+    vqtregistros number;
+    w            number := 0;
+
+  begin
+
+        w := 0;
+        select round(count(*) / p_qtsessoes) + 2
+--        select count(*) / p_qtsessoes
+          into vqtregistros
+          from ti_fornecedor
+         where cdsituacao = 'RC';
+
+        while w < p_qtsessoes loop
+
+          update ti_fornecedor t
+             set cdsituacao = w
+           where cdsituacao = 'RC'
+             and rownum <= vqtregistros;
+
+          commit;
+          w := w + 1;
+
+        end loop;
+
+  end p_atualiza_status_fornec_JK;
 
   procedure p_atualiza_status_tit_apb(p_qtsessoes number) IS
 
@@ -48277,18 +51515,126 @@ end p_carga_baixa_tit_acr;
     end loop;
   end p_atualiza_status_tit_apb;
 
-  --distribuir os titulos ACR ABERTOS em filas de processamento
-  procedure p_atualiza_status_tit_acr_aber(p_qtsessoes number) IS
-  
+  procedure p_atualiza_status_tit_apb_JK(p_qtsessoes number) IS
+
     vqtregistros number;
     w            number := 0;
-  
+
   begin
-  
+
+      select round(count(*) / p_qtsessoes, 0) + 2
+        into vqtregistros
+        from ti_tit_apb
+       where cdsituacao = 'RC';
+
+      while w <= p_qtsessoes loop
+
+        update ti_tit_apb t
+           set cdsituacao = w
+         where cdsituacao = 'RC'
+           and rownum < vqtregistros;
+
+        commit;
+        w := w + 1;
+
+      end loop;
+
+  end p_atualiza_status_tit_apb_JK;
+
+  procedure p_atualiza_status_tit_acr_JK(p_qtsessoes number) IS
+    vqtregistros number;
+    w            number := 0;
+  begin
+    w := 0;
+    select round(count(*) / p_qtsessoes, 0) + 2
+      into vqtregistros
+      from ti_tit_acr t, ti_controle_integracao ci
+     where t.cdsituacao = 'RC'
+       and ci.nrsequencial = t.nrseq_controle_integracao
+       and exists --isso indica que eh ABERTO
+     (select 1
+              from ti_matriz_receber b
+             where b.nrregistro_titulo = ci.nrsequencial_origem);
+
+    while w < p_qtsessoes loop
+
+      update ti_tit_acr t
+         set cdsituacao = w
+       where t.cdsituacao = 'RC'
+         and exists
+       (select 1
+                from ti_controle_integracao ci
+               where ci.nrsequencial = t.nrseq_controle_integracao
+                 and exists --isso indica que eh ABERTO
+               (select 1
+                        from ti_matriz_receber b
+                       where b.nrregistro_titulo = ci.nrsequencial_origem))
+         and rownum <= vqtregistros;
+
+      commit;
+      w := w + 1;
+
+    end loop;
+
+    --distribuir os titulos ACR FECHADOS em filas de processamento
+    --importante: os titulos baixados no Unicoo so poderao ser colocados nas filas
+    --            caso a sua baixa ja esteja preparada na temporaria TI_CX_BX_ACR.
+
+    w := 0;
+    select round(count(*) / p_qtsessoes, 0) + 2
+      into vqtregistros
+      from ti_tit_acr t, ti_controle_integracao ci
+     where t.cdsituacao = 'RC'
+       and ci.nrsequencial = t.nrseq_controle_integracao
+       and not exists --isso indica que eh FECHADO
+     (select 1
+              from ti_matriz_receber b
+             where b.nrregistro_titulo = ci.nrsequencial_origem)
+       and exists --isso indica que sua baixa ja esta agendada
+     (select 1
+              from ti_cx_bx_acr bx, ti_controle_integracao ci2
+             where bx.nrseq_controle_integracao = ci2.nrsequencial
+               and ci2.nrsequencial_origem = ci.nrsequencial_origem);
+
+    while w < p_qtsessoes loop
+
+      update ti_tit_acr t
+         set cdsituacao = w
+       where t.cdsituacao = 'RC'
+         and exists
+       (select 1
+                from ti_controle_integracao ci
+               where ci.nrsequencial = t.nrseq_controle_integracao
+                 and not exists --isso indica que eh FECHADO
+               (select 1
+                        from ti_matriz_receber b
+                       where b.nrregistro_titulo = ci.nrsequencial_origem)
+                 and exists --isso indica que sua baixa ja esta agendada
+               (select 1
+                        from ti_cx_bx_acr bx, ti_controle_integracao ci2
+                       where bx.nrseq_controle_integracao = ci2.nrsequencial
+                         and ci2.nrsequencial_origem = ci.nrsequencial_origem))
+         and rownum <= vqtregistros;
+
+      commit;
+      w := w + 1;
+
+    end loop;
+
+  end p_atualiza_status_tit_acr_JK;
+
+  --distribuir os titulos ACR ABERTOS em filas de processamento
+  procedure p_atualiza_status_tit_acr_aber(p_qtsessoes number) IS
+
+    vqtregistros number;
+    w            number := 0;
+
+  begin
+
     loop
-    
+
       w := 0;
-    
+
       select round(count(*) / p_qtsessoes, 0)
         into vqtregistros
         from ti_tit_acr t, ti_controle_integracao ci
@@ -48298,9 +51644,9 @@ end p_carga_baixa_tit_acr;
        (select 1
                 from ti_matriz_receber b
                where b.nrregistro_titulo = ci.nrsequencial_origem);
-               
+
       while w <= p_qtsessoes loop
-      
+
         update ti_tit_acr t
            set cdsituacao = w
          where t.cdsituacao = 'RC'
@@ -48313,12 +51659,12 @@ end p_carga_baixa_tit_acr;
                            from ti_matriz_receber b
                           where b.nrregistro_titulo = ci.nrsequencial_origem))
            and rownum <= vqtregistros;
-      
+
         commit;
         w := w + 1;
-      
+
       end loop;
-    
+
     end loop;
   end p_atualiza_status_tit_acr_aber;
 
@@ -48326,14 +51672,14 @@ end p_carga_baixa_tit_acr;
   --importante: os titulos baixados no Unicoo so poderao ser colocados nas filas
   --            caso a sua baixa ja esteja preparada na temporaria TI_CX_BX_ACR.
   procedure p_atualiza_status_tit_acr_fech(p_qtsessoes number) IS
-  
+
     vqtregistros number;
     w            number := 0;
-  
+
   begin
     loop
       w := 0;
-    
+
       select round(count(*) / p_qtsessoes, 0)
         into vqtregistros
         from ti_tit_acr t, ti_controle_integracao ci
@@ -48348,9 +51694,9 @@ end p_carga_baixa_tit_acr;
                 from ti_cx_bx_acr bx, ti_controle_integracao ci2
                where bx.nrseq_controle_integracao = ci2.nrsequencial
                  and ci2.nrsequencial_origem = ci.nrsequencial_origem);
-    
+
       while w <= p_qtsessoes loop
-      
+
         update ti_tit_acr t
            set cdsituacao = w
          where t.cdsituacao = 'RC'
@@ -48370,25 +51716,57 @@ end p_carga_baixa_tit_acr;
                            and ci2.nrsequencial_origem =
                                ci.nrsequencial_origem))
            and rownum <= vqtregistros;
-      
+
         commit;
         w := w + 1;
-      
+
       end loop;
-    
+
     end loop;
   end p_atualiza_status_tit_acr_fech;
-    
+
   --carregar matriz com os titulos ACR em aberto
-  procedure p_gera_carga_matriz_acr(vpcdempresa  varchar2,
-                                    vpdtcontabil date,
-                                    vpdtvenc_ini date,
-                                    vpdtvenc_fin date) is
+  procedure p_gera_carga_matriz_acr is
+    vpcdempresa  varchar2(5);
+    vpdtvenc_ini date;
+    vpdtvenc_fin date;
+    qt_registros number;
+    vpdtcontabil date;
   begin
-    -- eliminar os registros da tabela.
-    delete from ti_matriz_receber;
+    --inicializar parametros
+    vpcdempresa := pcdempresa_tit_acr;
+    vPdtvenc_ini := pdtini_tit_acr;
+    vPdtvenc_fin := pdtfim_tit_acr;
+
+    begin
+      vpdtcontabil := PDT_CONTABIL_ACR;
+    exception
+      when others then
+        vpdtcontabil := sysdate;
+    end;
+
+    --dbms_output.enable(null);
+    --dbms_output.put_line('PARAMETROS: ' || vpcdempresa || ';' || vPdtvenc_ini || ';' || vPdtvenc_fin || ';' || vpdtcontabil);
+
+    --somente permitir executar o processo caso a tabela esteja vazia.
+    --Motivo: rotina configurada no Jenkins. os demais processos são dependentes desse.
+    --        a carga deve ser realizada apenas 1x com base em uma data contabil pre determinada.
+    /*begin
+      select nvl(count(*),'0') into qt_registros
+        from ti_matriz_receber;
+    exception
+      when others then
+        qt_registros := 0;
+    end;
+
+    if qt_registros is not null and qt_registros > 0 then
+      return;
+    end if;*/
+
+    p_apagar_matriz_acr(true);
+
     --commit;
-    -- inserir novamente os titulos na tabela.
+    -- inserir novamente os titulos em aberto na tabela.
     insert into ti_matriz_receber
       select ttr.cdcliente,
              ttr.nrregistro_titulo,
@@ -48747,14 +52125,60 @@ end p_carga_baixa_tit_acr;
     --commit;
   end p_gera_carga_matriz_acr;
 
-  procedure p_gera_carga_matriz_apb(vpcdempresa  varchar2,
-                                    vpdtcontabil date,
-                                    vpdtvenc_ini date,
-                                    vpdtvenc_fin date) is
+  procedure p_apagar_matriz_acr(papagar boolean) is
   begin
-    -- eliminar os registros da tabela.
-    delete from ti_matriz_pagar;
-    commit;
+    --o parametro foi recebido em tela no Jenkins. Somente prosseguir se o usuario informou TRUE.
+    if papagar then
+      delete from ti_matriz_receber;
+    end if;
+  end;
+
+  procedure p_apagar_matriz_apb(papagar boolean) is
+  begin
+    --o parametro foi recebido em tela no Jenkins. Somente prosseguir se o usuario informou TRUE.
+    if papagar then
+      delete from ti_matriz_pagar;
+    end if;
+  end;
+
+  procedure p_gera_carga_matriz_apb is
+
+    vpcdempresa  varchar2(5);
+    vpdtvenc_ini date;
+    vpdtvenc_fin date;
+    qt_registros number;
+    vpdtcontabil date;
+
+  begin
+    --inicializar parametros
+    vpcdempresa := pcdempresa_tit_apb;
+    vpdtvenc_ini := pdtini_tit_apb;
+    vpdtvenc_fin := pdtfim_tit_apb;
+
+    begin
+      vpdtcontabil := PDT_CONTABIL_APB;
+    exception
+      when others then
+        vpdtcontabil := sysdate;
+    end;
+
+    --somente permitir executar o processo caso a tabela esteja vazia.
+    --Motivo: rotina configurada no Jenkins. os demais processos são dependentes desse.
+    --        a carga deve ser realizada apenas 1x com base em uma data contabil pre determinada.
+    /*begin
+      select nvl(count(*),'0') into qt_registros
+        from ti_matriz_pagar;
+    exception
+      when others then
+        qt_registros := 0;
+    end;
+
+    if qt_registros is not null and qt_registros > 0 then
+      return;
+    end if;*/
+
+    p_apagar_matriz_apb(true);
+
     -- inserir novamente os titulos na tabela.
     insert into ti_matriz_pagar
       select t.nrregistro_titulo,
@@ -49271,7 +52695,6 @@ Procedure p_atualiza_fluxo_financ_fornec
 is
 
   v integer;
-  w integer;
   registro number;
 
   Cursor c is
@@ -49311,7 +52734,7 @@ is
       order by 1,2,4 desc, 3 desc) t,
       ti_pessoa tip,
       ems5.fornecedor ef5
-      where t.nrregistro_fornecedor = tip.nrregistro
+  where t.nrregistro_fornecedor = tip.nrregistro
       and   tip.cdn_fornecedor      = ef5.cdn_fornecedor
       and   tip.nrregistro          = registro
       and   rownum =1;
@@ -49343,16 +52766,59 @@ is
 
 end p_atualiza_fluxo_financ_fornec;
 
+procedure insere_hash(ptpintegracao varchar2,
+                      pnrsequencial_origem number,
+                      pcdidentificador varchar2) is
+  hash_atual varchar2(100);
+begin
+  case ptpintegracao
+    when 'FN' then hash_atual := gerar_hash_fornecedor_unicoo(pcdidentificador,pnrsequencial_origem);
+    when 'CL' then hash_atual := gerar_hash_cliente_unicoo(pcdidentificador,pnrsequencial_origem);
+    --when 'TP' then hash_atual := gerar_hash_fornecedor_unicoo(pcdidentificador); --LG$_TITULO_A_PAGAR
+    --when 'TR' then hash_atual := gerar_hash_fornecedor_unicoo(pcdidentificador); --LG$_TITULO_A_RECEBER
+  end case;
+
+  --apagar hash anterior da mesma chave
+  delete from ti_hash h
+     where h.tpintegracao = ptpintegracao
+       and h.nrsequencial_origem = pnrsequencial_origem
+       and h.cdidentificador = pcdidentificador;
+
+  insert into ti_hash(nrsequencial        ,
+                      tpintegracao        ,
+                      dtgeracao           ,
+                      nrsequencial_origem ,
+                      cdidentificador     ,
+                      txhash              )
+                values(ti_hash_seq.nextval,
+                       ptpintegracao,
+                       sysdate,
+                       pnrsequencial_origem,
+                       pcdidentificador,
+                       hash_atual);
+end insere_hash;
+
 begin
   -- Alessandro 20/03/2012
 
-  Pcpf_dtnascimento := f_ti_parametro_integracao('CPF_DTNASCIMENTO');
+  Pcpf_dtnascimento  := f_ti_parametro_integracao('CPF_DTNASCIMENTO');
+  pcdempresa_tit_acr := f_ti_parametro_integracao('CDEMPRESA_TIT_ACR');
+  pdtini_tit_acr     := f_ti_parametro_integracao('DTINI_TIT_ACR');
+  pdtfim_tit_acr     := f_ti_parametro_integracao('DTFIM_TIT_ACR');
+  pcdempresa_tit_apb := f_ti_parametro_integracao('CDEMPRESA_TIT_APB');
+  pdtini_tit_apb     := f_ti_parametro_integracao('DTINI_TIT_APB');
+  pdtfim_tit_apb     := f_ti_parametro_integracao('DTFIM_TIT_APB');
+
+  PMIGRAR_TITULOS_ACR_FECHADOS := f_ti_parametro_integracao('MIGRAR_TITULOS_ACR_FECHADOS');
+  PDT_INI_TITULOS_ACR_FECHADOS := f_ti_parametro_integracao('DT_INICIO_TITULOS_ACR_FECHADOS');
+  PDT_CONTABIL_APB := f_ti_parametro_integracao('DT_CONTABIL_APB');
+  PDT_CONTABIL_ACR := f_ti_parametro_integracao('DT_CONTABIL_ACR');
+  PCOD_EMPRESA     := f_ti_parametro_integracao('COD_EMPRESA');
+  PCOD_EMPRESA_UNICOO := f_ti_parametro_integracao('COD_EMPRESA_UNICOO');
 
   NULL;
 END PCK_EMS506UNICOO;
 /
-grant execute on EMS506UNICOO.PCK_EMS506UNICOO to UNICOOGPS;
-
 
 prompt
 prompt Creating package body PCK_EMS506UNICOO_A
@@ -75364,7 +78830,7 @@ prompt
 prompt Creating trigger TR_AU_TI_MOV_CTA_CORRENTE
 prompt ==========================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_AU_TI_MOV_CTA_CORRENTE" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_AU_TI_MOV_CTA_CORRENTE"
   after update on ti_movimento_cta_corrente
   for each row
 declare
@@ -75436,7 +78902,7 @@ prompt
 prompt Creating trigger TR_BI_MOVTO_RETORNO_TITULO_ACR
 prompt ===============================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BI_MOVTO_RETORNO_TITULO_ACR" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BI_MOVTO_RETORNO_TITULO_ACR"
   before insert  on MOVIMENTO_RETORNO_TITULO_ACR   for each row
 
 declare
@@ -75471,7 +78937,7 @@ prompt
 prompt Creating trigger TR_BI_TI_FALHA_DE_PROCESSO
 prompt ===========================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BI_TI_FALHA_DE_PROCESSO" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BI_TI_FALHA_DE_PROCESSO"
   before insert  on EMS506UNICOO.TI_FALHA_DE_PROCESSO   for each row
 
 declare
@@ -75507,7 +78973,7 @@ prompt
 prompt Creating trigger TR_BI_TI_PESSOA
 prompt ================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BI_TI_PESSOA" 
+create or replace trigger ems506unicoo."TR_BI_TI_PESSOA"
 before insert or update  on ems506unicoo.ti_pessoa for each row
 declare
 /*
@@ -75603,7 +79069,7 @@ prompt
 prompt Creating trigger TR_BI_TI_TIPO_MOV_TIT_APB
 prompt ==========================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BI_TI_TIPO_MOV_TIT_APB" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BI_TI_TIPO_MOV_TIT_APB"
   before insert on ti_tipo_movimento_tit_apb
   for each row
 declare
@@ -75672,7 +79138,7 @@ prompt
 prompt Creating trigger TR_BIU_CST_TI_CONTROLE_INT_APB
 prompt ===============================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_CST_TI_CONTROLE_INT_APB" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_CST_TI_CONTROLE_INT_APB"
   before insert on ti_controle_integracao
   for each row
 declare
@@ -75737,7 +79203,7 @@ prompt
 prompt Creating trigger TR_BIU_CST_TI_TIT_ACR
 prompt ======================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_CST_TI_TIT_ACR" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_CST_TI_TIT_ACR"
   before insert or update on EMS506UNICOO.ti_TIT_ACR   for each row
 
 declare
@@ -75769,7 +79235,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_BX_ACR_LIQ
 prompt =====================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_BX_ACR_LIQ" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_BX_ACR_LIQ"
   before insert or update on ems506unicoo.ti_cx_bx_acr   for each row
 
 declare
@@ -75801,7 +79267,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_CLIENTE
 prompt ==================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_CLIENTE" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CLIENTE"
   before insert or update or delete on EMS506UNICOO.TI_CLIENTE   for each row
 
 declare
@@ -75874,7 +79340,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_CONTROLE_INTEG_FN
 prompt ============================================
 prompt
-CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CONTROLE_INTEG_FN" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CONTROLE_INTEG_FN"
   AFTER INSERT OR UPDATE ON EMS506UNICOO.TI_CONTROLE_INTEGRACAO
   FOR EACH ROW
 declare
@@ -76010,7 +79476,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_CONTROLE_INTEGRACAO
 prompt ==============================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_CONTROLE_INTEGRACAO" before insert or update  on ti_controle_integracao
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CONTROLE_INTEGRACAO" before insert or update  on ti_controle_integracao
 for each row
 declare
 /*
@@ -76194,7 +79660,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_CX_BX_ACR
 prompt ====================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_CX_BX_ACR" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CX_BX_ACR"
   before insert or update on ems506unicoo.ti_cx_bx_acr   for each row
 
 declare
@@ -76240,7 +79706,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_CX_BX_APB
 prompt ====================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_CX_BX_APB" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_CX_BX_APB"
   before insert or update on ems506unicoo.ti_cx_bx_apb   for each row
 
 declare
@@ -76295,7 +79761,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_FORNECEDOR
 prompt =====================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_FORNECEDOR" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_FORNECEDOR"
   before insert or update or delete
 on EMS506UNICOO.TI_FORNECEDOR
    for each row
@@ -76411,7 +79877,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_LOTE_CTBL
 prompt ====================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_LOTE_CTBL" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_LOTE_CTBL"
   before insert or update on EMS506UNICOO.TI_LOTE_CTBL   for each row
 
 declare
@@ -76517,7 +79983,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_MOV_CC_FALHA
 prompt =======================================
 prompt
-CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_MOV_CC_FALHA" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_MOV_CC_FALHA"
   BEFORE UPDATE ON EMS506UNICOO.TI_MOVIMENTO_CTA_CORRENTE
   FOR EACH ROW
 
@@ -76551,7 +80017,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_MOVTO_CTA_CORRENTE
 prompt =============================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_MOVTO_CTA_CORRENTE" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_MOVTO_CTA_CORRENTE"
   before insert or update on EMS506UNICOO.ti_movimento_cta_corrente   for each row
 
 declare
@@ -76602,7 +80068,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_TIT_ACR
 prompt ==================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_TIT_ACR" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_TIT_ACR"
   before insert or update or delete on EMS506UNICOO.ti_TIT_ACR   for each row
 
 declare
@@ -76674,7 +80140,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_TIT_ACR_ESTORNO
 prompt ==========================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_TIT_ACR_ESTORNO" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_TIT_ACR_ESTORNO"
   before insert or update on TI_TIT_ACR_ESTORNO   for each row
 
 declare
@@ -76776,7 +80242,7 @@ prompt
 prompt Creating trigger TR_BIU_TI_TIT_APB
 prompt ==================================
 prompt
-create or replace trigger "EMS506UNICOO"."TR_BIU_TI_TIT_APB" 
+CREATE OR REPLACE TRIGGER "EMS506UNICOO"."TR_BIU_TI_TIT_APB"
   before insert or update or delete on ems506unicoo.ti_tit_apb   for each row
 
 declare

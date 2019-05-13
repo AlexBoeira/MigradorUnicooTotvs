@@ -279,14 +279,29 @@ begin
   update gp.ter_ade t
      set t.lg_faturar = 0
    where t.lg_faturar = 1
-     and (t.dt_cancelamento is null or t.dt_cancelamento > '29/11/2018') --sysdate
+     and (t.dt_cancelamento is null or t.dt_cancelamento > sysdate) --termo ativo
      and not exists
    (select 1
             from gp.usuario u
            where u.cd_modalidade = t.cd_modalidade
              and u.nr_ter_adesao = t.nr_ter_adesao
+             and u.log_17 = 0 --ignorar eventual
              and (u.dt_exclusao_plano is null or
-                 u.dt_exclusao_plano > '29/11/2018')); --sysdate
+                 u.dt_exclusao_plano > sysdate)); --nao possui beneficiario ativo
+
+  -- ativar indicador de faturamento do termo de adesao quando esta desativado e possui beneficiarios ativos
+  update gp.ter_ade t
+     set t.lg_faturar = 1
+   where t.lg_faturar = 0
+     and (t.dt_cancelamento is null or t.dt_cancelamento > sysdate) --termo ativo
+     and exists
+   (select 1
+            from gp.usuario u
+           where u.cd_modalidade = t.cd_modalidade
+             and u.nr_ter_adesao = t.nr_ter_adesao
+             and u.log_17 = 0 --ignorar eventual
+             and (u.dt_exclusao_plano is null or
+                 u.dt_exclusao_plano > sysdate)); --possui ao menos um beneficiario ativo
   --conferencia: select lg_faturar, count(*) from gp.ter_ade group by lg_faturar
 
   -- em NOVA IGUACU a modalidade 30 so pode ter lotacao de DEMAP

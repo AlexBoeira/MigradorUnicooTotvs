@@ -120,9 +120,46 @@ select --count(*)
    and us.nrtabela_contrato is null
    and prc.nrtabela_contrato is null
    order by 9;
-   
-   
------ BENEF EXCLUÍDO
+
+ --nao existe criterio para a regra associada ao beneficiario
+select --count(*)
+ ugp.cd_modalidade MODALIDADE_ATIVOS,
+ ugp.nr_ter_adesao,
+ ugp.cd_usuario,
+ ip.num_livre_2 NRREGISTRO,
+ lpad(ip.num_livre_3, 4, '0') NRCONTRATO,
+ ip.num_livre_4 FAMILIA,
+ ip.cod_livre_3 CDCONTRATO,
+ ib.num_seqcial_bnfciar,
+ TO_CHAR(ib.cd_carteira_antiga) CARTEIRA,
+ ib.log_respons,
+ to_char(ib.cdcarteiraorigemresponsavel) CARTEIRA_RESPONSAVEL,
+ 'USUARIO.NRTABELA_CONTRATO NAO POSSUI NENHUM CRITERIO EM PRECO_CONTRATO_PESSOA' MOTIVO
+  from gp.usuario        ugp,
+       gp.import_bnfciar ib,
+       gp.import_propost ip,
+       usuario           us,
+       (select prc.nrtabela_contrato,
+               prc.nrregistro,
+               prc.nrcontrato
+          from preco_referencia_contrato prc) prc
+ where not exists (select 1
+          from regra_menslid_propost rmp
+         where rmp.cd_modalidade = ugp.cd_modalidade
+           and rmp.nr_proposta = ugp.nr_proposta)
+   and ib.cd_modalidade = ugp.cd_modalidade
+   and ib.nr_proposta   = ugp.nr_proposta
+   and ib.num_livre_6   = ugp.cd_usuario
+   and ip.nr_contrato_antigo   = ib.nr_contrato_antigo
+   and us.nrsequencial_usuario = ib.num_seqcial_bnfciar
+   and prc.nrtabela_contrato(+) = us.nrtabela_contrato
+   And prc.nrregistro(+) = us.nrregistro
+   And prc.nrcontrato(+) = us.nrcontrato
+   and (us.dtexclusao is null or us.dtexclusao > sysdate)
+   and us.nrtabela_contrato is not null
+   and prc.nrtabela_contrato is not null
+   and not exists(select 1 from preco_contrato_pessoa pcp where pcp.nrtabela_contrato = us.nrtabela_contrato)
+   order by 9;
    
 select --count(*)
  ugp.cd_modalidade MODALIDADE_ATIVOS,
@@ -149,6 +186,9 @@ select --count(*)
           from regra_menslid_propost rmp
          where rmp.cd_modalidade = ugp.cd_modalidade
            and rmp.nr_proposta = ugp.nr_proposta)
+   
+   and exists(select 1 from preco_contrato_pessoa pcp where pcp.nrtabela_contrato = us.nrtabela_contrato)
+ 
    and ib.cd_modalidade = ugp.cd_modalidade
    and ib.nr_proposta   = ugp.nr_proposta
    and ib.num_livre_6   = ugp.cd_usuario

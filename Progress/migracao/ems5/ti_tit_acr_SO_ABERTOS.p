@@ -496,8 +496,7 @@ FOR FIRST paramecp NO-LOCK:
 END.
 IF NOT AVAIL paramecp
 THEN DO:
-       MESSAGE "Parametros globais do GPS nao informados (PARAMECP)"
-           VIEW-AS ALERT-BOX INFO BUTTONS OK.
+       run escrever-log("Parametros globais do GPS nao informados (PARAMECP)").
        RETURN.
 END.
 
@@ -507,8 +506,7 @@ FOR FIRST ti_parametro_integracao NO-LOCK
 END.
 IF cd_especie_dni_aux = "" OR cd_especie_dni_aux = ?
 THEN DO:
-       MESSAGE "Parametro CDESPECIE_DNI da tabela TI_PARAMETRO_INTEGRACAO nao existe ou possui valor invalido. Verifique."
-           VIEW-AS ALERT-BOX INFO BUTTONS OK.
+       run escrever-log("Parametro CDESPECIE_DNI da tabela TI_PARAMETRO_INTEGRACAO nao existe ou possui valor invalido. Verifique.").
        RETURN.
 END.
 RUN escrever-log("@@@@@CDESPECIE_DNI: " + STRING(CD_ESPECIE_DNI_AUX)).

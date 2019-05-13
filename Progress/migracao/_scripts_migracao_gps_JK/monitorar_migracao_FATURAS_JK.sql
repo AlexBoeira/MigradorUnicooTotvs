@@ -7,7 +7,6 @@ SPOOL &1\FATURA\STATUS_MIGRACAO_FATURAS.html
 
 select decode(F.COD_LIVRE_1,'ER','ERRO','IT','INTEGRADO','RE','REPROCESSANDO') SITUACAO, count(*) QTD,
        sysdate || ' ' || to_char(systimestamp, 'HH24:MI:ss') ULT_ATU
-
 from gp.migrac_fatur f
 group by f.cod_livre_1
 order by f.cod_livre_1;

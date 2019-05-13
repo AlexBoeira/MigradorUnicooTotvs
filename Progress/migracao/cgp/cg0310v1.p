@@ -4243,7 +4243,7 @@ PROCEDURE consiste-modulos-benef:
         END.
         if   not avail mod-cob
         then do:
-               RUN pi-cria-tt-erros("Modulo nao Cadastrado - Modulo: " + string(import-modul-bnfciar.cdn-modul,"999")).
+               RUN pi-cria-tt-erros2("Modulo nao Cadastrado", "Modulo: " + string(import-modul-bnfciar.cdn-modul,"999")).
         
                assign lg-relat-erro  = yes
                       lg-modulo-erro = yes.
@@ -4258,7 +4258,7 @@ PROCEDURE consiste-modulos-benef:
         
         if not avail pro-pla
         then do:
-               RUN pi-cria-tt-erros("Modulo nao cadastrado para a proposta: " + string(import-modul-bnfciar.cdn-modul)).
+               RUN pi-cria-tt-erros2("Modulo nao cadastrado para a proposta", "Modulo: " + string(import-modul-bnfciar.cdn-modul)).
         
                assign lg-relat-erro  = yes
                       lg-modulo-erro = yes.
@@ -4276,13 +4276,13 @@ PROCEDURE consiste-modulos-benef:
         THEN DO:
                assign lg-relat-erro  = yes
                       lg-modulo-erro = yes.
-               RUN pi-cria-tt-erros("Modulo nao cadastrado para a Estrutura: " + string(import-modul-bnfciar.cdn-modul)). 
+               RUN pi-cria-tt-erros2("Modulo nao cadastrado para a Estrutura", "Modulo: " + string(import-modul-bnfciar.cdn-modul)). 
                NEXT.
              END.
         
         if   import-modul-bnfciar.dat-inic = ?
         then do:
-               RUN pi-cria-tt-erros("Data de inicio do Modulo Invalida").
+               RUN pi-cria-tt-erros("Data de inicio do Modulo Invalida (nula)").
                assign lg-relat-erro  = yes
                       lg-modulo-erro = yes.
              end.
@@ -4297,9 +4297,11 @@ PROCEDURE consiste-modulos-benef:
                       THEN char-aux2 = STRING(propost.dt-proposta,"99/99/9999").
                       ELSE char-aux2 = "nulo".
                       
-                      RUN pi-cria-tt-erros("Data de Inicio (" + char-aux1 + ") do Modulo (" 
-                                           + STRING(import-modul-bnfciar.cdn-modul) 
-                                           + ") menor que data da Proposta (" + char-aux2 + ")").
+                      RUN pi-cria-tt-erros2("Data de Inicio do Modulo menor que data da Proposta",
+                                            "Modulo: " + STRING(import-modul-bnfciar.cdn-modul) +
+                                            " Inicio modulo: " + char-aux1 + 
+                                            " Inicio proposta: " + char-aux2).
+                      
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
@@ -4314,9 +4316,12 @@ PROCEDURE consiste-modulos-benef:
                       THEN char-aux2 = STRING(import-bnfciar.dt-inclusao-plano,"99/99/9999").
                       ELSE char-aux2 = "nulo".
 
-                      RUN pi-cria-tt-erros("Data de inicio (" + char-aux1 + ") do modulo ( " + STRING(import-modul-bnfciar.cdn-modul) 
-                                           + " ) nao pode ser inferior a inclusao do beneficiario (" + char-aux2 + ")").
-                      assign lg-relat-erro  = yes
+                       RUN pi-cria-tt-erros2("Data de inicio do modulo nao pode ser inferior a inclusao do beneficiario",
+                                             "Modulo: " + STRING(import-modul-bnfciar.cdn-modul) +
+                                             " Inicio modulo: " + char-aux1 + 
+                                             " Inicio benef: " + char-aux2).
+
+                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
 
@@ -4330,9 +4335,10 @@ PROCEDURE consiste-modulos-benef:
                       THEN char-aux2 = STRING(pro-pla.dt-inicio,"99/99/9999").
                       ELSE char-aux2 = "nulo".
 
-                      RUN pi-cria-tt-erros("Data de inicio (" + char-aux1 + ") do modulo opcional do beneficiario (" 
-                                           + STRING(import-modul-bnfciar.cdn-modul) 
-                                           + ") nao pode ser inferior a data de inicio do modulo da proposta (" + char-aux2 + ")").
+                      RUN pi-cria-tt-erros2("Data de inicio do modulo opcional do beneficiario nao pode ser inferior a data de inicio do modulo da proposta"),
+                                            "Modulo: " + STRING(import-modul-bnfciar.cdn-modul) +
+                                            " Inicio modulo benef: " + char-aux1 +
+                                            " Inicio modulo proposta: " + char-aux2).
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
@@ -4343,14 +4349,14 @@ PROCEDURE consiste-modulos-benef:
                IF  import-modul-bnfciar.cdn-motiv-cancel <> 0
                AND import-modul-bnfciar.cdn-motiv-cancel <> ?
                then do:
-                      RUN pi-cria-tt-erros("Codigo do motivo de cancelamento nao deve ser informado. Motivo recebido: " + STRING(import-modul-bnfciar.cdn-motiv-cancel)).
+                      RUN pi-cria-tt-erros2("Codigo do motivo de cancelamento do modulo nao deve ser informado", "Motivo recebido: " + STRING(import-modul-bnfciar.cdn-motiv-cancel)).
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end. 
 
                if  pro-pla.dt-cancelamento <> ? 
                then do:
-                      RUN pi-cria-tt-erros("Proposta com modulo cancelado e beneficiario com modulo ativo. Modulo:" + string(pro-pla.cd-modulo)).
+                      RUN pi-cria-tt-erros2("Proposta com modulo cancelado e beneficiario com modulo ativo.", "Modulo:" + string(pro-pla.cd-modulo)).
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
@@ -4359,7 +4365,7 @@ PROCEDURE consiste-modulos-benef:
                IF import-modul-bnfciar.cdn-motiv-cancel  = ?
                or import-modul-bnfciar.cdn-motiv-cancel  = 0
                then do:
-                      RUN pi-cria-tt-erros("Codigo do motivo de cancelamento deve ser informado").
+                      RUN pi-cria-tt-erros2("Codigo do motivo de cancelamento do modulo deve ser informado","Modulo: " + STRING(import-modul-bnfciar.cdn-modul)).
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
@@ -4372,7 +4378,8 @@ PROCEDURE consiste-modulos-benef:
 
                IF NOT AVAIL motcange
                then do:
-                      RUN pi-cria-tt-erros("Codigo motivo de cancelamento do modulo nao cadastrado: " + STRING(import-modul-bnfciar.cdn-motiv-cancel)).
+                      RUN pi-cria-tt-erros2("Codigo motivo de cancelamento do modulo nao cadastrado.", 
+                                            "Modulo: " + STRING(import-modul-bnfciar.cdn-modul) + " Motivo: " + STRING(import-modul-bnfciar.cdn-motiv-cancel)).
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
                     end.
@@ -4416,7 +4423,7 @@ PROCEDURE consiste-modulos-benef:
                       ELSE char-aux2 = "nulo".
 
                       RUN pi-cria-tt-erros2("Data de cancelamento do Modulo do Beneficiario nao pode ser anterior a sua inclusao.",
-					          "Cancelamento Modulo: " + char-aux1 + ". Inclusao Modulo: " + char-aux2).
+					          "Cancelamento Modulo: " + char-aux1 + ". Inclusao Modulo: " + char-aux2 + ". Modulo: " + string(import-modul-bnfciar.cdn-modul)).
                
                       assign lg-relat-erro  = yes
                              lg-modulo-erro = yes.
@@ -4571,15 +4578,6 @@ PROCEDURE consiste-modulos-benef:
                                            lg-modulo-erro = yes.
                                     RUN pi-cria-tt-erros("Modulo cancelado para padrao ativo").
                                  end.
-                      
-                             if  import-bnfciar.dt-exclusao-plano <> ?
-                             and import-modul-bnfciar.dat-fim     <> ?
-                             and import-bnfciar.dt-exclusao-plano <> import-modul-bnfciar.dat-fim
-                             then do:
-                                    assign lg-relat-erro  = yes
-                                           lg-modulo-erro = yes.
-                                    RUN pi-cria-tt-erros("Padrao de Cobertura X modulo invalido").
-                                  end.
                            end.
                     end.               
                 

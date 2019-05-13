@@ -18,10 +18,9 @@ Run fnd\btb\btapi910za.p(Input ENTRY(2, in-param-aux), /*USUARIO*/
                          Output Table tt_erros). 
 
 For Each tt_erros:
-    Message "Erro: " 
-            String(tt_erros.num-cod) + " - ":U + 
-            tt_erros.desc-erro 
-            View-as Alert-box Information.
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DO MESSAGE DE ERRO DA BTAPI910ZA").
+    RUN escrever-log("@@@@@Erro: " + String(tt_erros.num-cod) + " - ":U + tt_erros.desc-erro).
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DEPOIS DO MESSAGE DE ERRO DA BTAPI910ZA").
 End.
 
 REPEAT:
@@ -33,3 +32,7 @@ REPEAT:
   THEN LEAVE.
 END.
 QUIT.
+
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-mensagem-par AS CHAR NO-UNDO.
+END.

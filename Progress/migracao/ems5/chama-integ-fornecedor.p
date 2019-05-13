@@ -22,24 +22,51 @@ Def Temp-table tt_erros No-undo
 def var in-param-aux as char no-undo.
 assign in-param-aux = session:param. 
 
+DEFINE NEW GLOBAL SHARED VARIABLE lAccessSecurityActive              AS CHARACTER NO-UNDO.
+DEFINE VARIABLE lAccessSecurityActiveAux AS CHARACTER NO-UNDO.
+
+RUN desativaSegurancaAvancada.
+
 run fnd\btb\btapi910za.p(input entry(2, in-param-aux), /*USUARIO*/
                          input entry(3, in-param-aux), /*SENHA */
                          output table tt_erros). 
 
-for each tt_erros:
-    message "Erro: " 
-            String(tt_erros.num-cod) + " - ":U + 
-            tt_erros.desc-erro 
-            view-as alert-box information.
-end.
+For Each tt_erros:
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DO MESSAGE DE ERRO DA BTAPI910ZA").
+    RUN escrever-log("@@@@@Erro: " + String(tt_erros.num-cod) + " - ":U + tt_erros.desc-erro).
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DEPOIS DO MESSAGE DE ERRO DA BTAPI910ZA").
+End.
 
 REPEAT:
   PROCESS EVENTS.
-  RUN ems5/ti_fornecedor.p(INPUT ENTRY(1, in-param-aux)).
+  RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DE CHAMAR TI_FORNECEDOR.P").
+  RUN ems5/ti_fornecedor.p(INPUT ENTRY(1, in-param-aux)) NO-ERROR.
+  IF ERROR-STATUS:ERROR THEN DO:
+     RUN escrever-log ("@@@@@@ERRO PROGRESS: " + ERROR-STATUS:GET-MESSAGE(1)).
+  END.
+  RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DEPOIS DE VOLTAR DE TI_FORNECEDOR.P").
 
   IF SEARCH("c:/temp/parar-migracao.txt") <> ?
   or entry(4,in-param-aux) = "N"
   THEN LEAVE.
   else pause(1).
+  RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@FORCANDO LOOP...").
 END.
+RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DO QUIT").
+
+RUN restauraSegurancaAvancada.
+
 QUIT.
+
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-mensagem-par AS CHAR NO-UNDO.
+END.
+
+PROCEDURE desativaSegurancaAvancada PRIVATE:
+    lAccessSecurityActiveAux=lAccessSecurityActive.
+    lAccessSecurityActive="FALSE".
+END PROCEDURE.
+
+PROCEDURE restauraSegurancaAvancada PRIVATE:
+    lAccessSecurityActive=lAccessSecurityActiveAux.
+END PROCEDURE.

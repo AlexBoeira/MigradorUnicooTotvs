@@ -94,7 +94,7 @@
           <string>_PROGRESS</string>
           <string>C:\DLC116\bin\_progres.exe</string>
           <string>CLIENTLOG_CONF</string>
-          <string>-clearlog -logginglevel 2 -logentrytypes 4GLMessages,4GLTrace,DB.Connects,FileID -clientlog</string>
+          <string>-clearlog -logginglevel 4 -logentrytypes 4GLMessages,4GLTrace,DB.Connects,FileID -clientlog</string>
           <string>CONN_EMS505UNICOO</string>
           <string>owner/senha@instancia</string>
           <string>CONN_UNICOOGPS</string>
@@ -118,7 +118,7 @@
           <string>PF</string>
           <string>C:\TOTVS\datasul\dts-0\ERP\scripts\dtsgp_migracao\datasul.pf</string>
           <string>PQT_GUIAS_POR_CICLO</string>
-          <string>10000</string>
+          <string>99999999</string>
           <string>PROWIN32</string>
           <string>C:\DLC116\bin\prowin32.exe</string>
           <string>QT_FILAS_IMPORTACAO_BENEFICIARIOS</string>

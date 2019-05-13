@@ -11,8 +11,8 @@
     Versao     DATA         RESPONSAVEL
     E.00.000   30/08/2002   ALEX
 ******************************************************************************/
-
-procedure imprime-prestador:
+/* MIGRACAO NAO USA ESSE TRECHO.
+  imprime-prestador:
 
    /* ------------------------------------------- IMPRIME REGISTRO TIPO 1 --- */
    put stream s-export
@@ -480,6 +480,7 @@ procedure imprime-prestador:
         end.                           
   
 end procedure.
+*/
 /* -------------------------------------------------------------------------- */
 procedure gera-relat-erro:
 def input parameter cd-tipo-p  as int                                   no-undo.
@@ -510,7 +511,7 @@ case cd-tipo-p:
  
                        /* desativa negrito */
                        put stream s-erro control ds-negrit-desat-aux.
- 
+
                        display stream s-erro
                                c-cd-unidade
                                c-cd-prestador
@@ -632,7 +633,7 @@ case cd-tipo-p:
               for each wk-erros:
                   delete wk-erros.
               end.
-              end.
+           end.
          end.
 end case.
 end procedure.

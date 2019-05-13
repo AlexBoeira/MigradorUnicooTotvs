@@ -10,6 +10,7 @@ Def Temp-table tt_erros No-undo
  * Variavel para tratar parametro de entrada.
  */
 DEF VAR in-param-aux AS CHAR no-undo.
+def var lg-batch-aux as log init no.
 ASSIGN in-param-aux = SESSION:PARAM.
 
 
@@ -61,7 +62,9 @@ hide all no-pause.
 
 def var c-versao as char init "7.00.000"                                no-undo.
 
-run cgp/cg0110l_mig.p.
+run cgp/cg0110l_mig.p(no, /*on-line*/
+                      "",
+                      "").
 
 /*run btb/btb918zb.p (input "hcg0210x", /* nome do programa */
                     input-output rw-log-exec, /* rowid */

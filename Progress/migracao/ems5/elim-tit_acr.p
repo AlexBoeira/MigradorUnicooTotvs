@@ -57,12 +57,11 @@ run fnd\btb\btapi910za.p(input "migracao", /*USUARIO*/
                          input "migracao", /*SENHA */
                          output table tt_erros). 
 
-for each tt_erros:
-    message "Erro: " 
-            String(tt_erros.num-cod) + " - ":U + 
-            tt_erros.desc-erro 
-            view-as alert-box information.
-end .
+For Each tt_erros:
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DO MESSAGE DE ERRO DA BTAPI910ZA").
+    RUN escrever-log("@@@@@Erro: " + String(tt_erros.num-cod) + " - ":U + tt_erros.desc-erro).
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DEPOIS DO MESSAGE DE ERRO DA BTAPI910ZA").
+End.
 /**/
 
 
@@ -106,3 +105,7 @@ FOR EACH tt_log_erros_estorn_cancel NO-LOCK:
         SKIP.
 END.
 OUTPUT CLOSE.
+
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-mensagem-par AS CHAR NO-UNDO.
+END.

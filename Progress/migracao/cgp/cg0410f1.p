@@ -6,11 +6,11 @@
 ** parcial ou total por qualquer meio, so podera ser feita mediante
 ** autorizacao expressa.
 *******************************************************************************/
-{include/i-prgvrs.i CG0410F 2.00.00.007 } /*** 010007 ***/
+/*{include/i-prgvrs.i CG0410F 2.00.00.007 } /*** 010007 ***/
 
 &IF "{&EMSFND_VERSION}" >= "1.00" &THEN
 {include/i-license-manager.i cg0410f MSP}
-&ENDIF
+&ENDIF                                   */
 
 /******************************************************************************
     Programa .....: 
@@ -19,11 +19,6 @@
     Programador ..: Mauricio Faoro 
     Objetivo .....: Migracao de faturas
 *******************************************************************************/
-hide all no-pause.
-{hdp/hdvarregua.i}
-{hdp/hdregparexec.i}
-{hdp/hdregparexec.f}
-
 def input param in-batch-online-par          AS CHAR NO-UNDO.
 DEF INPUT PARAM in-status-monitorar-par      AS CHAR NO-UNDO.
 DEF INPUT PARAM cd-evento-default-par        AS char NO-UNDO.
@@ -42,100 +37,13 @@ DEF BUFFER b-fatura       FOR fatura.
 
 cd-evento-aux = int(cd-evento-default-par).
 
-if in-batch-online-par = "ONLINE"
-THEN DO:
-        /* -------------------------------FRAMES------------------------------------- */
-        def frame f-parametros 
-            cd-evento-aux   label "Evento para Importacao Faturas"
-                            view-as fill-in size 4 by 1.3
-            evenfatu.ds-evento no-label
-                            view-as fill-in size 41 by 1.3
-           with centered side-labels overlay three-d title "Parametros". 
-        
-        def frame f-acompanhamento 
-            qt-registros label "Quantidade de Registros"
-                               view-as fill-in size 10 by 1.3
-            percent-concluido label "% Importado" 
-                              view-as fill-in size 6 by 1.3
-            percent-erros     label "% Erros"
-                              view-as fill-in size 6 by 1.3
-            with centered side-labels overlay three-d title "Acompanhamento". 
-END.
-        
-/* -------------------------------------------------------------------------- */
-{hdp/hdvrcab0.i}
-assign nm-cab-usuario = "Migracao de Faturas".
-       nm-prog        = " cg0410f ".
-       c-versao       = c_prg_vrs.
-       {hdp/hdlog.i}
-
-{hdp/hdtitrel.i}
-
-assign lg-btn-executa   = yes
-       in-entidade-aux  = 'FT'
-       lg-parametro-aux = no.
 
 IF in-batch-online-par = "BATCH"
 then do:
        run executa-processo (input cd-evento-aux).
 end.
-else do:
-        /* -------------------------------------------------------------------------- */
-        repeat on endkey undo, retry:
-        
-             hide frame f-parametros.
-        
-            hide message no-pause.
-            {hdp/hdbotparexec.i}
-        
-            case c-opcao:
-                when "Parametro"
-                then do on error undo, retry with frame f-parametros:
-                        
-                        update cd-evento-aux auto-return
-                         HELP "F5 para Zoom"
-                         {fpp/fp0310b.i}
-                         if   cd-evento-z <> ?
-                         and  cd-retorno
-                         then display cd-evento-z @ cd-evento-aux. end. 
-        
-                         find evenfatu where evenfatu.in-entidade = "FT"
-                                         and evenfatu.cd-evento   = cd-evento-aux no-lock no-error. 
-        
-                         if avail evenfatu
-                         then disp evenfatu.ds-evento. 
-                         else do:
-                                 message "Evento nao cadastrado!"
-                                 view-as alert-box title "Atencao !!!".
-                              end.
-                        hide frame f-parametros.
-                        assign lg-parametro-aux = yes.
-                     end.
-        
-                when "Executa"
-                then do:
-                        if not lg-parametro-aux
-                        then do:
-                                 message "Acessar primeiro os parametros"
-                                 view-as alert-box title "Atencao !!!".
-                                 
-                             end.
-                        else do:
-                                run executa-processo (input cd-evento-aux) .
-                                message "Processo concluido."
-                                         view-as alert-box title "Atencao !!!".
-                             end.
-                     end.
-        
-                when "Fim"
-                then do:
-                        hide all no-pause.
-                        leave.
-                     end.
-            end case.
-        end.
-end.
-            
+
+
 procedure executa-processo:
     def input parameter cd-evento-par   as integer            no-undo. 
     def var   nr-fatura-aux             as integer            no-undo. 
@@ -152,13 +60,6 @@ procedure executa-processo:
     
     select count(*) into qt-registros from migrac-fatur  where migrac-fatur.cod-livre-1 = in-status-monitorar-par.
 
-    assign percent-concluido = 0
-           qt-lidos-aux      = 0.
-
-    disp qt-registros                                    
-         percent-concluido                               
-          with frame f-acompanhamento.      
-
     for each migrac-fatur where migrac-fatur.cod-livre-1 = in-status-monitorar-par no-lock
                           break by migrac-fatur.aa-referencia
                                 by migrac-fatur.num-mm-refer:
@@ -172,16 +73,6 @@ procedure executa-processo:
         end.
     
         assign qt-lidos-aux = qt-lidos-aux + 1.
-
-        if qt-lidos-aux > 500
-        then do:
-                 disp qt-registros
-                      ((percent-concluido / qt-registros) * 1000) @ percent-concluido
-                      ((percent-erros / qt-registros) * 1000) @ percent-erros
-                      with frame f-acompanhamento.
-                 process events. 
-                 assign qt-lidos-aux = 0. 
-             end.
 
         for first propost  fields (propost.ep-codigo
                                    propost.cod-estabel
@@ -208,17 +99,9 @@ procedure executa-processo:
 
         if not avail tit_acr
         then do:
-                /*if migrac-fatur.parcela = 0
-                then for first tit_acr where tit_acr.cod_estab       = propost.cod-estabel
-                                         and tit_acr.cod_espec_docto = migrac-fatur.cd-especie
-                                         and tit_acr.cod_ser_docto   = migrac-fatur.serie
-                                         and tit_acr.cod_tit_acr     = migrac-fatur.nr-titulo-acr no-lock: end.
-
-                if not avail tit_acr
-                then do:*/
                         run grava-erro(input "titulo nao cadastrado").
                         next. 
-                    /* end.*/
+               
              end.
 
         /*se NUM-LIVRE-1 estiver preenchido, a fatura ja foi criada anteriormente pelo migrador e esta sendo reprocessada.
@@ -305,7 +188,6 @@ procedure executa-processo:
 
                 IF NOT AVAIL b-fatura
                 THEN DO:
-                       /*disp 'erro' migrac-fatur-juros.nr-titulo-acr  migrac-fatur-juros.aa-referencia  migrac-fatur-juros.num-mm-refer.*/
                          run grava-erro(input "fatura juros/multa nao cadastrado").
                         ASSIGN lg-erro-jm-aux = YES. 
                         next. 

@@ -18,15 +18,19 @@ ASSIGN in-param-aux = SESSION:PARAM.
 
 def var nr-pendentes-na-fila-aux as int no-undo.
 
+DEFINE NEW GLOBAL SHARED VARIABLE lAccessSecurityActive              AS CHARACTER NO-UNDO.
+DEFINE VARIABLE lAccessSecurityActiveAux AS CHARACTER NO-UNDO.
+
+RUN desativaSegurancaAvancada.
+
 Run fnd\btb\btapi910za.p(Input ENTRY(2, in-param-aux), /*USUARIO*/ 
                          Input ENTRY(3, in-param-aux), /*SENHA */  
                          Output Table tt_erros). 
 
 For Each tt_erros:
-    Message "Erro: " 
-            String(tt_erros.num-cod) + " - ":U + 
-            tt_erros.desc-erro 
-            View-as Alert-box Information.
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ANTES DO MESSAGE DE ERRO DA BTAPI910ZA").
+    RUN escrever-log("@@@@@Erro: " + String(tt_erros.num-cod) + " - ":U + tt_erros.desc-erro).
+    RUN escrever-log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DEPOIS DO MESSAGE DE ERRO DA BTAPI910ZA").
 End.
 
 REPEAT:
@@ -44,5 +48,20 @@ REPEAT:
   THEN LEAVE.
   else pause(1).
 END.
+
+RUN restauraSegurancaAvancada.
+
 QUIT.
 
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-mensagem-par AS CHAR NO-UNDO.
+END.
+
+PROCEDURE desativaSegurancaAvancada PRIVATE:
+    lAccessSecurityActiveAux=lAccessSecurityActive.
+    lAccessSecurityActive="FALSE".
+END PROCEDURE.
+
+PROCEDURE restauraSegurancaAvancada PRIVATE:
+    lAccessSecurityActive=lAccessSecurityActiveAux.
+END PROCEDURE.

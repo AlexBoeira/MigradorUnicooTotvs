@@ -302,8 +302,7 @@ end.
 
              END.
    ELSE DO:
-          MESSAGE "Nao foi possivel acessar b_TI_TIT_APB para atualizacao do status!"
-              VIEW-AS ALERT-BOX INFO BUTTONS OK.
+          run escrever-log("@@@@@@@@@@@@@@@@@@@Nao foi possivel acessar b_TI_TIT_APB para atualizacao do status!").
           LEAVE.
         END.
 

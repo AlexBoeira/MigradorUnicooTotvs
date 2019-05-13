@@ -7,15 +7,15 @@ SPOOL &1\GUIAS_AUTORIZACAO\STATUS_MIGRACAO_GUIAS_AUTORIZACAO.html
 
 -- monitorar status importacao guias AT
 select g.u##ind_sit_import, count(*) QTD,        sysdate || ' ' || to_char(systimestamp, 'HH24:MI:ss') ULT_ATU
-
 from gp.import_guia g
-group by g.u##ind_sit_import order by g.u##ind_sit_import desc
+group by g.u##ind_sit_import order by g.u##ind_sit_import desc;
 
 -- erros importacao guias AT por quantidade de ocorrencias
 select e.des_erro, count(*) 
 from gp.erro_process_import e, gp.import_guia g
 where e.num_seqcial_control = g.num_seqcial_control
 and g.u##ind_sit_import = 'PE'
+group by e.des_erro order by 2 desc;
 
 -- erros importacao guias AT por quantidade de ocorrencias
 select e.des_erro, count(*) 
@@ -27,7 +27,7 @@ group by e.des_erro order by 2 desc;
 -- listar erros importacao guias AT
 select e.*, g.* from gp.erro_process_import e, gp.import_guia g
 where e.num_seqcial_control = g.num_seqcial_control
-and g.u##ind_sit_import = 'PE'
+and g.u##ind_sit_import = 'PE';
 
 
 

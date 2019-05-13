@@ -30,6 +30,7 @@ if %data%== 8 set data=08
 if %data%== 9 set data=09
 set DATA_HORA=%date:~6,4%_%date:~3,2%_%data:~0,2%_%hora:~0,2%%time:~3,2%%time:~6,2%.txt
 
+
 if %FILA% leq %QT_FILAS_IMPORTACAO_CLIENTES%  (
   call %PROWIN32% -basekey "ini" -ininame %INI% -pf %PF% -p %PROGRAMA% -param %FILA%,%USUARIO%,%SENHA%,%EXECUTAR_CONTINUAMENTE% %CLIENTLOG_CONF% %CLIENTLOG_NOME%%FILA%_%DATA_HORA%
 )

@@ -628,18 +628,16 @@ find last param_geral_ems where param_geral_ems.dat_ult_atualiz <= today no-lock
 if   not avail param_geral_ems
 then do:
    hide message no-pause.
-   message "Parametros gerais do EMS504 nao cadastrados com" skip
-           "data igual ou inferior a de hoje."
-           view-as alert-box title " Atencao !!! ".
+   run escrever-log("Parametros gerais do EMS504 nao cadastrados com " +
+           "data igual ou inferior a de hoje.").
    return.
 end.
  
 IF NOT PARAM_geral_ems.LOG_clien_fornec_unico 
 THEN DO:
-       MESSAGE "Atencao! O parametro 'Codigo unico para cliente e fornecedor' nao esta ativado nos 'Parametros Gerais do EMS'." SKIP
-               "O processo de migracao nao pode continuar a partir deste ponto." SKIP
-               "Ative o parametro antes de continuar com este processo."
-           VIEW-AS ALERT-BOX INFO BUTTONS OK.
+       run escrever-log("Atencao! O parametro 'Codigo unico para cliente e fornecedor' nao esta ativado nos 'Parametros Gerais do EMS'. " +
+               "O processo de migracao nao pode continuar a partir deste ponto. " +
+               "Ative o parametro antes de continuar com este processo.").
        RETURN.
      END.
 

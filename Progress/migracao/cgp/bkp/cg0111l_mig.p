@@ -110,6 +110,9 @@ def var nr-digito-aux              as int                              no-undo.
 def var lg-ok-aux                  as log                              no-undo.
 def var ds-mens-aux                as char format "x(70)"              no-undo.
 
+/* algumas validacoes podem ser ignoradas temporariamente preenchendo uma data maior que TODAY nessa variavel*/
+DEF VAR dt-ignorar-validacao-aux   AS DATE INIT 7/1/18                 NO-UNDO.
+
 /* ----- DEFINICAO DE VARIAVEIS DA ROTINA RTCGCCPF ------------------------- */
 def            var nr-cgc-cpf          as char format "x(14)"          no-undo.
 def            var ds-mensrela-aux     as char format "x(132)"         no-undo.
@@ -177,6 +180,8 @@ end case.
 /*---------------------------------------------------------------------------*/
  
 procedure imp-reg-preserv:
+   DEF VAR lg-erro-endereco AS LOG INIT NO NO-UNDO.
+
    /* ------------------------------------ CONSISTE CAMPO CODIGO UNIDADE --- */
    assign c-cd-unidade = int(substring(c-dados,002,04)) no-error.
  
@@ -705,8 +710,11 @@ procedure imp-reg-preserv:
                           input c-en-bairro,
                           input c-in-tipo-pessoa,
                           input "P",
-                          input-output lg-erro, 
+                          input-output lg-erro-endereco, 
                           input 1).
+
+   IF lg-erro-endereco 
+   THEN lg-erro = YES.
 
    /* ---------------------------------------- CONSISTE CAMPO TELEFONE 1 --- */
    assign c-nr-telefone[1] = trim(substring(c-dados,982,20)).
@@ -1028,12 +1036,24 @@ procedure imp-reg-preserv:
                               output lg-ok-aux,
                               input-output nr-digito-aux).
 
+           RUN escrever-log("########VALIDAR DIGITO INSS###############c-cd-unidade: " + STRING(c-cd-unidade) +
+                            " c-cd-prestador: "      + STRING(c-cd-prestador) +
+                            " c-nm-prestador: "      + STRING(c-nm-prestador) +
+                            " c-nome-abrev: "        + STRING(c-nome-abrev) +
+                            " c-in-tipo-pessoa: "    + STRING(c-in-tipo-pessoa) +
+                            " c-cgc-cpf: "           + STRING(c-cgc-cpf) +
+                            " c-nr-inscricao-inss: " + STRING(c-nr-inscricao-inss) +
+                            " OK?: "                 + STRING(lg-ok-aux)).
+
            if not lg-ok-aux
+
+           AND dt-ignorar-validacao-aux < TODAY
+
            then do:
                    create wk-erros.
                    assign wk-erros.cd-tipo-erro = "E"
                           wk-erros.cd-tipo-regs = 1
-                          wk-erros.ds-desc      = ds-mens-aux + " para Nr.Inscricao INSS"
+                          wk-erros.ds-desc      = ds-mens-aux + " para Nr.Inscricao INSS (" + c-nr-inscricao-inss + ")"
                           lg-erro               = yes.
                 end.
         end.
@@ -1343,11 +1363,14 @@ procedure imp-reg-preserv:
 
           if   lg-erro-cgc-cpf-aux
           then do:
-                 create wk-erros.
-                 assign wk-erros.cd-tipo-erro = "E"
-                        wk-erros.cd-tipo-regs = 1
-                        wk-erros.ds-desc      = ds-mensrela-aux.
-                 assign lg-erro = yes.
+                 IF dt-ignorar-validacao-aux < TODAY
+                 THEN DO:
+                         create wk-erros.
+                         assign wk-erros.cd-tipo-erro = "E"
+                                wk-erros.cd-tipo-regs = 1
+                                wk-erros.ds-desc      = ds-mensrela-aux.
+                         assign lg-erro = yes.
+                 END.
                end.
  
           else do:
@@ -2270,15 +2293,19 @@ procedure imp-reg-preserv:
                   {srincl/srbanco.i "c-cd-banco"}                              
                                                                                
                   if   not lg-avail-srbanco-srems                              
-                  then do:                                                     
-                         create wk-erros.                                      
-                         assign wk-erros.cd-tipo-erro = "E"                    
-                                wk-erros.cd-tipo-regs = 1                      
-                                wk-erros.ds-desc      = "O codigo do banco ("  
-                                                      + string(c-cd-banco)     
-                                                      + ") NAO e' valido".     
-                                                                               
-                         assign lg-erro = yes.                                 
+                  then do:      
+
+                         IF dt-ignorar-validacao-aux < TODAY 
+                         THEN DO:
+                                create wk-erros.                                      
+                                assign wk-erros.cd-tipo-erro = "E"                    
+                                       wk-erros.cd-tipo-regs = 1                      
+                                       wk-erros.ds-desc      = "O codigo do banco ("  
+                                                             + string(c-cd-banco)     
+                                                             + ") NAO e' valido".     
+                                                                                      
+                                assign lg-erro = yes.                                 
+                         END.
                        end.                                                    
                 end.
 
@@ -2972,6 +2999,7 @@ end procedure.
 /*---------------------------------------------------------------------------*/
 
 procedure imp-reg-endpres:
+   DEF VAR lg-erro-endereco AS LOG NO-UNDO.
    assign c-nr-seq-endereco = c-nr-seq-endereco + 1.
  
    /* --------------------------------------------------- CRIAR REGISTRO --- */
@@ -3023,8 +3051,11 @@ procedure imp-reg-endpres:
                           input wk-reg3.en-bairro,
                           input c-in-tipo-pessoa,
                           input "O",
-                          input-output lg-erro, 
+                          input-output lg-erro-endereco, 
                           input 3).
+
+   IF lg-erro-endereco
+   THEN lg-erro = YES.
 
 
    /* --------------------------------------- CONSISTE CAMPO TELEFONE 01 --- */
@@ -3687,11 +3718,16 @@ procedure consulta-class-imposto:
 
     if   not avail classif_impto and c-cd-magnus <> 0
     then do:
-           create wk-erros.
-           assign wk-erros.cd-tipo-erro = "E"
-                  wk-erros.cd-tipo-regs = 1
-                  wk-erros.ds-desc      = c-des-erro-par.
-           assign lg-erro-par = yes.
+
+           IF dt-ignorar-validacao-aux < TODAY
+           THEN DO:
+
+                   create wk-erros.
+                   assign wk-erros.cd-tipo-erro = "E"
+                          wk-erros.cd-tipo-regs = 1
+                          wk-erros.ds-desc      = c-des-erro-par.
+                   assign lg-erro-par = yes.
+           END.
          end.
 
 end procedure.
@@ -3738,6 +3774,7 @@ end procedure.
 procedure consiste-tributos:
 
     def var c-des-erro-aux as char no-undo.
+    DEF VAR lg-erro-imposto AS LOG INIT NO NO-UNDO.
     
     &if "{&sistema}" = "ems504"
     or  "{&sistema}" = "ems505"
@@ -3753,7 +3790,8 @@ procedure consiste-tributos:
                           assign c-des-erro-aux = "Imposto de Renda (" + string(c-cd-imposto,"99999") + ") nao Cadastrado".
                           run consulta-imposto (input c-cd-imposto,
                                                 input c-des-erro-aux,
-                                                output lg-erro).
+                                                output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-imposto <> ""
                         or  c-cd-imposto <> "     "
@@ -3779,7 +3817,8 @@ procedure consiste-tributos:
                           run consulta-class-imposto (input c-cd-imposto,
                                                       input c-cd-classificacao-imposto,
                                                       input c-des-erro-aux,
-                                                      output lg-erro).                           
+                                                      output lg-erro-imposto).                           
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-classificacao-imposto <> ""
                         or  c-cd-classificacao-imposto <> "     "
@@ -3805,7 +3844,8 @@ procedure consiste-tributos:
                           run consulta-vinc-imp-for (input c-cd-imposto,
                                                      input c-cd-classificacao-imposto,
                                                      input c-des-erro-aux,
-                                                     output lg-erro).  
+                                                     output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                  end.
 
@@ -3823,7 +3863,8 @@ procedure consiste-tributos:
                                                 + ") nao Cadastrado".
                           run consulta-imposto (input c-cd-inss,
                                                 input c-des-erro-aux,
-                                                output lg-erro).
+                                                output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-inss <> ""
                         or  c-cd-inss <> "     "
@@ -3851,7 +3892,8 @@ procedure consiste-tributos:
                           run consulta-class-imposto (input c-cd-inss,
                                                       input c-cd-classificacao-inss,
                                                       input c-des-erro-aux,
-                                                      output lg-erro). 
+                                                      output lg-erro-imposto). 
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-classificacao-inss <> ""
                         or  c-cd-classificacao-inss <> "     "
@@ -3930,7 +3972,8 @@ procedure consiste-tributos:
                                                 + ") nao Cadastrado".
                           run consulta-imposto (input c-cd-iss,
                                                 input c-des-erro-aux,
-                                                output lg-erro).
+                                                output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-iss <> ""
                         or  c-cd-iss <> "     "
@@ -3947,30 +3990,35 @@ procedure consiste-tributos:
                    /* ----------------------------- CONSISTE CLASSIFICACAO DO ISS - */
                    assign c-cd-classificacao-iss = trim(substring(c-dados,692,5)).
                    
-                   if  c-cd-magnus <> 0
-                   and substring(c-dados,686,1) = "S"
-                   then do:
-                          assign c-des-erro-aux = "Classif. de Imposto de ISS ("
-                                                + string(c-cd-classificacao-iss,"99999")
-                                                + ") nao Cadastrado".
+                   IF dt-ignorar-validacao-aux <= TODAY
+                   THEN DO:
+                           if  c-cd-magnus <> 0
+                           and substring(c-dados,686,1) = "S"
+                           then do:
+                                  assign c-des-erro-aux = "Classif. de Imposto de ISS ("
+                                                        + string(c-cd-classificacao-iss,"99999")
+                                                        + ") nao Cadastrado para o imposto (" + STRING(c-cd-iss) + ")".
+        
+                                  run consulta-class-imposto (input c-cd-iss,
+                                                              input c-cd-classificacao-iss,
+                                                              input c-des-erro-aux,
+                                                              output lg-erro-imposto). 
+                                  IF lg-erro-imposto THEN lg-erro = YES.
+                                end.
+                           else if  c-cd-classificacao-iss <> ""
+                                or  c-cd-classificacao-iss <> "     "
+                                then do:
+                                        create wk-erros.
+                                        assign wk-erros.cd-tipo-erro = "E"
+                                               wk-erros.cd-tipo-regs = 1
+                                               wk-erros.ds-desc      = "Classif. de Imposto de ISS ("
+                                                                       + string(c-cd-classificacao-iss,"99999")
+                                                                       + ") deve ser brancos "
+                                                                       + "pois fornecedor nao foi informado"
+                                               lg-erro = yes.
+                                     end.
+                   END.
 
-                          run consulta-class-imposto (input c-cd-iss,
-                                                      input c-cd-classificacao-iss,
-                                                      input c-des-erro-aux,
-                                                      output lg-erro). 
-                        end.
-                   else if  c-cd-classificacao-iss <> ""
-                        or  c-cd-classificacao-iss <> "     "
-                        then do:
-                                create wk-erros.
-                                assign wk-erros.cd-tipo-erro = "E"
-                                       wk-erros.cd-tipo-regs = 1
-                                       wk-erros.ds-desc      = "Classif. de Imposto de ISS ("
-                                                               + string(c-cd-classificacao-iss,"99999")
-                                                               + ") deve ser brancos "
-                                                               + "pois fornecedor nao foi informado"
-                                       lg-erro = yes.
-                             end.
                    /* ---------------------------------------- CONSISTE IMPOSTO VINCULADO--- */
                    if  c-cd-magnus <> 0
                    and substring(c-dados,686,1) = "S"
@@ -3983,7 +4031,9 @@ procedure consiste-tributos:
                           run consulta-vinc-imp-for (input c-cd-iss,
                                                      input c-cd-classificacao-iss,
                                                      input c-des-erro-aux,
-                                                     output lg-erro). 
+                                                     output lg-erro-imposto). 
+                          IF lg-erro-imposto
+                          THEN lg-erro = YES.
                         end.
                  end.
 
@@ -4001,7 +4051,8 @@ procedure consiste-tributos:
                                                 + ") nao Cadastrado".
                           run consulta-imposto (input c-cd-imposto-unico,
                                                 input c-des-erro-aux,
-                                                output lg-erro).
+                                                output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-imposto-unico <> ""
                         or  c-cd-imposto-unico <> "     "
@@ -4028,7 +4079,8 @@ procedure consiste-tributos:
                           run consulta-class-imposto (input c-cd-imposto-unico,
                                                       input c-cd-clas-imposto-unico,
                                                       input c-des-erro-aux,
-                                                      output lg-erro).                  
+                                                      output lg-erro-imposto).                  
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                    else if  c-cd-clas-imposto-unico <> ""
                         or  c-cd-clas-imposto-unico <> "     "
@@ -4054,7 +4106,8 @@ procedure consiste-tributos:
                           run consulta-vinc-imp-for (input c-cd-imposto-unico,
                                                      input c-cd-clas-imposto-unico,
                                                      input c-des-erro-aux,
-                                                     output lg-erro).
+                                                     output lg-erro-imposto).
+                          IF lg-erro-imposto THEN lg-erro = YES.
                         end.
                  end.
 
@@ -4094,7 +4147,8 @@ procedure consiste-tributos:
                                                        + ") nao Cadastrado".
                                  run consulta-imposto (input c-cd-cofins,
                                                        input c-des-erro-aux,
-                                                       output lg-erro).
+                                                       output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                           else if  c-cd-cofins <> ""
                                or  c-cd-cofins <> "     "
@@ -4120,7 +4174,8 @@ procedure consiste-tributos:
                                  run consulta-class-imposto (input c-cd-cofins,
                                                              input c-cd-classificacao-cofins,
                                                              input c-des-erro-aux,
-                                                             output lg-erro).  
+                                                             output lg-erro-imposto).  
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                           else if  c-cd-classificacao-cofins <> ""
                                or  c-cd-classificacao-cofins <> "     "
@@ -4146,7 +4201,8 @@ procedure consiste-tributos:
                                  run consulta-vinc-imp-for (input c-cd-cofins,
                                                             input c-cd-classificacao-cofins,
                                                             input c-des-erro-aux,
-                                                            output lg-erro).
+                                                            output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                         end.
 
@@ -4164,7 +4220,8 @@ procedure consiste-tributos:
                                                        + ") nao Cadastrado".
                                  run consulta-imposto (input c-cd-pispasep,
                                                        input c-des-erro-aux,
-                                                       output lg-erro).
+                                                       output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                           else if  c-cd-pispasep <> ""
                                or  c-cd-pispasep <> "     "
@@ -4190,7 +4247,8 @@ procedure consiste-tributos:
                                  run consulta-class-imposto (input c-cd-pispasep,
                                                              input c-cd-classificacao-pispasep,
                                                              input c-des-erro-aux,
-                                                             output lg-erro). 
+                                                             output lg-erro-imposto). 
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                           else if  c-cd-classificacao-pispasep <> ""
                                or  c-cd-classificacao-pispasep <> "     "
@@ -4216,7 +4274,8 @@ procedure consiste-tributos:
                                  run consulta-vinc-imp-for (input c-cd-pispasep,
                                                             input c-cd-classificacao-pispasep,
                                                             input c-des-erro-aux,
-                                                            output lg-erro).
+                                                            output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                         end.
 
@@ -4234,7 +4293,8 @@ procedure consiste-tributos:
                                                        + ") nao Cadastrado".
                                  run consulta-imposto (input c-cd-csll,
                                                        input c-des-erro-aux,
-                                                       output lg-erro).
+                                                       output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end.
                           else if  c-cd-csll <> ""
                                or  c-cd-csll <> "     "
@@ -4260,7 +4320,8 @@ procedure consiste-tributos:
                                  run consulta-class-imposto (input c-cd-csll,
                                                              input c-cd-classificacao-csll,
                                                              input c-des-erro-aux,
-                                                             output lg-erro). 
+                                                             output lg-erro-imposto). 
+                                 IF lg-erro-imposto THEN lg-erro = yes.
                                end.
                           else if  c-cd-classificacao-csll <> ""
                                or  c-cd-classificacao-csll <> "     "
@@ -4286,7 +4347,8 @@ procedure consiste-tributos:
                                  run consulta-vinc-imp-for (input c-cd-csll,
                                                             input c-cd-classificacao-csll,
                                                             input c-des-erro-aux,
-                                                            output lg-erro).
+                                                            output lg-erro-imposto).
+                                 IF lg-erro-imposto THEN lg-erro = YES.
                                end. 
                         end.
                  end.
@@ -4316,4 +4378,10 @@ procedure consiste-tributos:
     &endif.
     
 end procedure.
+
+/* procedure usada apenas para gravar mensagens no clientlog */
+PROCEDURE escrever-log:
+    DEF INPUT PARAM ds-par AS CHAR NO-UNDO.
+END PROCEDURE.
+
 /* -------------------------------------------------------------------- EOF - */
